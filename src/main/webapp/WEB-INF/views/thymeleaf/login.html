@@ -41,25 +41,7 @@
     <span class="navbar-brand ml-3 text-left">App de Mascotas</span>
 
     <!-- Entry points -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-3" href="#">Mapas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-3" href="#">Vacunas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-3" href="#">Donaciones</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
-            </li>
-        </ul>
-    </div>
+    <div th:include="'entry-points'"></div>
 </nav>
 
 <main role="main" class="container">

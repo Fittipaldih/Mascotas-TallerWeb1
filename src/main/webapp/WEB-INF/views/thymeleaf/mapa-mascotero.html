@@ -11,57 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Custom style -->
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
-
-    <style>
-        /* Estilo para el contenedor de la imagen de fondo */
-        .background-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://i.postimg.cc/bYLTtnt8/fondo-Pata.png');
-            opacity: 0.5;
-            background-size: cover;
-            background-repeat: no-repeat;
-            z-index: -1;
-        }
-        section{
-            margin-top: 15vh;
-        }
-
-        .container-btn{
-            display: flex;
-            flex-direction: column;
-            width: 40%;
-            gap: 1vh;
-        }
-        .tipo-publicacion h1 {
-            color: white;
-            font-size: medium;
-            margin-bottom: 3vh;
-        }
-        .tipo-publicacion{
-            margin-left: 5vh;
-            margin-right: -40vh;
-            padding: 5vh 10vh;
-            width: 35%;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5vh;
-        }
-
-        .container{
-            display: flex;
-            justify-content: space-between;
-            gap: 2vh;
-            margin-left: 8vh;
-        }
-        #filtros{
-            margin-top: 2vh;
-        }
-    </style>
-
+    <link rel="stylesheet" th:href="@{/css/mapa-mascotero.css}"/>
 </head>
 
 <body>
@@ -76,25 +26,7 @@
     <span class="navbar-brand ml-3 text-left">Mapa Mascotero</span>
 
     <!-- Entry points -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-3" href="#">Mapas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-3" href="#">Vacunas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link mr-3" href="#">Donaciones</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Login</a>
-            </li>
-        </ul>
-    </div>
+    <div th:include="'entry-points'"></div>
 </nav>
 
 <main role="main" class="container">
@@ -103,14 +35,14 @@
             <div class="card">
                 <div class="card-body">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7655.769728206894!2d-58.570091273631924!3d-34.66906268820045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc74d2a85f6b7%3A0xf7b42458c4ff6819!2sUNLaM%20-%20Mesa%20de%20Entrada!5e0!3m2!1ses-419!2sar!4v1714858059151!5m2!1ses-419!2sar"
-                        width="1000" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        width="1000" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
 
     </section>
 
-    <section class="tipo-publicacion" style="background-color: #343a40">
+    <section class="tipo-publicacion">
 
         <form th:action="@{/filtrar}" method="get">
             <h1>Solo quiero ver...</h1>
