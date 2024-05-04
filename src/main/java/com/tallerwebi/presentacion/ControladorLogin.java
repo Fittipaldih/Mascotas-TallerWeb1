@@ -23,6 +23,14 @@ public class ControladorLogin {
         this.servicioLogin = servicioLogin;
     }
 
+
+
+    @RequestMapping(value = "/red-social", method = RequestMethod.GET)
+    public ModelAndView irARedSocial() {
+
+        return new ModelAndView("red-social");
+    }
+
     @RequestMapping("/login")
     public ModelAndView irALogin() {
 
