@@ -1,5 +1,6 @@
 Proyecto Mascotas - Taller Web I (Maven and Thymeleaf)
 ===============================
+Link al Trello -> https://trello.com/b/PmqKF1gH/mascotas
 
 ## 1. Como iniciar el proyecto
 ```shell
