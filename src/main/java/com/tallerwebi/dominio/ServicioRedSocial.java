@@ -1,6 +1,8 @@
 package com.tallerwebi.dominio;
 
+import java.util.List;
+
 public interface ServicioRedSocial {
 
-    public void filtrarPublicacion();
+    public List<Publicacion> filtrarPublicacion(TipoPublicacion tipoPublicacion, Zona zona, ColorPelo pelo, TiempoBusqueda tiempoBusqueda);
 }
