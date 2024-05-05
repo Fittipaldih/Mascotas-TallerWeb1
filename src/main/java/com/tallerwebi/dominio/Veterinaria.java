@@ -10,7 +10,7 @@ public class Veterinaria{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idVeterinaria;
     private Integer telefono;
     private String nombre, direccion;
     private Boolean open24;
@@ -23,12 +23,12 @@ public class Veterinaria{
         this.telefono = telefono;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdVeterinaria() {
+        return idVeterinaria;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long idVeterinaria) {
+        this.idVeterinaria = idVeterinaria;
     }
 
     public String getNombre() {

@@ -20,8 +20,5 @@ public class Color {
     public String getNombreColor() {
         return nombreColor;
     }
-    public void setIdColor(Long id) {
-        this.idColor = id;
-    }
 
 }

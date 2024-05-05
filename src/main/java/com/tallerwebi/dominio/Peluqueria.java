@@ -10,7 +10,7 @@ public class Peluqueria{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idPeluqueria;
     private Integer telefono;
     private String nombre, direccion;
 
@@ -22,12 +22,12 @@ public class Peluqueria{
         this.telefono = telefono;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdPeluqueria() {
+        return idPeluqueria;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long idPeluqueria) {
+        this.idPeluqueria = idPeluqueria;
     }
 
     public String getNombre() {
