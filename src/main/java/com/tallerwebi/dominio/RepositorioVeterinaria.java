@@ -4,7 +4,8 @@ import java.util.List;
 
 public interface RepositorioVeterinaria {
         List<Veterinaria> dameTodasLasVeterinarias();
+        List<Veterinaria> buscarVeterinariasPorZona(String zona);
         void guardarVeterinaria(Veterinaria veterinaria);
         void modificarVeterinaria(Veterinaria veterinaria);
-        List<Veterinaria> buscarVeterinariasPorZona(String zona);
+        void eliminarVeterinaria(Veterinaria veterinaria);
 }

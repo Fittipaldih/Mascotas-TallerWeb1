@@ -21,7 +21,7 @@ public class Estado {
         return nombreEstado;
     }
 
-    public void setId(Long id) {
+    public void setIdEstado(Long id) {
         this.idEstado = id;
     }
 

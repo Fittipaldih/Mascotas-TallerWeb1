@@ -25,7 +25,7 @@ public class TipoMascota {
         this.idTipoMascota = id;
     }
 
-    public void getNombreTipoMascota(String nombre) {
+    public void setNombreTipoMascota(String nombre) {
         this.nombreTipoMascota = nombre;
     }
 }

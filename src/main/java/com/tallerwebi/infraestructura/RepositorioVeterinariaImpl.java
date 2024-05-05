@@ -25,6 +25,11 @@ public class RepositorioVeterinariaImpl implements RepositorioVeterinaria {
     }
 
     @Override
+    public void eliminarVeterinaria(Veterinaria veterinaria) {
+
+    }
+
+    @Override
     public List<Veterinaria> buscarVeterinariasPorZona(String zona) {
         return List.of();
     }

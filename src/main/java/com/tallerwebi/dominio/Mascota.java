@@ -8,39 +8,29 @@ public class Mascota {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMascota, idUsuario;
+    private Long idMascota;
     private String nombre, foto, descripcion, latitud, longitud;
-    private Integer tiempoBuscado, idColor;
+    private Integer tiempoBuscado;
 
     // Muchas Mascotas pueden tener el mismo Tipo, Raza, Y Estado
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idTipoMascota")
+    @ManyToOne
     private TipoMascota tipoMascota;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idRaza")
+    @ManyToOne
+    private Color color;
+
+    // Para identificar el dueño de la mascota
+    @ManyToOne
+    private Usuario usuario;
+
+    @ManyToOne
     private Raza raza;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idEstado")
+    @ManyToOne
     private Estado estado;
-
-    //Una mascota puede tener muchos comentarios
-    @OneToMany(mappedBy = "mascota")
-    private List<Comentario> comentarios;
-
-    //Muchas mascotas pueden tener muchas vacunas
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "vacunas_mascota",
-            joinColumns = {@JoinColumn(name = "idMascota")},
-            inverseJoinColumns = {@JoinColumn(name = "idVacuna")} )
-    private List<Vacuna> vacunas;
 
     public Long getIdMascota() {
         return idMascota;
-    }
-    public Long getIdUsuario() {
-        return idUsuario;
     }
     public String getNombre() {
         return nombre;
@@ -69,20 +59,8 @@ public class Mascota {
     public Integer getTiempoBuscado() {
         return tiempoBuscado;
     }
-    public Integer getIdColor() {
-        return idColor;
-    }
-    public List<Comentario> getComentarios() {
-        return comentarios;
-    }
-    public List<Vacuna> getVacunas() {
-        return vacunas;
-    }
     public void setIdMascota(Long idMascota) {
         this.idMascota = idMascota;
-    }
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
     }
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -111,13 +89,5 @@ public class Mascota {
     public void setTiempoBuscado(Integer tiempoBuscado) {
         this.tiempoBuscado = tiempoBuscado;
     }
-    public void setIdColor(Integer idColor) {
-        this.idColor = idColor;
-    }
-    public void setComentarios(List<Comentario> comentarios) {
-        this.comentarios = comentarios;
-    }
-    public void setVacunas(List<Vacuna> vacunas) {
-        this.vacunas = vacunas;
-    }
+
 }

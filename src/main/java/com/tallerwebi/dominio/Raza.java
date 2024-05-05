@@ -25,7 +25,7 @@ public class Raza {
         this.idRaza = id;
     }
 
-    public void getNombreRaza(String nombre) {
+    public void setNombreRaza(String nombre) {
         this.nombreRaza = nombre;
     }
 }

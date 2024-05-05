@@ -4,8 +4,9 @@ import java.util.List;
 
 public interface RepositorioPeluqueria {
     List<Peluqueria> dameTodasLasPeluquerias();
+    List<Peluqueria> buscarPeluqueriasPorZona(String zona);
     void guardarPeluqueria(Peluqueria peluqueria);
     void modificarPeluqueria(Peluqueria peluqueria);
-    List<Peluqueria> buscarPeluqueriasPorZona(String zona);
+    void eliminarPeluqueria(Peluqueria peluqueria);
 }
 

@@ -36,4 +36,9 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
         sessionFactory.getCurrentSession().update(mascota);
     }
 
+    @Override
+    public void eliminarMascota(Mascota mascota) {
+
+    }
+
 }

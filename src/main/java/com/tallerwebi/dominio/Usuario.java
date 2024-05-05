@@ -46,11 +46,9 @@ public class Usuario {
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
-
     public boolean activo() {
         return activo;
     }
-
     public void activar() {
         activo = true;
     }
