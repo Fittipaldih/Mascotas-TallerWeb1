@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Red social Mascotera</title>
+
+    <!-- Bootstrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    // agrege link porque no agregaba css
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+    <style>
+        /* Estilo para el contenedor de la imagen de fondo */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://i.postimg.cc/bYLTtnt8/fondo-Pata.png');
+            opacity: 0.5;
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+        section{
+            margin-top: 15vh;
+        }
+
+        .container-btn{
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+            gap: 1vh;
+        }
+        .tipo-publicacion h1 {
+            color: white;
+            font-size: medium;
+            margin-bottom: 3vh;
+        }
+        .tipo-publicacion{
+            margin-left: 5vh;
+            margin-right: -40vh;
+            padding: 5vh 10vh;
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5vh;
+        }
+
+        .container{
+            display: flex;
+            justify-content: space-between;
+            gap: 2vh;
+            margin-left: 8vh;
+        }
+        #filtros{
+            margin-top: 2vh;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="background-container"></div>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <!-- Logo (reemplaza el src con la ubicación de tu logo) -->
+    <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
+
+    <!-- Título -->
+    <span class="navbar-brand ml-3 text-left">App de Mascotas</span>
+
+    <!-- Entry points -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-3" href="#">Mapas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-3" href="#">Vacunas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mr-3" href="#">Donaciones</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Login</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main role="main" class="container">
+    <section class="todas-publicaciones">
+<!--    // mostrar todas las publicaciones-->
+        <div class="card-deck">
+            <div class="card">
+                <img class="card-img-top" src="../../../resources/core/img/mascota-01.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Perdidos</h5>
+                    <p class="card-text">Estamos buscando al dueño, fue encontrado en Martin Fierro al 1452</p>
+                    <div class="container-btn">
+                        <button type="button" class="btn btn-outline-primary">Contactar</button>
+                        <button type="button" class="btn btn-outline-primary">Compartir</button>
+                        <button type="button" class="btn btn-outline-primary">Comentar</button>
+                        <button type="button" class="btn btn-outline-primary">reaccionar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="card-img-top" src="../../../resources/core/img/mascota-01.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Historias</h5>
+                    <p class="card-text">Estamos buscando al dueño, fue encontrado en Martin Fierro al 1452</p>
+                    <div class="container-btn">
+                        <button type="button" class="btn btn-outline-primary">Contactar</button>
+                        <button type="button" class="btn btn-outline-primary">Compartir</button>
+                        <button type="button" class="btn btn-outline-primary">Comentar</button>
+                        <button type="button" class="btn btn-outline-primary">reaccionar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="../../../resources/core/img/mascota-01.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Donaciones</h5>
+                    <p class="card-text">Estamos buscando al dueño, fue encontrado en Martin Fierro al 1452</p>
+                     <div class="container-btn">
+                         <button type="button" class="btn btn-outline-primary">Contactar</button>
+                         <button type="button" class="btn btn-outline-primary">Compartir</button>
+                         <button type="button" class="btn btn-outline-primary">Comentar</button>
+                         <button type="button" class="btn btn-outline-primary">reaccionar</button>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <section class="tipo-publicacion" style="background-color: #343a40">
+        <!-- Opciones de publicaciones -->
+        <form th:action="@{/publicar}" method="get">
+            <button type="submit" class="btn btn-outline-light">Publicar</button>
+        </form>
+
+            <form th:action="@{/filtrar}" method="get">
+                <h1>Solo quiero ver...</h1>
+
+                <label style="color: white" for="tipo_publicacion">Tipo de publicacion:</label>
+                <select name="tipo_publicacion" class="form-control">
+                    <option value=" ">Eliga un tipo</option>
+                    <option value="perdidos">Perdidos</option>
+                    <option value="historias">Historias</option>
+                    <option value="donaciones">Donaciones</option>
+                </select>
+
+                <p style="color: white">Filtrar por zona:</p>
+                <select name="zona" class="form-control">
+                    <option value=" ">Eliga una zona</option>
+                    <option value="oeste">Zana oeste</option>
+                    <option value="norte">Zona norte</option>
+                    <option value="sur">Zona sur</option>
+                </select>
+
+                <p style="color: white">color de pelo:</p>
+                <select name="pelo" class="form-control">
+                    <option value=" ">Eliga un color</option>
+                    <option value="oeste">blanco</option>
+                    <option value="norte">negro</option>
+                    <option value="sur">marron</option>
+                </select>
+
+                <label style="color: white" for="tiempo_busqueda">Tiempo de búsqueda:</label>
+                <select id="tiempo_busqueda" name="tiempo_busqueda" class="form-control">
+                    <option value="1h">Hace una hora</option>
+                    <option value="1s">Hace una semana</option>
+                    <option value="1m">Hace un mes</option>
+                    <option value="1m+">Hace más de un mes</option>
+                </select>
+                <button id="filtros" type="submit" class="btn btn-outline-light">Filtrar</button>
+            </form>
+
+    </section>
+
+</main>
+<!-- /.container -->
+
+<!-- Bootstrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>
+
+<!--// mas de un form-->
+<!--<section class="tipo-publicacion" style="background-color: #343a40">-->
+<!--    &lt;!&ndash; Opciones de publicaciones &ndash;&gt;-->
+<!--    <button type="button" class="btn btn-outline-light">Publicar</button>-->
+<!--    <p>Solo quiero ver...</p>-->
+<!--    <form th:action="@{/perdidos}" method="get">-->
+<!--        <button type="submit" class="btn btn-outline-light">Perdidos</button>-->
+<!--    </form>-->
+<!--    <form th:action="@{/historias}" method="get">-->
+<!--        <button type="submit" class="btn btn-outline-light">Historias</button>-->
+<!--    </form>-->
+<!--    <form th:action="@{/donaciones}" method="get">-->
+<!--        <button type="submit" class="btn btn-outline-light">Donaciones</button>-->
+<!--    </form>-->
+<!--    <p>Filtrar por:</p>-->
+<!--    <form th:action="@{/perdidos/zona}" method="get">-->
+<!--        <button type="submit" class="btn btn-outline-light">Zona</button>-->
+<!--    </form>-->
+<!--    <form th:action="@{/perdidos/color-pelo}" method="get">-->
+<!--        <button type="submit" class="btn btn-outline-light">Color de pelo</button>-->
+<!--    </form>-->
+<!--    <form th:action="@{/perdidos/tiempo-busqueda}" method="get">-->
+<!--        <select name="tiempo_busqueda" class="form-control">-->
+<!--            <option value="1h">Hace una hora</option>-->
+<!--            <option value="1w">Hace una semana</option>-->
+<!--            <option value="1m">Hace un mes</option>-->
+<!--            <option value="1m+">Hace más de un mes</option>-->
+<!--        </select>-->
+<!--        <button type="submit" class="btn btn-outline-light">Filtrar</button>-->
+<!--    </form>-->
+<!--</section>-->
