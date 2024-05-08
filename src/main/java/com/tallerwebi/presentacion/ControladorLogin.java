@@ -84,5 +84,10 @@ public class ControladorLogin {
     public ModelAndView inicio() {
         return new ModelAndView("redirect:/login");
     }
+
+    @RequestMapping(value = "/mapa-mascotero", method = RequestMethod.GET)
+    public ModelAndView irAlMapaMascotero() {
+        return new ModelAndView("mapa-mascotero");
+    }
 }
 

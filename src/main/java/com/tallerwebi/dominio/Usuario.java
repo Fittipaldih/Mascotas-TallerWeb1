@@ -10,17 +10,17 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idUsuario;
     private String email;
     private String password;
     private String rol;
     private Boolean activo = false;
 
     public Long getId() {
-        return id;
+        return idUsuario;
     }
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
     public String getEmail() {
         return email;
@@ -46,11 +46,9 @@ public class Usuario {
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
-
     public boolean activo() {
         return activo;
     }
-
     public void activar() {
         activo = true;
     }

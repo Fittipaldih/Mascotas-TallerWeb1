@@ -1,0 +1,48 @@
+/* Estilo para el contenedor de la imagen de fondo */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://i.postimg.cc/bYLTtnt8/fondo-Pata.png');
+    opacity: 0.5;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+section{
+    margin-top: 15vh;
+}
+
+.container-btn{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    gap: 1vh;
+}
+.tipo-publicacion h1 {
+    color: white;
+    font-size: medium;
+    margin-bottom: 3vh;
+}
+.tipo-publicacion{
+    background-color: #343a40;
+    margin-left: 5vh;
+    margin-right: -40vh;
+    padding: 5vh 10vh;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    gap: 2vh;
+    margin-left: 8vh;
+}
+#filtros{
+    margin-top: 2vh;
+}
