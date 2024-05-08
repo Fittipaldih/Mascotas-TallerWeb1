@@ -29,14 +29,10 @@ public class ServicioRedSocialTest {
         String descripcion = "Se perdio";
         List<Publicacion> filtrados = new ArrayList<>();
         int cantidad = 1;
-
-
         //ejecucion
         filtrados.addAll(this.servicioRedSocialImp.filtrarPublicacion(tipoPublicacion,zonaMock, colorPeloMock, tiempoBusquedaMock));
-
         // verificacion
         assertThat(filtrados.size(),equalTo(cantidad));
-
     }
 
     @Test
@@ -45,13 +41,10 @@ public class ServicioRedSocialTest {
         TipoPublicacion tipoPublicacion= mock(TipoPublicacion.class).PERDIDOS;
         List<Publicacion> filtrados = new ArrayList<>();
         int cantidad = 2;
-
         //ejecucion
         filtrados.addAll(this.servicioRedSocialImp.filtrarTipo(tipoPublicacion));
-
         // verificacion
         assertThat(filtrados.size(),equalTo(cantidad));
-
     }
 
     @Test
@@ -60,13 +53,10 @@ public class ServicioRedSocialTest {
         Zona zona = mock(Zona.class).OESTE;
         List<Publicacion> filtrados = new ArrayList<>();
         int cantidad = 3;
-
         //ejecucion
         filtrados.addAll(this.servicioRedSocialImp.filtrarZona(zona));
-
         // verificacion
         assertThat(filtrados.size(),equalTo(cantidad));
-
     }
 
     @Test
@@ -75,13 +65,10 @@ public class ServicioRedSocialTest {
         ColorPelo colorPelo = ColorPelo.BLANCO;
         List<Publicacion> filtrados = new ArrayList<>();
         int cantidad = 1;
-
         //ejecucion
         filtrados.addAll(this.servicioRedSocialImp.filtrarColor(colorPelo));
-
         // verificacion
         assertThat(filtrados.size(),equalTo(cantidad));
-
     }
 
     @Test
@@ -90,12 +77,9 @@ public class ServicioRedSocialTest {
         TiempoBusqueda tiempoBusqueda = TiempoBusqueda.HORA;
         List<Publicacion> filtrados = new ArrayList<>();
         int cantidad = 3;
-
         //ejecucion
         filtrados.addAll(this.servicioRedSocialImp.filtrarTiempoBusqueda(tiempoBusqueda));
-
         // verificacion
         assertThat(filtrados.size(),equalTo(cantidad));
-
     }
 }

@@ -7,5 +7,5 @@ public interface ServicioMapaMascotero {
 
     List<Peluqueria> buscarPeluqueriasPorZona(String zona);
 
-    List<Mascota> buscarMascotasPorZona(String zone);
+    List<Mascota> buscarMascotasPorZona(String zona);
 }

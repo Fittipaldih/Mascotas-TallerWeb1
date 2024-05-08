@@ -8,6 +8,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Query;
+import java.util.List;
+
 @Repository("repositorioMascota")
 public class RepositorioMascotaImpl implements RepositorioMascota {
 
@@ -24,6 +27,13 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
         return (Mascota) session.createCriteria(Mascota.class)
                 .add(Restrictions.eq("idMascota", idMascota))
                 .uniqueResult();
+    }
+    @Override
+    public List<Mascota> buscarMascotasPorZona(String zona) {
+        String sql = "Select m from Mascota m where m.zona = :zona";
+        Query query = sessionFactory.getCurrentSession().createQuery(sql);
+        query.setParameter("zona", zona);
+        return query.getResultList();
     }
 
     @Override
