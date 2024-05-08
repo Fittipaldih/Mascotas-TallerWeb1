@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -74,12 +74,13 @@
             <br><br>
             <!-- Botones -->
             <div class="button-container">
-                <button class="btn btn-primary btn-lg" th:onclick="'javascript:window.location.href=' + @{/red_social}">
-                    Ir a la red social
-                </button>
-                <button class="btn btn-secondary btn-lg" th:onclick="'javascript:window.location.href=' + @{/mascotas_perdidas}">
-                    Mascotas perdidas
-                </button>
+                <form  th:action="@{/red-social}" method="GET">
+                    <input type="submit" class="btn btn-outline-light" value="ir a red social "/>
+                </form>
+
+                <form  th:action="@{/mascotas-perdidas}" method="GET">
+                    <input type="submit" class="btn btn-outline-light" value="Mascotas perdidas"/>
+                </form>
             </div>
         </div>
     </div>

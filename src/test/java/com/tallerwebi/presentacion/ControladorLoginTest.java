@@ -36,6 +36,17 @@ public class ControladorLoginTest {
 	}
 
 	@Test
+	public void queAlSolicitarLaPantallaDeRedSocialElControladorMuestreLaVistaRedSocial() {
+		// ejecucion
+
+		ModelAndView vista = this.controladorLogin.irARedSocial();
+
+		// verificacion
+		assertThat(vista.getViewName(), equalToIgnoringCase("red-social"));
+	}
+
+
+	@Test
 	public void loginConUsuarioYPasswordInorrectosDeberiaLlevarALoginNuevamente(){
 		// preparacion
 		when(servicioLoginMock.consultarUsuario(anyString(), anyString())).thenReturn(null);
