@@ -28,13 +28,12 @@ public class ControladorRedSocial {
                                                @RequestParam(value = "tiempo_busqueda") TiempoBusqueda tiempoBusqueda) {
 
         // DEBE RECIBIR UN SERVICIO EL CONTROLADOR
-
         // Utiliza los datos capturados para realizar operaciones con el servicio de la red social
         List<Publicacion> publicacionesFiltradas = servicioRedSocial.filtrarPublicacion(tipoPublicacion, zona, pelo, tiempoBusqueda);
         ModelMap modelMap = new ModelMap();
         modelMap.put("publicacionesFiltradas", publicacionesFiltradas);
 
-        return new ModelAndView( "red-social",modelMap);
+        return new ModelAndView("red-social", modelMap);
 
 
     }

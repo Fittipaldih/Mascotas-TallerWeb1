@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Veterinaria{
+public class Veterinaria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

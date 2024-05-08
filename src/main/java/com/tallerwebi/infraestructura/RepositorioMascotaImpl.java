@@ -14,7 +14,7 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
     private SessionFactory sessionFactory;
 
     @Autowired
-    public RepositorioMascotaImpl(SessionFactory sessionFactory){
+    public RepositorioMascotaImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 

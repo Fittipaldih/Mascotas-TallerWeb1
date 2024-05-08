@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-// No es Enum porque necesita logica adicional: filtrado de datos por ej
 @Entity
 public class Color {
 
@@ -17,6 +16,7 @@ public class Color {
     public Long getIdColor() {
         return idColor;
     }
+
     public String getNombreColor() {
         return nombreColor;
     }

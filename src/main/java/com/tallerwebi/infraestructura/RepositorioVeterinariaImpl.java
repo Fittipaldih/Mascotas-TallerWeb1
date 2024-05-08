@@ -4,6 +4,7 @@ import com.tallerwebi.dominio.RepositorioVeterinaria;
 import com.tallerwebi.dominio.Veterinaria;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+
 import javax.persistence.Query;
 import java.util.List;
 
