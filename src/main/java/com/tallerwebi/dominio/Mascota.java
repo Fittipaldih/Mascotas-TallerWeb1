@@ -9,7 +9,7 @@ public class Mascota {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMascota;
-    private String nombre, foto, descripcion, latitud, longitud;
+    private String nombre, foto, descripcion, latitud, longitud, zona;
     private Integer tiempoBuscado;
 
     // Muchas Mascotas pueden tener el mismo Tipo, Raza, Y Estado
@@ -68,6 +68,9 @@ public class Mascota {
     public Integer getTiempoBuscado() {
         return tiempoBuscado;
     }
+    public String getZona() {
+        return zona;
+    }
 
     public void setIdMascota(Long idMascota) {
         this.idMascota = idMascota;
@@ -75,6 +78,10 @@ public class Mascota {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public void setZona(String zona) {
+        this.zona = zona;
     }
 
     public void setFoto(String foto) {
