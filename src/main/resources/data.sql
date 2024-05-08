@@ -36,3 +36,9 @@ INSERT INTO Mascota (idMascota, descripcion, foto, latitud, longitud, nombre, ti
                                                                                                                                                                                             (7, 'Es una gatita tímida pero muy dulce, ayudame por favor', 'imagenes/ramona.jpg', '-34.711944', '-58.563139', 'Ramona', 15, 2, 3, 13, 2, 1, 'NORTE'),
                                                                                                                                                                                             (8, 'Es un Pastor Alemán adulto, dócil y bien educado. Se perdió hace 5 días', 'imagenes/terry.jpg', '-34.728522', '-58.557833', 'Terry', 5, 3, 2, 5, 1, 1, 'SUR'),
                                                                                                                                                                                             (9, 'Es una perrita juguetona. Se lleva bien con los nenes', 'imagenes/mandala.jpg', '-34.709722', '-58.565734', 'Mandala', 2, 4, 3, 6, 1, 1, 'OESTE');
+
+
+INSERT INTO veterinaria(idVeterinaria, direccion, nombre, open24, telefono) VALUES
+                                                                                (1, 'Primera Junta 176', 'Veterinaria1', true, 1122334455),
+                                                                                (2, 'Florencio Varela 123', 'Veterinaria2', true, 1234567890),
+                                                                                (3, 'Calle Falsa 123', 'Veterinaria3', false, 12312312);

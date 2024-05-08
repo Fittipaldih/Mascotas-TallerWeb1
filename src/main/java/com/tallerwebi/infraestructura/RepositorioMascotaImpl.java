@@ -22,6 +22,13 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
     }
 
     @Override
+    public List<Mascota> dameTodasLasMascotas() {
+        String hql = "FROM Mascota";
+        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+        return query.getResultList();
+    }
+
+    @Override
     public Mascota buscarMascotaPorId(Integer idMascota) {
         final Session session = sessionFactory.getCurrentSession();
         return (Mascota) session.createCriteria(Mascota.class)

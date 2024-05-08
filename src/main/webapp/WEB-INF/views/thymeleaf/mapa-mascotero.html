@@ -44,16 +44,15 @@
         <form th:action="@{/filtrar}" method="get">
             <h1>Solo quiero ver...</h1>
             <label style="color: white" for="tipo_publicacion">Tipo de publicacion:</label>
-            <select id="tipo_publicacion" class="form-control">
-                <option value=" ">Eliga un tipo</option>
+            <select id="tipo_publicacion" name="tipo_publicacion" class="form-control">
+                <option value="">Eliga un tipo</option>
                 <option value="veterinarias">Veterinarias</option>
                 <option value="peluquerias">Peluquerias</option>
-                <option value="mascotasPerdidas">Mascotas Perdidas</option>
+                <option value="mascotas">Mascotas Perdidas</option>
             </select>
             <button id="filtros" type="submit" class="btn btn-outline-light">Filtrar</button>
         </form>
     </section>
-
 </main>
 
 <!-- Bootstrap core js -->

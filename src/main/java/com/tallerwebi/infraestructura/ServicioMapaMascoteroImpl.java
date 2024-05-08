@@ -1,9 +1,11 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ServicioMapaMascoteroImpl implements ServicioMapaMascotero {
 
     private RepositorioMascota repositorioMascota;
@@ -15,6 +17,21 @@ public class ServicioMapaMascoteroImpl implements ServicioMapaMascotero {
         this.repositorioVeterinaria = repositorioVeterinaria;
         this.repositorioPeluqueria = repositorioPeluqueria;
 
+    }
+
+    @Override
+    public List<Mascota> getMascotas() {
+        return repositorioMascota.dameTodasLasMascotas();
+    }
+
+    @Override
+    public List<Veterinaria> getVeterinarias() {
+        return repositorioVeterinaria.dameTodasLasVeterinarias();
+    }
+
+    @Override
+    public List<Peluqueria> getPeluquerias() {
+        return repositorioPeluqueria.dameTodasLasPeluquerias();
     }
 
     @Override
