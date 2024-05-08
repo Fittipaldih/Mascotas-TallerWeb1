@@ -8,9 +8,11 @@
 
     <!-- Bootstrap core css -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+
     <!-- agrege link porque no agregaba css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <!-- Custom style -->
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 
@@ -175,14 +177,13 @@
                 <option value="norte">Zona norte</option>
                 <option value="sur">Zona sur</option>
             </select>
-
-            <p style="color: white">color de pelo:</p>
-            <select name="pelo" class="form-control">
-                <option value=" ">Eliga un color</option>
-                <option value="oeste">blanco</option>
-                <option value="norte">negro</option>
-                <option value="sur">marron</option>
-            </select>
+                <p style="color: white">color de pelo:</p>
+                <select name="pelo" class="form-control">
+                    <option value=" ">Eliga un color</option>
+                    <option value="oeste">blanco</option>
+                    <option value="norte">negro</option>
+                    <option value="sur">marron</option>
+                </select>
 
             <label style="color: white" for="tiempo_busqueda">Tiempo de búsqueda:</label>
             <select id="tiempo_busqueda" name="tiempo_busqueda" class="form-control">
