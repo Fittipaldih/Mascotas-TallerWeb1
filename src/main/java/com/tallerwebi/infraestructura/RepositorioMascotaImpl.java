@@ -19,7 +19,7 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
     }
 
     @Override
-    public Mascota buscarMascotaPorId(Integer idMascota) {
+    public Mascota buscarMascotaPorId(Long idMascota) {
         final Session session = sessionFactory.getCurrentSession();
         return (Mascota) session.createCriteria(Mascota.class)
                 .add(Restrictions.eq("idMascota", idMascota))
