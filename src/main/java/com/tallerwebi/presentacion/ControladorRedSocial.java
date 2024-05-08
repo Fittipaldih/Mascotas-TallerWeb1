@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ControladorRedSocial {
 
-    private ServicioRedSocial servicioRedSocial;
+    private ServicioRedSocialImp servicioRedSocial;
 
     public ControladorRedSocial() {
         this.servicioRedSocial = servicioRedSocial;
@@ -26,6 +26,8 @@ public class ControladorRedSocial {
                                                @RequestParam(value = "zona") Zona zona,
                                                @RequestParam(value = "pelo") ColorPelo pelo,
                                                @RequestParam(value = "tiempo_busqueda") TiempoBusqueda tiempoBusqueda) {
+
+        // DEBE RECIBIR UN SERVICIO EL CONTROLADOR
 
         // Utiliza los datos capturados para realizar operaciones con el servicio de la red social
         List<Publicacion> publicacionesFiltradas = servicioRedSocial.filtrarPublicacion(tipoPublicacion, zona, pelo, tiempoBusqueda);
