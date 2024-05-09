@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -21,33 +22,55 @@ import static org.mockito.Mockito.when;
 public class ControladorRedSocialTest {
 
     private ControladorRedSocial controladorRedSocial;
-    private ServicioRedSocial servicioRedSocialMock;
+    private ServicioRedSocialImp servicioRedSocialMock;
 
     @BeforeEach
     public void init() {
-     this.controladorRedSocial = new ControladorRedSocial();
-        servicioRedSocialMock = mock(ServicioRedSocial.class);
+        servicioRedSocialMock = mock(ServicioRedSocialImp.class);
+        this.controladorRedSocial = new ControladorRedSocial(servicioRedSocialMock);
     }
 
     @Test
-    public void queDevuelvaLaMismaVistaConPublicacionesFiltradas(){
+    public void queAlPresionarFiltrarDevuelvaLaVistaRedSocial() {
         // preparacion
-        ModelMap model = new ModelMap();
-        TipoPublicacion tipo = TipoPublicacion.PERDIDOS;
-        List<Publicacion> publicaciones = new ArrayList<>();
+        TipoPublicacion tipoPublicacion= mock(TipoPublicacion.class).PERDIDOS;
+        Zona zonaMock = mock(Zona.class).OESTE;
+        ColorPelo  colorPeloMock = mock(ColorPelo.class).MARRON;
+        TiempoBusqueda tiempoBusquedaMock = mock(TiempoBusqueda.class).HORA;
 
-        // ejecucion
-        publicaciones.add(new Publicacion(TipoPublicacion.PERDIDOS, Zona.OESTE, TiempoBusqueda.HORA,ColorPelo.NEGRO, "Se perdio Manolito en Av.Martin Fierro"));
-        publicaciones.add(new Publicacion(TipoPublicacion.PERDIDOS, Zona.OESTE, TiempoBusqueda.HORA,ColorPelo.MARRON, "Se perdio"));
-        model.put("publicacionesFiltroTipo", publicaciones);
-        ModelAndView mav = new ModelAndView("vista", model);
-
-        when(this.servicioRedSocialMock.filtrarTipo(tipo)).thenReturn(publicaciones);
+        //ejecucion
+        ModelAndView vista = this.controladorRedSocial.publicacionesFiltradas(TipoPublicacion.PERDIDOS, zonaMock, colorPeloMock, tiempoBusquedaMock);
 
         //verificacion
-        assertThat(mav.getViewName(), equals("vista"));
+        assertThat(vista.getViewName(), equalToIgnoringCase("red-social"));
     }
 
+    @Test
+    public void queAlPresionarFiltrarDevuelvaLaVistaRedSocialConLasPublicacionesFiltradas() {
+        // preparacion
+        TipoPublicacion tipoPublicacion= mock(TipoPublicacion.class).PERDIDOS;
+        Zona zonaMock = mock(Zona.class).OESTE;
+        ColorPelo  colorPeloMock = mock(ColorPelo.class).MARRON;
+        TiempoBusqueda tiempoBusquedaMock = mock(TiempoBusqueda.class).HORA;
+        List<Publicacion> publicaciones = new ArrayList<>();
+        ModelMap modelMap = new ModelMap();
 
+        //ejecucion
+        ModelAndView vista = this.controladorRedSocial.publicacionesFiltradas(TipoPublicacion.PERDIDOS, zonaMock, colorPeloMock, tiempoBusquedaMock);
+        publicaciones.add(new Publicacion(TipoPublicacion.PERDIDOS, Zona.OESTE, TiempoBusqueda.HORA,ColorPelo.MARRON, "Se perdio"));
+        modelMap.put("filtro",publicaciones);
 
+        //verificacion
+        assertThat(vista.getViewName(), equalToIgnoringCase("red-social"));
+        assertThat(modelMap.get("filtro"), equalTo(publicaciones));
+    }
+
+    @Test
+    public void queAlPresionarPublicarDevuelvaLaPublicar() {
+        //ejecucion
+        ModelAndView vista = this.controladorRedSocial.publicar();
+
+        //verificacion
+        assertThat(vista.getViewName(), equalToIgnoringCase("publicar"));
+    }
 }
