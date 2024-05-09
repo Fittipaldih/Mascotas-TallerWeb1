@@ -1,13 +1,15 @@
 package com.tallerwebi.dominio;
 
 import com.tallerwebi.infraestructura.RepositorioPublicacionesImp;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServicioRedSocialImp implements ServicioRedSocial {
+@Service
+public  class ServicioRedSocialImp implements ServicioRedSocial {
     private List<Publicacion> todasPublicaciones;
     private RepositorioPublicacionesImp repositorioPublicaciones;
 
@@ -16,11 +18,13 @@ public class ServicioRedSocialImp implements ServicioRedSocial {
         this.repositorioPublicaciones = new RepositorioPublicacionesImp();
     }
 
+
     @Override
     public List<Publicacion> filtrarPublicacion(TipoPublicacion tipoPublicacion, Zona zona, ColorPelo pelo, TiempoBusqueda tiempoBusqueda) {
         todasPublicaciones.addAll(todasPublicaciones());
+
         return busquedaCompleta(tipoPublicacion, zona, pelo, tiempoBusqueda);
-        // podria devolver un MAV con el filtro
+
     }
 
     @Override
@@ -49,6 +53,7 @@ public class ServicioRedSocialImp implements ServicioRedSocial {
         return busquedaPorPelo(pelo);
     }
 
+
     @Override
     public List<Publicacion> filtrarTiempoBusqueda(TiempoBusqueda tiempoBusqueda) {
         this.todasPublicaciones.addAll(repositorioPublicaciones.getPublicaciones());
@@ -71,6 +76,7 @@ public class ServicioRedSocialImp implements ServicioRedSocial {
                 publicacionesFiltradas.add(publicacion);
             }
         }
+
         return publicacionesFiltradas;
     }
 
@@ -86,7 +92,7 @@ public class ServicioRedSocialImp implements ServicioRedSocial {
     }
 
     private List<Publicacion> busquedaPorZona(Zona zona) {
-        List<Publicacion> publicacionesSegunZona = new ArrayList<>();
+        List<Publicacion> publicacionesSegunZona= new ArrayList<>();
 
         for (Publicacion publicacion : todasPublicaciones) {
             if (publicacion.getZona().equals(zona)) {
@@ -108,7 +114,7 @@ public class ServicioRedSocialImp implements ServicioRedSocial {
     }
 
     private List<Publicacion> busquedaPorTiempo(TiempoBusqueda tiempoBusqueda) {
-        List<Publicacion> publicacionesSegunTiempo = new ArrayList<>();
+        List<Publicacion> publicacionesSegunTiempo= new ArrayList<>();
 
         for (Publicacion publicacion : todasPublicaciones) {
             if (publicacion.getTiempoBusqueda().equals(tiempoBusqueda)) {
@@ -118,3 +124,4 @@ public class ServicioRedSocialImp implements ServicioRedSocial {
         return publicacionesSegunTiempo;
     }
 }
+
