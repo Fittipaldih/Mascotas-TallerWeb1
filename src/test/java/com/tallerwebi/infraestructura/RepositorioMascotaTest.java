@@ -19,7 +19,7 @@ import static org.hamcrest.Matchers.equalTo;
 @ContextConfiguration(classes = {HibernateTestInfraestructuraConfig.class})
 public class RepositorioMascotaTest {
 
-    @Autowired
+    @Autowired //se utiliza para hacer una inyeccion de dependencia automaticamente.
     private SessionFactory sessionFactory;
 
     private RepositorioMascota repositorioMascota;
@@ -30,8 +30,8 @@ public class RepositorioMascotaTest {
     }
 
     @Test
-    @Transactional
-    @Rollback
+    @Transactional //Se utiliza para asegurar que se cumpla la operacion, en el caso que falle se hace un rollback.
+    @Rollback //Para que se vuelva a generar la Query cuando se termine el test.
     public void queSePuedaGuardarUnaMascota() {
         Mascota mascota = new Mascota();
         mascota.setNombre("Cachito");
@@ -39,7 +39,7 @@ public class RepositorioMascotaTest {
 
         this.repositorioMascota.guardarMascota(mascota);
 
-        Mascota mascotaObtenida = this.sessionFactory.getCurrentSession()
+        Mascota mascotaObtenida = this.sessionFactory.getCurrentSession() //Para crear la Query
                 .createQuery("FROM Mascota where idMascota = 1", Mascota.class)
                 .getSingleResult();
 
