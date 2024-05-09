@@ -1,12 +1,14 @@
 package com.tallerwebi.dominio;
 
 import com.tallerwebi.infraestructura.RepositorioPublicacionesImp;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public  class ServicioRedSocialImp implements ServicioRedSocial {
     private List<Publicacion> todasPublicaciones;
     private RepositorioPublicacionesImp repositorioPublicaciones;
