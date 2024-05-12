@@ -1,22 +1,28 @@
 package com.tallerwebi.dominio;
 
 import java.time.LocalDate;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 public class Perdido extends Publicacion{
+
+    private Integer telefonoContacto;
     private TiempoPublicacion tiempoPublicacion;
     private String direccion; // donde fue encontrado
     private String nombreContacto;
     private Integer numeroContacto;
 
-    public Perdido(TipoPublicacion tipoPublicacion,
+    public Perdido(
                    String direccion,
                    String nombreContacto,
                    Integer numeroContacto,
                    Zona zona,
-                   String colorPelo,
-                   String descripcion) {
+                   Color colorPelo,
+                   String descripcion,
+                   Integer telefonoContacto) {
 
-        super(tipoPublicacion, zona, colorPelo, descripcion);
+        super(TipoPublicacion.PERDIDOS,zona, colorPelo, descripcion, telefonoContacto);
         this.tiempoPublicacion = calcularTiempoPublicacion();
         this.direccion = direccion;
         this.nombreContacto = nombreContacto;

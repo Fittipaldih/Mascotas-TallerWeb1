@@ -1,9 +1,6 @@
 package com.tallerwebi.presentacion;
 
-import com.tallerwebi.dominio.Perdido;
-import com.tallerwebi.dominio.ServicioPublicarPerdidoImp;
-import com.tallerwebi.dominio.TipoPublicacion;
-import com.tallerwebi.dominio.Zona;
+import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.PerdidoExeption;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,20 +23,18 @@ public class ControladorPublicarPerdido {
 
 
     @RequestMapping(value = "/nuevo_perdido", method = RequestMethod.POST)
-    public ModelAndView crearNuevoPerdido(@RequestParam(value = "tipo_publicacion") TipoPublicacion tipoPublicacion,
-                                          @RequestParam(value = "direccion") String direccion,
+    public ModelAndView crearNuevoPerdido(@RequestParam(value = "direccion") String direccion,
                                           @RequestParam(value = "zona") Zona zona,
-                                          @RequestParam(value = "colorPelo") String colorPelo,
+                                          @RequestParam(value = "colorPelo") Color colorPelo,
                                           @RequestParam(value = "descripcion") String descripcion,
                                           @RequestParam(value = "nombreContacto") String nombreContacto,
                                           @RequestParam(value = "numeroContacto") Integer numeroContacto
     ) throws PerdidoExeption {
-        Perdido perdido = new Perdido(tipoPublicacion, direccion, nombreContacto, numeroContacto, zona, colorPelo, descripcion);
+        Perdido perdido = new Perdido(direccion, nombreContacto, numeroContacto, zona, colorPelo, descripcion, numeroContacto);
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("perdido", perdido);
         modelMap.put("mensaje","La publicacion ha sido publicada con exito");
         servicioPublicarPerdidoImp.publicarPerdido(perdido);
         return new ModelAndView("redirect:/publicarPerdido",modelMap);
     }
-
 }

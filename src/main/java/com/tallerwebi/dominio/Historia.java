@@ -3,13 +3,14 @@ package com.tallerwebi.dominio;
 public class Historia extends Publicacion{
 
     private String titular;
-    public Historia(TipoPublicacion tipoPublicacion,
+    private Integer telefonoContacto;
+    public Historia(
                     String titular,
                     Zona zona,
-                    String descripcion) {
+                    String descripcion,
+                    Integer telefonoContacto) {
 
-        super(tipoPublicacion ,zona, descripcion);
-        tipoPublicacion = TipoPublicacion.HISTORIAS;
+        super(TipoPublicacion.HISTORIAS, zona, descripcion, telefonoContacto);
         this.titular=  titular;
     }
     public String getTitular() {

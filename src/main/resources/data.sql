@@ -24,7 +24,7 @@ INSERT INTO Raza (idRaza, nombreRaza) VALUES
                                           (19, 'Savannah'),
                                           (20, 'Russian Blue');
 
-INSERT INTO Color(idColor, nombreColor) VALUES (1, 'blanco'), (2, 'negro'), (3, 'marron'), (4, 'gris');
+INSERT INTO Color(idColor, nombre) VALUES (1, 'blanco'), (2, 'negro'), (3, 'marron'), (4, 'gris');
 
 INSERT INTO Mascota (idMascota, descripcion, foto, latitud, longitud, nombre, tiempoBuscado, color_idColor, estado_idEstado, raza_idRaza, tipoMascota_idTipoMascota, usuario_idUsuario, zona) VALUES
                                                                                                                                                                                             (1, 'Es un perro que amo con todo mi ser', 'imagenes/toby.jpg', '-34.724171', '-58.560544', 'Toby', 30, 1, 3, 1, 1, 1, 'SUR'),
@@ -42,3 +42,4 @@ INSERT INTO veterinaria(idVeterinaria, direccion, nombre, open24, telefono) VALU
                                                                                 (1, 'Primera Junta 176', 'Veterinaria1', true, 1122334455),
                                                                                 (2, 'Florencio Varela 123', 'Veterinaria2', true, 1234567890),
                                                                                 (3, 'Calle Falsa 123', 'Veterinaria3', false, 12312312);
+

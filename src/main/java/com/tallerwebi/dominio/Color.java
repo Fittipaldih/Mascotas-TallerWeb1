@@ -10,15 +10,24 @@ public class Color {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idColor;
-    private String nombreColor;
+    private Integer idColor;
+    private String nombre;
 
-    public Long getIdColor() {
+    public Color(Integer idColor, String nombre) {
+        this.idColor = idColor;
+        this.nombre = nombre;
+    }
+
+    public Color() {
+
+    }
+
+    public Integer getIdColor() {
         return idColor;
     }
 
-    public String getNombreColor() {
-        return nombreColor;
+    public String getNombre() {
+        return nombre;
     }
 
 }

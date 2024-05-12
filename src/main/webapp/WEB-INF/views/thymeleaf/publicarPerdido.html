@@ -30,7 +30,6 @@
 
     <!--/*@thymesVar id="perdido" type="com.tallerwebi.dominio.Perdido"*/-->
     <form action="#" th:action="@{/nuevo_perdido}" method="POST" th:object="${perdido}">
-        <input type="hidden" th:field="*{tipoPublicacion}" value="perdidos" />
 
         <label for="direccion">Dirección donde fue encontrado:</label>
         <input type="text" id="direccion" name="direccion" th:field="*{direccion}" required /><br />

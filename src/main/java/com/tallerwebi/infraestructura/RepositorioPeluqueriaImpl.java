@@ -2,7 +2,6 @@ package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.RepositorioPeluqueria;
 import com.tallerwebi.dominio.Peluqueria;
-import com.tallerwebi.dominio.Veterinaria;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import javax.persistence.Query;
