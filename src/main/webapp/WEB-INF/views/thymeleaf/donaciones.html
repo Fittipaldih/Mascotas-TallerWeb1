@@ -80,7 +80,26 @@
 
                 <h1>Filtrar por...</h1>
 <!--            filtros para donaciones -->
-                <form th:action="@{/perdidos}" method="get">
+                <form th:action="@{/donacionesFilter}" method="get">
+                    <input type="hidden" name="tipoPublicacion" value="DONACIONES" />
+
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre">
+
+                    <label for="mayorA">Monto mayor a:</label>
+                    <input type="number" id="mayorA" name="mayorA"/>
+
+                    <label for="menorA">Monto menor a:</label>
+                    <input type="number" id="menorA" name="menorA"/>
+
+                    <label for="zona">Zona</label>
+                    <select id="zona">
+                        <option value=" ">Eliga una zona</option>
+                        <option value="OESTE">Oeste</option>
+                        <option value="NORTE">norte</option>
+                        <option value="SUR">sur</option>
+                    </select>
+
                     <button type="submit" class="btn btn-outline-light">Mascotas perdidas</button>
                 </form>
         </div>

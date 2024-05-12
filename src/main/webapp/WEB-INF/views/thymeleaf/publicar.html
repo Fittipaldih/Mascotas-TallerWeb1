@@ -37,19 +37,19 @@
 <!--            </form>-->
     <section style="margin-top: 20vh; display: flex; justify-content:center; gap: 10vh">
         <h1>Quiero hacer una publicación</h1>
-
         <form th:action="@{/publicarPerdido}" method="get">
-        <input type="submit" name="perdido" value="Publicar mascota" class="btn btn-primary btn-lg m-2">
+        <input type="submit" name="perdido" value="Mascota perdida" class="btn btn-primary btn-lg m-2">
     </form>
 
     <form th:action="@{/publicarHistoria}" method="get">
-        <input type="submit" name="perdido" value="Publicar historia" class="btn btn-primary btn-lg m-2">
+        <input type="submit" name="perdido" value="Historia de mascota" class="btn btn-primary btn-lg m-2">
     </form>
 
     <form th:action="@{/publicarDonacion}" method="get">
-        <input type="submit" name="perdido" value="Publicar donación" class="btn btn-primary btn-lg m-2">
+        <input type="submit" name="perdido" value="Donacion a mascota" class="btn btn-primary btn-lg m-2">
     </form>
-
+        <p th:if="${mensaje != null}" class="alert alert-danger" th:text="${mensaje}">
+        </p>
     </section>
 </main>
 <!-- Bootstrap core js -->

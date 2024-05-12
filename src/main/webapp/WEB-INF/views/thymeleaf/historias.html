@@ -73,11 +73,22 @@
                     <button type="submit" class="btn btn-outline-light">Publicar</button>
                 </form>
 
-                <h1>Filtrar por...</h1>
-<!--            filtros para historias -->
-                <form th:action="@{/perdidos}" method="get">
-                    <button type="submit" class="btn btn-outline-light">Mascotas perdidas</button>
-                </form>
+            <h1>Filtrar por...</h1>
+            <!--            filtros para perdidos -->
+            <form th:action="@{/historiasFilter}" method="get">
+                <h>Filtrar por...</h>
+                <input type="hidden" name="tipoPublicacion" value="HISTORIAS" />
+
+                <label for="zona">Zona</label>
+                <select id="zona">
+                    <option value=" ">Eliga una zona</option>
+                    <option value="OESTE">Oeste</option>
+                    <option value="NORTE">norte</option>
+                    <option value="SUR">sur</option>
+                </select>
+
+                <button type="submit" class="btn btn-outline-light">Filtrar</button>
+            </form>
         </div>
     </section>
 </main>

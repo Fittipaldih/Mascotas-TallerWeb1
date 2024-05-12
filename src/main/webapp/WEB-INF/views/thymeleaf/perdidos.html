@@ -75,8 +75,31 @@
 
                 <h1>Filtrar por...</h1>
 <!--            filtros para perdidos -->
-                <form th:action="@{/perdidos}" method="get">
-                    <button type="submit" class="btn btn-outline-light">Mascotas perdidas</button>
+                <form th:action="@{/perdidosFilter}" method="get">
+                    <h>Filtrar por...</h>
+                    <input type="hidden" name="tipoPublicacion" value="PERDIDOS" />
+
+                    <label for="colorPelo">Color de pelo</label>
+                    <input type="text" id="colorPelo" name="colorPelo"/>
+
+                    <label for="zona">Zona</label>
+                    <select id="zona">
+                        <option value=" ">Eliga una zona</option>
+                        <option value="OESTE">Oeste</option>
+                        <option value="NORTE">norte</option>
+                        <option value="SUR">sur</option>
+                    </select>
+
+                    <label for="tiempoPublicacion">Tiempo publicacion</label>
+                    <select id="tiempoPublicacion">
+                        <option value=" ">Eliga un tiempo</option>
+                        <option value="HORA">Hace una hora</option>
+                        <option value="SEMANA">Hace una semana</option>
+                        <option value="MES">Hace un mes</option>
+                        <option value="MASMES">Hace mas de un mes</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-outline-light">Filtrar</button>
                 </form>
         </div>
     </section>
