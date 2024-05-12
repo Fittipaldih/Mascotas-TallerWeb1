@@ -4,16 +4,21 @@ public class Publicacion {
 
     private TipoPublicacion tipoPublicacion;
     private Zona zona;
-    private TiempoBusqueda tiempoBusqueda;
-    private ColorPelo colorPelo;
-    //deberia tener la clase Perro ?
+    private String colorPelo;
     private String descripcion;
 
-    public Publicacion(TipoPublicacion tipoPublicacion, Zona zona, TiempoBusqueda tiempoBusqueda, ColorPelo colorPelo, String descripcion) {
+// perdido
+    public Publicacion(TipoPublicacion tipoPublicacion, Zona zona, String colorPelo, String descripcion) {
         this.tipoPublicacion = tipoPublicacion;
         this.zona = zona;
-        this.tiempoBusqueda = tiempoBusqueda;
         this.colorPelo = colorPelo;
+        this.descripcion = descripcion;
+    }
+
+// historia y donacion
+    public Publicacion(TipoPublicacion tipoPublicacion, Zona zona, String descripcion) {
+        this.tipoPublicacion = tipoPublicacion;
+        this.zona = zona;
         this.descripcion = descripcion;
     }
 
@@ -33,19 +38,11 @@ public class Publicacion {
         this.zona = zona;
     }
 
-    public TiempoBusqueda getTiempoBusqueda() {
-        return tiempoBusqueda;
-    }
-
-    public void setTiempoBusqueda(TiempoBusqueda tiempoBusqueda) {
-        this.tiempoBusqueda = tiempoBusqueda;
-    }
-
-    public ColorPelo getColorPelo() {
+    public String getColorPelo() {
         return colorPelo;
     }
 
-    public void setColorPelo(ColorPelo colorPelo) {
+    public void setColorPelo(String colorPelo) {
         this.colorPelo = colorPelo;
     }
 

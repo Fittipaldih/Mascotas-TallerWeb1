@@ -1,6 +1,6 @@
 package com.tallerwebi.dominio;
 
-public enum TiempoBusqueda {
+public enum TiempoPublicacion {
     HORA,
     SEMANA,
     MES,

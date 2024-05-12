@@ -17,52 +17,13 @@ import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@Controller
-
 public class ControladorRedSocialTest {
 
     private ControladorRedSocial controladorRedSocial;
-    private ServicioRedSocialImp servicioRedSocialMock;
 
     @BeforeEach
     public void init() {
-        servicioRedSocialMock = mock(ServicioRedSocialImp.class);
-        this.controladorRedSocial = new ControladorRedSocial(servicioRedSocialMock);
-    }
-
-    @Test
-    public void queAlPresionarFiltrarDevuelvaLaVistaRedSocial() {
-        // preparacion
-        TipoPublicacion tipoPublicacion= mock(TipoPublicacion.class).PERDIDOS;
-        Zona zonaMock = mock(Zona.class).OESTE;
-        ColorPelo  colorPeloMock = mock(ColorPelo.class).MARRON;
-        TiempoBusqueda tiempoBusquedaMock = mock(TiempoBusqueda.class).HORA;
-
-        //ejecucion
-        ModelAndView vista = this.controladorRedSocial.publicacionesFiltradas(TipoPublicacion.PERDIDOS, zonaMock, colorPeloMock, tiempoBusquedaMock);
-
-        //verificacion
-        assertThat(vista.getViewName(), equalToIgnoringCase("red-social"));
-    }
-
-    @Test
-    public void queAlPresionarFiltrarDevuelvaLaVistaRedSocialConLasPublicacionesFiltradas() {
-        // preparacion
-        TipoPublicacion tipoPublicacion= mock(TipoPublicacion.class).PERDIDOS;
-        Zona zonaMock = mock(Zona.class).OESTE;
-        ColorPelo  colorPeloMock = mock(ColorPelo.class).MARRON;
-        TiempoBusqueda tiempoBusquedaMock = mock(TiempoBusqueda.class).HORA;
-        List<Publicacion> publicaciones = new ArrayList<>();
-        ModelMap modelMap = new ModelMap();
-
-        //ejecucion
-        ModelAndView vista = this.controladorRedSocial.publicacionesFiltradas(TipoPublicacion.PERDIDOS, zonaMock, colorPeloMock, tiempoBusquedaMock);
-        publicaciones.add(new Publicacion(TipoPublicacion.PERDIDOS, Zona.OESTE, TiempoBusqueda.HORA,ColorPelo.MARRON, "Se perdio"));
-        modelMap.put("filtro",publicaciones);
-
-        //verificacion
-        assertThat(vista.getViewName(), equalToIgnoringCase("red-social"));
-        assertThat(modelMap.get("filtro"), equalTo(publicaciones));
+        this.controladorRedSocial = new ControladorRedSocial();
     }
 
     @Test
@@ -72,5 +33,32 @@ public class ControladorRedSocialTest {
 
         //verificacion
         assertThat(vista.getViewName(), equalToIgnoringCase("publicar"));
+    }
+
+    @Test
+    public void queAlPresionarMascotasPerdidasDevuelvaLaVistaPerdidos() {
+        //ejecucion
+        ModelAndView vista = this.controladorRedSocial.IrAperdidos();
+
+        //verificacion
+        assertThat(vista.getViewName(), equalToIgnoringCase("perdidos"));
+    }
+
+    @Test
+    public void queAlPresionarHistoriasDeMascotasDevuelvaLaHistorias() {
+        //ejecucion
+        ModelAndView vista = this.controladorRedSocial.irAHistorias();
+
+        //verificacion
+        assertThat(vista.getViewName(), equalToIgnoringCase("historias"));
+    }
+
+    @Test
+    public void queAlPresionarDonacionesAMascotasDevuelvaLaDonaciones() {
+        //ejecucion
+        ModelAndView vista = this.controladorRedSocial.irADonaciones();
+
+        //verificacion
+        assertThat(vista.getViewName(), equalToIgnoringCase("donaciones"));
     }
 }

@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Red social Mascotera</title>
+    <!-- Bootstrap core css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/red-social.css}"/>
+    <link rel="stylesheet" th:href="@{/css/publicar.css}"/>
+</head>
+<body>
+<div class="background-container"></div>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <!-- Logo  -->
+    <a class="nav-link" href="home">
+        <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
+    </a>
+    <!-- Título -->
+    <span class="navbar-brand ml-3 text-left">Red social</span>
+    <!-- Entry points -->
+    <div th:include="'entry-points'"></div>
+</nav>
+<main role="main" class="container">
+
+    <h1>Publicar un animal perdido</h1>
+
+    <form th:action="@{/nuevo-perdido}" method="post">
+        <input type="hidden" name="tipo_publicacion" value="perdidos">
+
+        <label for="direccion">Dirección donde fue encontrado:</label>
+        <input type="text" id="direccion" name="direccion" required><br>
+
+        <label for="zona">Zona donde fue encontrado:</label>
+        <select id="zona" name="zona">
+            <option value="norte">Norte</option>
+            <option value="sur">Sur</option>
+            <option value="oeste">Oeste</option>
+        </select><br>
+
+        <label for="ColorPelo">Color de pelo:</label>
+        <input type="text" id="colorPelo" name="ColorPelo" required><br>
+
+        <label for="descripcion">Descripción:</label><br>
+        <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea><br>
+
+        <button type="submit">Publicar</button>
+    </form>
+
+
+</main>
+<!-- Bootstrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

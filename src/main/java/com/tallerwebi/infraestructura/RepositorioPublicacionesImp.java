@@ -1,9 +1,11 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+@Repository("repositorioPublicaciones")
 
 public class RepositorioPublicacionesImp implements RepositorioPublicaciones {
 
@@ -11,10 +13,10 @@ public class RepositorioPublicacionesImp implements RepositorioPublicaciones {
 
     public RepositorioPublicacionesImp() {
         this.publicaciones = new ArrayList<Publicacion>();
-        publicaciones.add(new Publicacion(TipoPublicacion.PERDIDOS, Zona.OESTE, TiempoBusqueda.HORA, ColorPelo.MARRON, "Se perdio"));
-        publicaciones.add(new Publicacion(TipoPublicacion.DONACIONES, Zona.NORTE, TiempoBusqueda.HORA, ColorPelo.BLANCO, "Estamos recaudando"));
-        publicaciones.add(new Publicacion(TipoPublicacion.HISTORIAS, Zona.OESTE, TiempoBusqueda.MASMES, ColorPelo.NEGRO, "Esta es la historia de Juan"));
-        publicaciones.add(new Publicacion(TipoPublicacion.PERDIDOS, Zona.OESTE, TiempoBusqueda.HORA, ColorPelo.NEGRO, "Se perdio Manolito en Av.Martin Fierro"));
+        publicaciones.add(new Publicacion(TipoPublicacion.PERDIDOS, Zona.OESTE,  "BLANCO", "Se perdio"));
+        publicaciones.add(new Publicacion(TipoPublicacion.DONACIONES, Zona.NORTE,  "negro", "Estamos recaudando"));
+        publicaciones.add(new Publicacion(TipoPublicacion.HISTORIAS, Zona.OESTE, "Marron", "Esta es la historia de Juan"));
+        publicaciones.add(new Publicacion(TipoPublicacion.PERDIDOS, Zona.OESTE, "blanco", "Se perdio Manolito en Av.Martin Fierro"));
     }
 
     @Override

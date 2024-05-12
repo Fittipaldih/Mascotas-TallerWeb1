@@ -16,30 +16,23 @@ import java.util.List;
 
 public class ControladorRedSocial {
 
-    private ServicioRedSocialImp servicioRedSocialImp;
-
-    public ControladorRedSocial(ServicioRedSocialImp servicioRedSocialImp){
-        this.servicioRedSocialImp = servicioRedSocialImp;
-    }
-
-
-    @RequestMapping(value = "/filtros", method = RequestMethod.GET)
-    public ModelAndView publicacionesFiltradas(@RequestParam(value = "tipo_publicacion") TipoPublicacion tipoPublicacion,
-                                               @RequestParam(value = "zona") Zona zona,
-                                               @RequestParam(value = "pelo") ColorPelo pelo,
-                                               @RequestParam(value = "tiempo_busqueda") TiempoBusqueda tiempoBusqueda) {
-
-
-        List<Publicacion> publicacionesFiltradas = servicioRedSocialImp.filtrarPublicacion(tipoPublicacion, zona, pelo, tiempoBusqueda);
-        ModelMap modelMap = new ModelMap();
-        modelMap.put("publicacionesFiltradas", publicacionesFiltradas);
-
-        return new ModelAndView( "red-social",modelMap);
-
-    }
-
-    @RequestMapping(value = "/publicar", method = RequestMethod.GET)
+     @RequestMapping(value = "/publicar", method = RequestMethod.GET)
     public ModelAndView publicar() {
         return new ModelAndView("publicar");
+    }
+
+    @RequestMapping(value = "/perdidos", method = RequestMethod.GET)
+    public ModelAndView IrAperdidos() {
+        return new ModelAndView("perdidos");
+    }
+
+    @RequestMapping(value = "/historias", method = RequestMethod.GET)
+    public ModelAndView irAHistorias() {
+        return new ModelAndView("historias");
+    }
+
+    @RequestMapping(value = "/donaciones", method = RequestMethod.GET)
+    public ModelAndView irADonaciones() {
+        return new ModelAndView("donaciones");
     }
 }

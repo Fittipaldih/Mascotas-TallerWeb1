@@ -42,7 +42,7 @@
             <div class="card">
                 <img class="card-img-top" th:src="@{/img/mascota-02.jpg}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">Historia</h5>
+                    <h5 class="card-title">Perdido</h5>
                     <p class="card-text">Apareció!! Muchas Gracias por ayudarme a encontrar a Cleo!!</p>
                     <div class="container-btn">
                         <button type="button" class="btn btn-outline-primary">Contactar</button>
@@ -54,8 +54,8 @@
             <div class="card">
                 <img class="card-img-top" th:src="@{/img/mascota-03.jpeg}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">Donacion</h5>
-                    <p class="card-text">Necesitamos tu ayuda, Toby necesita una operación muy compleja! </p>
+                    <h5 class="card-title">Perdido</h5>
+                    <p class="card-text">Estamos buscando a Raul! Si lo vieron no duden en contactar</p>
                     <div class="container-btn">
                         <button type="button" class="btn btn-outline-primary">Contactar</button>
                         <button type="button" class="btn btn-outline-primary">Compartir</button>
@@ -74,16 +74,9 @@
                 </form>
 
                 <h1>Filtrar por...</h1>
+<!--            filtros para perdidos -->
                 <form th:action="@{/perdidos}" method="get">
                     <button type="submit" class="btn btn-outline-light">Mascotas perdidas</button>
-                </form>
-
-                <form th:action="@{/historias}" method="get">
-                    <button type="submit" class="btn btn-outline-light">Historias de mascotas</button>
-                </form>
-
-                <form th:action="@{/donaciones}" method="get">
-                    <button type="submit" class="btn btn-outline-light">Donaciones a mascotas</button>
                 </form>
         </div>
     </section>
