@@ -15,4 +15,6 @@ public interface RepositorioMascota {
     void modificarMascota(Mascota mascota);
 
     void eliminarMascota(Mascota mascota);
+
+    Mascota buscarMascotaPorIdPublicacion(Long idPublicacion);
 }

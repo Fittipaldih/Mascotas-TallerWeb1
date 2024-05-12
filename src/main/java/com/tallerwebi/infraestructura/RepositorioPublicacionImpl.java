@@ -46,7 +46,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     }
 
     @Override
-    public Publicacion buscarPublicacionPorId(Publicacion publicacion) {
+    public Publicacion buscarPublicacion(Publicacion publicacion) {
         Publicacion publicacionEncontrada = this.sessionFactory.getCurrentSession().get(Publicacion.class, publicacion.getIdPublicacion());
         if (publicacionEncontrada != null) {
             return publicacionEncontrada;

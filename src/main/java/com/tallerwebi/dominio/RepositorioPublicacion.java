@@ -9,7 +9,7 @@ public interface RepositorioPublicacion {
     void guardarPerdido(Perdido perdido) throws PerdidoExeption;
     void guardarPublicacion(Publicacion publicacion);
     void eliminarPublicacion(Publicacion publicacion);
-    Publicacion buscarPublicacionPorId(Publicacion publicacion);
+    Publicacion buscarPublicacion(Publicacion publicacion);
     List <Publicacion> buscarPublicacionesPorUsuario(Usuario usuario);
     List <Publicacion> buscarPublicacionesPorZona(Zona zona);
     List <Publicacion> buscarPublicacionesPorColorPelo(Color color);

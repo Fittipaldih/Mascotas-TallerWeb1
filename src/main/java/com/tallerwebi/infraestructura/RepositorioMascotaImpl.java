@@ -2,6 +2,7 @@ package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.RepositorioMascota;
 import com.tallerwebi.dominio.Mascota;
+import com.tallerwebi.dominio.Veterinaria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -57,6 +58,14 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
     @Override
     public void eliminarMascota(Mascota mascota) {
         sessionFactory.getCurrentSession().delete(mascota);
+    }
+
+    @Override
+    public Mascota buscarMascotaPorIdPublicacion(Long idPublicacion) {
+        String hql = "FROM Mascota m WHERE m.idPublicacion = :idPublicacion";
+        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("idPublicacion", idPublicacion);
+        return (Mascota) query.getSingleResult();
     }
 
 }

@@ -28,6 +28,7 @@ public class Mascota {
 
     @ManyToOne
     private Estado estado;
+    private Long idPublicacion;
 
     public Long getIdMascota() {
         return idMascota;
@@ -116,4 +117,23 @@ public class Mascota {
         this.tiempoBuscado = tiempoBuscado;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setIdPublicacion(Long idPublicacion) {
+        this.idPublicacion=idPublicacion;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 }

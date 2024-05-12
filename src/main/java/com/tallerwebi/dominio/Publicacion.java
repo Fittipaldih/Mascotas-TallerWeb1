@@ -105,4 +105,8 @@ public class Publicacion {
     public void setTiempoPublicacion(TiempoPublicacion tiempoPublicacion) {
         this.tiempoPublicacion = tiempoPublicacion;
     }
+    public Publicacion getPublicacion() {
+        return this;
+    }
+
 }
