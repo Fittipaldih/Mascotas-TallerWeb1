@@ -33,9 +33,9 @@
                     <h5 class="card-title">Donacion</h5>
                     <p class="card-text">Estamos buscando al dueño, fue encontrado en Martin Fierro al 1452</p>
                     <div class="container-btn">
-                        <button type="button" class="btn btn-outline-primary">Contactar</button>
-                        <button type="button" class="btn btn-outline-primary">Compartir</button>
-                        <button type="button" class="btn btn-outline-primary">Comentar</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
                     </div>
                 </div>
             </div>
@@ -45,9 +45,9 @@
                     <h5 class="card-title">Donacion</h5>
                     <p class="card-text">Apareció!! Muchas Gracias por ayudarme a encontrar a Cleo!!</p>
                     <div class="container-btn">
-                        <button type="button" class="btn btn-outline-primary">Contactar</button>
-                        <button type="button" class="btn btn-outline-primary">Compartir</button>
-                        <button type="button" class="btn btn-outline-primary">Comentar</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
                     </div>
                 </div>
             </div>
@@ -57,9 +57,9 @@
                     <h5 class="card-title">Donacion</h5>
                     <p class="card-text">Estamos buscando a Raul! Si lo vieron no duden en contactar</p>
                     <div class="container-btn">
-                        <button type="button" class="btn btn-outline-primary">Contactar</button>
-                        <button type="button" class="btn btn-outline-primary">Compartir</button>
-                        <button type="button" class="btn btn-outline-primary">Comentar</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
 
 
                 <form th:action="@{/donar}" method="get">
-                    <button type="submit" class="btn btn-outline-light">Donar</button>
+                    <button type="submit" class="btn btn-outline-light" th:onclick="mostrarMensaje()" >Donar</button>
                 </form>
 
                 <h1>Filtrar por...</h1>
