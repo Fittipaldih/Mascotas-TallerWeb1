@@ -12,4 +12,6 @@ public interface RepositorioVeterinaria {
     void modificarTelefonoVeterinaria(Veterinaria veterinaria);
 
     void eliminarVeterinaria(Veterinaria veterinaria);
+
+    Veterinaria buscarVeterinariaPorNombre(String nombre);
 }

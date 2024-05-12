@@ -53,4 +53,11 @@ public class RepositorioVeterinariaImpl implements RepositorioVeterinaria {
         query.setParameter("zona", "%" + zona + "%");
         return query.getResultList();
     }
+    @Override
+    public Veterinaria buscarVeterinariaPorNombre(String nombre) {
+        String hql = "FROM Veterinaria v WHERE v.nombre LIKE :nombre";
+        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("nombre", nombre);
+        return (Veterinaria) query.getSingleResult();
+    }
 }
