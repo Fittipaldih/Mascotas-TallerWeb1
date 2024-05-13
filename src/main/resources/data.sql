@@ -1,6 +1,17 @@
 
 INSERT INTO Usuario(idUsuario, email, password, rol, activo) VALUES(null, 'test@unlam.edu.ar', 'test', 'ADMIN', true);
-INSERT INTO TipoMascota(idTipoMascota, nombreTipoMascota) VALUES (1, 'perro'), (2, 'gato');
+
+INSERT INTO MASCOTA (COLOR, DESCRIPCION, ESTADO, FOTO, LATITUD, LONGITUD, NOMBRE, RAZA, TIEMPOBUSCADO, TIPOMASCOTA, ZONA, IDUSUARIO) VALUES
+    ('DORADO', '3 años, se perdió en el Parque San Martín. Es muy cariñoso', 'BUSCANDO_DUENIO', 'https://img.freepik.com/', '46.833333', '-6.833333', 'Toby', 'LABRADOR', 1, 'PERRO', 1, 1);
+
+INSERT INTO MASCOTA (COLOR, DESCRIPCION, ESTADO, FOTO, LATITUD, LONGITUD, NOMBRE, RAZA, TIEMPOBUSCADO, TIPOMASCOTA, ZONA, IDUSUARIO) VALUES
+    ('BLANCO', 'Tiene 2 años. Es muy tranquila y le encanta acurrucarse.', 'EN_ADOPCION', 'https://img.freepik.com/', '46.833333', '-6.833333', 'Luna', 'PERSA', 1, 'GATO', 1, 1);
+
+
+
+/*
+ INSERT INTO TipoMascota(idTipoMascota, nombreTipoMascota) VALUES (1, 'perro'), (2, 'gato');
+>>>>>>> 534d3cb (controlador mascota new)
 INSERT INTO Estado(idEstado, nombreEstado) VALUES (1, 'conSuDueño'), (2, 'perdidoPorDueño'), (3, 'encontradoPorX'), (4, 'enAdopcion');
 INSERT INTO Raza (idRaza, nombreRaza) VALUES
                                           (1, 'Golden Retriever'),

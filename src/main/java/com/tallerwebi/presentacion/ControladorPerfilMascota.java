@@ -5,39 +5,22 @@ import com.tallerwebi.dominio.ServicioPerfilMascotaImpl;
 import com.tallerwebi.dominio.excepcion.MascotaNoEncontrada;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@Transactional
 public class ControladorPerfilMascota {
-
-    private com.tallerwebi.dominio.ServicioPerfilMascota servicioPerfilMascota;
-    private ServicioPerfilMascotaImpl ServicioPerfilMascota;
-
     @Autowired
-    public ControladorPerfilMascota(ServicioPerfilMascotaImpl servicioPerfilMascota) {
-        this.servicioPerfilMascota = servicioPerfilMascota;
-    }
+    private ServicioPerfilMascotaImpl servicioPerfilMascota;
 
-    /*@RequestMapping(value = "/perfil-mascota", method = RequestMethod.GET)
-    public ModelAndView irAlPerfilMascota() {
-        return new ModelAndView("perfil-mascota");
+    @RequestMapping("/perfil-mascota/{id}")
+    public String mostrarPerfilMascota(@PathVariable Long id) throws MascotaNoEncontrada {
+        Mascota mascota = servicioPerfilMascota.buscarMascotaPorIdPublicacion(id);
+        ModelMap modelMap = new ModelMap();
+        modelMap.put("mascota", mascota);
+        return "perfil-mascota";
     }
-
-    @RequestMapping("/perfil-mascota")
-    public ModelAndView verPerfilMascota(@RequestParam("idPublicacion") Long idPublicacion) {
-        ModelMap model = new ModelMap();
-
-        try {
-            Mascota mascota = servicioPerfilMascota.buscarMascotaPorIdPublicacion(idPublicacion);
-            model.put("mascotaData", mascota);
-            return new ModelAndView("perfil-mascota", model);
-        } catch (MascotaNoEncontrada e) {
-            model.put("error", "Mascota no encontrada");
-            return new ModelAndView("error", model);
-        }
-    }
-*/
 }
-

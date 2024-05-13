@@ -31,10 +31,10 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
 
     @Override
     public Mascota buscarMascotaPorId(Long idMascota) {
-        final Session session = sessionFactory.getCurrentSession();
-        return (Mascota) session.createCriteria(Mascota.class)
-                .add(Restrictions.eq("idMascota", idMascota))
-                .uniqueResult();
+        String sql = "Select m from Mascota m where m.id = :idMascota";
+        Query query = sessionFactory.getCurrentSession().createQuery(sql);
+        query.setParameter("idMascota", idMascota);
+        return (Mascota)query.getSingleResult();
     }
 
     @Override
