@@ -36,8 +36,4 @@ public class ControladorRedSocial {
         return new ModelAndView("donaciones");
     }
 
-    @RequestMapping(value = "/perfil-mascota", method = RequestMethod.GET)
-    public ModelAndView irAlPerfilMascota() {
-        return new ModelAndView("perfil-mascota");
-    }
 }

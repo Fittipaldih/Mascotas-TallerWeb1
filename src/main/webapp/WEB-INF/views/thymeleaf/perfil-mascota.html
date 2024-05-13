@@ -37,7 +37,8 @@
             <div class="card-deck">
                 <div class="card">
                     <div class="imagen-mascota">
-                        <img class="card-img-top" th:src="@{/img/mascota-01.jpg}" alt="Card image cap">
+                        <!--<img class="card-img-top" th:src="@{/img/mascota-01.jpg}" alt="Card image cap">-->
+                        <img th:src="@{'/img/' + mascotaData.foto}" alt="Foto mascota" class="card-img-top">
                     </div>
                     <div class="card-body">
                         <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar</button>

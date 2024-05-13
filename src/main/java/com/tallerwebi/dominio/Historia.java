@@ -10,7 +10,7 @@ public class Historia extends Publicacion{
                     String descripcion,
                     Integer telefonoContacto) {
 
-        super(TipoPublicacion.HISTORIAS, zona, descripcion, telefonoContacto);
+        super(TipoPublicacion.HISTORIA, zona, descripcion, telefonoContacto);
         this.titular=  titular;
     }
     public String getTitular() {

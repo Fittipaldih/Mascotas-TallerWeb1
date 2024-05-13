@@ -1,7 +1,8 @@
 package com.tallerwebi.dominio;
 
 public enum TipoPublicacion {
-    PERDIDOS,
-    HISTORIAS,
-    DONACIONES
+    PERDI_MI_PERRO,
+    BUSCANDO_DUENIO,
+    DONACION,
+    HISTORIA
 }

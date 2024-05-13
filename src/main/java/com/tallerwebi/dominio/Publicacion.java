@@ -1,69 +1,81 @@
 package com.tallerwebi.dominio;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+@Entity
 public class Publicacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idPublicacion;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tipoPublicacion")
-    private TipoPublicacion tipoPublicacion;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tiempoPublicacion")
-    private TiempoPublicacion tiempoPublicacion;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "zona")
-    private Zona zona;
-    @ManyToOne
-    private Color colorPelo;
-    private String descripcion;
-    private Integer telefonoContacto;
+    private Long idPublicacion;
 
-    private Usuario usuario;
+    @Enumerated(EnumType.STRING)
+    private TipoPublicacion tipoPublicacion;
+
+    private String fechaPublicacion, descripcion; // se debe agregar la logica para que todas las publicaciones tengan su fecha// ;
+
+    @Enumerated(EnumType.STRING)
+    private Zona zona;
+
+    private Integer numContacto;
+
+    @Enumerated(EnumType.STRING)
+    private ColorMascota colorPelo;
 
     // Perdido
-    public Publicacion(TipoPublicacion tipoPublicacion, Zona zona, Color colorPelo, String descripcion, Integer telefonoContacto) {
+    public Publicacion(TipoPublicacion tipoPublicacion, Zona zona, ColorMascota colorPelo, String descripcion, Integer telefonoContacto) {
         this.tipoPublicacion = tipoPublicacion;
-        this.tiempoPublicacion = null ;// aca debe ir la logica para que todas tengan la FECHA de publicacion
         this.zona = zona;
         this.colorPelo = colorPelo;
         this.descripcion = descripcion;
-        this.telefonoContacto = telefonoContacto;
+        this.numContacto = telefonoContacto;
         // this.usuario=usuario; FALTAN RECIBIR LOS DATOS DEL USUARIO CONEL ID ES SUFICIENTE YA QUE DE AHI OBTENGO EL RESTO
     }
 
     // Historia y Donacion
     public Publicacion(TipoPublicacion tipoPublicacion, Zona zona, String descripcion, Integer telefonoContacto) {
-        this.tiempoPublicacion = tiempoPublicacion;
         this.zona = zona;
         this.descripcion = descripcion;
-        this.telefonoContacto = telefonoContacto;;
+        this.numContacto = telefonoContacto;
     }
 
-    public Integer getIdPublicacion() {
+    public Publicacion() {
+    }
+
+
+    /*
+private String emailContacto;
+
+private String nombreUsuario;
+
+private Long idMascota;
+
+public Publicacion(TipoPublicacion tipo, Zona zona, Usuario usuario, Long idMascota) {
+    this.tipoPublicacion = tipo;
+    this.zona = zona;
+    this.fechaPublicacion = getFechaActual();
+    this.numContacto = usuario.getTelefono();
+    this.emailContacto = usuario.getEmail();
+    this.nombreUsuario = usuario.getNombre();
+    this.idMascota = idMascota;
+}
+*/
+    public static String getFechaActual() {
+        long timestamp = System.currentTimeMillis();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String formattedDate = dateFormat.format(new Date(timestamp));
+
+        return formattedDate;
+    }
+
+    public Long getIdPublicacion() {
         return idPublicacion;
     }
 
-    public void setIdPublicacion(Integer idPublicacion) {
+    public void setIdPublicacion(Long idPublicacion) {
         this.idPublicacion = idPublicacion;
-    }
-
-    public Integer getTelefonoContacto() {
-        return telefonoContacto;
-    }
-
-    public void setTelefonoContacto(Integer telefonoContacto) {
-        this.telefonoContacto = telefonoContacto;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public TipoPublicacion getTipoPublicacion() {
@@ -74,6 +86,14 @@ public class Publicacion {
         this.tipoPublicacion = tipoPublicacion;
     }
 
+    public String getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
+    public void setFechaPublicacion(String fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
+    }
+
     public Zona getZona() {
         return zona;
     }
@@ -82,13 +102,30 @@ public class Publicacion {
         this.zona = zona;
     }
 
-    public Color getColorPelo() {
-        return colorPelo;
+    public Integer getNumContacto() {
+        return numContacto;
     }
 
-    public void setColorPelo(Color colorPelo) {
-        this.colorPelo = colorPelo;
+    public void setNumContacto(Integer numContacto) {
+        this.numContacto = numContacto;
     }
+/*
+    public String getEmailContacto() {
+        return emailContacto;
+    }
+
+    public void setEmailContacto(String emailContacto) {
+        this.emailContacto = emailContacto;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+    */
 
     public String getDescripcion() {
         return descripcion;
@@ -98,15 +135,11 @@ public class Publicacion {
         this.descripcion = descripcion;
     }
 
-    public TiempoPublicacion getTiempoPublicacion() {
-        return tiempoPublicacion;
+    public ColorMascota getColorPelo() {
+        return colorPelo;
     }
 
-    public void setTiempoPublicacion(TiempoPublicacion tiempoPublicacion) {
-        this.tiempoPublicacion = tiempoPublicacion;
+    public void setColorPelo(ColorMascota colorPelo) {
+        this.colorPelo = colorPelo;
     }
-    public Publicacion getPublicacion() {
-        return this;
-    }
-
 }

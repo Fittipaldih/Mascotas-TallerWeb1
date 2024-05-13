@@ -22,7 +22,7 @@ public class ServicioPerfilMascotaImpl implements ServicioPerfilMascota {
     public Mascota buscarMascotaPorIdPublicacion(Long idPublicacion) throws MascotaNoEncontrada {
         Mascota mascota = repositorioMascota.buscarMascotaPorIdPublicacion(idPublicacion);
         if (mascota == null) {
-            throw new MascotaNoEncontrada("Mascota no encontrada con publicación ID: " + idPublicacion);
+            throw new MascotaNoEncontrada("No existe mascota asociada a la publicacion o fue eliminada: " + idPublicacion);
         }
         return mascota;
     }

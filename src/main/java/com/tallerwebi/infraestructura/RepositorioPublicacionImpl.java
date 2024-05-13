@@ -4,16 +4,19 @@ import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.PerdidoExeption;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+
 import javax.persistence.Query;
 import java.util.List;
 
-@Repository("repositorioPublicacion")
+@Repository
 public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 
     private SessionFactory sessionFactory;
+    private RepositorioMascotaImpl repositorioMascota;
 
-    public RepositorioPublicacionImpl(SessionFactory sessionFactory) {
+    public RepositorioPublicacionImpl(SessionFactory sessionFactory, RepositorioMascotaImpl repositorioMascota) {
         this.sessionFactory = sessionFactory;
+        this.repositorioMascota = repositorioMascota;
     }
 
     @Override
@@ -24,17 +27,37 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     }
 
     @Override
-    public void guardarPublicacion(Publicacion publicacion) {
+    public void modificarTelefonoPublicacion(Publicacion publicacion) {
+        String hql = "UPDATE Publicacion set telefonoContacto = :telefono WHERE idPublicacion = :idPublicacion";
+        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("telefono", publicacion.getNumContacto());
+        query.setParameter("idPublicacion", publicacion.getIdPublicacion());
+        query.executeUpdate();
+    }
+
+    @Override
+    public void crearPublicacionParaMascotaExistente(Mascota mascota, TipoPublicacion tipoPublicacion, String descripcion) {
+        Publicacion publicacion = new Publicacion(tipoPublicacion, mascota.getZona(), descripcion, mascota.getUsuario().getTelefono());
         this.sessionFactory.getCurrentSession().save(publicacion);
     }
 
     @Override
-    public void modificarTelefonoPublicacion(Publicacion publicacion) {
-        String hql = "UPDATE Publicacion set telefonoContacto = :telefono WHERE idPublicacion = :idPublicacion";
-        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-        query.setParameter("telefono", publicacion.getTelefonoContacto());
-        query.setParameter("idPublicacion", publicacion.getIdPublicacion());
-        query.executeUpdate();
+    public void crearPublicacionParaMascotaNueva(Mascota mascota, TipoPublicacion tipoPublicacion, String descripcion) {
+        this.repositorioMascota.guardarMascota(mascota);
+        Long idMascota = mascota.getId();
+        Publicacion publicacion = new Publicacion(tipoPublicacion, mascota.getZona(), descripcion, mascota.getUsuario().getTelefono());
+        this.sessionFactory.getCurrentSession().save(publicacion);
+    }
+
+
+    @Override
+    public void nuevaPublicacion(String nombre, String foto, String descripcion, Zona zona, TipoMascota tipoMascota, RazaMascota raza, ColorMascota color, Usuario usuario, EstadoMascota estado, TipoPublicacion tipoPublicacion) {
+        Mascota mascota = new Mascota(nombre, foto, descripcion, zona, tipoMascota, raza, color, usuario, estado);
+        if (!this.repositorioMascota.dameTodasLasMascotas().contains(mascota)) {
+            this.crearPublicacionParaMascotaNueva(mascota, tipoPublicacion, descripcion);
+        } else {
+            this.crearPublicacionParaMascotaExistente(mascota, tipoPublicacion, descripcion);
+        }
     }
 
     @Override
@@ -56,15 +79,15 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 
     @Override
     public List<Publicacion> buscarPublicacionesPorUsuario(Usuario usuario) {
-        String hql = "FROM Publicacion p WHERE p.usuario = :usuario";
+        String hql = "FROM Publicacion p JOIN Usuario u WHERE p.idUsuario = u.id";
         Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
         query.setParameter("usuario", usuario);
         return query.getResultList();
     }
 
     @Override
-    public List<Publicacion> buscarPublicacionesPorColorPelo(Color color) {
-        String hql = "FROM Publicacion p WHERE p.color = :color";
+    public List<Publicacion> buscarPublicacionesPorColorPelo(ColorMascota color) {
+        String hql = "FROM Publicacion p JOIN Mascota m WHERE p.idMascota = m.id AND m.color = :color";
         Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
         query.setParameter("color", color);
         return query.getResultList();

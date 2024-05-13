@@ -68,4 +68,11 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
         return (Mascota) query.getSingleResult();
     }
 
+    @Override
+    public Boolean verificarSiMascotaExiste(Mascota mascota) {
+        List<Mascota> mascotasQueTengo = this.dameTodasLasMascotas();
+        if (!mascotasQueTengo.contains(mascota)) {
+            return false;
+        } return true;
+    }
 }

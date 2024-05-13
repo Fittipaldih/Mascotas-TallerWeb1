@@ -12,7 +12,7 @@ public class Donacion extends Publicacion{
                     String descripcion,
                     Integer telefonoContacto) {
 
-        super(TipoPublicacion.DONACIONES, zona, descripcion, telefonoContacto);
+        super(TipoPublicacion.DONACION, zona, descripcion, telefonoContacto);
         this.recaudacion = 0.0;
         this.montoACubrir = montoACubrir;
         this.nombre = nombre;

@@ -1,5 +1,6 @@
 package com.tallerwebi.dominio;
 
+import com.tallerwebi.infraestructura.RepositorioMascotaImpl;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.SessionFactory;
 
@@ -9,10 +10,11 @@ import java.util.List;
 public class ServicioHistoriasImp implements ServicioHistorias {
 
     private RepositorioPublicacionImpl repositorioPublicacionesImp;
+    private RepositorioMascotaImpl repositorioMascotaImp;
     private SessionFactory sessionFactory;
 
     public ServicioHistoriasImp() {
-        this.repositorioPublicacionesImp = new RepositorioPublicacionImpl(sessionFactory);
+        this.repositorioPublicacionesImp = new RepositorioPublicacionImpl(sessionFactory, repositorioMascotaImp);
     }
 
     @Override

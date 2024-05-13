@@ -40,7 +40,7 @@ public class RepositorioMascotaTest {
         this.repositorioMascota.guardarMascota(mascota);
 
         Mascota mascotaObtenida = this.sessionFactory.getCurrentSession() //Para crear la Query
-                .createQuery("FROM Mascota where idMascota = 1", Mascota.class)
+                .createQuery("FROM Mascota where id = 1", Mascota.class)
                 .getSingleResult();
 
         assertThat(mascotaObtenida, equalTo(mascota));
@@ -60,11 +60,11 @@ public class RepositorioMascotaTest {
         mascotaDos.setDescripcion("Gigante color negro");
         this.repositorioMascota.guardarMascota(mascotaDos);
 
-        assertThat(mascotaDos.getIdMascota(), equalTo(4L));
+        assertThat(mascotaDos.getId(), equalTo(4L));
 
         Mascota mascotaObtenida = repositorioMascota.buscarMascotaPorId(4L);
 
-        assertThat(mascotaObtenida.getIdMascota(), equalTo(mascotaDos.getIdMascota()));
+        assertThat(mascotaObtenida.getId(), equalTo(mascotaDos.getId()));
     }
 
     @Test
@@ -81,8 +81,8 @@ public class RepositorioMascotaTest {
         this.repositorioMascota.modificarMascota(mascota);
 
         Mascota mascotaActualizada = (Mascota) this.sessionFactory.getCurrentSession()
-                .createQuery("FROM Mascota WHERE idMascota = :id")
-                .setParameter("id", mascota.getIdMascota())
+                .createQuery("FROM Mascota WHERE id = :id")
+                .setParameter("id", mascota.getId())
                 .getSingleResult();
 
         assertThat(mascotaActualizada.getNombre(), equalTo(nuevoNombre));
@@ -102,8 +102,8 @@ public class RepositorioMascotaTest {
         this.repositorioMascota.modificarMascota(mascota);
 
         Mascota mascotaActualizada = (Mascota) this.sessionFactory.getCurrentSession()
-                .createQuery("FROM Mascota WHERE idMascota = :id")
-                .setParameter("id", mascota.getIdMascota())
+                .createQuery("FROM Mascota WHERE id = :id")
+                .setParameter("id", mascota.getId())
                 .getSingleResult();
 
         assertThat(mascotaActualizada.getDescripcion(), equalTo(nuevaDescripcion));

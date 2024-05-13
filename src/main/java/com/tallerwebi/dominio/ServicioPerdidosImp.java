@@ -1,6 +1,7 @@
 package com.tallerwebi.dominio;
 
 
+import com.tallerwebi.infraestructura.RepositorioMascotaImpl;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,11 @@ import java.util.List;
 @Service
 public class ServicioPerdidosImp implements ServicioPerdidos{
     private RepositorioPublicacionImpl repositorioPublicacionesImp;
+    private RepositorioMascotaImpl repositorioMascotaImp;
     private SessionFactory sessionFactory;
 
     public ServicioPerdidosImp() {
-        this.repositorioPublicacionesImp = new RepositorioPublicacionImpl(sessionFactory);
+        this.repositorioPublicacionesImp = new RepositorioPublicacionImpl(sessionFactory, repositorioMascotaImp);
     }
 
     @Override
@@ -40,7 +42,7 @@ public class ServicioPerdidosImp implements ServicioPerdidos{
         List<Perdido> perdidos = new ArrayList<>();
 
         for (Publicacion publicacion : publicaciones) {
-            if (publicacion instanceof Perdido && publicacion.getTipoPublicacion().equals(TipoPublicacion.PERDIDOS)) {
+            if (publicacion instanceof Perdido && publicacion.getTipoPublicacion().equals(TipoPublicacion.PERDI_MI_PERRO)) {
                 perdidos.add((Perdido) publicacion);
             }
         }

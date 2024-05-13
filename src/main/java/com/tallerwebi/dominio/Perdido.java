@@ -18,11 +18,11 @@ public class Perdido extends Publicacion{
                    String nombreContacto,
                    Integer numeroContacto,
                    Zona zona,
-                   Color colorPelo,
+                   ColorMascota colorPelo,
                    String descripcion,
                    Integer telefonoContacto) {
 
-        super(TipoPublicacion.PERDIDOS,zona, colorPelo, descripcion, telefonoContacto);
+        super(TipoPublicacion.PERDI_MI_PERRO,zona, colorPelo, descripcion, telefonoContacto);
         this.tiempoPublicacion = calcularTiempoPublicacion();
         this.direccion = direccion;
         this.nombreContacto = nombreContacto;
@@ -59,4 +59,6 @@ public class Perdido extends Publicacion{
     public void setNumeroContacto(Integer numeroContacto) {
         this.numeroContacto = numeroContacto;
     }
+
+
 }
