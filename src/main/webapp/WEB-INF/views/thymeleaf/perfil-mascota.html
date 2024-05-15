@@ -33,7 +33,7 @@
 </nav>
 
 <main role="main" class="container">
-            <!--mostrar todas las publicaciones-->
+    <!--http://localhost:8080/spring/perfil-mascota/1-->
             <div class="card-deck">
                 <div class="card">
                     <div class="imagen-mascota">
@@ -41,10 +41,14 @@
                     </div>
                     <div class="card-body">
                         <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()"  >Compartir</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
                         <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar</button>
-                        <h5 class="card-title" th:text="${mascota}"></h5>
-                        <!--<p class="card-text" th:text="${mascotaData.descripcion}"></p>-->
+                        <h5 class="card-title" th:text="${mascotaData.getEstado()}"></h5>
+                        <h5 class="card-title" th:text="${mascotaData.getTipoMascota()}"></h5>
+                        <h5 class="card-title" th:text="${mascotaData.getRaza()}"></h5>
+                        <h5 class="card-title" th:text="${mascotaData.getColor()}"></h5>
+                        <h5 class="card-title" th:text="Zona + ${mascotaData.getZona()}"></h5>
+                        <p class="card-text" th:text="${mascotaData.getDescripcion()}"></p>
                         <div class="container-btn">
                             <form th:action="@{/red-social}" method="GET">
                                 <input type="submit" class="btn btn-outline-primary" value="Volver"/>
