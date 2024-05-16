@@ -1,7 +1,7 @@
 package com.tallerwebi.presentacion;
 
-import com.tallerwebi.dominio.Historia;
-import com.tallerwebi.dominio.ServicioHistoriasImp;
+import com.tallerwebi.dominio.PublicacionHistoria;
+import com.tallerwebi.dominio.servicios.ServicioPublicacionHistoriaImpl;
 import com.tallerwebi.dominio.Zona;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,17 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class ControladorHistorias {
-    private ServicioHistoriasImp servicioHistorias;
+public class ControladorPublicacionHistoria {
+    private ServicioPublicacionHistoriaImpl servicioHistorias;
 
-    public ControladorHistorias() {
-        this.servicioHistorias= new ServicioHistoriasImp();
+    public ControladorPublicacionHistoria() {
+        this.servicioHistorias= new ServicioPublicacionHistoriaImpl();
     }
 
     @RequestMapping(value = "/historiasFilter", method = RequestMethod.GET)
     public ModelAndView filtrarHistorias(@RequestParam (value = "zona") Zona zona) {
         ModelMap model = new ModelMap();
-        List<Historia> historiasFiltradas = new ArrayList<>();
+        List<PublicacionHistoria> historiasFiltradas = new ArrayList<>();
 
         historiasFiltradas.addAll(this.servicioHistorias.filtrarHistoriasPorZona(zona));
         model.put("historiasFiltradas", historiasFiltradas);

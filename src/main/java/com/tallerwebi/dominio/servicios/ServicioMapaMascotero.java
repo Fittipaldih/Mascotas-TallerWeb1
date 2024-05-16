@@ -1,4 +1,8 @@
-package com.tallerwebi.dominio;
+package com.tallerwebi.dominio.servicios;
+
+import com.tallerwebi.dominio.Mascota;
+import com.tallerwebi.dominio.Peluqueria;
+import com.tallerwebi.dominio.Veterinaria;
 
 import java.util.List;
 

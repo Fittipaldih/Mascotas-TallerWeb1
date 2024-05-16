@@ -1,6 +1,7 @@
-package com.tallerwebi.dominio;
+package com.tallerwebi.dominio.servicios;
 
 
+import com.tallerwebi.dominio.*;
 import com.tallerwebi.infraestructura.RepositorioMascotaImpl;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.SessionFactory;
@@ -10,27 +11,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ServicioPerdidosImp implements ServicioPerdidos{
+public class ServicioPublicacionPerdidoImpl implements ServicioPublicacionPerdido {
     private RepositorioPublicacionImpl repositorioPublicacionesImp;
     private RepositorioMascotaImpl repositorioMascotaImp;
     private SessionFactory sessionFactory;
 
-    public ServicioPerdidosImp() {
+    public ServicioPublicacionPerdidoImpl() {
         this.repositorioPublicacionesImp = new RepositorioPublicacionImpl(sessionFactory, repositorioMascotaImp);
     }
 
     @Override
-    public List<Perdido> filtrarPublicacionPerdidos(Zona zona, TiempoPublicacion tiempoPublicacion, String colorPelo) {
-        List<Perdido> perdidos = new ArrayList<>();
+    public List<PublicacionPerdido> filtrarPublicacionPerdidos(Zona zona, PublicacionTiempo tiempoPublicacion, String colorPelo) {
+        List<PublicacionPerdido> perdidos = new ArrayList<>();
         perdidos.addAll(filtrarPerdidos(this.repositorioPublicacionesImp.getPublicaciones(),zona,tiempoPublicacion,colorPelo));
         return perdidos;
     }
 
-    private List<Perdido> filtrarPerdidos(List<Publicacion> publicaciones, Zona zona, TiempoPublicacion tiempoPublicacion, String colorPelo) {
-        List<Perdido>  perdidosFiltrados = new ArrayList<>();
+    private List<PublicacionPerdido> filtrarPerdidos(List<Publicacion> publicaciones, Zona zona, PublicacionTiempo tiempoPublicacion, String colorPelo) {
+        List<PublicacionPerdido>  perdidosFiltrados = new ArrayList<>();
         perdidosFiltrados.addAll(obtenerSoloPerdidos(publicaciones));
 
-        for (Perdido perdido : perdidosFiltrados) {
+        for (PublicacionPerdido perdido : perdidosFiltrados) {
             if (perdido.getZona().equals(zona) && perdido.getTiempoBusqueda().equals(tiempoPublicacion) && perdido.getColorPelo().equals(colorPelo)) {
                 perdidosFiltrados.add(perdido);
             }
@@ -38,12 +39,12 @@ public class ServicioPerdidosImp implements ServicioPerdidos{
         return perdidosFiltrados;
     }
 
-    private static List<Perdido> obtenerSoloPerdidos(List<Publicacion> publicaciones) {
-        List<Perdido> perdidos = new ArrayList<>();
+    private static List<PublicacionPerdido> obtenerSoloPerdidos(List<Publicacion> publicaciones) {
+        List<PublicacionPerdido> perdidos = new ArrayList<>();
 
         for (Publicacion publicacion : publicaciones) {
-            if (publicacion instanceof Perdido && publicacion.getTipoPublicacion().equals(TipoPublicacion.PERDI_MI_PERRO)) {
-                perdidos.add((Perdido) publicacion);
+            if (publicacion instanceof PublicacionPerdido && publicacion.getTipoPublicacion().equals(PublicacionTipo.PERDI_MI_PERRO)) {
+                perdidos.add((PublicacionPerdido) publicacion);
             }
         }
         return perdidos;

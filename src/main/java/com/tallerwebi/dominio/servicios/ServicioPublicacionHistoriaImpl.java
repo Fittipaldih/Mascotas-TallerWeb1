@@ -1,5 +1,8 @@
-package com.tallerwebi.dominio;
+package com.tallerwebi.dominio.servicios;
 
+import com.tallerwebi.dominio.Publicacion;
+import com.tallerwebi.dominio.PublicacionHistoria;
+import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.infraestructura.RepositorioMascotaImpl;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.SessionFactory;
@@ -7,23 +10,23 @@ import org.hibernate.SessionFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServicioHistoriasImp implements ServicioHistorias {
+public class ServicioPublicacionHistoriaImpl implements ServicioPublicacionHistoria {
 
     private RepositorioPublicacionImpl repositorioPublicacionesImp;
     private RepositorioMascotaImpl repositorioMascotaImp;
     private SessionFactory sessionFactory;
 
-    public ServicioHistoriasImp() {
+    public ServicioPublicacionHistoriaImpl() {
         this.repositorioPublicacionesImp = new RepositorioPublicacionImpl(sessionFactory, repositorioMascotaImp);
     }
 
     @Override
-    public List<Historia> filtrarHistoriasPorZona(Zona zona) {
-        List<Historia> historiasFiltradas = new ArrayList<>();
-        List<Historia> historias = new ArrayList<>();
+    public List<PublicacionHistoria> filtrarHistoriasPorZona(Zona zona) {
+        List<PublicacionHistoria> historiasFiltradas = new ArrayList<>();
+        List<PublicacionHistoria> historias = new ArrayList<>();
         historias.addAll(obtenerSoloHistorias(this.repositorioPublicacionesImp.getPublicaciones()));
 
-        for (Historia historia : historias) {
+        for (PublicacionHistoria historia : historias) {
             if (zona.equals(historia.getZona())) {
                 historiasFiltradas.add(historia);
             }
@@ -31,11 +34,11 @@ public class ServicioHistoriasImp implements ServicioHistorias {
         return historiasFiltradas;
     }
 
-    private static List<Historia> obtenerSoloHistorias(List<Publicacion> todasPublicaciones) {
-        List<Historia> historiasFiltradas = new ArrayList<>();
+    private static List<PublicacionHistoria> obtenerSoloHistorias(List<Publicacion> todasPublicaciones) {
+        List<PublicacionHistoria> historiasFiltradas = new ArrayList<>();
         for (Publicacion publicacion : todasPublicaciones) {
-            if (publicacion instanceof Historia) {
-                historiasFiltradas.add((Historia) publicacion);
+            if (publicacion instanceof PublicacionHistoria) {
+                historiasFiltradas.add((PublicacionHistoria) publicacion);
             }
         }
         return historiasFiltradas;

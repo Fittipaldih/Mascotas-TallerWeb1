@@ -1,16 +1,16 @@
 package com.tallerwebi.dominio;
 
-public class Historia extends Publicacion{
+public class PublicacionHistoria extends Publicacion{
 
     private String titular;
     private Integer telefonoContacto;
-    public Historia(
+    public PublicacionHistoria(
                     String titular,
                     Zona zona,
                     String descripcion,
                     Integer telefonoContacto) {
 
-        super(TipoPublicacion.HISTORIA, zona, descripcion, telefonoContacto);
+        super(PublicacionTipo.HISTORIA, zona, descripcion, telefonoContacto);
         this.titular=  titular;
     }
     public String getTitular() {

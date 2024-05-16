@@ -16,18 +16,18 @@ public class Mascota {
     @JoinColumn(name = "idPublicacion")
     private List<Publicacion> publicaciones;
     @Enumerated(EnumType.STRING)
-    private TipoMascota tipoMascota;
+    private MascotaTipo tipoMascota;
     @Enumerated(EnumType.STRING)
-    private RazaMascota raza;
+    private MascotaRaza raza;
     @Enumerated(EnumType.STRING)
-    private ColorMascota color;
+    private MascotaColor color;
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
     private Usuario usuario;
     @Enumerated(EnumType.STRING)
-    private EstadoMascota estado;
+    private MascotaEstado estado;
 
-    public Mascota(String nombre, String foto, String descripcion, Zona zona, TipoMascota tipoMascota, RazaMascota raza, ColorMascota color, Usuario usuario, EstadoMascota estado) {
+    public Mascota(String nombre, String foto, String descripcion, Zona zona, MascotaTipo tipoMascota, MascotaRaza raza, MascotaColor color, Usuario usuario, MascotaEstado estado) {
         this.nombre = nombre;
         this.foto = foto;
         this.descripcion = descripcion;
@@ -39,7 +39,7 @@ public class Mascota {
         this.estado = estado;
     }
 
-    public Mascota(String nombre, String foto, String descripcion, Zona zona, TipoMascota tipoMascota, ColorMascota color, Usuario usuario, EstadoMascota estado, Publicacion publicacion) {
+    public Mascota(String nombre, String foto, String descripcion, Zona zona, MascotaTipo tipoMascota, MascotaColor color, Usuario usuario, MascotaEstado estado, Publicacion publicacion) {
         this.nombre = nombre;
         this.foto = foto;
         this.descripcion = descripcion;
@@ -130,19 +130,19 @@ public class Mascota {
         this.publicaciones = publicaciones;
     }
 
-    public TipoMascota getTipoMascota() {
+    public MascotaTipo getTipoMascota() {
         return tipoMascota;
     }
 
-    public void setTipoMascota(TipoMascota tipoMascota) {
+    public void setTipoMascota(MascotaTipo tipoMascota) {
         this.tipoMascota = tipoMascota;
     }
 
-    public ColorMascota getColor() {
+    public MascotaColor getColor() {
         return color;
     }
 
-    public void setColor(ColorMascota color) {
+    public void setColor(MascotaColor color) {
         this.color = color;
     }
 
@@ -154,19 +154,19 @@ public class Mascota {
         this.usuario = usuario;
     }
 
-    public EstadoMascota getEstado() {
+    public MascotaEstado getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoMascota estado) {
+    public void setEstado(MascotaEstado estado) {
         this.estado = estado;
     }
 
-    public RazaMascota getRaza() {
+    public MascotaRaza getRaza() {
         return raza;
     }
 
-    public void setRaza(RazaMascota raza) {
+    public void setRaza(MascotaRaza raza) {
         this.raza = raza;
     }
 }

@@ -1,6 +1,6 @@
 package com.tallerwebi.dominio;
 
-public enum ColorMascota {
+public enum MascotaColor {
     BLANCO,
     GRIS,
     NEGRO,

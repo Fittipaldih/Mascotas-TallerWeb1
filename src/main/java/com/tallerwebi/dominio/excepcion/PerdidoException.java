@@ -1,7 +1,7 @@
 package com.tallerwebi.dominio.excepcion;
 
-public class PerdidoExeption extends Exception {
-    public PerdidoExeption() {
+public class PerdidoException extends Exception {
+    public PerdidoException() {
         super("La mascota Perdidida NO pudo registrarse");
     }
 }

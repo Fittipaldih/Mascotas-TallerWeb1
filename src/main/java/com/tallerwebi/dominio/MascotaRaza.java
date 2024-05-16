@@ -1,6 +1,6 @@
 package com.tallerwebi.dominio;
 
-public enum RazaMascota {
+public enum MascotaRaza {
     // PERROS
     GOLDEN,
     LABRADOR,

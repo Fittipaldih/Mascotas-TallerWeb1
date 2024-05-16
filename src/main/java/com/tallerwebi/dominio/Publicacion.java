@@ -12,7 +12,7 @@ public class Publicacion {
     private Long idPublicacion;
 
     @Enumerated(EnumType.STRING)
-    private TipoPublicacion tipoPublicacion;
+    private PublicacionTipo tipoPublicacion;
 
     private String fechaPublicacion, descripcion; // se debe agregar la logica para que todas las publicaciones tengan su fecha// ;
 
@@ -22,10 +22,10 @@ public class Publicacion {
     private Integer numContacto;
 
     @Enumerated(EnumType.STRING)
-    private ColorMascota colorPelo;
+    private MascotaColor colorPelo;
 
     // Perdido
-    public Publicacion(TipoPublicacion tipoPublicacion, Zona zona, ColorMascota colorPelo, String descripcion, Integer telefonoContacto) {
+    public Publicacion(PublicacionTipo tipoPublicacion, Zona zona, MascotaColor colorPelo, String descripcion, Integer telefonoContacto) {
         this.tipoPublicacion = tipoPublicacion;
         this.zona = zona;
         this.colorPelo = colorPelo;
@@ -35,7 +35,7 @@ public class Publicacion {
     }
 
     // Historia y Donacion
-    public Publicacion(TipoPublicacion tipoPublicacion, Zona zona, String descripcion, Integer telefonoContacto) {
+    public Publicacion(PublicacionTipo tipoPublicacion, Zona zona, String descripcion, Integer telefonoContacto) {
         this.zona = zona;
         this.descripcion = descripcion;
         this.numContacto = telefonoContacto;
@@ -78,11 +78,11 @@ public Publicacion(TipoPublicacion tipo, Zona zona, Usuario usuario, Long idMasc
         this.idPublicacion = idPublicacion;
     }
 
-    public TipoPublicacion getTipoPublicacion() {
+    public PublicacionTipo getTipoPublicacion() {
         return tipoPublicacion;
     }
 
-    public void setTipoPublicacion(TipoPublicacion tipoPublicacion) {
+    public void setTipoPublicacion(PublicacionTipo tipoPublicacion) {
         this.tipoPublicacion = tipoPublicacion;
     }
 
@@ -135,11 +135,11 @@ public Publicacion(TipoPublicacion tipo, Zona zona, Usuario usuario, Long idMasc
         this.descripcion = descripcion;
     }
 
-    public ColorMascota getColorPelo() {
+    public MascotaColor getColorPelo() {
         return colorPelo;
     }
 
-    public void setColorPelo(ColorMascota colorPelo) {
+    public void setColorPelo(MascotaColor colorPelo) {
         this.colorPelo = colorPelo;
     }
 }

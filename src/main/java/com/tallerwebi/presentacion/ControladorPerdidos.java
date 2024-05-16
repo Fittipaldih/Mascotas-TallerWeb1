@@ -1,6 +1,7 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.servicios.ServicioPublicacionPerdidoImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,18 +14,18 @@ import java.util.List;
 
 @Controller
 public class ControladorPerdidos {
-    private ServicioPerdidosImp servicioPerdidosImp;
+    private ServicioPublicacionPerdidoImpl servicioPerdidosImp;
 
     public ControladorPerdidos() {
-        this.servicioPerdidosImp = new ServicioPerdidosImp();
+        this.servicioPerdidosImp = new ServicioPublicacionPerdidoImpl();
     }
 
     @RequestMapping(value = "/perdidosFilter", method = RequestMethod.GET)
         public ModelAndView filtrarPublicacion(@RequestParam(value = "zona") Zona zona,
-                                               @RequestParam(value = "tiempoPublicacion") TiempoPublicacion tiempoPublicacion,
+                                               @RequestParam(value = "tiempoPublicacion") PublicacionTiempo tiempoPublicacion,
                                                @RequestParam(value = "colorPelo") String colorPelo
                                                 ){
-        List<Perdido> perdidosFiltrados = new ArrayList<>();
+        List<PublicacionPerdido> perdidosFiltrados = new ArrayList<>();
         ModelMap model = new ModelMap();
         ModelAndView modelAndView = new ModelAndView();
 

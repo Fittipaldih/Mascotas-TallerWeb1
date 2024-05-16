@@ -1,6 +1,6 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.RepositorioVeterinaria;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioVeterinaria;
 import com.tallerwebi.dominio.Veterinaria;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;

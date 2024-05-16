@@ -1,7 +1,8 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.excepcion.PerdidoExeption;
+import com.tallerwebi.dominio.excepcion.PerdidoException;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
@@ -36,13 +37,13 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     }
 
     @Override
-    public void crearPublicacionParaMascotaExistente(Mascota mascota, TipoPublicacion tipoPublicacion, String descripcion) {
+    public void crearPublicacionParaMascotaExistente(Mascota mascota, PublicacionTipo tipoPublicacion, String descripcion) {
         Publicacion publicacion = new Publicacion(tipoPublicacion, mascota.getZona(), descripcion, mascota.getUsuario().getTelefono());
         this.sessionFactory.getCurrentSession().save(publicacion);
     }
 
     @Override
-    public void crearPublicacionParaMascotaNueva(Mascota mascota, TipoPublicacion tipoPublicacion, String descripcion) {
+    public void crearPublicacionParaMascotaNueva(Mascota mascota, PublicacionTipo tipoPublicacion, String descripcion) {
         this.repositorioMascota.guardarMascota(mascota);
         Long idMascota = mascota.getId();
         Publicacion publicacion = new Publicacion(tipoPublicacion, mascota.getZona(), descripcion, mascota.getUsuario().getTelefono());
@@ -51,7 +52,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 
 
     @Override
-    public void nuevaPublicacion(String nombre, String foto, String descripcion, Zona zona, TipoMascota tipoMascota, RazaMascota raza, ColorMascota color, Usuario usuario, EstadoMascota estado, TipoPublicacion tipoPublicacion) {
+    public void nuevaPublicacion(String nombre, String foto, String descripcion, Zona zona, MascotaTipo tipoMascota, MascotaRaza raza, MascotaColor color, Usuario usuario, MascotaEstado estado, PublicacionTipo tipoPublicacion) {
         Mascota mascota = new Mascota(nombre, foto, descripcion, zona, tipoMascota, raza, color, usuario, estado);
         if (!this.repositorioMascota.dameTodasLasMascotas().contains(mascota)) {
             this.crearPublicacionParaMascotaNueva(mascota, tipoPublicacion, descripcion);
@@ -86,7 +87,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     }
 
     @Override
-    public List<Publicacion> buscarPublicacionesPorColorPelo(ColorMascota color) {
+    public List<Publicacion> buscarPublicacionesPorColorPelo(MascotaColor color) {
         String hql = "FROM Publicacion p JOIN Mascota m WHERE p.idMascota = m.id AND m.color = :color";
         Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
         query.setParameter("color", color);
@@ -102,10 +103,10 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     }
 
     @Override
-    public void guardarPerdido(Perdido perdido) throws PerdidoExeption {
+    public void guardarPerdido(PublicacionPerdido perdido) throws PerdidoException {
         Boolean seGuardo = (Boolean) this.sessionFactory.getCurrentSession().save(perdido);
         if (seGuardo == false) {
-            throw new PerdidoExeption();
+            throw new PerdidoException();
         }
     }
 }

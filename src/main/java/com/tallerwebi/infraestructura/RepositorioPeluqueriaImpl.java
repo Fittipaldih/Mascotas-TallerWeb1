@@ -1,6 +1,6 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.RepositorioPeluqueria;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPeluqueria;
 import com.tallerwebi.dominio.Peluqueria;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;

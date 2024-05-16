@@ -1,18 +1,18 @@
 package com.tallerwebi.dominio;
 
-public class Donacion extends Publicacion{
+public class PublicacionDonacion extends Publicacion{
 
     private Double recaudacion;
     private Double montoACubrir;
     private String nombre;
-    public Donacion(
+    public PublicacionDonacion(
                     Double montoACubrir,
                     String nombre,
                     Zona zona,
                     String descripcion,
                     Integer telefonoContacto) {
 
-        super(TipoPublicacion.DONACION, zona, descripcion, telefonoContacto);
+        super(PublicacionTipo.DONACION, zona, descripcion, telefonoContacto);
         this.recaudacion = 0.0;
         this.montoACubrir = montoACubrir;
         this.nombre = nombre;

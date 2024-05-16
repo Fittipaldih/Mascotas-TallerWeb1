@@ -1,5 +1,11 @@
-package com.tallerwebi.dominio;
+package com.tallerwebi.dominio.servicios;
 
+import com.tallerwebi.dominio.Mascota;
+import com.tallerwebi.dominio.Peluqueria;
+import com.tallerwebi.dominio.Veterinaria;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioMascota;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPeluqueria;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioVeterinaria;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

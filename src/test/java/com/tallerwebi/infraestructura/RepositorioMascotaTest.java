@@ -1,7 +1,7 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.Mascota;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioMascota;
 import com.tallerwebi.infraestructura.config.HibernateTestInfraestructuraConfig;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.BeforeEach;

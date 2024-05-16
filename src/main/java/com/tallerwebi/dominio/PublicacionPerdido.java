@@ -1,44 +1,41 @@
 package com.tallerwebi.dominio;
 
 import java.time.LocalDate;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-public class Perdido extends Publicacion{
+public class PublicacionPerdido extends Publicacion{
 
     private Integer telefonoContacto;
-    private TiempoPublicacion tiempoPublicacion;
+    private PublicacionTiempo tiempoPublicacion;
     private String direccion; // donde fue encontrado
     private String nombreContacto;
     private Integer numeroContacto;
 
-    public Perdido(
+    public PublicacionPerdido(
                    String direccion,
                    String nombreContacto,
                    Integer numeroContacto,
                    Zona zona,
-                   ColorMascota colorPelo,
+                   MascotaColor colorPelo,
                    String descripcion,
                    Integer telefonoContacto) {
 
-        super(TipoPublicacion.PERDI_MI_PERRO,zona, colorPelo, descripcion, telefonoContacto);
+        super(PublicacionTipo.PERDI_MI_PERRO,zona, colorPelo, descripcion, telefonoContacto);
         this.tiempoPublicacion = calcularTiempoPublicacion();
         this.direccion = direccion;
         this.nombreContacto = nombreContacto;
         this.numeroContacto = numeroContacto;
     }
 
-    private TiempoPublicacion calcularTiempoPublicacion() {
+    private PublicacionTiempo calcularTiempoPublicacion() {
         LocalDate hoy = LocalDate.now();
-        return TiempoPublicacion.HORA;
+        return PublicacionTiempo.DIA;
         //logica segun fecha actual
     }
 
-    public TiempoPublicacion getTiempoBusqueda() {
+    public PublicacionTiempo getTiempoBusqueda() {
         return this.tiempoPublicacion;
     }
-    public void setTiempoBusqueda(TiempoPublicacion tiempoBusqueda) {
+    public void setTiempoBusqueda(PublicacionTiempo tiempoBusqueda) {
         this.tiempoPublicacion = tiempoBusqueda;
     }
     public String getDireccion() {
