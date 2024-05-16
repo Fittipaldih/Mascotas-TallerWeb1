@@ -22,7 +22,7 @@ public class ControladorPublicarPerdido {
     }
 
 
-    @RequestMapping(value = "/nuevo_perdido", method = RequestMethod.POST)
+    @RequestMapping(value = "/nuevo-perdido", method = RequestMethod.POST)
     public ModelAndView crearNuevoPerdido(@RequestParam(value = "direccion") String direccion,
                                           @RequestParam(value = "zona") Zona zona,
                                           @RequestParam(value = "colorPelo") MascotaColor colorPelo,

@@ -26,37 +26,25 @@
 </nav>
 <main role="main" class="container">
 
-    <h1>Publicar un animal perdido</h1>
+    <h1>Publicar una mascota perdida</h1>
 
-    <!--/*@thymesVar id="perdido" type="com.tallerwebi.dominio.PublicacionPerdido"*/-->
-    <form action="#" th:action="@{/nuevo_perdido}" method="POST" th:object="${perdido}">
+    <form th:action="@{/nuevo-perdido}" method="post">
 
-        <label for="direccion">Dirección donde fue encontrado:</label>
-        <input type="text" id="direccion" name="direccion" th:field="*{direccion}" required /><br />
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
 
-        <label for="zona">Zona donde fue encontrado:</label>
-        <select id="zona" name="zona" th:field="*{zona}">
-            <option value="">Elige una zona</option>
+        <label for="zona">Zona donde se perdió:</label>
+        <select id="zona" name="zona">
             <option value="norte">Norte</option>
             <option value="sur">Sur</option>
             <option value="oeste">Oeste</option>
-        </select><br />
+        </select><br>
 
-        <label for="colorPelo">Color de pelo:</label>
-        <input type="text" id="colorPelo" name="colorPelo" th:field="*{colorPelo}" required /><br />
-
-        <label for="descripcion">Descripción:</label><br />
-        <textarea id="descripcion" name="descripcion" rows="4" cols="50" th:field="*{descripcion}" required></textarea><br />
-
-        <label for="nombreContacto">Nombre de contacto:</label>
-        <input type="text" id="nombreContacto" name="nombreContacto" th:field="*{nombreContacto}" required /><br />
-
-        <label for="numeroContacto">Número de contacto:</label>
-        <input type="tel" id="numeroContacto" name="numeroContacto" th:field="*{numeroContacto}" required /><br />
+        <label for="descripcion">Desarrolle la discripcion:</label><br>
+        <textarea id="descripcion" name="descripcion" rows="10" cols="50" required></textarea><br>
 
         <button type="submit">Publicar</button>
     </form>
-
 
 
 </main>
