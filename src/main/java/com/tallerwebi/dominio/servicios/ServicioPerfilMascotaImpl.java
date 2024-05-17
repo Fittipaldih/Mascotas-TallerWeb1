@@ -12,21 +12,11 @@ public class ServicioPerfilMascotaImpl implements ServicioPerfilMascota {
     private RepositorioMascota repositorioMascota;
 
     @Override
-    public Mascota buscarMascotaPorIdPublicacion(Long idPublicacion) throws MascotaNoEncontrada {
-        Mascota mascota = repositorioMascota.buscarMascotaPorId(idPublicacion);
+    public Mascota buscarMascotaPorIdPublicacion(Long id) throws MascotaNoEncontrada {
+        Mascota mascota = repositorioMascota.buscarMascotaPorId(id);
         if (mascota == null) {
-            throw new MascotaNoEncontrada("No existe mascota asociada a la publicacion o fue eliminada: " + idPublicacion);
+            throw new MascotaNoEncontrada("No existe mascota asociada a la publicacion o fue eliminada: " + id);
         }
         return mascota;
     }
-/*
-    @Override
-    public Mascota buscarMascotaPorIdPublicacion(Long idPublicacion) throws MascotaNoEncontrada {
-        Mascota mascota = repositorioMascota.buscarMascotaPorIdPublicacion(idPublicacion);
-        if (mascota == null) {
-            throw new MascotaNoEncontrada("No existe mascota asociada a la publicacion o fue eliminada: " + idPublicacion);
-        }
-        return mascota;
-    }
- */
 }
