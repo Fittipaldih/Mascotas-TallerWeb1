@@ -45,11 +45,12 @@ public class ControladorPublicarPerdido {
                                         @RequestParam(value = "mascotaColor") MascotaColor mascotaColor,
                                         @RequestParam(value = "descripcion") String descripcion,
                                         @RequestParam(value = "nombreContacto") String nombreContacto,
-                                        @RequestParam(value = "telefonoContacto") Long telefonoContacto
+                                        @RequestParam(value = "telefonoContacto") Long telefonoContacto,
+                                        @RequestParam(value = "tipoPublicacionPerdido") PublicacionTipo tipoPublicacionPerdido
     ) throws PerdidoException {
         ModelMap modelMap = new ModelMap();
         try {
-            PublicacionPerdido perdido = new PublicacionPerdido(nombreMascota, direccion, nombreContacto, zona, mascotaColor, descripcion, telefonoContacto);
+            PublicacionPerdido perdido = new PublicacionPerdido(nombreMascota, direccion, nombreContacto, zona, mascotaColor, descripcion, telefonoContacto, tipoPublicacionPerdido);
             servicioPublicarPerdidoImp.publicarPerdido(perdido);
             modelMap.put("mensaje", "La publicación ha sido creada exitosamente");
             return new ModelAndView("publicarPerdido", modelMap);

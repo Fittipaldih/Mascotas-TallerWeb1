@@ -25,17 +25,23 @@
     <div th:include="'entry-points'"></div>
 </nav>
 <main role="main" class="container">
-
+    <h2 th:value="mensaje"></h2>
     <h1>Publicar una mascota perdida</h1>
 
     <form th:action="@{/nuevo-perdido}" method="post">
-
+        <br>
+        <label for="tipoPublicacionPerdido">Tipo de Publicación:</label>
+        <select id="tipoPublicacionPerdido" name="tipoPublicacionPerdido" required>
+            <option value="BUSCADO_POR_DUENIO">Perdi mi mascota</option>
+            <option value="BUSCANDO_AL_DUENIO">Busco al dueño</option>
+        </select>
+        <br>
         <label for="nombre">Nombre de mascota</label>
-        <input type="text" id="nombre" name="nombre" required><br>
-
+        <input type="text" maxlength="100" id="nombre" name="nombre">
+        <br>
         <label for="direccion">Direccion visto por ultima vez:</label>
-        <input type="text" maxlength="150" id="direccion" name="direccion" required><br>
-
+        <input type="text" maxlength="150" id="direccion" name="direccion" required>
+        <br>
         <label for="mascotaColor">Color de la mascota:</label>
         <select id="mascotaColor" name="mascotaColor" required>
             <option value="BLANCO">Blanco</option>
@@ -44,18 +50,18 @@
             <option value="MARRON">Morron</option>
             <option value="DORADO">Dorado</option>
             <option value="DORADO">Otro</option>
-        </select><br>
-
+        </select>
+        <br>
         <label for="zona">Zona donde se perdió:</label>
         <select id="zona" name="zona" required>
             <option value="NORTE">Norte</option>
             <option value="SUR">Sur</option>
             <option value="OESTE">Oeste</option>
             <option value="CABA">Caba</option>
-        </select><br>
-
+        </select>
+        <br>
         <label for="descripcion">Descripción de la Mascota:</label><br>
-        <textarea id="descripcion" maxlength="250" name="descripcion" rows="10" cols="50" required></textarea><br>
+        <textarea id="descripcion" maxlength="250" name="descripcion" rows="7" cols="50" required></textarea><br>
 
         <label for="nombreContacto">Nombre Persona de Contacto</label>
         <input type="text" id="nombreContacto" name="nombreContacto" required>
@@ -63,7 +69,8 @@
         <label for="telefonoContacto">Numero de contacto</label>
         <input type="number" id="telefonoContacto" name="telefonoContacto" required>
         <br>
-        <button type="submit">Publicar</button>
+        <a class="nav-link mr-3" href="http://localhost:8080/spring/perdidos">Volver</a>
+        <button class="nav-link mr-3" type="submit">Publicar</button>
     </form>
 
 </main>

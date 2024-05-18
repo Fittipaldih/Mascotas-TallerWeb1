@@ -16,12 +16,14 @@ public class PublicacionPerdido extends Publicacion{
             Zona zona,
             MascotaColor mascotaColor,
             String descripcion,
-            Long telefonoContacto) {
+            Long telefonoContacto,
+            PublicacionTipo tipoPublicacionPerdido) {
 
-        super(nombreMascota, PublicacionTipo.BUSCADO_POR_DUENIO, zona, mascotaColor, descripcion);
+        super(nombreMascota, tipoPublicacionPerdido, zona, mascotaColor, descripcion);
         this.direccion = direccion;
         this.nombreContacto = nombreContacto;
         this.telefonoContacto = telefonoContacto;
+
     }
 
     public PublicacionPerdido() {
