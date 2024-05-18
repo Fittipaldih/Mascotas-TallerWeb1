@@ -45,7 +45,7 @@ public class ControladorPublicarPerdido {
                                         @RequestParam(value = "mascotaColor") MascotaColor mascotaColor,
                                         @RequestParam(value = "descripcion") String descripcion,
                                         @RequestParam(value = "nombreContacto") String nombreContacto,
-                                        @RequestParam(value = "telefonoContacto") Integer telefonoContacto
+                                        @RequestParam(value = "telefonoContacto") Long telefonoContacto
     ) throws PerdidoException {
         ModelMap modelMap = new ModelMap();
         try {

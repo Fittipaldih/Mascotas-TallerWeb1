@@ -33,7 +33,7 @@ public class Publicacion {
     }
 
     // Historia y Donacion
-    public Publicacion(PublicacionTipo tipoPublicacion, Zona zona, String descripcion, Integer telefonoContacto) {
+    public Publicacion(PublicacionTipo tipoPublicacion, Zona zona, String descripcion, Long telefonoContacto) {
         this.zona = zona;
         this.descripcion = descripcion;
     }

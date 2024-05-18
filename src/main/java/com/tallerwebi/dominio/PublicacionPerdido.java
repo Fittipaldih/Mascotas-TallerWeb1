@@ -5,8 +5,7 @@ import javax.persistence.Entity;
 @Entity
 public class PublicacionPerdido extends Publicacion{
 
-    private Integer telefonoContacto;
-    private PublicacionTiempo tiempoPublicacion;
+    private Long telefonoContacto;
     private String direccion;
     private String nombreContacto;
 
@@ -17,7 +16,7 @@ public class PublicacionPerdido extends Publicacion{
             Zona zona,
             MascotaColor mascotaColor,
             String descripcion,
-            Integer telefonoContacto) {
+            Long telefonoContacto) {
 
         super(nombreMascota, PublicacionTipo.BUSCADO_POR_DUENIO, zona, mascotaColor, descripcion);
         this.direccion = direccion;
