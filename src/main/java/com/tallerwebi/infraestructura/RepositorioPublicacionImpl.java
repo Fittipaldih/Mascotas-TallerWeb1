@@ -4,6 +4,7 @@ import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.PerdidoException;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
@@ -14,11 +15,15 @@ import java.util.List;
 public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 
     private SessionFactory sessionFactory;
-    private RepositorioMascotaImpl repositorioMascota;
 
-    public RepositorioPublicacionImpl(SessionFactory sessionFactory, RepositorioMascotaImpl repositorioMascota) {
+    @Autowired
+    public RepositorioPublicacionImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-        this.repositorioMascota = repositorioMascota;
+    }
+
+    @Override
+    public void guardarPerdido(PublicacionPerdido perdido) {
+        this.sessionFactory.getCurrentSession().save(perdido);
     }
 
     @Override
@@ -27,7 +32,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
         return query.getResultList();
     }
-
+/*
     @Override
     public void modificarTelefonoPublicacion(Publicacion publicacion) {
         String hql = "UPDATE Publicacion set telefonoContacto = :telefono WHERE idPublicacion = :idPublicacion";
@@ -102,11 +107,8 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         query.setParameter("zona", zona);
         return query.getResultList();
     }
-
-    @Transactional
-    @Override
-    public void guardarPerdido(PublicacionPerdido perdido) throws PerdidoException {
-        String nombreMascota= perdido.getNombreMascota();
+*/
+       /* String nombreMascota= perdido.getNombreMascota();
         String direccion = perdido.getDireccion();
         String nombreContacto = perdido.getNombreContacto();
         Zona zona = perdido.getZona();
@@ -114,8 +116,8 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         String descripcion = perdido.getDescripcion();
         Integer telefonoContacto= perdido.getTelefonoContacto();
 
-        String hql = "INSERT INTO PublicacionPerdido  (nombreMascota, direccion,nombreContacto,zona,mascotaColor, descripcion, telefonoContacto) " +
+        String hql = "INSERT INTO Publicacion  (nombreMascota, direccion,nombreContacto,zona,mascotaColor, descripcion, telefonoContacto) " +
                 "  values (nombreMascota, direccion,nombreContacto,zona,mascotaColor, descripcion, telefonoContacto)";
         Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-    }
+    }*/
 }

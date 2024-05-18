@@ -16,8 +16,8 @@ import java.util.List;
 
 public class ControladorPublicar {
 
-      @RequestMapping(value = "/publicarPerdido", method = RequestMethod.GET)
-        public ModelAndView irPublicarPerdido() {
+    @RequestMapping(value = "/publicarPerdido", method = RequestMethod.GET)
+    public ModelAndView irPublicarPerdido() {
         return new ModelAndView("publicarPerdido");
     }
 
