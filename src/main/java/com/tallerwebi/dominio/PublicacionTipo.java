@@ -4,5 +4,6 @@ public enum PublicacionTipo {
     BUSCADO_POR_DUENIO,
     BUSCANDO_AL_DUENIO,
     DONACION,
-    HISTORIA
+    HISTORIA,
+    PERDI_MI_PERRO
 }
