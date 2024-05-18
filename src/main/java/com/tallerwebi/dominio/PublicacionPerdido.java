@@ -1,29 +1,34 @@
 package com.tallerwebi.dominio;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import java.time.LocalDate;
 
+@Entity
 public class PublicacionPerdido extends Publicacion{
 
     private Integer telefonoContacto;
     private PublicacionTiempo tiempoPublicacion;
     private String direccion; // donde fue encontrado
     private String nombreContacto;
-    private Integer numeroContacto;
 
     public PublicacionPerdido(
+                    String nombreMascota,
                    String direccion,
                    String nombreContacto,
-                   Integer numeroContacto,
                    Zona zona,
-                   MascotaColor colorPelo,
+                   MascotaColor mascotaColor,
                    String descripcion,
                    Integer telefonoContacto) {
 
-        super(PublicacionTipo.PERDI_MI_PERRO,zona, colorPelo, descripcion, telefonoContacto);
+        super(nombreMascota ,PublicacionTipo.PERDI_MI_PERRO,zona, mascotaColor, descripcion);
         this.tiempoPublicacion = calcularTiempoPublicacion();
         this.direccion = direccion;
         this.nombreContacto = nombreContacto;
-        this.numeroContacto = numeroContacto;
+    }
+
+    public PublicacionPerdido() {
+
     }
 
     private PublicacionTiempo calcularTiempoPublicacion() {
@@ -50,12 +55,6 @@ public class PublicacionPerdido extends Publicacion{
     public void setNombreContacto(String nombreContacto) {
         this.nombreContacto = nombreContacto;
     }
-    public Integer getNumeroContacto() {
-        return numeroContacto;
-    }
-    public void setNumeroContacto(Integer numeroContacto) {
-        this.numeroContacto = numeroContacto;
-    }
-
-
+    public Integer getTelefonoContacto() {return telefonoContacto;}
+    public void setTelefonoContacto(Integer telefonoContacto) {this.telefonoContacto = telefonoContacto;}
 }

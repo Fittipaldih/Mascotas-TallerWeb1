@@ -6,3 +6,6 @@ INSERT INTO MASCOTA (COLOR, DESCRIPCION, ESTADO, FOTO, LATITUD, LONGITUD, NOMBRE
 
 INSERT INTO MASCOTA (COLOR, DESCRIPCION, ESTADO, FOTO, LATITUD, LONGITUD, NOMBRE, RAZA, TIEMPOBUSCADO, TIPOMASCOTA, ZONA, IDUSUARIO) VALUES
     ('BLANCO', 'Tiene 2 años. Es muy tranquila y le encanta acurrucarse.', 'EN_ADOPCION', 'https://img.freepik.com/', '46.833333', '-6.833333', 'Luna', 'PERSA', 1, 'GATO', 1, 1);
+
+INSERT INTO PublicacionPerdido  (nombreMascota, direccion,nombreContacto,zona,mascotaColor, descripcion, telefonoContacto)  VALUES
+('Augusto', 'segundoSombra','agustin','OESTE','MARRON', 'se perdio', '1138721497');

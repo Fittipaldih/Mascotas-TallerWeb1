@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -102,11 +103,19 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         return query.getResultList();
     }
 
+    @Transactional
     @Override
     public void guardarPerdido(PublicacionPerdido perdido) throws PerdidoException {
-        Boolean seGuardo = (Boolean) this.sessionFactory.getCurrentSession().save(perdido);
-        if (seGuardo == false) {
-            throw new PerdidoException();
-        }
+        String nombreMascota= perdido.getNombreMascota();
+        String direccion = perdido.getDireccion();
+        String nombreContacto = perdido.getNombreContacto();
+        Zona zona = perdido.getZona();
+        MascotaColor mascotaColor= perdido.getMascotaColor();
+        String descripcion = perdido.getDescripcion();
+        Integer telefonoContacto= perdido.getTelefonoContacto();
+
+        String hql = "INSERT INTO PublicacionPerdido  (nombreMascota, direccion,nombreContacto,zona,mascotaColor, descripcion, telefonoContacto) " +
+                "  values (nombreMascota, direccion,nombreContacto,zona,mascotaColor, descripcion, telefonoContacto)";
+        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
     }
 }

@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Publicacion {
 
     @Id
@@ -14,7 +15,7 @@ public class Publicacion {
     @Enumerated(EnumType.STRING)
     private PublicacionTipo tipoPublicacion;
 
-    private String fechaPublicacion, descripcion; // se debe agregar la logica para que todas las publicaciones tengan su fecha// ;
+    private String fechaPublicacion, descripcion,nombreMascota; // se debe agregar la logica para que todas las publicaciones tengan su fecha// ;
 
     @Enumerated(EnumType.STRING)
     private Zona zona;
@@ -22,15 +23,16 @@ public class Publicacion {
     private Integer numContacto;
 
     @Enumerated(EnumType.STRING)
-    private MascotaColor colorPelo;
+    private MascotaColor mascotaColor;
+
 
     // Perdido
-    public Publicacion(PublicacionTipo tipoPublicacion, Zona zona, MascotaColor colorPelo, String descripcion, Integer telefonoContacto) {
+    public Publicacion( String nombreMascota, PublicacionTipo tipoPublicacion, Zona zona, MascotaColor colorPelo, String descripcion) {
         this.tipoPublicacion = tipoPublicacion;
         this.zona = zona;
-        this.colorPelo = colorPelo;
+        this.mascotaColor = colorPelo;
         this.descripcion = descripcion;
-        this.numContacto = telefonoContacto;
+        this.nombreMascota = nombreMascota;
         // this.usuario=usuario; FALTAN RECIBIR LOS DATOS DEL USUARIO CONEL ID ES SUFICIENTE YA QUE DE AHI OBTENGO EL RESTO
     }
 
@@ -135,11 +137,17 @@ public Publicacion(TipoPublicacion tipo, Zona zona, Usuario usuario, Long idMasc
         this.descripcion = descripcion;
     }
 
-    public MascotaColor getColorPelo() {
-        return colorPelo;
+    public MascotaColor getMascotaColor() {
+        return this.mascotaColor;
     }
 
     public void setColorPelo(MascotaColor colorPelo) {
-        this.colorPelo = colorPelo;
+        this.mascotaColor = colorPelo;
+    }
+    public String getNombreMascota() {
+        return nombreMascota;
+    }
+    public void setNombreMascota(String nombreMascota) {
+        this.nombreMascota = nombreMascota;
     }
 }

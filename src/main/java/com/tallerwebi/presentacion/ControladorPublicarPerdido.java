@@ -23,18 +23,20 @@ public class ControladorPublicarPerdido {
 
 
     @RequestMapping(value = "/nuevo-perdido", method = RequestMethod.POST)
-    public ModelAndView crearNuevoPerdido(@RequestParam(value = "direccion") String direccion,
+    public ModelAndView publicarPerdido(@RequestParam(value = "direccion") String direccion,
+                                         @RequestParam(value = "nombre") String nombreMascota,
                                           @RequestParam(value = "zona") Zona zona,
-                                          @RequestParam(value = "colorPelo") MascotaColor colorPelo,
+                                          @RequestParam(value = "mascotaColor") MascotaColor mascotaColor,
                                           @RequestParam(value = "descripcion") String descripcion,
                                           @RequestParam(value = "nombreContacto") String nombreContacto,
-                                          @RequestParam(value = "numeroContacto") Integer numeroContacto
+                                          @RequestParam(value = "telefonoContacto") Integer telefonoContacto
     ) throws PerdidoException {
-        PublicacionPerdido perdido = new PublicacionPerdido(direccion, nombreContacto, numeroContacto, zona, colorPelo, descripcion, numeroContacto);
+        PublicacionPerdido perdido = new PublicacionPerdido(nombreMascota, direccion, nombreContacto, zona, mascotaColor, descripcion, telefonoContacto);
+        servicioPublicarPerdidoImp.publicarPerdido(perdido);
+
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("perdido", perdido);
         modelMap.put("mensaje","La publicacion ha sido publicada con exito");
-        servicioPublicarPerdidoImp.publicarPerdido(perdido);
         return new ModelAndView("redirect:/publicarPerdido",modelMap);
     }
 }

@@ -32,7 +32,7 @@ public class ServicioPublicacionPerdidoImpl implements ServicioPublicacionPerdid
         perdidosFiltrados.addAll(obtenerSoloPerdidos(publicaciones));
 
         for (PublicacionPerdido perdido : perdidosFiltrados) {
-            if (perdido.getZona().equals(zona) && perdido.getTiempoBusqueda().equals(tiempoPublicacion) && perdido.getColorPelo().equals(colorPelo)) {
+            if (perdido.getZona().equals(zona) && perdido.getTiempoBusqueda().equals(tiempoPublicacion) && perdido.getMascotaColor().equals(colorPelo)) {
                 perdidosFiltrados.add(perdido);
             }
         }

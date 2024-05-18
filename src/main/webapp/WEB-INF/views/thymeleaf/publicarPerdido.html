@@ -30,22 +30,39 @@
 
     <form th:action="@{/nuevo-perdido}" method="post">
 
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required><br>
+        <label for="nombre">Nombre de mascota, si tiene chapita:</label>
+        <input type="text" id="nombre" name="nombre"><br>
+
+        <label for="direccion">direccion:</label>
+        <input type="text" id="direccion" name="direccion" required><br>
+
+        <label for="mascotaColor">Color de la mascota:</label>
+        <select id="mascotaColor" name="mascotaColor">
+            <option value="NEGRO">Negro</option>
+            <option value="BLANCO">Blanco</option>
+            <option value="GRIS">Gris</option>
+            <option value="MARRON">Morron</option>
+            <option value="DORADO">Dorado</option>
+        </select><br>
 
         <label for="zona">Zona donde se perdió:</label>
         <select id="zona" name="zona">
-            <option value="norte">Norte</option>
-            <option value="sur">Sur</option>
-            <option value="oeste">Oeste</option>
+            <option value="NORTE">Norte</option>
+            <option value="SUR">Sur</option>
+            <option value="OESTE">Oeste</option>
         </select><br>
 
         <label for="descripcion">Desarrolle la discripcion:</label><br>
         <textarea id="descripcion" name="descripcion" rows="10" cols="50" required></textarea><br>
 
+        <label for="nombreContacto">Nombre de contacto</label>
+        <input type="text" id="nombreContacto" name="nombreContacto">
+
+        <label for="telefonoContacto">Numero de contacto</label>
+        <input type="text" id="telefonoContacto" name="telefonoContacto">
+
         <button type="submit">Publicar</button>
     </form>
-
 
 </main>
 <!-- Bootstrap core js -->
