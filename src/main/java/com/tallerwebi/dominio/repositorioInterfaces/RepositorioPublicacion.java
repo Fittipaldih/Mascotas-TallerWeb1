@@ -6,6 +6,8 @@ import com.tallerwebi.dominio.excepcion.PerdidoException;
 import java.util.List;
 
 public interface RepositorioPublicacion {
+    void guardarHistoria(PublicacionHistoria historia);
+
     /*    void nuevaPublicacion(String nombre, String foto, String descripcion, Zona zona, MascotaTipo tipoMascota, MascotaRaza raza, MascotaColor color, Usuario usuario, MascotaEstado estado, PublicacionTipo tipoPublicacion);
 */
         List<Publicacion> getPublicaciones();

@@ -1,14 +1,12 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.excepcion.PerdidoException;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -25,6 +23,9 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     public void guardarPerdido(PublicacionPerdido perdido) {
         this.sessionFactory.getCurrentSession().save(perdido);
     }
+
+    @Override
+    public void guardarHistoria(PublicacionHistoria historia) {this.sessionFactory.getCurrentSession().save(historia);}
 
     @Override
     public List<Publicacion> getPublicaciones() {

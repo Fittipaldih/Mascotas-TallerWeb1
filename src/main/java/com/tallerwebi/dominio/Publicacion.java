@@ -37,9 +37,10 @@ public abstract class Publicacion {
     }
 
     // Historia y Donacion
-    public Publicacion(PublicacionTipo tipoPublicacion, Zona zona, String descripcion, Long telefonoContacto) {
+    public Publicacion(PublicacionTipo tipoPublicacion, Zona zona,String nombreMascota, String descripcion) {
         this.zona = zona;
         this.descripcion = descripcion;
+        this.nombreMascota=nombreMascota;
     }
 
     public Publicacion() {
