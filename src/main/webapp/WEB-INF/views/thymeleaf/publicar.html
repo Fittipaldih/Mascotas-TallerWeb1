@@ -20,13 +20,13 @@
         <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
     </a>
     <!-- Título -->
-    <span class="navbar-brand ml-3 text-left">Red social</span>
+    <span class="navbar-brand ml-3 text-left">Crear publicación</span>
     <!-- Entry points -->
     <div th:include="'entry-points'"></div>
 </nav>
 <main role="main" class="container">
     <section style="margin-top: 20vh; display: flex; justify-content:center; gap: 10vh">
-        <h1>Quiero hacer una publicación</h1>
+        <h1>Quiero hacer una publicación acerca de...</h1>
         <form th:action="@{/publicarPerdido}" method="get">
         <input type="submit" name="perdido" value="Mascota perdida" class="btn btn-primary btn-lg m-2">
     </form>
@@ -36,7 +36,7 @@
     </form>
 
     <form th:action="@{/publicarDonacion}" method="get">
-        <input type="submit" name="perdido" value="Donacion a mascota" class="btn btn-primary btn-lg m-2">
+        <input type="submit" name="perdido" value="Solicitar donación" class="btn btn-primary btn-lg m-2">
     </form>
     </section>
 </main>

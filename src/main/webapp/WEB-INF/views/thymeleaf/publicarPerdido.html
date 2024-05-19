@@ -20,57 +20,97 @@
         <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
     </a>
     <!-- Título -->
-    <span class="navbar-brand ml-3 text-left">Red social</span>
+    <span class="navbar-brand ml-3 text-left">Publicar perdido</span>
     <!-- Entry points -->
     <div th:include="'entry-points'"></div>
 </nav>
 <main role="main" class="container">
-    <h1>Publicar una mascota perdida</h1>
 
-    <form th:action="@{/nuevo-perdido}" method="post">
-        <br>
-        <label for="tipoPublicacionPerdido">Tipo de Publicación:</label>
-        <select id="tipoPublicacionPerdido" name="tipoPublicacionPerdido" required>
-            <option value="BUSCADO_POR_DUENIO">Perdi mi mascota</option>
-            <option value="BUSCANDO_AL_DUENIO">Busco al dueño</option>
-        </select>
-        <br>
-        <label for="nombre">Nombre de mascota</label>
-        <input type="text" maxlength="100" id="nombre" name="nombre">
-        <br>
-        <label for="direccion">Direccion visto por ultima vez:</label>
-        <input type="text" maxlength="150" id="direccion" name="direccion" required>
-        <br>
-        <label for="mascotaColor">Color de la mascota:</label>
-        <select id="mascotaColor" name="mascotaColor" required>
-            <option value="BLANCO">Blanco</option>
-            <option value="GRIS">Gris</option>
-            <option value="NEGRO">Negro</option>
-            <option value="MARRON">Morron</option>
-            <option value="DORADO">Dorado</option>
-            <option value="DORADO">Otro</option>
-        </select>
-        <br>
-        <label for="zona">Zona donde se perdió:</label>
-        <select id="zona" name="zona" required>
-            <option value="NORTE">Norte</option>
-            <option value="SUR">Sur</option>
-            <option value="OESTE">Oeste</option>
-            <option value="CABA">Caba</option>
-        </select>
-        <br>
-        <label for="descripcion">Descripción de la Mascota:</label><br>
-        <textarea id="descripcion" maxlength="250" name="descripcion" rows="7" cols="50" required></textarea><br>
+    <div class="container mt-5">
+        <h1 style="margin-top: 20vh">Reportar una <br>mascota perdida</h1>
 
-        <label for="nombreContacto">Nombre Persona de Contacto</label>
-        <input type="text" id="nombreContacto" name="nombreContacto" required>
-        <br>
-        <label for="telefonoContacto">Numero de contacto</label>
-        <input type="number" id="telefonoContacto" name="telefonoContacto" required>
-        <br>
-        <a class="nav-link mr-3" href="http://localhost:8080/spring/perdidos">Volver</a>
-        <button class="nav-link mr-3" type="submit">Publicar</button>
-    </form>
+        <form th:action="@{/nuevo-perdido}" method="post" class="form-group">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="tipoPublicacionPerdido">Tipo de publicación</label>
+                    <select id="tipoPublicacionPerdido" name="tipoPublicacionPerdido" required class="form-control">
+                        <option value="BUSCADO_POR_DUENIO">Perdí mi mascota</option>
+                        <option value="BUSCANDO_AL_DUENIO">Busco al dueño</option>
+                    </select>
+                    <br>
+                    <label for="nombre">Nombre de la mascota</label>
+                    <input type="text" maxlength="100" id="nombre" name="nombre" class="form-control" placeholder="Peludito">
+                    <br>
+                    <label for="direccion">Visto por última vez en</label>
+                    <input type="text" maxlength="150" id="direccion" name="direccion" required class="form-control" placeholder="dirección...">
+                    <br>
+                    <label for="zona">Zona donde se perdió</label>
+                    <select id="zona" name="zona" required class="form-control">
+                        <option value="NORTE">Norte</option>
+                        <option value="SUR">Sur</option>
+                        <option value="OESTE">Oeste</option>
+                        <option value="CABA">CABA</option>
+                    </select>
+                    <br>
+                    <label for="mascotaColor">Color de pelo</label>
+                    <select id="mascotaColor" name="mascotaColor" required class="form-control">
+                        <option value="BLANCO">Blanco</option>
+                        <option value="GRIS">Gris</option>
+                        <option value="NEGRO">Negro</option>
+                        <option value="MARRON">Marrón</option>
+                        <option value="DORADO">Dorado</option>
+                        <option value="OTRO">Otro</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label for="descripcion">Descripción de la Mascota</label><br>
+                    <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="lleva un collar..."></textarea><br>
+
+                    <label for="mascotaRaza">Raza</label>
+                    <select id="mascotaRaza" name="mascotaRaza" required class="form-control">
+                        <option value="MESTIZO">Mestizo</option>
+                        <option value="GOLDEN">Golden Retriever</option>
+                        <option value="LABRADOR">Labrador Retriever</option>
+                        <option value="PASTOR_ALEMAN">Pastor Alemán</option>
+                        <option value="BEAGLE">Beagle</option>
+                        <option value="BULLDOG">Bulldog</option>
+                        <option value="BOXER">Boxer</option>
+                        <option value="CHIHUAHUA">Chihuahua</option>
+                        <option value="COCKER">Cocker Spaniel</option>
+                        <option value="ROTTWEILER">Rottweiler</option>
+                        <option value="SALCHICHA">Salchicha (Dachshund)</option>
+                        <option value="ABISINIO">Abisinio</option>
+                        <option value="BENGALI">Bengalí</option>
+                        <option value="BRITISH">British Shorthair</option>
+                        <option value="ESFINGE">Esfinge</option>
+                        <option value="MAINE_COON">Maine Coon</option>
+                        <option value="PERSA">Persa</option>
+                        <option value="RAGDOLL">Ragdoll</option>
+                        <option value="RUSSIAN_BLUE">Russian Blue</option>
+                        <option value="SAVANNAH">Savannah</option>
+                        <option value="SIAMES">Siamés</option>
+                    </select>
+                    <br>
+                    <label for="nombreContacto">Persona de contacto</label>
+                    <input type="text" id="nombreContacto" name="nombreContacto" required class="form-control" placeholder="nombre...">
+                    <br>
+                    <label for="telefonoContacto">Número de contacto</label>
+                    <input type="number" id="telefonoContacto" name="telefonoContacto" required class="form-control" placeholder="telefono...">
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <a href="http://localhost:8080/spring/perdidos" class="btn btn-secondary">Volver</a>
+                </div>
+
+                <div class="col-md-6 text-right">
+                    <button type="submit" class="btn btn-primary">Publicar</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
 </main>
 <!-- Bootstrap core js -->

@@ -5,5 +5,6 @@ public enum MascotaColor {
     GRIS,
     NEGRO,
     MARRON,
-    DORADO
+    DORADO,
+    OTRO
 }

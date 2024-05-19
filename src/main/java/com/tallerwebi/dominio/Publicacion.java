@@ -21,15 +21,17 @@ public class Publicacion {
 
     @Enumerated(EnumType.STRING)
     private MascotaColor mascotaColor;
-
+    @Enumerated(EnumType.STRING)
+    private MascotaRaza mascotaRaza;
 
     // Perdido
-    public Publicacion( String nombreMascota, PublicacionTipo tipoPublicacion, Zona zona, MascotaColor colorPelo, String descripcion) {
+    public Publicacion( String nombreMascota, PublicacionTipo tipoPublicacion, Zona zona, MascotaColor colorPelo, String descripcion, MascotaRaza mascotaRaza) {
         this.tipoPublicacion = tipoPublicacion;
         this.zona = zona;
         this.mascotaColor = colorPelo;
         this.descripcion = descripcion;
         this.nombreMascota = nombreMascota;
+        this.mascotaRaza = mascotaRaza;
     }
 
     // Historia y Donacion
