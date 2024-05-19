@@ -43,7 +43,7 @@ public class RepositorioVeterinariaTest {
         veterinaria.setNombre("Veterinaria Test");
         veterinaria.setId((long)1);
         veterinaria.setOpen24(true);
-        veterinaria.setTelefono(1144444444);
+        veterinaria.setTelefono(1144444444L);
         //ejecucion
         this.repositorioVeterinaria.guardarVeterinaria(veterinaria);
 
@@ -65,7 +65,7 @@ public class RepositorioVeterinariaTest {
         veterinaria.setNombre("Veterinaria");
         veterinaria.setId((long)1);
         veterinaria.setOpen24(true);
-        veterinaria.setTelefono(1144444444);
+        veterinaria.setTelefono(1144444444L);
         this.repositorioVeterinaria.guardarVeterinaria(veterinaria);
         Veterinaria veterinariaObtenida = this.sessionFactory.getCurrentSession()
                 .createQuery("FROM Veterinaria where idVeterinaria = 1", Veterinaria.class)
@@ -73,7 +73,7 @@ public class RepositorioVeterinariaTest {
 
         assertThat(veterinariaObtenida.getTelefono(), equalTo(1144444444));
         // ejecucion
-        veterinaria.setTelefono(12345678);
+        veterinaria.setTelefono(12345678L);
         this.repositorioVeterinaria.modificarTelefonoVeterinaria(veterinaria);
         // comprobacion
         assertThat(veterinariaObtenida.getTelefono(), equalTo(12345678));
@@ -89,7 +89,7 @@ public class RepositorioVeterinariaTest {
         veterinaria.setNombre("Veterinaria");
         veterinaria.setId((long)1);
         veterinaria.setOpen24(true);
-        veterinaria.setTelefono(1144444444);
+        veterinaria.setTelefono(1144444444L);
         this.repositorioVeterinaria.guardarVeterinaria(veterinaria);
         // ejecucion
         this.repositorioVeterinaria.eliminarVeterinaria(veterinaria);

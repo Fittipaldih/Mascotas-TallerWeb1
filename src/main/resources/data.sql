@@ -9,3 +9,7 @@ INSERT INTO MASCOTA (COLOR, DESCRIPCION, ESTADO, FOTO, LATITUD, LONGITUD, NOMBRE
 
 -- INSERT INTO Publicacion  (nombreMascota, direccion,nombreContacto,zona,mascotaColor, descripcion, telefonoContacto)  VALUES
 -- ('Augusto', 'segundoSombra','agustin','OESTE','MARRON', 'se perdio', '1138721497');
+
+INSERT INTO veterinaria (direccion, nombre, open24, telefono, zona) VALUES
+('Av. Crovara 1234, Tablada', 'PetVet', true, 44541212, 'OESTE'),
+('Av Bolougne Sur Mer 231', 'San Jorge', false, 46221231, 'OESTE');

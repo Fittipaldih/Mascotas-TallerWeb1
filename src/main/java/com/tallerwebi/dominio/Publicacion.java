@@ -21,6 +21,7 @@ public abstract class Publicacion {
 
     @Enumerated(EnumType.STRING)
     private MascotaColor mascotaColor;
+
     @Enumerated(EnumType.STRING)
     private MascotaRaza mascotaRaza;
 
@@ -32,7 +33,7 @@ public abstract class Publicacion {
         this.descripcion = descripcion;
         this.nombreMascota = nombreMascota;
         this.mascotaRaza = mascotaRaza;
-        this.fechaPublicacion = this.getFechaActual();
+        this.fechaPublicacion = getFechaActual();
     }
 
     // Historia y Donacion

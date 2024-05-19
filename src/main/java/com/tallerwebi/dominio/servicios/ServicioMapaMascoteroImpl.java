@@ -34,6 +34,7 @@ public class ServicioMapaMascoteroImpl implements ServicioMapaMascotero {
         return repositorioVeterinaria.dameTodasLasVeterinarias();
     }
 
+
     @Override
     public List<Peluqueria> getPeluquerias() {
         return repositorioPeluqueria.dameTodasLasPeluquerias();

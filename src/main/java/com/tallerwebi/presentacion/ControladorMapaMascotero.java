@@ -1,5 +1,8 @@
 package com.tallerwebi.presentacion;
 
+import com.tallerwebi.dominio.Mascota;
+import com.tallerwebi.dominio.Peluqueria;
+import com.tallerwebi.dominio.Veterinaria;
 import com.tallerwebi.dominio.servicios.ServicioMapaMascoteroImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,28 +28,26 @@ public class ControladorMapaMascotero {
     @RequestMapping("/filtrar")
     public ModelAndView filtrarPublicaciones(
             @RequestParam(value = "tipo_publicacion")
-            String tipoPublicacion)
+            String filtrarPor)
     {
 
-        List<?> publicacionesFiltradas = null;
-
-            switch (tipoPublicacion) {
+        ModelMap modelMap = new ModelMap();
+            switch (filtrarPor) {
                 case "veterinarias":
-                    publicacionesFiltradas = servicioMapaMascotero.getVeterinarias();
+                    List<Veterinaria> veterinarias = servicioMapaMascotero.getVeterinarias();
+                    modelMap.put("veterinarias", veterinarias);
                     break;
                 case "peluquerias":
-                    publicacionesFiltradas = servicioMapaMascotero.getPeluquerias();
+                    List<Peluqueria> peluquerias = servicioMapaMascotero.getPeluquerias();
+                    modelMap.put("peluquerias", peluquerias);
                     break;
                 case "mascotas":
-                    publicacionesFiltradas = servicioMapaMascotero.getMascotas();
+                    List<Mascota> mascotas = servicioMapaMascotero.getMascotas();
+                    modelMap.put("mascotas", mascotas);
                     break;
                 default:
                     break;
             }
-
-
-        ModelMap modelMap = new ModelMap();
-        modelMap.put("publicacionesFiltradas", publicacionesFiltradas);
 
          return new ModelAndView("mapa-mascotero", modelMap);
     }
