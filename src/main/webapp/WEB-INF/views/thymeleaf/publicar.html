@@ -25,18 +25,7 @@
     <div th:include="'entry-points'"></div>
 </nav>
 <main role="main" class="container">
-
-<!--            <form th:action="@{/publicar}">-->
-<!--                <label style="color: white" for="tipo_publicacion">¿Qué tipo de publicacion quiere hacer?</label>-->
-<!--                <select id="tipo_publicacion" class="form-control">-->
-<!--                    <option value=" ">Eliga un tipo</option>-->
-<!--                    <option value="perdidos">Perdidos</option>-->
-<!--                    <option value="historias">Historias</option>-->
-<!--                    <option value="donaciones">Donaciones</option>-->
-<!--                </select>-->
-<!--            </form>-->
     <section style="margin-top: 20vh; display: flex; justify-content:center; gap: 10vh">
-        <h3 class="card-title" th:text="${mensaje}"></h3>
         <h1>Quiero hacer una publicación</h1>
         <form th:action="@{/publicarPerdido}" method="get">
         <input type="submit" name="perdido" value="Mascota perdida" class="btn btn-primary btn-lg m-2">
@@ -49,10 +38,10 @@
     <form th:action="@{/publicarDonacion}" method="get">
         <input type="submit" name="perdido" value="Donacion a mascota" class="btn btn-primary btn-lg m-2">
     </form>
-        <p th:if="${mensaje != null}" class="alert alert-danger" th:text="${mensaje}">
-        </p>
     </section>
 </main>
+<h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
+<h2 th:if="${error}" class="alert alert-warning" th:text="${error}"></h2>
 <!-- Bootstrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>

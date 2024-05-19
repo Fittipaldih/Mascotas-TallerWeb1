@@ -26,7 +26,8 @@ public class ControladorPerfilMascota {
             model.put("mascotaData", mascota);
             return new ModelAndView("perfil-mascota", model);
         } catch (NoResultException | MascotaNoEncontrada e) {
-            return new ModelAndView("redirect:/home");
+            model.put("mensaje", "No se encontró la mascota que buscás. Intentá nuevamente");
+            return new ModelAndView("home", model);
         }
     }
 
