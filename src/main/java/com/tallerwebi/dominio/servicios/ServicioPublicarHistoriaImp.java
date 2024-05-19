@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ServicioPublicarHistoriaImp implements ServicioPublicarHistoria {
     @Autowired
-    private RepositorioPublicacionImpl repositorioPublicarPerdido;
+    private RepositorioPublicacionImpl repositorioPublicarHistoria;
 
     @Override
     public void publicarHistoria(PublicacionHistoria historia) throws HistoriaException {
-        repositorioPublicarPerdido.guardarHistoria(historia);
+        repositorioPublicarHistoria.guardarHistoria(historia);
     }
 }
