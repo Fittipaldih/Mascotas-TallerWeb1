@@ -1,5 +1,6 @@
 package com.tallerwebi.infraestructura;
 
+import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioVeterinaria;
 import com.tallerwebi.dominio.Veterinaria;
 import org.hibernate.SessionFactory;
@@ -47,7 +48,7 @@ public class RepositorioVeterinariaImpl implements RepositorioVeterinaria {
     }
 
     @Override
-    public List<Veterinaria> buscarVeterinariasPorZona(String zona) {
+    public List<Veterinaria> buscarVeterinariasPorZona(Zona zona) {
         String hql = "FROM Veterinaria v WHERE v.direccion LIKE :zona";
         Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
         query.setParameter("zona", "%" + zona + "%");

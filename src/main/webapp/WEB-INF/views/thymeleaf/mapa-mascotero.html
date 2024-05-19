@@ -37,6 +37,67 @@
                 </div>
             </div>
         </div>
+
+        <table th:if="${veterinarias}" class="table table-striped">  <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Zona</th>
+            <th>Open 24 Horas</th>
+        </tr>
+        </thead>
+            <tbody>
+            <tr th:each="veterinaria : ${veterinarias}">
+                <td th:text="${veterinaria.nombre}"></td>
+                <td th:text="${veterinaria.telefono}"></td>
+                <td th:text="${veterinaria.direccion}"></td>
+                <td th:text="${veterinaria.zona}"></td>
+                <td th:text="${veterinaria.open24 ? 'Sí' : 'No'}">  </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table th:if="${peluquerias}" class="table table-striped">  <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Zona</th>
+        </tr>
+        </thead>
+            <tbody>
+            <tr th:each="peluqueria : ${peluquerias}">
+                <td th:text="${peluqueria.nombre}"></td>
+                <td th:text="${peluqueria.telefono}"></td>
+                <td th:text="${peluqueria.direccion}"></td>
+                <td th:text="${peluqueria.zona}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table th:if="${mascotas}" class="table table-striped">  <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Zona</th>
+            <th>Tipo</th>
+            <th>Raza</th>
+            <th>Color pelo</th>
+        </tr>
+        </thead>
+            <tbody>
+            <tr th:each="mascota : ${mascotas}">
+                <td th:text="${mascota.nombre}"></td>
+                <td th:text="${mascota.estado}"></td>
+                <td th:text="${mascota.zona}"></td>
+                <td th:text="${mascota.tipoMascota}"></td>
+                <td th:text="${mascota.raza}"></td>
+                <td th:text="${mascota.color}"></td>
+            </tr>
+            </tbody>
+        </table>
+
     </section>
 
     <section class="tipo-publicacion">
@@ -44,7 +105,7 @@
             <h1>Solo quiero ver...</h1>
             <label style="color: white" for="tipo_publicacion">Tipo de publicacion:</label>
             <select id="tipo_publicacion" name="tipo_publicacion" class="form-control">
-                <option value="">Eliga un tipo</option>
+                <option value="">Elija un tipo</option>
                 <option value="veterinarias">Veterinarias</option>
                 <option value="peluquerias">Peluquerias</option>
                 <option value="mascotas">Mascotas Perdidas</option>
@@ -52,6 +113,7 @@
             <button id="filtros" type="submit" class="btn btn-outline-light">Filtrar</button>
         </form>
     </section>
+
 </main>
 
 <!-- Bootstrap core js -->

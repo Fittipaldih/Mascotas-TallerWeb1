@@ -1,5 +1,6 @@
 package com.tallerwebi.infraestructura;
 
+import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioMascota;
 import com.tallerwebi.dominio.Mascota;
 import org.hibernate.SessionFactory;
@@ -35,7 +36,7 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
     }
 
     @Override
-    public List<Mascota> buscarMascotasPorZona(String zona) {
+    public List<Mascota> buscarMascotasPorZona(Zona zona) {
         String sql = "Select m from Mascota m where m.zona = :zona";
         Query query = sessionFactory.getCurrentSession().createQuery(sql);
         query.setParameter("zona", zona);
@@ -56,14 +57,14 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
     public void eliminarMascota(Mascota mascota) {
         sessionFactory.getCurrentSession().delete(mascota);
     }
-
+/*
     @Override
     public Mascota buscarMascotaPorIdPublicacion(Long idPublicacion) {
         String hql = "FROM Mascota m WHERE m.idPublicacion = :idPublicacion";
         Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
         query.setParameter("idPublicacion", idPublicacion);
         return (Mascota) query.getSingleResult();
-    }
+    }*/
 
     @Override
     public Boolean verificarSiMascotaExiste(Mascota mascota) {

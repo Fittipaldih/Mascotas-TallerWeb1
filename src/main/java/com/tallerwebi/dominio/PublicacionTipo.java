@@ -1,8 +1,8 @@
 package com.tallerwebi.dominio;
 
 public enum PublicacionTipo {
-    PERDI_MI_PERRO,
-    BUSCANDO_DUENIO, // Tanto para adopcion como para 'encontrado perdido'
+    BUSCADO_POR_DUENIO,
+    BUSCANDO_AL_DUENIO,
     DONACION,
     HISTORIA
 }

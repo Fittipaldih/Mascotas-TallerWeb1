@@ -17,7 +17,7 @@ public class ServicioPublicacionHistoriaImpl implements ServicioPublicacionHisto
     private SessionFactory sessionFactory;
 
     public ServicioPublicacionHistoriaImpl() {
-        this.repositorioPublicacionesImp = new RepositorioPublicacionImpl(sessionFactory, repositorioMascotaImp);
+        this.repositorioPublicacionesImp = new RepositorioPublicacionImpl(sessionFactory);
     }
 
     @Override

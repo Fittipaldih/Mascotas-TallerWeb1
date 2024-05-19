@@ -22,5 +22,6 @@ public enum MascotaRaza {
     RAGDOLL,
     RUSSIAN_BLUE,
     SAVANNAH,
-    SIAMES
+    SIAMES,
+    MESTIZO
 }

@@ -12,9 +12,6 @@ public class Mascota {
     private String nombre, foto, descripcion, latitud, longitud;
     private Zona zona;
     private Integer tiempoBuscado;
-    @OneToMany
-    @JoinColumn(name = "idPublicacion")
-    private List<Publicacion> publicaciones;
     @Enumerated(EnumType.STRING)
     private MascotaTipo tipoMascota;
     @Enumerated(EnumType.STRING)
@@ -26,6 +23,17 @@ public class Mascota {
     private Usuario usuario;
     @Enumerated(EnumType.STRING)
     private MascotaEstado estado;
+
+    public Mascota(String nombre, String foto, String descripcion, Zona zona, MascotaTipo tipoMascota, MascotaRaza raza, MascotaColor color, MascotaEstado estado) {
+        this.nombre = nombre;
+        this.foto = foto;
+        this.descripcion = descripcion;
+        this.zona = zona;
+        this.tipoMascota = tipoMascota;
+        this.raza = raza;
+        this.color = color;
+        this.estado = estado;
+    }
 
     public Mascota(String nombre, String foto, String descripcion, Zona zona, MascotaTipo tipoMascota, MascotaRaza raza, MascotaColor color, Usuario usuario, MascotaEstado estado) {
         this.nombre = nombre;
@@ -48,9 +56,6 @@ public class Mascota {
         this.color = color;
         this.usuario = usuario;
         this.estado = estado;
-        if(publicacion != null && (!this.getPublicaciones().contains(publicacion))){
-            this.publicaciones.add(publicacion);
-        }
 
     }
 
@@ -120,14 +125,6 @@ public class Mascota {
 
     public void setTiempoBuscado(Integer tiempoBuscado) {
         this.tiempoBuscado = tiempoBuscado;
-    }
-
-    public List<Publicacion> getPublicaciones() {
-        return publicaciones;
-    }
-
-    public void setPublicaciones(List<Publicacion> publicaciones) {
-        this.publicaciones = publicaciones;
     }
 
     public MascotaTipo getTipoMascota() {

@@ -11,8 +11,12 @@ public class ServicioPerfilMascotaImpl implements ServicioPerfilMascota {
     @Autowired
     private RepositorioMascota repositorioMascota;
 
+    public ServicioPerfilMascotaImpl(RepositorioMascota repositorioMascota) {
+        this.repositorioMascota = repositorioMascota;
+    }
+
     @Override
-    public Mascota buscarMascotaPorIdPublicacion(Long id) throws MascotaNoEncontrada {
+    public Mascota buscarMascotaPorId(Long id) throws MascotaNoEncontrada {
         Mascota mascota = repositorioMascota.buscarMascotaPorId(id);
         if (mascota == null) {
             throw new MascotaNoEncontrada("No existe mascota asociada a la publicacion o fue eliminada: " + id);

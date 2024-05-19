@@ -6,16 +6,13 @@ import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class ServicioPublicarPerdidoImp implements ServicioPublicarPerdido {
 
-    private RepositorioPublicacionImpl repositorioPublicarPerdido;
-
     @Autowired
-    public  ServicioPublicarPerdidoImp(RepositorioPublicacionImpl repositorioPublicarPerdido) {
-            this.repositorioPublicarPerdido = repositorioPublicarPerdido;
-    }
-
+    private RepositorioPublicacionImpl repositorioPublicarPerdido;
 
     @Override
     public void publicarPerdido(PublicacionPerdido perdido) throws PerdidoException {

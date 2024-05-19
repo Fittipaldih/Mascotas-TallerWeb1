@@ -21,7 +21,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <!-- Logo  -->
-    <a class="nav-link" href="home">
+    <a class="nav-link" href="http://localhost:8080/spring/">
         <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
     </a>
 
@@ -41,20 +41,35 @@
                         <img th:src="@{'/img/' + mascotaData.foto}" alt="Foto mascota" class="card-img-top">
                     </div>
                     <div class="card-body">
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar</button>
-                        <h5 class="card-title" th:text="${mascotaData.getEstado()}"></h5>
-                        <h5 class="card-title" th:text="${mascotaData.getTipoMascota()}"></h5>
-                        <h5 class="card-title" th:text="${mascotaData.getRaza()}"></h5>
-                        <h5 class="card-title" th:text="${mascotaData.getColor()}"></h5>
-                        <h5 class="card-title" th:text="Zona + ${mascotaData.getZona()}"></h5>
-                        <p class="card-text" th:text="${mascotaData.getDescripcion()}"></p>
+                        <h5>Estado:</h5>
+                        <h4 class="card-title" th:if="${mascotaData.getEstado() == T(com.tallerwebi.dominio.MascotaEstado).BUSCADO_POR_DUENIO}">
+                            Perdi mi mascota, ayudame
+                        </h4>
+                        <h4 class="card-title" th:if="${mascotaData.getEstado() == T(com.tallerwebi.dominio.MascotaEstado).BUSCANDO_AL_DUENIO}">
+                            Busco al dueño, ayudame
+                        </h4>
+                        <h4 class="card-title" th:if="${mascotaData.getEstado() == T(com.tallerwebi.dominio.MascotaEstado).EN_ADOPCION}">
+                            En adopción responsable
+                        </h4>
+                        <h4 class="card-title" th:if="${mascotaData.getEstado() == T(com.tallerwebi.dominio.MascotaEstado).CON_EL_DUENIO}">
+                            Está con su familia
+                        </h4>
+                        <h5>En zona:</h5>
+                        <h4 class="card-title" th:text="${mascotaData.getZona()}"></h4>
+                        <h5>Es un:</h5>
+                        <h4 class="card-title" th:text="${mascotaData.getTipoMascota()}"></h4>
+                        <h5>De raza:</h5>
+                        <h4 class="card-title" th:text="${mascotaData.getRaza()}"></h4>
+                        <h5>Su color es:</h5>
+                        <h4 class="card-title" th:text="${mascotaData.getColor()}"></h4>
+                        <h5>Descripcion:</h5>
+                        <h4 class="card-text" th:text="${mascotaData.getDescripcion()}"></h4>
                         <div class="container-btn">
-                            <form th:action="@{/red-social}" method="GET">
-                                <input type="submit" class="btn btn-outline-primary" value="Volver"/>
-                            </form>
-                            </div>
+                            <a href="http://localhost:8080/spring/red-social" class="btn btn-primary">Volver</a>
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar</button>
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar</button>
+                        </div>
                     </div>
                 </div>
             </div>

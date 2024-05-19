@@ -11,30 +11,36 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.transaction.Transactional;
+
 @Controller
+@Transactional
 public class ControladorPublicarPerdido {
 
+    @Autowired
     private ServicioPublicarPerdidoImp servicioPublicarPerdidoImp;
 
-    @Autowired
-    public void ControladorPublicarPerdido (ServicioPublicarPerdidoImp servicioPublicarPerdidoImp) {
-        this.servicioPublicarPerdidoImp = servicioPublicarPerdidoImp;
-    }
-
-
     @RequestMapping(value = "/nuevo-perdido", method = RequestMethod.POST)
-    public ModelAndView crearNuevoPerdido(@RequestParam(value = "direccion") String direccion,
-                                          @RequestParam(value = "zona") Zona zona,
-                                          @RequestParam(value = "colorPelo") MascotaColor colorPelo,
-                                          @RequestParam(value = "descripcion") String descripcion,
-                                          @RequestParam(value = "nombreContacto") String nombreContacto,
-                                          @RequestParam(value = "numeroContacto") Integer numeroContacto
+    public ModelAndView publicarPerdido(@RequestParam(value = "direccion") String direccion,
+                                        @RequestParam(value = "nombre") String nombreMascota,
+                                        @RequestParam(value = "zona") Zona zona,
+                                        @RequestParam(value = "mascotaColor") MascotaColor mascotaColor,
+                                        @RequestParam(value = "descripcion") String descripcion,
+                                        @RequestParam(value = "nombreContacto") String nombreContacto,
+                                        @RequestParam(value = "telefonoContacto") Long telefonoContacto,
+                                        @RequestParam(value = "tipoPublicacionPerdido") PublicacionTipo tipoPublicacionPerdido,
+                                          @RequestParam(value = "mascotaRaza") MascotaRaza mascotaRaza
     ) throws PerdidoException {
-        PublicacionPerdido perdido = new PublicacionPerdido(direccion, nombreContacto, numeroContacto, zona, colorPelo, descripcion, numeroContacto);
         ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("perdido", perdido);
-        modelMap.put("mensaje","La publicacion ha sido publicada con exito");
-        servicioPublicarPerdidoImp.publicarPerdido(perdido);
-        return new ModelAndView("redirect:/publicarPerdido",modelMap);
+        try {
+            PublicacionPerdido perdido = new PublicacionPerdido(nombreMascota, direccion, nombreContacto, zona, mascotaColor, descripcion, telefonoContacto, tipoPublicacionPerdido, mascotaRaza);
+            servicioPublicarPerdidoImp.publicarPerdido(perdido);
+            modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
+            return new ModelAndView("publicar", modelMap);
+        } catch (PerdidoException e) {
+            modelMap.put("error", "Error al publicar la mascota perdida. Intentá nuevamente. ");
+            return new ModelAndView("publicar", modelMap);
+        }
     }
+
 }
