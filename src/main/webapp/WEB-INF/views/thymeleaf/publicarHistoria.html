@@ -29,7 +29,7 @@
     <div class="container mt-5">
         <h1 style="margin-top: 20vh">Publica la historia <br>de tu mascota</h1>
 
-        <form th:action="@{/nueva-historia}" method="post" class="form-group" ACCEPT-CHARSET="UTF-8">
+        <form th:action="@{/nueva-historia}" method="post" enctype="multipart/form-data" class="form-group" ACCEPT-CHARSET="UTF-8">
             <div class="row">
                 <div class="col-md-6 form-group">
 
@@ -63,6 +63,8 @@
                     <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="Ej: Lleva un collar ...">
                 </textarea>
                     <br>
+                    <label for="imagen">Imagen</label>
+                    <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
                 </div>
             </div>
 

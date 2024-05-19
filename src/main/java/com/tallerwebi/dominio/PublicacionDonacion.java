@@ -10,9 +10,10 @@ public class PublicacionDonacion extends Publicacion{
                     PublicacionTipo publicacionTipo,
                     String nombreMascota,
                     Zona zona,
-                    String descripcion) {
+                    String descripcion,
+                    byte[] imagen) {
 
-        super(publicacionTipo, zona,nombreMascota, descripcion);
+        super(publicacionTipo, zona,nombreMascota, descripcion, imagen);
         this.recaudacion = 0.0;
         this.montoACubrir = montoACubrir;
         this.nombre = nombre;

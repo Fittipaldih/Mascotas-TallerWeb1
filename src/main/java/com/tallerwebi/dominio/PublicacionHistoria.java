@@ -11,9 +11,10 @@ public class PublicacionHistoria extends Publicacion{
                     String nombreMascota,
                     Zona zona,
                     String descripcion,
-                    PublicacionTipo publicacionTipo) {
+                    PublicacionTipo publicacionTipo,
+                    byte[] imagen) {
 
-        super(publicacionTipo, zona,nombreMascota, descripcion);
+        super(publicacionTipo, zona,nombreMascota, descripcion, imagen);
         this.titular=  titular;
     }
 

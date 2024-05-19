@@ -25,6 +25,9 @@ public abstract class Publicacion {
     @Enumerated(EnumType.STRING)
     private MascotaRaza mascotaRaza;
 
+    @Lob
+    private byte[] imagen;
+
     // Perdido
     public Publicacion( String nombreMascota, PublicacionTipo tipoPublicacion, Zona zona, MascotaColor colorPelo, String descripcion, MascotaRaza mascotaRaza) {
         this.tipoPublicacion = tipoPublicacion;
@@ -37,10 +40,11 @@ public abstract class Publicacion {
     }
 
     // Historia y Donacion
-    public Publicacion(PublicacionTipo tipoPublicacion, Zona zona,String nombreMascota, String descripcion) {
+    public Publicacion(PublicacionTipo tipoPublicacion, Zona zona,String nombreMascota, String descripcion, byte[] imagen) {
         this.zona = zona;
         this.descripcion = descripcion;
         this.nombreMascota=nombreMascota;
+        this.imagen = imagen;
     }
 
     public Publicacion() {
@@ -116,5 +120,13 @@ public abstract class Publicacion {
 
     public void setMascotaRaza(MascotaRaza mascotaRaza) {
         this.mascotaRaza = mascotaRaza;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 }
