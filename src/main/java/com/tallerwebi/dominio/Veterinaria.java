@@ -13,7 +13,20 @@ public class Veterinaria {
     private Long idVeterinaria;
     private Integer telefono;
     private String nombre, direccion;
+    private Zona zona;
     private Boolean open24;
+
+    public Veterinaria() {
+
+    }
+
+    public Veterinaria(Integer telefono, String nombre, String direccion, Zona zona, Boolean open24) {
+        this.telefono = telefono;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.zona = zona;
+        this.open24 = open24;
+    }
 
     public Integer getTelefono() {
         return telefono;
@@ -53,5 +66,12 @@ public class Veterinaria {
 
     public void setOpen24(Boolean open24) {
         this.open24 = open24;
+    }
+
+    public Zona getZona() {
+        return zona;
+    }
+    public void setZona(Zona zona) {
+        this.zona = zona;
     }
 }

@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-public class Publicacion {
+public abstract class Publicacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +32,7 @@ public class Publicacion {
         this.descripcion = descripcion;
         this.nombreMascota = nombreMascota;
         this.mascotaRaza = mascotaRaza;
+        this.fechaPublicacion = this.getFechaActual();
     }
 
     // Historia y Donacion
@@ -105,5 +106,13 @@ public class Publicacion {
 
     public void setMascotaColor(MascotaColor mascotaColor) {
         this.mascotaColor = mascotaColor;
+    }
+
+    public MascotaRaza getMascotaRaza() {
+        return mascotaRaza;
+    }
+
+    public void setMascotaRaza(MascotaRaza mascotaRaza) {
+        this.mascotaRaza = mascotaRaza;
     }
 }

@@ -13,6 +13,18 @@ public class Peluqueria {
     private Long idPeluqueria;
     private Integer telefono;
     private String nombre, direccion;
+    private Zona zona;
+
+    public Peluqueria() {
+
+    }
+
+    public Peluqueria(Integer telefono, String nombre, String direccion, Zona zona) {
+        this.telefono = telefono;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.zona = zona;
+    }
 
     public Integer getTelefono() {
         return telefono;
@@ -44,6 +56,13 @@ public class Peluqueria {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public Zona getZona() {
+        return zona;
+    }
+    public void setZona(Zona zona) {
+        this.zona = zona;
     }
 
 }
