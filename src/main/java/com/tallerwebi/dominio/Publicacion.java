@@ -29,13 +29,14 @@ public abstract class Publicacion {
     private byte[] imagen;
 
     // Perdido
-    public Publicacion( String nombreMascota, PublicacionTipo tipoPublicacion, Zona zona, MascotaColor colorPelo, String descripcion, MascotaRaza mascotaRaza) {
+    public Publicacion( String nombreMascota, PublicacionTipo tipoPublicacion, Zona zona, MascotaColor colorPelo, String descripcion, MascotaRaza mascotaRaza, byte[] imagen) {
         this.tipoPublicacion = tipoPublicacion;
         this.zona = zona;
         this.mascotaColor = colorPelo;
         this.descripcion = descripcion;
         this.nombreMascota = nombreMascota;
         this.mascotaRaza = mascotaRaza;
+        this.imagen = imagen;
         this.fechaPublicacion = getFechaActual();
     }
 
