@@ -13,3 +13,7 @@ INSERT INTO MASCOTA (COLOR, DESCRIPCION, ESTADO, FOTO, LATITUD, LONGITUD, NOMBRE
 INSERT INTO veterinaria (direccion, nombre, open24, telefono, zona) VALUES
 ('Av. Crovara 1234, Tablada', 'PetVet', true, 44541212, 'OESTE'),
 ('Av Bolougne Sur Mer 231', 'San Jorge', false, 46221231, 'OESTE');
+
+INSERT INTO peluqueria (direccion, nombre, telefono, zona) VALUES
+('Florencio Varela 1234, San Justo', 'Peluqueria Pet', 44541212, 'OESTE'),
+('Av Rivadavia 231', 'De Perros', 46221231, 'CABA');

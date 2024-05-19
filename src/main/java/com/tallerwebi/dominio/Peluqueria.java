@@ -1,9 +1,6 @@
 package com.tallerwebi.dominio;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Peluqueria {
@@ -13,6 +10,7 @@ public class Peluqueria {
     private Long idPeluqueria;
     private Integer telefono;
     private String nombre, direccion;
+    @Enumerated(EnumType.STRING)
     private Zona zona;
 
     public Peluqueria() {
