@@ -71,12 +71,12 @@ public class RepositorioVeterinariaTest {
                 .createQuery("FROM Veterinaria where idVeterinaria = 1", Veterinaria.class)
                 .getSingleResult();
 
-        assertThat(veterinariaObtenida.getTelefono(), equalTo(1144444444));
+        assertThat(veterinariaObtenida.getTelefono(), equalTo(1144444444L));
         // ejecucion
         veterinaria.setTelefono(12345678L);
         this.repositorioVeterinaria.modificarTelefonoVeterinaria(veterinaria);
         // comprobacion
-        assertThat(veterinariaObtenida.getTelefono(), equalTo(12345678));
+        assertThat(veterinariaObtenida.getTelefono(), equalTo(12345678L));
     }
 
     @Test

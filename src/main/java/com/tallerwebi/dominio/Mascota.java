@@ -24,6 +24,17 @@ public class Mascota {
     @Enumerated(EnumType.STRING)
     private MascotaEstado estado;
 
+    public Mascota(String nombre, String foto, String descripcion, Zona zona, MascotaTipo tipoMascota, MascotaRaza raza, MascotaColor color, MascotaEstado estado) {
+        this.nombre = nombre;
+        this.foto = foto;
+        this.descripcion = descripcion;
+        this.zona = zona;
+        this.tipoMascota = tipoMascota;
+        this.raza = raza;
+        this.color = color;
+        this.estado = estado;
+    }
+
     public Mascota(String nombre, String foto, String descripcion, Zona zona, MascotaTipo tipoMascota, MascotaRaza raza, MascotaColor color, Usuario usuario, MascotaEstado estado) {
         this.nombre = nombre;
         this.foto = foto;

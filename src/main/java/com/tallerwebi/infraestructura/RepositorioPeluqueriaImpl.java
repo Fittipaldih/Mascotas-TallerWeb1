@@ -1,5 +1,6 @@
 package com.tallerwebi.infraestructura;
 
+import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPeluqueria;
 import com.tallerwebi.dominio.Peluqueria;
 import org.hibernate.SessionFactory;
@@ -46,7 +47,7 @@ public class RepositorioPeluqueriaImpl implements RepositorioPeluqueria {
     }
 
     @Override
-    public List<Peluqueria> buscarPeluqueriasPorZona(String zona) {
+    public List<Peluqueria> buscarPeluqueriasPorZona(Zona zona) {
         String hql = "FROM Peluqueria v WHERE v.direccion LIKE :zona";
         Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
         query.setParameter("zona", "%" + zona + "%");

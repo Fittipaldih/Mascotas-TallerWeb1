@@ -22,7 +22,7 @@ public class ControladorPerfilMascota {
     public ModelAndView mostrarPerfilMascota(@RequestParam Long id){
         ModelMap model = new ModelMap();
         try {
-            Mascota mascota = servicioPerfilMascota.buscarMascotaPorIdPublicacion(id);
+            Mascota mascota = servicioPerfilMascota.buscarMascotaPorId(id);
             model.put("mascotaData", mascota);
             return new ModelAndView("perfil-mascota", model);
         } catch (NoResultException | MascotaNoEncontrada e) {

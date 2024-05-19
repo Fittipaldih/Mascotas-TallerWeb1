@@ -34,6 +34,7 @@
                 <div class="col-md-6 form-group">
                     <label for="tipoPublicacionPerdido">Tipo de publicación</label>
                     <select id="tipoPublicacionPerdido" name="tipoPublicacionPerdido" required class="form-control">
+                        <option value="">Seleccionar</option>
                         <option value="BUSCADO_POR_DUENIO">Perdí mi mascota</option>
                         <option value="BUSCANDO_AL_DUENIO">Busco al dueño</option>
                     </select>
@@ -42,10 +43,11 @@
                     <input type="text" maxlength="100" id="nombre" name="nombre" class="form-control" placeholder="Peludito">
                     <br>
                     <label for="direccion">Visto por última vez en</label>
-                    <input type="text" maxlength="150" id="direccion" name="direccion" required class="form-control" placeholder="dirección...">
+                    <input type="text" maxlength="150" id="direccion" name="direccion" required class="form-control" placeholder="Completar dirección">
                     <br>
                     <label for="zona">Zona donde se perdió</label>
                     <select id="zona" name="zona" required class="form-control">
+                        <option value="">Seleccionar</option>
                         <option value="NORTE">Norte</option>
                         <option value="SUR">Sur</option>
                         <option value="OESTE">Oeste</option>
@@ -54,6 +56,7 @@
                     <br>
                     <label for="mascotaColor">Color de pelo</label>
                     <select id="mascotaColor" name="mascotaColor" required class="form-control">
+                        <option value="">Seleccionar</option>
                         <option value="BLANCO">Blanco</option>
                         <option value="GRIS">Gris</option>
                         <option value="NEGRO">Negro</option>
@@ -65,10 +68,11 @@
 
                 <div class="col-md-6 form-group">
                     <label for="descripcion">Descripción de la Mascota</label><br>
-                    <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="lleva un collar..."></textarea><br>
+                    <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="Ej: Lleva un collar ..."></textarea><br>
 
                     <label for="mascotaRaza">Raza</label>
                     <select id="mascotaRaza" name="mascotaRaza" required class="form-control">
+                        <option value="">Seleccionar</option>
                         <option value="MESTIZO">Mestizo</option>
                         <option value="GOLDEN">Golden Retriever</option>
                         <option value="LABRADOR">Labrador Retriever</option>
@@ -93,10 +97,10 @@
                     </select>
                     <br>
                     <label for="nombreContacto">Persona de contacto</label>
-                    <input type="text" id="nombreContacto" name="nombreContacto" required class="form-control" placeholder="nombre...">
+                    <input type="text" id="nombreContacto" name="nombreContacto" required class="form-control" placeholder="Completar nombre">
                     <br>
                     <label for="telefonoContacto">Número de contacto</label>
-                    <input type="number" id="telefonoContacto" name="telefonoContacto" required class="form-control" placeholder="telefono...">
+                    <input type="number" id="telefonoContacto" name="telefonoContacto" required class="form-control" placeholder="Completar telefono">
                 </div>
             </div>
 
