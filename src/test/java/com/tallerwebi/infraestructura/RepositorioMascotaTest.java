@@ -1,6 +1,7 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.Mascota;
+import com.tallerwebi.dominio.Usuario;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioMascota;
 import com.tallerwebi.infraestructura.config.HibernateTestInfraestructuraConfig;
 import org.hibernate.SessionFactory;
@@ -29,13 +30,22 @@ public class RepositorioMascotaTest {
         this.repositorioMascota = new RepositorioMascotaImpl(this.sessionFactory);
     }
 
+    private Usuario guardarUsuario() {
+        Usuario usuario = new Usuario();
+        usuario.setNombre("Mati");
+        this.sessionFactory.getCurrentSession().save(usuario);
+        return usuario;
+    }
+
     @Test
     @Transactional //Se utiliza para asegurar que se cumpla la operacion, en el caso que falle se hace un rollback.
     @Rollback //Para que se vuelva a generar la Query cuando se termine el test.
     public void queSePuedaGuardarUnaMascota() {
+        Usuario usuario = this.guardarUsuario();
         Mascota mascota = new Mascota();
         mascota.setNombre("Cachito");
         mascota.setDescripcion("Perro Labrador");
+        mascota.setUsuario(usuario);
 
         this.repositorioMascota.guardarMascota(mascota);
 
@@ -50,14 +60,17 @@ public class RepositorioMascotaTest {
     @Transactional
     @Rollback
     public void queSePuedaBuscarUnaMascotaPorIdCuandoElIdEsCuatro() {
+        Usuario usuario = this.guardarUsuario();
         Mascota mascotaUno = new Mascota();
         mascotaUno.setNombre("Nina");
         mascotaUno.setDescripcion("Falsa caniche");
+        mascotaUno.setUsuario(usuario);
         this.repositorioMascota.guardarMascota(mascotaUno);
 
         Mascota mascotaDos = new Mascota();
         mascotaDos.setNombre("Akane");
         mascotaDos.setDescripcion("Gigante color negro");
+        mascotaDos.setUsuario(usuario);
         this.repositorioMascota.guardarMascota(mascotaDos);
 
         assertThat(mascotaDos.getId(), equalTo(4L));
@@ -71,9 +84,11 @@ public class RepositorioMascotaTest {
     @Transactional
     @Rollback
     public void queSePuedaActualizarElNombreDeLaMascota() {
+        Usuario usuario = this.guardarUsuario();
         Mascota mascota = new Mascota();
         mascota.setNombre("Pancho");
         mascota.setDescripcion("Perrito salchicha");
+        mascota.setUsuario(usuario);
         this.sessionFactory.getCurrentSession().save(mascota);
 
         String nuevoNombre = "Braulio";
@@ -92,9 +107,11 @@ public class RepositorioMascotaTest {
     @Transactional
     @Rollback
     public void queSePuedaActualizarLaDescripcionDeLaMascota() {
+        Usuario usuario = this.guardarUsuario();
         Mascota mascota = new Mascota();
         mascota.setNombre("Jazmín");
         mascota.setDescripcion("Caniche");
+        mascota.setUsuario(usuario);
         this.repositorioMascota.guardarMascota(mascota);
 
         String nuevaDescripcion = "Caniche de Susana";

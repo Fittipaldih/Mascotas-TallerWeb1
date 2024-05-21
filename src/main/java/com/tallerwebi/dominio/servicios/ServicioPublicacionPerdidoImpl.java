@@ -17,7 +17,7 @@ public class ServicioPublicacionPerdidoImpl implements ServicioPublicacionPerdid
     private SessionFactory sessionFactory;
 
     public ServicioPublicacionPerdidoImpl() {
-        this.repositorioPublicacionesImp = new RepositorioPublicacionImpl(sessionFactory, repositorioMascotaImp);
+        this.repositorioPublicacionesImp = new RepositorioPublicacionImpl(sessionFactory);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ServicioPublicacionPerdidoImpl implements ServicioPublicacionPerdid
         perdidosFiltrados.addAll(obtenerSoloPerdidos(publicaciones));
 
         for (PublicacionPerdido perdido : perdidosFiltrados) {
-            if (perdido.getZona().equals(zona) && perdido.getTiempoBusqueda().equals(tiempoPublicacion) && perdido.getColorPelo().equals(colorPelo)) {
+            if (perdido.getZona().equals(zona)/* && perdido.getTiempoBusqueda().equals(tiempoPublicacion)*/ && perdido.getMascotaColor().equals(colorPelo)) {
                 perdidosFiltrados.add(perdido);
             }
         }
@@ -43,7 +43,7 @@ public class ServicioPublicacionPerdidoImpl implements ServicioPublicacionPerdid
         List<PublicacionPerdido> perdidos = new ArrayList<>();
 
         for (Publicacion publicacion : publicaciones) {
-            if (publicacion instanceof PublicacionPerdido && publicacion.getTipoPublicacion().equals(PublicacionTipo.PERDI_MI_PERRO)) {
+            if (publicacion instanceof PublicacionPerdido && publicacion.getTipoPublicacion().equals(PublicacionTipo.BUSCADO_POR_DUENIO)) {
                 perdidos.add((PublicacionPerdido) publicacion);
             }
         }

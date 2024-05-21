@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Red social Mascotera</title>
     <!-- Bootstrap core css -->
@@ -20,32 +20,66 @@
         <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
     </a>
     <!-- Título -->
-    <span class="navbar-brand ml-3 text-left">Red social</span>
+    <span class="navbar-brand ml-3 text-left">Publicar Historia</span>
     <!-- Entry points -->
     <div th:include="'entry-points'"></div>
 </nav>
 <main role="main" class="container">
 
-    <h1>Publicar una historia</h1>
+    <div class="container mt-5">
+        <h1 style="margin-top: 20vh">Publica la historia <br>de tu mascota</h1>
 
-    <form th:action="@{/nueva-historia}" method="post">
+        <form th:action="@{/nueva-historia}" method="post" enctype="multipart/form-data" class="form-group" ACCEPT-CHARSET="UTF-8">
+            <div class="row">
+                <div class="col-md-6 form-group">
 
-        <label for="titular">Titulo de la historia:</label>
-        <input type="text" id="titular" name="titular" required><br>
+                    <label for="titular">Titulo de la historia:</label>
+                    <input type="text" id="titular" name="titular" required><br>
+                    <br>
 
-        <label for="zona">Zona donde transcurre/transcurrió:</label>
-        <select id="zona" name="zona">
-            <option value="norte">Norte</option>
-            <option value="sur">Sur</option>
-            <option value="oeste">Oeste</option>
-        </select><br>
+                    <label for="tipoPublicacionHistoria">Tipo de publicación</label>
+                    <select id="tipoPublicacionHistoria" name="tipoPublicacionHistoria" required class="form-control">
+                        <option value="">Seleccionar</option>
+                        <option value=" ">Seleccione una opcion</option>
+                        <option value="HISTORIA">Historia</option>
+                    </select>
+                    <br>
+                    <label for="nombre">Nombre de la mascota</label>
+                    <input type="text" maxlength="100" id="nombre" name="nombre" class="form-control" placeholder="Peludito">
+                    <br>
+                    <label for="zona">Zona donde se ocurre/ocurrío</label>
+                    <select id="zona" name="zona" required class="form-control">
+                        <option value="">Seleccionar</option>
+                        <option value="NORTE">Norte</option>
+                        <option value="SUR">Sur</option>
+                        <option value="OESTE">Oeste</option>
+                        <option value="CABA">CABA</option>
+                    </select>
+                    <br>
+                </div>
 
-        <label for="descripcion">Desarrolle la historia:</label><br>
-        <textarea id="descripcion" name="descripcion" rows="10" cols="50" required></textarea><br>
+                <div class="col-md-6 form-group">
+                    <label for="descripcion">Descripción de la historia</label><br>
+                    <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="Ej: Lleva un collar ...">
+                </textarea>
+                    <br>
+                    <label for="imagen">Imagen</label>
+                    <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
+                </div>
+            </div>
 
-        <button type="submit">Publicar</button>
-    </form>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <a href="http://localhost:8080/spring/perdidos" class="btn btn-secondary">Volver</a>
+                </div>
 
+                <div class="col-md-6 text-right">
+                    <button type="submit" class="btn btn-primary">Publicar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
 
 </main>
 <!-- Bootstrap core js -->

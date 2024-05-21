@@ -9,32 +9,43 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.transaction.Transactional;
+
 @Controller
+@Transactional
 public class ControladorPublicarPerdido {
 
+    @Autowired
     private ServicioPublicarPerdidoImp servicioPublicarPerdidoImp;
 
-    @Autowired
-    public void ControladorPublicarPerdido (ServicioPublicarPerdidoImp servicioPublicarPerdidoImp) {
-        this.servicioPublicarPerdidoImp = servicioPublicarPerdidoImp;
-    }
-
-
     @RequestMapping(value = "/nuevo-perdido", method = RequestMethod.POST)
-    public ModelAndView crearNuevoPerdido(@RequestParam(value = "direccion") String direccion,
-                                          @RequestParam(value = "zona") Zona zona,
-                                          @RequestParam(value = "colorPelo") MascotaColor colorPelo,
-                                          @RequestParam(value = "descripcion") String descripcion,
-                                          @RequestParam(value = "nombreContacto") String nombreContacto,
-                                          @RequestParam(value = "numeroContacto") Integer numeroContacto
-    ) throws PerdidoException {
-        PublicacionPerdido perdido = new PublicacionPerdido(direccion, nombreContacto, numeroContacto, zona, colorPelo, descripcion, numeroContacto);
+    public ModelAndView publicarPerdido(@RequestParam(value = "direccion") String direccion,
+                                        @RequestParam(value = "nombre") String nombreMascota,
+                                        @RequestParam(value = "zona") Zona zona,
+                                        @RequestParam(value = "mascotaColor") MascotaColor mascotaColor,
+                                        @RequestParam(value = "descripcion") String descripcion,
+                                        @RequestParam(value = "nombreContacto") String nombreContacto,
+                                        @RequestParam(value = "telefonoContacto") Long telefonoContacto,
+                                        @RequestParam(value = "tipoPublicacionPerdido") PublicacionTipo tipoPublicacionPerdido,
+                                        @RequestParam(value = "mascotaRaza") MascotaRaza mascotaRaza,
+                                        @RequestParam(value = "imagen", required = false) MultipartFile imagen
+                                        ) throws PerdidoException {
         ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("perdido", perdido);
-        modelMap.put("mensaje","La publicacion ha sido publicada con exito");
-        servicioPublicarPerdidoImp.publicarPerdido(perdido);
-        return new ModelAndView("redirect:/publicarPerdido",modelMap);
+        try {
+            byte[] imagenBytes = null;
+            if(imagen != null && !imagen.isEmpty()){
+                imagenBytes = imagen.getBytes();
+            }
+            PublicacionPerdido perdido = new PublicacionPerdido(nombreMascota, direccion, nombreContacto, zona, mascotaColor, descripcion, telefonoContacto, tipoPublicacionPerdido, mascotaRaza, imagenBytes);
+            servicioPublicarPerdidoImp.publicarPerdido(perdido, imagen);
+            modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
+        } catch (Exception e) {
+            modelMap.put("error", "Error al publicar la mascota perdida. Intentá nuevamente.");
+        }
+        return new ModelAndView("publicar", modelMap);
     }
+
 }

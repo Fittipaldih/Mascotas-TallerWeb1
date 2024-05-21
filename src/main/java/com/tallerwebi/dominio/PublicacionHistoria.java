@@ -1,18 +1,27 @@
 package com.tallerwebi.dominio;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PublicacionHistoria extends Publicacion{
 
     private String titular;
-    private Integer telefonoContacto;
     public PublicacionHistoria(
                     String titular,
+                    String nombreMascota,
                     Zona zona,
                     String descripcion,
-                    Integer telefonoContacto) {
+                    PublicacionTipo publicacionTipo,
+                    byte[] imagen) {
 
-        super(PublicacionTipo.HISTORIA, zona, descripcion, telefonoContacto);
+        super(publicacionTipo, zona,nombreMascota, descripcion, imagen);
         this.titular=  titular;
     }
+
+    public PublicacionHistoria() {
+
+    }
+
     public String getTitular() {
         return titular;
     }

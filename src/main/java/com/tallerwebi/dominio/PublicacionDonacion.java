@@ -7,12 +7,13 @@ public class PublicacionDonacion extends Publicacion{
     private String nombre;
     public PublicacionDonacion(
                     Double montoACubrir,
-                    String nombre,
+                    PublicacionTipo publicacionTipo,
+                    String nombreMascota,
                     Zona zona,
                     String descripcion,
-                    Integer telefonoContacto) {
+                    byte[] imagen) {
 
-        super(PublicacionTipo.DONACION, zona, descripcion, telefonoContacto);
+        super(publicacionTipo, zona,nombreMascota, descripcion, imagen);
         this.recaudacion = 0.0;
         this.montoACubrir = montoACubrir;
         this.nombre = nombre;
