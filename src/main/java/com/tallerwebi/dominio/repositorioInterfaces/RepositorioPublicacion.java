@@ -13,6 +13,8 @@ public interface RepositorioPublicacion {
         List<Publicacion> getPublicaciones();
 
     void guardarPerdido(PublicacionPerdido perdido);
+
+    void guardarDonacion(PublicacionDonacion donacion);
 /*
     void eliminarPublicacion(Publicacion publicacion);
 

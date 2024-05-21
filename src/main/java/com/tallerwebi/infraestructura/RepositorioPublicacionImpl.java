@@ -25,6 +25,9 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     }
 
     @Override
+    public void guardarDonacion(PublicacionDonacion donacion)  { this.sessionFactory.getCurrentSession().save(donacion);}
+
+    @Override
     public void guardarHistoria(PublicacionHistoria historia) {this.sessionFactory.getCurrentSession().save(historia);}
 
     @Override

@@ -14,7 +14,7 @@ import java.io.IOException;
 @Service
 public class ServicioPublicarHistoriaImp implements ServicioPublicarHistoria {
     @Autowired
-    private RepositorioPublicacionImpl repositorioPublicarPerdido;
+    private RepositorioPublicacionImpl repositorioPublicarHistoria;
 
     @Override
     public void publicarHistoria(PublicacionHistoria historia, MultipartFile imagen) throws HistoriaException {
@@ -25,6 +25,6 @@ public class ServicioPublicarHistoriaImp implements ServicioPublicarHistoria {
                 throw new RuntimeException("Error al procesar la imagen", e);
             }
         }
-        repositorioPublicarPerdido.guardarHistoria(historia);
+        repositorioPublicarHistoria.guardarHistoria(historia);
     }
 }
