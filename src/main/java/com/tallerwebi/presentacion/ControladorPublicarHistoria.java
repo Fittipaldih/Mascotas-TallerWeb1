@@ -39,7 +39,7 @@ public class ControladorPublicarHistoria {
             servicioPublicarHistoriaImp.publicarHistoria(historia, imagen);
             modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
         } catch (Exception e) {
-            modelMap.put("error", "Error al publicar la mascota perdida. Intentá nuevamente.");
+            modelMap.put("error", "Error al publicar la historia. Intentá nuevamente.");
         }
         return new ModelAndView("publicar", modelMap);
     }

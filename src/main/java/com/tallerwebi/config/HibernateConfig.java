@@ -22,7 +22,7 @@ public class HibernateConfig {
         dataSource.setUrl("jdbc:mysql://localhost:3306/mascotas");
         //dataSource.setUrl("jdbc:hsqldb:mem:db_");
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("root");
         return dataSource;
     }
 

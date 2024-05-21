@@ -68,6 +68,6 @@ public class ControladorPublicarHistoriaTest{
 
         // Verificación
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("publicar"));
-        assertThat(modelAndView.getModel().get("error").toString(), equalToIgnoringCase("Error al publicar la mascota perdida. Intentá nuevamente."));
+        assertThat(modelAndView.getModel().get("error").toString(), equalToIgnoringCase("Error al publicar la historia. Intentá nuevamente."));
     }
 }
