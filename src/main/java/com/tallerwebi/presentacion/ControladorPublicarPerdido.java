@@ -42,11 +42,10 @@ public class ControladorPublicarPerdido {
             PublicacionPerdido perdido = new PublicacionPerdido(nombreMascota, direccion, nombreContacto, zona, mascotaColor, descripcion, telefonoContacto, tipoPublicacionPerdido, mascotaRaza, imagenBytes);
             servicioPublicarPerdidoImp.publicarPerdido(perdido, imagen);
             modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
-            return new ModelAndView("publicar", modelMap);
         } catch (Exception e) {
-            modelMap.put("error", "Error al publicar la mascota perdida. Intentá nuevamente. ");
-            return new ModelAndView("publicar", modelMap);
+            modelMap.put("error", "Error al publicar la mascota perdida. Intentá nuevamente.");
         }
+        return new ModelAndView("publicar", modelMap);
     }
 
 }

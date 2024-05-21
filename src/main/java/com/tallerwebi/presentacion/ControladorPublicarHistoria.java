@@ -2,9 +2,7 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.HistoriaException;
-import com.tallerwebi.dominio.excepcion.PerdidoException;
 import com.tallerwebi.dominio.servicios.ServicioPublicarHistoriaImp;
-import com.tallerwebi.dominio.servicios.ServicioPublicarPerdidoImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -37,14 +35,13 @@ public class ControladorPublicarHistoria {
             if(imagen != null && !imagen.isEmpty()){
                 imagenBytes = imagen.getBytes();
             }
-            PublicacionHistoria Historia = new PublicacionHistoria(titular,nombreMascota,zona,descripcion,publicacionTipo,imagenBytes);
-            servicioPublicarHistoriaImp.publicarHistoria(Historia, imagen);
+            PublicacionHistoria historia = new PublicacionHistoria(titular,nombreMascota,zona,descripcion,publicacionTipo,imagenBytes);
+            servicioPublicarHistoriaImp.publicarHistoria(historia, imagen);
             modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
-            return new ModelAndView("publicar", modelMap);
         } catch (Exception e) {
-            modelMap.put("error", "Error al publicar la mascota perdida. Intentá nuevamente. ");
-            return new ModelAndView("publicar", modelMap);
+            modelMap.put("error", "Error al publicar la mascota perdida. Intentá nuevamente.");
         }
+        return new ModelAndView("publicar", modelMap);
     }
 
 }
