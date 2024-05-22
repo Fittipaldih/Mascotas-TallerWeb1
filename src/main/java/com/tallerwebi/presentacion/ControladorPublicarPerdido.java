@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.transaction.Transactional;
@@ -29,18 +30,22 @@ public class ControladorPublicarPerdido {
                                         @RequestParam(value = "nombreContacto") String nombreContacto,
                                         @RequestParam(value = "telefonoContacto") Long telefonoContacto,
                                         @RequestParam(value = "tipoPublicacionPerdido") PublicacionTipo tipoPublicacionPerdido,
-                                          @RequestParam(value = "mascotaRaza") MascotaRaza mascotaRaza
-    ) throws PerdidoException {
+                                        @RequestParam(value = "mascotaRaza") MascotaRaza mascotaRaza,
+                                        @RequestParam(value = "imagen", required = false) MultipartFile imagen
+                                        ) throws PerdidoException {
         ModelMap modelMap = new ModelMap();
         try {
-            PublicacionPerdido perdido = new PublicacionPerdido(nombreMascota, direccion, nombreContacto, zona, mascotaColor, descripcion, telefonoContacto, tipoPublicacionPerdido, mascotaRaza);
-            servicioPublicarPerdidoImp.publicarPerdido(perdido);
+            byte[] imagenBytes = null;
+            if(imagen != null && !imagen.isEmpty()){
+                imagenBytes = imagen.getBytes();
+            }
+            PublicacionPerdido perdido = new PublicacionPerdido(nombreMascota, direccion, nombreContacto, zona, mascotaColor, descripcion, telefonoContacto, tipoPublicacionPerdido, mascotaRaza, imagenBytes);
+            servicioPublicarPerdidoImp.publicarPerdido(perdido, imagen);
             modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
-            return new ModelAndView("publicar", modelMap);
-        } catch (PerdidoException e) {
-            modelMap.put("error", "Error al publicar la mascota perdida. Intentá nuevamente. ");
-            return new ModelAndView("publicar", modelMap);
+        } catch (Exception e) {
+            modelMap.put("error", "Error al publicar la mascota perdida. Intentá nuevamente.");
         }
+        return new ModelAndView("publicar", modelMap);
     }
 
 }

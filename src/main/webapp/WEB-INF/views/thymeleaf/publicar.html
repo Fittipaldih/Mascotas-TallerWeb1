@@ -20,24 +20,21 @@
         <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
     </a>
     <!-- Título -->
-    <span class="navbar-brand ml-3 text-left">Crear publicación</span>
+    <span class="navbar-brand ml-3 text-left">Publicar</span>
     <!-- Entry points -->
     <div th:include="'entry-points'"></div>
 </nav>
 <main role="main" class="container">
-    <section style="margin-top: 20vh; display: flex; justify-content:center; gap: 10vh">
-        <h1>Quiero hacer una publicación acerca de...</h1>
-        <form th:action="@{/publicarPerdido}" method="get">
-        <input type="submit" name="perdido" value="Mascota perdida" class="btn btn-primary btn-lg m-2">
-    </form>
-
-    <form th:action="@{/publicarHistoria}" method="get">
-        <input type="submit" name="perdido" value="Historia de mascota" class="btn btn-primary btn-lg m-2">
-    </form>
-
-    <form th:action="@{/publicarDonacion}" method="get">
-        <input type="submit" name="perdido" value="Solicitar donación" class="btn btn-primary btn-lg m-2">
-    </form>
+    <section>
+        <h1>Quiero hacer una<br>publicación acerca<br>de...</h1>
+        <br>
+        <br>
+        <a href="red-social" class="btn btn-primary btn-sm m-1">Volver a Red Social</a>
+    </section>
+    <section>
+        <a href="publicarPerdido" class="btn btn-primary btn-lg m-2">Mascota<br>Perdida</a>
+        <a href="publicarHistoria" class="btn btn-primary btn-lg m-2">Nueva<br>historia</a>
+        <a href="publicarDonacion" class="btn btn-primary btn-lg m-2">Solicitar<br>donación</a>
     </section>
 </main>
 <h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>

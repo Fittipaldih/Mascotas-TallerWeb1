@@ -6,10 +6,12 @@ import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.infraestructura.RepositorioMascotaImpl;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ServicioPublicacionHistoriaImpl implements ServicioPublicacionHistoria {
 
     private RepositorioPublicacionImpl repositorioPublicacionesImp;

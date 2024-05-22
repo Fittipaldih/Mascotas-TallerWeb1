@@ -25,21 +25,28 @@ public abstract class Publicacion {
     @Enumerated(EnumType.STRING)
     private MascotaRaza mascotaRaza;
 
+    @Lob
+    private byte[] imagen;
+
     // Perdido
-    public Publicacion( String nombreMascota, PublicacionTipo tipoPublicacion, Zona zona, MascotaColor colorPelo, String descripcion, MascotaRaza mascotaRaza) {
+    public Publicacion( String nombreMascota, PublicacionTipo tipoPublicacion, Zona zona, MascotaColor colorPelo, String descripcion, MascotaRaza mascotaRaza, byte[] imagen) {
         this.tipoPublicacion = tipoPublicacion;
         this.zona = zona;
         this.mascotaColor = colorPelo;
         this.descripcion = descripcion;
         this.nombreMascota = nombreMascota;
         this.mascotaRaza = mascotaRaza;
+        this.imagen = imagen;
         this.fechaPublicacion = getFechaActual();
     }
 
     // Historia y Donacion
-    public Publicacion(PublicacionTipo tipoPublicacion, Zona zona, String descripcion, Long telefonoContacto) {
+    public Publicacion(PublicacionTipo tipoPublicacion, Zona zona,String nombreMascota, String descripcion, byte[] imagen) {
         this.zona = zona;
         this.descripcion = descripcion;
+        this.nombreMascota=nombreMascota;
+        this.imagen = imagen;
+        this.fechaPublicacion = getFechaActual();
     }
 
     public Publicacion() {
@@ -71,10 +78,6 @@ public abstract class Publicacion {
 
     public String getFechaPublicacion() {
         return fechaPublicacion;
-    }
-
-    public void setFechaPublicacion(String fechaPublicacion) {
-        this.fechaPublicacion = fechaPublicacion;
     }
 
     public String getDescripcion() {
@@ -115,5 +118,13 @@ public abstract class Publicacion {
 
     public void setMascotaRaza(MascotaRaza mascotaRaza) {
         this.mascotaRaza = mascotaRaza;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 }

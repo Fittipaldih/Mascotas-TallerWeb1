@@ -18,9 +18,10 @@ public class PublicacionPerdido extends Publicacion{
             String descripcion,
             Long telefonoContacto,
             PublicacionTipo tipoPublicacionPerdido,
-            MascotaRaza mascotaRaza) {
+            MascotaRaza mascotaRaza,
+            byte[] imagen) {
 
-        super(nombreMascota, tipoPublicacionPerdido, zona, mascotaColor, descripcion, mascotaRaza);
+        super(nombreMascota, tipoPublicacionPerdido, zona, mascotaColor, descripcion, mascotaRaza, imagen);
         this.direccion = direccion;
         this.nombreContacto = nombreContacto;
         this.telefonoContacto = telefonoContacto;

@@ -1,21 +1,27 @@
 package com.tallerwebi.dominio;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PublicacionDonacion extends Publicacion{
 
     private Double recaudacion;
     private Double montoACubrir;
-    private String nombre;
     public PublicacionDonacion(
                     Double montoACubrir,
-                    String nombre,
+                    PublicacionTipo publicacionTipo,
+                    String nombreMascota,
                     Zona zona,
                     String descripcion,
-                    Long telefonoContacto) {
+                    byte[] imagen) {
 
-        super(PublicacionTipo.DONACION, zona, descripcion, telefonoContacto);
+        super(publicacionTipo, zona,nombreMascota, descripcion, imagen);
         this.recaudacion = 0.0;
         this.montoACubrir = montoACubrir;
-        this.nombre = nombre;
+    }
+
+    public PublicacionDonacion() {
+        
     }
 
     public Double getRecaudacion() {
@@ -33,6 +39,4 @@ public class PublicacionDonacion extends Publicacion{
     public void setMontoACubrir(Double montoACubrir) {
         this.montoACubrir = montoACubrir;
     }
-    public String getNombre() {return nombre;}
-    public void setNombre(String nombre) {this.nombre = nombre;}
 }

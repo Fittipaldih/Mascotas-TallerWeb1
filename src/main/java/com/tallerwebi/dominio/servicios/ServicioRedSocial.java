@@ -1,17 +1,13 @@
-//package com.tallerwebi.dominio;
-//
-//import java.util.List;
-//
-//public interface ServicioRedSocial {
-//
-//    public List<Publicacion> filtrarPublicacion(TipoPublicacion tipoPublicacion, Zona zona);
-//
-//    public List<Publicacion> todasPublicaciones();
-//
-//    public List<Publicacion> filtrarTipo(TipoPublicacion tipoPublicacion);
-//
-//    public List<Publicacion> filtrarZona(Zona zona);
-//
-//    public List<Publicacion> filtrarColor(ColorPelo pelo);
-//
-//}
+package com.tallerwebi.dominio.servicios;
+
+import com.tallerwebi.dominio.Publicacion;
+
+import java.util.List;
+
+public interface ServicioRedSocial {
+    List<Publicacion> getTodasLasPublicaciones();
+    List<Publicacion> getPublicacionesTipoBuscadoPORDuenio();
+    List<Publicacion> getPublicacionesTipoBuscandoALDuenio();
+    List<Publicacion> getPublicacionesTipoDonacion();
+    List<Publicacion> getPublicacionesTipoHistoria();
+}

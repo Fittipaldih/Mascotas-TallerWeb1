@@ -25,70 +25,62 @@
 </nav>
 <main role="main" class="container">
     <section class="todas-publicaciones">
-        <!--mostrar todas las publicaciones-->
+        <!--Aca van las publicaciones-->
         <div class="card-deck">
             <div class="card">
-                <img class="card-img-top" th:src="@{/img/mascota-01.jpg}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">Perdido</h5>
-                    <p class="card-text">Estamos buscando al dueño, fue encontrado en Martin Fierro al 1452</p>
-                    <div class="container-btn">
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()"  >Compartir</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar</button>
-                        <form th:action="@{/perfil-mascota/}" method="get">
-                            <input type="hidden" name="id" th:value="1">
-                            <button type="submit" class="btn btn-dark">Ver perfil</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" th:src="@{/img/mascota-02.jpg}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Historia</h5>
-                    <p class="card-text">Apareció!! Muchas Gracias por ayudarme a encontrar a Cleo!!</p>
-                    <div class="container-btn">
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <img class="card-img-top" th:src="@{/img/mascota-03.jpeg}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Donacion</h5>
-                    <p class="card-text">Necesitamos tu ayuda, Toby necesita una operación muy compleja! </p>
-                    <div class="container-btn">
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
-                    </div>
+
+                    <table th:if="${todasLasPublicaciones}" class="table table-striped">  <thead>
+                    <tr>
+                        <th>Publicación Nº</th>
+                        <th>Tipo</th>
+                        <th>Publicado el día</th>
+                        <th>Zona</th>
+                        <th>Descripción</th>
+                        <th>Nombre mascota</th>
+                        <th>Color</th>
+                        <th>Foto</th>
+                    </tr>
+                    </thead>
+                        <tbody>
+                        <tr th:each="publicacion : ${todasLasPublicaciones}">
+                            <!--<img class="card-img-top" th:src="@{/img/publicacion.getImagen()}" alt="Card image">-->
+                            <td th:text="${publicacion.getIdPublicacion()}"></td>
+                            <td th:text="${publicacion.getTipoPublicacion()}"></td>
+                            <td th:text="${publicacion.getFechaPublicacion()}"></td>
+                            <td th:text="${publicacion.getZona()}"></td>
+                            <td th:text="${publicacion.getDescripcion()}"></td>
+                            <td th:text="${publicacion.getNombreMascota()}"></td>
+                            <td th:text="${publicacion.getMascotaColor()}"></td>
+                            <td th:text="${publicacion.getImagen()}"></td>
+                        </tr>
+                        </tbody>
+                        <div class="container-btn">
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
+                            <form th:action="@{/perfil-mascota/}" method="get">
+                                <input type="hidden" name="id" th:value="1">
+                                <button type="submit" class="btn btn-dark">Ver perfil</button>
+                            </form>
+                        </div>
+
+                    </table>
                 </div>
             </div>
         </div>
     </section>
+
     <section class="tipo-publicacion" >
 
         <div class="tipo-publicacion2">
                 <h1>¿Qué desea hacer?</h1>
-                <form th:action="@{/publicar}" method="get">
-                    <button type="submit" class="btn btn-outline-light">Publicar</button>
-                </form>
-
+                <a href="http://localhost:8080/spring/publicar" class="btn btn-outline-light">Publicar</a>
+                <br>
                 <h1>Filtrar por...</h1>
-                <form th:action="@{/perdidos}" method="get">
-                    <button type="submit" class="btn btn-outline-light">Mascotas perdidas</button>
-                </form>
-
-                <form th:action="@{/historias}" method="get">
-                    <button type="submit" class="btn btn-outline-light">Historias de mascotas</button>
-                </form>
-
-                <form th:action="@{/donaciones}" method="get">
-                    <button type="submit" class="btn btn-outline-light">Donaciones a mascotas</button>
-                </form>
+                <a href="http://localhost:8080/spring/perdidos" class="btn btn-outline-light">Mascotas perdidas</a>
+                <a href="http://localhost:8080/spring/historias" class="btn btn-outline-light">Historias de mascotas</a>
+                <a href="http://localhost:8080/spring/donaciones" class="btn btn-outline-light">Solicitan donación</a>
         </div>
     </section>
 </main>

@@ -43,10 +43,10 @@
                     <div class="card-body">
                         <h5>Estado:</h5>
                         <h4 class="card-title" th:if="${mascotaData.getEstado() == T(com.tallerwebi.dominio.MascotaEstado).BUSCADO_POR_DUENIO}">
-                            Perdi mi mascota, ayudame
+                            Perdi mi mascota
                         </h4>
                         <h4 class="card-title" th:if="${mascotaData.getEstado() == T(com.tallerwebi.dominio.MascotaEstado).BUSCANDO_AL_DUENIO}">
-                            Busco al dueño, ayudame
+                            Busco al dueño
                         </h4>
                         <h4 class="card-title" th:if="${mascotaData.getEstado() == T(com.tallerwebi.dominio.MascotaEstado).EN_ADOPCION}">
                             En adopción responsable

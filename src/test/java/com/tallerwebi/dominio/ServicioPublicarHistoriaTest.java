@@ -1,7 +1,7 @@
 package com.tallerwebi.dominio;
 
-import com.tallerwebi.dominio.excepcion.PerdidoException;
-import com.tallerwebi.dominio.servicios.ServicioPublicarPerdidoImp;
+import com.tallerwebi.dominio.excepcion.HistoriaException;
+import com.tallerwebi.dominio.servicios.ServicioPublicarHistoriaImp;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,13 +17,13 @@ import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class ServicioPublicarPerdidoTest {
+class ServicioPublicarHistoriaTest {
 
     @Mock
     private RepositorioPublicacionImpl repositorioPublicarPerdido;
 
     @InjectMocks
-    private ServicioPublicarPerdidoImp servicioPublicarPerdidoImp;
+    private ServicioPublicarHistoriaImp servicioPublicarHistoria;
 
     @BeforeEach
     void init() {
@@ -31,9 +31,9 @@ class ServicioPublicarPerdidoTest {
     }
 
     @Test
-    void quePubliqueUnPerdidoConImagen() throws IOException, PerdidoException {
+    void quePubliqueUnaHistoriaConImagen() throws IOException, HistoriaException {
         //preparacion
-        PublicacionPerdido perdido = new PublicacionPerdido();
+        PublicacionHistoria historia = new PublicacionHistoria();
         MultipartFile imagenMock = mock(MultipartFile.class);
         byte[] imagenBytes = "imagen".getBytes();
 
@@ -41,33 +41,33 @@ class ServicioPublicarPerdidoTest {
         when(imagenMock.getBytes()).thenReturn(imagenBytes);
 
         //ejecucion
-        servicioPublicarPerdidoImp.publicarPerdido(perdido, imagenMock);
+        servicioPublicarHistoria.publicarHistoria(historia, imagenMock);
 
         //verificacion
-        assertArrayEquals(imagenBytes, perdido.getImagen());
-        verify(repositorioPublicarPerdido, times(1)).guardarPerdido(perdido);
+        assertArrayEquals(imagenBytes, historia.getImagen());
+        verify(repositorioPublicarPerdido, times(1)).guardarHistoria(historia);
     }
 
     @Test
-    void quePubliqueUnPerdidoSinImagen() throws PerdidoException {
+    void quePubliqueUnaHistoriaSinImagen() throws HistoriaException {
         //preparacion
-        PublicacionPerdido perdido = new PublicacionPerdido();
+        PublicacionHistoria historia = new PublicacionHistoria();
         MultipartFile imagenMock = mock(MultipartFile.class);
 
         when(imagenMock.isEmpty()).thenReturn(true);
 
         //ejecucion
-        servicioPublicarPerdidoImp.publicarPerdido(perdido, imagenMock);
+        servicioPublicarHistoria.publicarHistoria(historia, imagenMock);
 
         //verificacion
-        assertNull(perdido.getImagen());
-        verify(repositorioPublicarPerdido, times(1)).guardarPerdido(perdido);
+        assertNull(historia.getImagen());
+        verify(repositorioPublicarPerdido, times(1)).guardarHistoria(historia);
     }
 
     @Test
     void queDevuelvaMensajeDeErrorCuandoHayErrorEnLaImagen() throws IOException {
         //preparacion
-        PublicacionPerdido perdido = new PublicacionPerdido();
+        PublicacionHistoria historia = new PublicacionHistoria();
         MultipartFile imagenMock = mock(MultipartFile.class);
 
         when(imagenMock.isEmpty()).thenReturn(false);
@@ -75,11 +75,11 @@ class ServicioPublicarPerdidoTest {
 
         //ejecucion
         Exception exception = assertThrows(RuntimeException.class, () -> {
-            servicioPublicarPerdidoImp.publicarPerdido(perdido, imagenMock);
+            servicioPublicarHistoria.publicarHistoria(historia, imagenMock);
         });
 
         //verificacion
         assertThat(exception.getMessage(), equalToIgnoringCase("Error al procesar la imagen"));
-        verify(repositorioPublicarPerdido, never()).guardarPerdido(perdido);
+        verify(repositorioPublicarPerdido, never()).guardarHistoria(historia);
     }
 }
