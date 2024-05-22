@@ -27,7 +27,7 @@
 <main role="main" class="container">
 
     <div class="container mt-5">
-        <h1 style="margin-top: 20vh">Reportar una <br>mascota perdida</h1>
+        <h1 style="margin-top: 20vh">Reportar <br>mascota perdida</h1>
 
         <form th:action="@{/nuevo-perdido}" method="post" enctype="multipart/form-data" class="form-group" ACCEPT-CHARSET="UTF-8">
             <div class="row">
@@ -40,6 +40,7 @@
                     </select>
                     <br>
                     <label for="nombre">Nombre de la mascota</label>
+                    <!-- No es requerido porque en caso de que no tenga chapita y lo encontramos no sabemos su nombre-->
                     <input type="text" maxlength="100" id="nombre" name="nombre" class="form-control" placeholder="Peludito">
                     <br>
                     <label for="direccion">Visto por última vez en</label>
@@ -101,10 +102,9 @@
                     <br>
                     <label for="telefonoContacto">Número de contacto</label>
                     <input type="number" id="telefonoContacto" name="telefonoContacto" required class="form-control" placeholder="Completar telefono">
-                    <br>
-                    <label for="imagen">Imagen</label>
-                    <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
                 </div>
+                <label for="imagen">Foto de la Mascota</label>
+                <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
             </div>
 
             <div class="row mt-3">

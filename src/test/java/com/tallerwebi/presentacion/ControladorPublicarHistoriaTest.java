@@ -34,7 +34,6 @@ public class ControladorPublicarHistoriaTest{
         //preparacion
         String titular = "Esto es un titular";
         String nombreMascota = "Pancho";
-        PublicacionTipo publicacionTipo = PublicacionTipo.HISTORIA;
         Zona zona = Zona.OESTE;
         String descripcion = "Esto es una descripcion";
         MockMultipartFile imagen = new MockMultipartFile(
@@ -44,7 +43,7 @@ public class ControladorPublicarHistoriaTest{
                 "Imagen de prueba".getBytes());
 
         //ejecucion
-        ModelAndView vista = controladorPublicarHistoria.publicarHistoria(titular, nombreMascota, publicacionTipo, zona, descripcion, imagen);
+        ModelAndView vista = controladorPublicarHistoria.publicarHistoria(titular, nombreMascota, zona, descripcion, imagen);
 
         //verificacion
         assertThat(vista.getViewName(), equalToIgnoringCase("publicar"));
@@ -55,16 +54,15 @@ public class ControladorPublicarHistoriaTest{
         // Datos de prueba
         String titular = "Titular de prueba";
         String nombreMascota = "Fido";
-        PublicacionTipo publicacionTipo = PublicacionTipo.HISTORIA;
         Zona zona = Zona.NORTE;
         String descripcion = "Descripción de prueba";
         MockMultipartFile imagen = new MockMultipartFile("imagen", "imagen.jpg", "image/jpeg", "Imagen de prueba".getBytes());
 
         // Configurar el mock para lanzar una excepción
-        doThrow(new HistoriaException("Error al publicar")).when(servicioPublicarHistoriaImp).publicarHistoria(new PublicacionHistoria(titular, nombreMascota, zona, descripcion, publicacionTipo, imagen.getBytes()), imagen);
+        doThrow(new HistoriaException("Error al publicar")).when(servicioPublicarHistoriaImp).publicarHistoria(new PublicacionHistoria(titular, nombreMascota, zona, descripcion, PublicacionTipo.HISTORIA, imagen.getBytes()), imagen);
 
         // Ejecución
-        ModelAndView modelAndView = controladorPublicarHistoria.publicarHistoria(titular, nombreMascota, publicacionTipo, zona, descripcion, imagen);
+        ModelAndView modelAndView = controladorPublicarHistoria.publicarHistoria(titular, nombreMascota, zona, descripcion, imagen);
 
         // Verificación
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("publicar"));

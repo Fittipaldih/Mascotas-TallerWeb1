@@ -24,7 +24,6 @@ public class ControladorPublicarHistoria {
     @RequestMapping(value = "/nueva-historia", method = RequestMethod.POST)
     public ModelAndView publicarHistoria(@RequestParam(value = "titular") String titular,
                                          @RequestParam(value = "nombre") String nombreMascota,
-                                         @RequestParam(value = "tipoPublicacionHistoria") PublicacionTipo publicacionTipo,
                                          @RequestParam(value = "zona") Zona zona,
                                          @RequestParam(value = "descripcion") String descripcion,
                                          @RequestParam(value = "imagen", required = false) MultipartFile imagen
@@ -35,7 +34,7 @@ public class ControladorPublicarHistoria {
             if(imagen != null && !imagen.isEmpty()){
                 imagenBytes = imagen.getBytes();
             }
-            PublicacionHistoria historia = new PublicacionHistoria(titular,nombreMascota,zona,descripcion,publicacionTipo,imagenBytes);
+            PublicacionHistoria historia = new PublicacionHistoria(titular,nombreMascota,zona,descripcion,PublicacionTipo.HISTORIA,imagenBytes);
             servicioPublicarHistoriaImp.publicarHistoria(historia, imagen);
             modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
         } catch (Exception e) {

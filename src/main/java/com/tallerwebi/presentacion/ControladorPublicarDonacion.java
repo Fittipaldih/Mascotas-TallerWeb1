@@ -30,7 +30,6 @@ public class ControladorPublicarDonacion {
     @RequestMapping(value = "/nueva-donacion", method = RequestMethod.POST)
     public ModelAndView publicarDonacion(@RequestParam(value = "nombreMascota") String nombreMascota,
                                          @RequestParam(value = "monto") Double monto,
-                                         @RequestParam(value = "tipoPublicacionDonacion") PublicacionTipo tipoPublicacionDonacion,
                                         @RequestParam(value = "zona") Zona zona,
                                         @RequestParam(value = "descripcion") String descripcion,
                                          @RequestParam(value = "imagen", required = false) MultipartFile imagen
@@ -41,8 +40,8 @@ public class ControladorPublicarDonacion {
             if(imagen != null && !imagen.isEmpty()){
                 imagenBytes = imagen.getBytes();
             }
-            PublicacionDonacion donacion = new PublicacionDonacion(monto,tipoPublicacionDonacion,nombreMascota,zona,descripcion, imagenBytes);
-            servicioPublicarDonacionImp.publicarDonacion(donacion);
+            PublicacionDonacion donacion = new PublicacionDonacion(monto,PublicacionTipo.DONACION,nombreMascota,zona,descripcion, imagenBytes);
+            servicioPublicarDonacionImp.publicarDonacion(donacion, imagen);
             modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
         } catch (DonacionException | IOException e) {
             modelMap.put("error", "Error al publicar la donación. Intentá nuevamente.");

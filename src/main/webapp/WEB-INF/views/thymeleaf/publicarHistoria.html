@@ -27,29 +27,19 @@
 <main role="main" class="container">
 
     <div class="container mt-5">
-        <h1 style="margin-top: 20vh">Publica la historia <br>de tu mascota</h1>
+        <h1 style="margin-top: 20vh">Publicá una historia <br>de tu mascota</h1>
 
         <form th:action="@{/nueva-historia}" method="post" enctype="multipart/form-data" class="form-group" ACCEPT-CHARSET="UTF-8">
             <div class="row">
                 <div class="col-md-6 form-group">
-
-                    <label for="titular">Titulo de la historia:</label>
-                    <input type="text" id="titular" name="titular" required><br>
-                    <br>
-
-                    <label for="tipoPublicacionHistoria">Tipo de publicación</label>
-                    <select id="tipoPublicacionHistoria" name="tipoPublicacionHistoria" required class="form-control">
-                        <option value="">Seleccionar</option>
-                        <option value=" ">Seleccione una opcion</option>
-                        <option value="HISTORIA">Historia</option>
-                    </select>
-                    <br>
+                    <label for="titular">Titulo de la historia</label>
+                    <input type="text" id="titular" name="titular" class="form-control" required placeholder="Escribe un titulo original..."><br>
                     <label for="nombre">Nombre de la mascota</label>
-                    <input type="text" maxlength="100" id="nombre" name="nombre" class="form-control" placeholder="Peludito">
+                    <input type="text" maxlength="100" id="nombre" name="nombre" class="form-control" placeholder="Peludito" required>
                     <br>
-                    <label for="zona">Zona donde se ocurre/ocurrío</label>
-                    <select id="zona" name="zona" required class="form-control">
-                        <option value="">Seleccionar</option>
+                    <label for="zona">Zona donde ocurre/ocurrió</label>
+                    <select id="zona" name="zona" class="form-control">
+                        <option value="">Seleccionar para mayor visibilidad</option>
                         <option value="NORTE">Norte</option>
                         <option value="SUR">Sur</option>
                         <option value="OESTE">Oeste</option>
@@ -57,13 +47,10 @@
                     </select>
                     <br>
                 </div>
-
                 <div class="col-md-6 form-group">
                     <label for="descripcion">Descripción de la historia</label><br>
-                    <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="Ej: Lleva un collar ...">
-                </textarea>
-                    <br>
-                    <label for="imagen">Imagen</label>
+                    <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="Ej: Fue muy divertido ..."></textarea><br>
+                    <label for="imagen">Foto de la Mascota</label>
                     <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
                 </div>
             </div>

@@ -20,42 +20,32 @@
         <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
     </a>
     <!-- Título -->
-    <span class="navbar-brand ml-3 text-left">Publicar Historia</span>
+    <span class="navbar-brand ml-3 text-left">Solicitar Donación</span>
     <!-- Entry points -->
     <div th:include="'entry-points'"></div>
 </nav>
 <main role="main" class="container">
 
     <div class="container mt-5">
-        <h1 style="margin-top: 20vh">Publica la historia <br>de tu mascota</h1>
+        <h1 style="margin-top: 20vh">Solicitá una donación</h1>
 
         <form th:action="@{/nueva-donacion}" method="post" class="form-group" ACCEPT-CHARSET="UTF-8">
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label for="nombreMascota">Nombre de la mascota</label>
-                    <input type="text" maxlength="100" id="nombreMascota" name="nombreMascota" class="form-control" placeholder="Peludito">
+                    <input type="text" maxlength="100" id="nombreMascota" required name="nombreMascota" class="form-control" placeholder="Peludito">
                     <br>
-
-                    <div class="col-md-6 form-group">
-                        <label for="descripcion">Descripción de la historia</label><br>
-                        <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="Ej:Lleva un collar ...">
-                         </textarea>
-                        <br>
-                    </div>
-
-                    <label for="monto">Monto a cubrir:</label>
-                    <input type="number" maxlength="100" id="monto" name="monto" class="form-control" placeholder="Ej:40000">
+                    <label for="descripcion">Descripción</label><br>
+                    <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="Ej: Necesitamos tu ayuda para una cirugía ..."></textarea>
                     <br>
+                </div>
 
-                    <label for="tipoPublicacionDonacion">Tipo de publicación</label>
-                    <select id="tipoPublicacionDonacion" name="tipoPublicacionDonacion" required class="form-control">
-                        <option value=" ">Seleccione una opcion</option>
-                        <option value="DONACION">Donacion</option>
-                    </select>
+                <div class="col-md-6 form-group">
+                    <label for="monto">Monto a cubrir</label>
+                    <input onchange="validateMonto(this)" type="number" required maxlength="10" id="monto" name="monto" class="form-control" placeholder="Ej: 40000">
                     <br>
-
-                    <label for="zona">Zona donde se ocurre/ocurrío</label>
-                    <select id="zona" name="zona" required class="form-control">
+                    <label for="zona">Zona donde está la mascota</label>
+                    <select id="zona" name="zona" class="form-control">
                         <option value="">Seleccionar</option>
                         <option value="NORTE">Norte</option>
                         <option value="SUR">Sur</option>
@@ -63,25 +53,33 @@
                         <option value="CABA">CABA</option>
                     </select>
                     <br>
+                    <label for="imagen">Foto de la Mascota</label>
+                    <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
                 </div>
-
             </div>
-
             <div class="row mt-3">
                 <div class="col-md-6">
                     <a href="http://localhost:8080/spring/perdidos" class="btn btn-secondary">Volver</a>
                 </div>
-
                 <div class="col-md-6 text-right">
                     <button type="submit" class="btn btn-primary">Publicar</button>
                 </div>
             </div>
         </form>
-
     </div>
 
 </main>
 <!-- Bootstrap core js -->
+<script>
+    function validateMonto(input) {
+        const value = parseInt(input.value, 10);
+        if (value > 999999) {
+            input.value = "";
+            alert("El monto ingresado supera el límite. Max 999999.");
+        }
+    }
+</script>
+
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>
 </html>
