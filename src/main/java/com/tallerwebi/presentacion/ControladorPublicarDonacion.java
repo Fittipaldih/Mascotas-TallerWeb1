@@ -25,7 +25,7 @@ import java.io.IOException;
 public class ControladorPublicarDonacion {
 
     @Autowired
-    private ServicioPublicarDonacionImp servicioPublicarDonacionImp;
+    private ServicioPublicarDonacionImp servicioPublicarDonacionImp = new ServicioPublicarDonacionImp();
 
     @RequestMapping(value = "/nueva-donacion", method = RequestMethod.POST)
     public ModelAndView publicarDonacion(@RequestParam(value = "nombreMascota") String nombreMascota,
@@ -33,7 +33,7 @@ public class ControladorPublicarDonacion {
                                         @RequestParam(value = "zona") Zona zona,
                                         @RequestParam(value = "descripcion") String descripcion,
                                          @RequestParam(value = "imagen", required = false) MultipartFile imagen
-    ) throws DonacionException {
+                                        ) throws DonacionException {
         ModelMap modelMap = new ModelMap();
         try {
             byte[] imagenBytes = null;

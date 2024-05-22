@@ -5,6 +5,8 @@ import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.excepcion.DonacionException;
 import com.tallerwebi.dominio.excepcion.HistoriaException;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
+import org.hibernate.SessionFactory;
+import org.hibernate.internal.SessionFactoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +17,11 @@ import java.io.IOException;
 public class ServicioPublicarDonacionImp implements ServicioPublicarDonacion {
     @Autowired
     private RepositorioPublicacionImpl repositorioPublicarDonacion;
+    SessionFactoryImpl sessionFactory;
+
+    public ServicioPublicarDonacionImp() {
+        this.repositorioPublicarDonacion = new RepositorioPublicacionImpl(sessionFactory);
+    }
 
     @Override
     public void publicarDonacion(PublicacionDonacion donacion, MultipartFile imagen) throws DonacionException {

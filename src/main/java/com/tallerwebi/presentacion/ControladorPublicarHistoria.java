@@ -19,7 +19,7 @@ import javax.transaction.Transactional;
 public class ControladorPublicarHistoria {
 
     @Autowired
-    private ServicioPublicarHistoriaImp servicioPublicarHistoriaImp;
+    private ServicioPublicarHistoriaImp servicioPublicarHistoriaImp = new ServicioPublicarHistoriaImp();
 
     @RequestMapping(value = "/nueva-historia", method = RequestMethod.POST)
     public ModelAndView publicarHistoria(@RequestParam(value = "titular") String titular,
