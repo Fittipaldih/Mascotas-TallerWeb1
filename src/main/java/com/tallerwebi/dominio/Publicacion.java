@@ -46,6 +46,7 @@ public abstract class Publicacion {
         this.descripcion = descripcion;
         this.nombreMascota=nombreMascota;
         this.imagen = imagen;
+        this.fechaPublicacion = getFechaActual();
     }
 
     public Publicacion() {
@@ -77,10 +78,6 @@ public abstract class Publicacion {
 
     public String getFechaPublicacion() {
         return fechaPublicacion;
-    }
-
-    public void setFechaPublicacion(String fechaPublicacion) {
-        this.fechaPublicacion = fechaPublicacion;
     }
 
     public String getDescripcion() {

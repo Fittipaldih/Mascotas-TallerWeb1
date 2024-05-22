@@ -2,6 +2,7 @@ package com.tallerwebi.dominio.servicios;
 
 import com.tallerwebi.dominio.PublicacionHistoria;
 import com.tallerwebi.dominio.PublicacionPerdido;
+import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.excepcion.HistoriaException;
 import com.tallerwebi.dominio.excepcion.PerdidoException;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
@@ -25,6 +26,7 @@ public class ServicioPublicarHistoriaImp implements ServicioPublicarHistoria {
                 throw new RuntimeException("Error al procesar la imagen", e);
             }
         }
+        historia.setTipoPublicacion(PublicacionTipo.HISTORIA);
         repositorioPublicarHistoria.guardarHistoria(historia);
     }
 }

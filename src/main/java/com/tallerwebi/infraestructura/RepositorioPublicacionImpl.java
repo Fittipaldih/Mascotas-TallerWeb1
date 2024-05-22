@@ -36,6 +36,22 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
         return query.getResultList();
     }
+
+    @Override
+    public List<Publicacion> buscarPublicacionesPorZona(Zona zona) {
+        String hql = "FROM Publicacion p WHERE p.zona = :zona";
+        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("zona", zona);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Publicacion> getPublicacionesPorTipoPublicacion(PublicacionTipo tipo){
+        String hql = "FROM Publicacion p WHERE p.tipoPublicacion = :tipo";
+        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("tipo", tipo);
+        return query.getResultList();
+    }
 /*
     @Override
     public void modificarTelefonoPublicacion(Publicacion publicacion) {
@@ -104,13 +120,6 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         return query.getResultList();
     }
 
-    @Override
-    public List<Publicacion> buscarPublicacionesPorZona(Zona zona) {
-        String hql = "FROM Publicacion p WHERE p.zona = :zona";
-        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-        query.setParameter("zona", zona);
-        return query.getResultList();
-    }
 */
        /* String nombreMascota= perdido.getNombreMascota();
         String direccion = perdido.getDireccion();

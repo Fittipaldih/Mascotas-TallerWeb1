@@ -1,6 +1,7 @@
 package com.tallerwebi.dominio.servicios;
 
 import com.tallerwebi.dominio.PublicacionDonacion;
+import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.excepcion.DonacionException;
 import com.tallerwebi.dominio.excepcion.HistoriaException;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
@@ -24,6 +25,7 @@ public class ServicioPublicarDonacionImp implements ServicioPublicarDonacion {
                 throw new RuntimeException("Error al procesar la imagen", e);
             }
         }
+        donacion.setTipoPublicacion(PublicacionTipo.DONACION);
         this.repositorioPublicarDonacion.guardarDonacion(donacion);
     }
 }

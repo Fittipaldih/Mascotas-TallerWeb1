@@ -1,0 +1,48 @@
+package com.tallerwebi.dominio.servicios;
+
+import com.tallerwebi.dominio.Mascota;
+import com.tallerwebi.dominio.Publicacion;
+import com.tallerwebi.dominio.PublicacionTipo;
+import com.tallerwebi.dominio.excepcion.MascotaNoEncontrada;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class ServicioRedSocialImpl implements ServicioRedSocial {
+    @Autowired
+    private RepositorioPublicacion repositorioPublicacion;
+
+    public ServicioRedSocialImpl(RepositorioPublicacion repositorioPublicacion) {
+        this.repositorioPublicacion = repositorioPublicacion;
+    }
+
+    @Override
+    public List<Publicacion> getTodasLasPublicaciones() {
+        return this.repositorioPublicacion.getPublicaciones();
+    }
+
+    @Override
+    public List<Publicacion> getPublicacionesTipoBuscadoPORDuenio() {
+        return this.repositorioPublicacion.getPublicacionesPorTipoPublicacion(PublicacionTipo.BUSCADO_POR_DUENIO);
+    }
+
+    @Override
+    public List<Publicacion> getPublicacionesTipoBuscandoALDuenio() {
+        return this.repositorioPublicacion.getPublicacionesPorTipoPublicacion(PublicacionTipo.BUSCANDO_AL_DUENIO);
+    }
+
+    @Override
+    public List<Publicacion> getPublicacionesTipoDonacion() {
+        return this.repositorioPublicacion.getPublicacionesPorTipoPublicacion(PublicacionTipo.DONACION);
+    }
+
+    @Override
+    public List<Publicacion> getPublicacionesTipoHistoria() {
+        return this.repositorioPublicacion.getPublicacionesPorTipoPublicacion(PublicacionTipo.HISTORIA);
+    }
+
+}
