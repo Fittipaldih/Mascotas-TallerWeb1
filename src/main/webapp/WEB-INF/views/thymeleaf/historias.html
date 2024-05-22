@@ -66,28 +66,32 @@
         </div>
     </section>
     <section class="tipo-publicacion" >
-
         <div class="tipo-publicacion2">
-                <h1>¿Qué desea hacer?</h1>
-                <form th:action="@{/publicar}" method="get">
-                    <button type="submit" class="btn btn-outline-light">Publicar</button>
-                </form>
-
-            <h1>Filtrar por...</h1>
-            <!--            filtros para perdidos -->
-            <form th:action="@{/historiasFilter}" method="get">
-                <h>Filtrar por...</h>
-                <input type="hidden" name="tipoPublicacion" value="HISTORIAS" />
-
-                <label for="zona">Zona</label>
-                <select id="zona">
-                    <option value=" ">Eliga una zona</option>
+            <h1>¿Qué desea hacer?</h1>
+            <a class="btn btn-outline-light" href="http://localhost:8080/spring/publicar">Publicar</a>
+            <form th:action="@{/historias-f}" method="get">
+                <h1>Filtrar por...</h1>
+                <label style="color: white" for="nombre">Nombre de Mascota</label>
+                <input type="number" id="menorA" name="menorA" class="form-control"/>
+                <label style="color: white" for="zona">Zona:</label>
+                <select id="zona" name="zona" class="form-control">
+                    <option value="">Elija una zona</option>
+                    <option value="NORTE">Norte</option>
+                    <option value="SUR">Sur</option>
                     <option value="OESTE">Oeste</option>
-                    <option value="NORTE">norte</option>
-                    <option value="SUR">sur</option>
+                    <option value="CABA">Caba</option>
                 </select>
-
-                <button type="submit" class="btn btn-outline-light">Filtrar</button>
+                <label style="color: white" for="tiempoPublicacion">Fecha publicación</label>
+                <select id="tiempoPublicacion" class="form-control">
+                    <option value="">Elija un tiempo</option>
+                    <option value="DIA">Hace un día</option>
+                    <option value="SEMANA">Hace una semana</option>
+                    <option value="MES">Hace un mes</option>
+                    <option value="ULTIMO_ANIO">Hace mas de un mes</option>
+                </select>
+                <br>
+                <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-light">Volver</a>
+                <button disabled type="submit" class="btn btn-outline-light">Filtrar</button>
             </form>
         </div>
     </section>

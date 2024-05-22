@@ -33,9 +33,12 @@
                     <h5 class="card-title">Donacion</h5>
                     <p class="card-text">Estamos buscando al dueño, fue encontrado en Martin Fierro al 1452</p>
                     <div class="container-btn">
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar
+                        </button>
                     </div>
                 </div>
             </div>
@@ -45,9 +48,12 @@
                     <h5 class="card-title">Donacion</h5>
                     <p class="card-text">Apareció!! Muchas Gracias por ayudarme a encontrar a Cleo!!</p>
                     <div class="container-btn">
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar
+                        </button>
                     </div>
                 </div>
             </div>
@@ -57,53 +63,52 @@
                     <h5 class="card-title">Donacion</h5>
                     <p class="card-text">Estamos buscando a Raul! Si lo vieron no duden en contactar</p>
                     <div class="container-btn">
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir
+                        </button>
+                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <section class="tipo-publicacion" >
-
         <div class="tipo-publicacion2">
-                <h1>¿Qué desea hacer?</h1>
-                <form th:action="@{/publicar}" method="get">
-                    <button type="submit" class="btn btn-outline-light">Publicar</button>
-                </form>
-
-
-                <form th:action="@{/donar}" method="get">
-                    <button type="submit" class="btn btn-outline-light" th:onclick="mostrarMensaje()" >Donar</button>
-                </form>
-
-                <h1>Filtrar por...</h1>
-<!--            filtros para donaciones -->
-                <form th:action="@{/donacionesFilter}" method="get">
-                    <input type="hidden" name="tipoPublicacion" value="DONACIONES" />
-
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre">
-
-                    <label for="mayorA">Monto mayor a:</label>
-                    <input type="number" id="mayorA" name="mayorA"/>
-
-                    <label for="menorA">Monto menor a:</label>
-                    <input type="number" id="menorA" name="menorA"/>
-
-                    <label for="zona">Zona</label>
-                    <select id="zona">
-                        <option value=" ">Eliga una zona</option>
+            <h1>¿Qué desea hacer?</h1>
+            <a class="btn btn-outline-light" href="http://localhost:8080/spring/publicar">Publicar</a>
+                <form th:action="@{/donaciones-f}" method="get">
+                    <h1>Filtrar por...</h1>
+                    <label style="color: white" for="nombre">Nombre de Mascota</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control">
+                    <label style="color: white" for="mayorA">Monto mayor a:</label>
+                    <input type="number" id="mayorA" name="mayorA" class="form-control"/>
+                    <label style="color: white" for="menorA">Monto menor a:</label>
+                    <input type="number" id="menorA" name="menorA" class="form-control"/>
+                    <label style="color: white" for="zona">Zona:</label>
+                    <select id="zona" name="zona" class="form-control">
+                        <option value="">Elija una zona</option>
+                        <option value="NORTE">Norte</option>
+                        <option value="SUR">Sur</option>
                         <option value="OESTE">Oeste</option>
-                        <option value="NORTE">norte</option>
-                        <option value="SUR">sur</option>
+                        <option value="CABA">Caba</option>
                     </select>
-
-                    <button type="submit" class="btn btn-outline-light">Mascotas perdidas</button>
+                    <label style="color: white" for="tiempoPublicacion">Fecha publicación</label>
+                    <select id="tiempoPublicacion" class="form-control">
+                        <option value="">Elija un tiempo</option>
+                        <option value="DIA">Hace un día</option>
+                        <option value="SEMANA">Hace una semana</option>
+                        <option value="MES">Hace un mes</option>
+                        <option value="ULTIMO_ANIO">Hace mas de un mes</option>
+                    </select>
+                    <br>
+                    <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-light">Volver</a>
+                    <button disabled type="submit" class="btn btn-outline-light">Filtrar</button>
                 </form>
         </div>
     </section>
+
 </main>
 <!-- Bootstrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
