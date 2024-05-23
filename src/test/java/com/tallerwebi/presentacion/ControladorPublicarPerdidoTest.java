@@ -49,7 +49,6 @@ public class ControladorPublicarPerdidoTest {
         ModelAndView vista = controladorPublicarPerdido.publicarPerdido(direccion, nombreMascota, zona, mascotaColor, descripcion, nombreContacto, telefonoContacto, tipoPublicacionPerdido, mascotaRaza, imagen);
         //verificación
         assertThat(vista.getViewName(), equalToIgnoringCase("publicar"));
-        //assertThat(vista.getModel().get("mensaje").toString(), equalToIgnoringCase("¡La publicación ha sido creada exitosamente!"));
     }
 
     @Test

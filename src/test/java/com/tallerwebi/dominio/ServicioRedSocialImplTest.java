@@ -23,15 +23,13 @@ public class ServicioRedSocialImplTest {
     @Test
     public void queSePuedanObtenerTodasLasPublicaciones() {
         // Preparacion
-        List<Publicacion> publicaciones = new ArrayList<>();
-        publicaciones.add(new PublicacionPerdido());
-        publicaciones.add(new PublicacionHistoria());
-        // Ejecucion con Mock
-        when(repositorioPublicacionMock.getPublicaciones()).thenReturn(publicaciones);
+        List<Publicacion> publicacionesMock = mock(List.class);
+        when(publicacionesMock.size()).thenReturn(2);
+        when(repositorioPublicacionMock.getPublicaciones()).thenReturn(publicacionesMock);
+        // Ejecucion
         List<Publicacion> publicacionesRecibidas = servicioRedSocialImpl.getTodasLasPublicaciones();
         // Verificacion
-        assertEquals(publicacionesRecibidas, repositorioPublicacionMock.getPublicaciones());
-        assertEquals(publicacionesRecibidas.size(), repositorioPublicacionMock.getPublicaciones().size());
+        assertEquals(2, publicacionesRecibidas.size());
     }
 
     @Test
