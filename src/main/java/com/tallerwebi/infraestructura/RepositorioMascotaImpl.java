@@ -57,14 +57,6 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
     public void eliminarMascota(Mascota mascota) {
         sessionFactory.getCurrentSession().delete(mascota);
     }
-/*
-    @Override
-    public Mascota buscarMascotaPorIdPublicacion(Long idPublicacion) {
-        String hql = "FROM Mascota m WHERE m.idPublicacion = :idPublicacion";
-        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-        query.setParameter("idPublicacion", idPublicacion);
-        return (Mascota) query.getSingleResult();
-    }*/
 
     @Override
     public Boolean verificarSiMascotaExiste(Mascota mascota) {

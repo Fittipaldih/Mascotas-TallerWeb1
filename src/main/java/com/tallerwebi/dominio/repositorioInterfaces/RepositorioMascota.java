@@ -19,7 +19,5 @@ public interface RepositorioMascota {
 
     void eliminarMascota(Mascota mascota);
 
-    //Mascota buscarMascotaPorIdPublicacion(Long idPublicacion);
-
     Boolean verificarSiMascotaExiste(Mascota mascota);
 }
