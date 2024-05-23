@@ -65,7 +65,6 @@ public class ControladorPublicarDonacionTest{
         ModelAndView modelAndView = controladorPublicarDonacion.publicarDonacion(nombreMascota, monto, zona, descripcion, imagen);
         // Verificación
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("publicar"));
-        //assertThat(modelAndView.getModel().get("error").toString(), equalToIgnoringCase("Error al publicar la donación. Intentá nuevamente."));
     }
 
 }
