@@ -43,7 +43,7 @@ public class ControladorPublicarDonacion {
             PublicacionDonacion donacion = new PublicacionDonacion(monto,PublicacionTipo.DONACION,nombreMascota,zona,descripcion, imagenBytes);
             servicioPublicarDonacionImp.publicarDonacion(donacion, imagen);
             modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
-        } catch (DonacionException | IOException e) {
+        } catch (Exception e) {
             modelMap.put("error", "Error al publicar la donación. Intentá nuevamente.");
         }
         return new ModelAndView("publicar", modelMap);

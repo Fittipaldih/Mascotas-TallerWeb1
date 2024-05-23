@@ -32,7 +32,6 @@ public class ServicioPerfilMascotaImplTest {
         // Preparación
         Mascota mascota = new Mascota("Nina", "htttp:foto", "Es una salchicha", Zona.OESTE, MascotaTipo.PERRO, MascotaRaza.SALCHICHA, MascotaColor.NEGRO, MascotaEstado.CON_EL_DUENIO);
         Mascota mascota2 = new Mascota("Nina2", "htttp:foto", "Es una salchicha", Zona.NORTE, MascotaTipo.PERRO, MascotaRaza.SALCHICHA, MascotaColor.NEGRO, MascotaEstado.CON_EL_DUENIO);
-
         when(repositorioMascotaMock.buscarMascotaPorId(1L)).thenReturn(mascota);
         // Ejecución
         Mascota mascotaObtenida = servicioPerfilMascotaImpl.buscarMascotaPorId(1L);
@@ -46,7 +45,6 @@ public class ServicioPerfilMascotaImplTest {
         // Preparación
         Mascota mascota = new Mascota("Nina", "htttp:foto", "Es una salchicha", Zona.OESTE, MascotaTipo.PERRO, MascotaRaza.SALCHICHA, MascotaColor.NEGRO, MascotaEstado.CON_EL_DUENIO);
         Mascota mascota2 = new Mascota("Nina2", "htttp:foto", "Es una salchicha", Zona.NORTE, MascotaTipo.PERRO, MascotaRaza.SALCHICHA, MascotaColor.NEGRO, MascotaEstado.CON_EL_DUENIO);
-
         when(repositorioMascotaMock.buscarMascotaPorId(2L)).thenReturn(mascota2);
         // Ejecución
         Mascota mascotaObtenida = servicioPerfilMascotaImpl.buscarMascotaPorId(2L);

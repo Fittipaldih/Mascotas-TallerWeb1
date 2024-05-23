@@ -69,7 +69,7 @@
         <div class="tipo-publicacion2">
             <h1>¿Qué desea hacer?</h1>
             <a class="btn btn-outline-light" href="http://localhost:8080/spring/publicar">Publicar</a>
-            <form th:action="@{/perdidos-f}" method="get">
+            <!--<form th:action="@{/perdidos-f}" method="get">-->
                 <h1>Filtrar por...</h1>
                 <label style="color: white" for="nombre">Nombre de Mascota</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control">
@@ -93,8 +93,8 @@
                 </select>
                 <br>
                 <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-light">Volver</a>
-                <button disabled type="submit" class="btn btn-outline-light">Filtrar</button>
-            </form>
+                <button type="submit" class="btn btn-outline-light" th:onclick="mostrarMensaje()">Filtrar</button>
+            <!--</form>-->
         </div>
     </section>
 

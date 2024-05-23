@@ -45,10 +45,8 @@ public class ControladorPublicarPerdidoTest {
                 "imagen.jpg",
                 "image/jpeg",
                 "Imagen de prueba".getBytes());
-
         //ejecución
         ModelAndView vista = controladorPublicarPerdido.publicarPerdido(direccion, nombreMascota, zona, mascotaColor, descripcion, nombreContacto, telefonoContacto, tipoPublicacionPerdido, mascotaRaza, imagen);
-
         //verificación
         assertThat(vista.getViewName(), equalToIgnoringCase("publicar"));
         //assertThat(vista.getModel().get("mensaje").toString(), equalToIgnoringCase("¡La publicación ha sido creada exitosamente!"));
@@ -67,12 +65,9 @@ public class ControladorPublicarPerdidoTest {
         PublicacionTipo tipoPublicacionPerdido = PublicacionTipo.BUSCANDO_AL_DUENIO;
         MascotaRaza mascotaRaza = MascotaRaza.BOXER;
         MockMultipartFile imagen = new MockMultipartFile("imagen", "imagen.jpg", "image/jpeg", "Imagen de prueba".getBytes());
-
         doThrow(new PerdidoException("Error al publicar")).when(servicioPublicarPerdidoImp).publicarPerdido(any(PublicacionPerdido.class), eq(imagen));
-
         //ejecuciom
         ModelAndView modelAndView = controladorPublicarPerdido.publicarPerdido(direccion, nombreMascota, zona, mascotaColor, descripcion, nombreContacto, telefonoContacto, tipoPublicacionPerdido, mascotaRaza, imagen);
-
         //verificacion
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("publicar"));
         assertThat(modelAndView.getModel().get("error").toString(), equalToIgnoringCase("Error al publicar la mascota perdida. Intentá nuevamente."));

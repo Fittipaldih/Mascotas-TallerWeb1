@@ -30,7 +30,6 @@ public class ControladorRedSocialTest {
     public void queAlPresionarPublicarDevuelvaLaPublicar() {
         //ejecucion
         ModelAndView vista = this.controladorRedSocial.publicar();
-
         //verificacion
         assertThat(vista.getViewName(), equalToIgnoringCase("publicar"));
     }
@@ -39,7 +38,6 @@ public class ControladorRedSocialTest {
     public void queAlPresionarMascotasPerdidasDevuelvaLaVistaPerdidos() {
         //ejecucion
         ModelAndView vista = this.controladorRedSocial.IrAperdidos();
-
         //verificacion
         assertThat(vista.getViewName(), equalToIgnoringCase("perdidos"));
     }
@@ -48,7 +46,6 @@ public class ControladorRedSocialTest {
     public void queAlPresionarHistoriasDeMascotasDevuelvaLaHistorias() {
         //ejecucion
         ModelAndView vista = this.controladorRedSocial.irAHistorias();
-
         //verificacion
         assertThat(vista.getViewName(), equalToIgnoringCase("historias"));
     }
@@ -57,7 +54,6 @@ public class ControladorRedSocialTest {
     public void queAlPresionarDonacionesAMascotasDevuelvaLaDonaciones() {
         //ejecucion
         ModelAndView vista = this.controladorRedSocial.irADonaciones();
-
         //verificacion
         assertThat(vista.getViewName(), equalToIgnoringCase("donaciones"));
     }

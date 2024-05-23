@@ -20,7 +20,6 @@ public class ServicioMapaMascoteroImplTest {
     private RepositorioVeterinariaImpl repositorioVeterinariaMock;
     private RepositorioPeluqueriaImpl repositorioPeluqueriaMock;
 
-
     @BeforeEach
     public void init() {
         repositorioMascotaMock = mock(RepositorioMascotaImpl.class);

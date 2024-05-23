@@ -52,6 +52,14 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         query.setParameter("tipo", tipo);
         return query.getResultList();
     }
+
+    public List<PublicacionHistoria> getPublicacionesHistoriaPorZona(Zona zona){
+        String hql = "FROM Publicacion p WHERE p.zona = :zona AND p.tipoPublicacion = 'HISTORIA'";
+        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("zona", zona);
+        return query.getResultList();
+    }
+
 /*
     @Override
     public void modificarTelefonoPublicacion(Publicacion publicacion) {

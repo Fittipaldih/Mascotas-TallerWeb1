@@ -20,7 +20,6 @@ public class ControladorPublicarTest {
         ModelAndView vistaPerdido = this.controladorPublicar.irPublicarPerdido();
         //verificacion
         assertThat(vistaPerdido.getViewName(), equalToIgnoringCase("publicarPerdido"));
-
     }
 
     @Test

@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 class ServicioPublicarPerdidoTest {
 
     @Mock
-    private RepositorioPublicacionImpl repositorioPublicarPerdido;
+    private RepositorioPublicacionImpl repositorioPublicacion;
 
     @InjectMocks
     private ServicioPublicarPerdidoImp servicioPublicarPerdidoImp;
@@ -45,7 +45,7 @@ class ServicioPublicarPerdidoTest {
 
         //verificacion
         assertArrayEquals(imagenBytes, perdido.getImagen());
-        verify(repositorioPublicarPerdido, times(1)).guardarPerdido(perdido);
+        verify(repositorioPublicacion, times(1)).guardarPerdido(perdido);
     }
 
     @Test
@@ -61,7 +61,7 @@ class ServicioPublicarPerdidoTest {
 
         //verificacion
         assertNull(perdido.getImagen());
-        verify(repositorioPublicarPerdido, times(1)).guardarPerdido(perdido);
+        verify(repositorioPublicacion, times(1)).guardarPerdido(perdido);
     }
 
     @Test
@@ -80,6 +80,6 @@ class ServicioPublicarPerdidoTest {
 
         //verificacion
         assertThat(exception.getMessage(), equalToIgnoringCase("Error al procesar la imagen"));
-        verify(repositorioPublicarPerdido, never()).guardarPerdido(perdido);
+        verify(repositorioPublicacion, never()).guardarPerdido(perdido);
     }
 }

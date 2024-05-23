@@ -20,9 +20,8 @@ import static org.hamcrest.Matchers.equalTo;
 @ContextConfiguration(classes = {HibernateTestInfraestructuraConfig.class})
 public class RepositorioMascotaTest {
 
-    @Autowired //se utiliza para hacer una inyeccion de dependencia automaticamente.
+    @Autowired
     private SessionFactory sessionFactory;
-
     private RepositorioMascota repositorioMascota;
 
     @BeforeEach
@@ -38,18 +37,19 @@ public class RepositorioMascotaTest {
     }
 
     @Test
-    @Transactional //Se utiliza para asegurar que se cumpla la operacion, en el caso que falle se hace un rollback.
-    @Rollback //Para que se vuelva a generar la Query cuando se termine el test.
+    @Transactional
+    @Rollback
     public void queSePuedaGuardarUnaMascota() {
+        //preparacion
         Usuario usuario = this.guardarUsuario();
         Mascota mascota = new Mascota();
         mascota.setNombre("Cachito");
         mascota.setDescripcion("Perro Labrador");
         mascota.setUsuario(usuario);
-
+        //ejecucion
         this.repositorioMascota.guardarMascota(mascota);
-
-        Mascota mascotaObtenida = this.sessionFactory.getCurrentSession() //Para crear la Query
+        //comprobacion
+        Mascota mascotaObtenida = this.sessionFactory.getCurrentSession()
                 .createQuery("FROM Mascota where id = 1", Mascota.class)
                 .getSingleResult();
 
@@ -60,23 +60,23 @@ public class RepositorioMascotaTest {
     @Transactional
     @Rollback
     public void queSePuedaBuscarUnaMascotaPorIdCuandoElIdEsCuatro() {
+        // preparacion
         Usuario usuario = this.guardarUsuario();
         Mascota mascotaUno = new Mascota();
         mascotaUno.setNombre("Nina");
         mascotaUno.setDescripcion("Falsa caniche");
         mascotaUno.setUsuario(usuario);
         this.repositorioMascota.guardarMascota(mascotaUno);
-
+        // aca sucede que toma las mascotas de los demas test , por eso solo se crean dos y ya tiene id 4
         Mascota mascotaDos = new Mascota();
         mascotaDos.setNombre("Akane");
         mascotaDos.setDescripcion("Gigante color negro");
         mascotaDos.setUsuario(usuario);
         this.repositorioMascota.guardarMascota(mascotaDos);
-
+        // ejecucion
         assertThat(mascotaDos.getId(), equalTo(4L));
-
+        //comprobacion
         Mascota mascotaObtenida = repositorioMascota.buscarMascotaPorId(4L);
-
         assertThat(mascotaObtenida.getId(), equalTo(mascotaDos.getId()));
     }
 
@@ -84,17 +84,18 @@ public class RepositorioMascotaTest {
     @Transactional
     @Rollback
     public void queSePuedaActualizarElNombreDeLaMascota() {
+        // preparacion
         Usuario usuario = this.guardarUsuario();
         Mascota mascota = new Mascota();
         mascota.setNombre("Pancho");
         mascota.setDescripcion("Perrito salchicha");
         mascota.setUsuario(usuario);
         this.sessionFactory.getCurrentSession().save(mascota);
-
+        // ejecucion
         String nuevoNombre = "Braulio";
         mascota.setNombre(nuevoNombre);
         this.repositorioMascota.modificarMascota(mascota);
-
+        //comprobacion
         Mascota mascotaActualizada = (Mascota) this.sessionFactory.getCurrentSession()
                 .createQuery("FROM Mascota WHERE id = :id")
                 .setParameter("id", mascota.getId())
@@ -107,17 +108,18 @@ public class RepositorioMascotaTest {
     @Transactional
     @Rollback
     public void queSePuedaActualizarLaDescripcionDeLaMascota() {
+        // preparacion
         Usuario usuario = this.guardarUsuario();
         Mascota mascota = new Mascota();
         mascota.setNombre("Jazmín");
         mascota.setDescripcion("Caniche");
         mascota.setUsuario(usuario);
         this.repositorioMascota.guardarMascota(mascota);
-
+        //ejecucion
         String nuevaDescripcion = "Caniche de Susana";
         mascota.setDescripcion(nuevaDescripcion);
         this.repositorioMascota.modificarMascota(mascota);
-
+        //comprobacion
         Mascota mascotaActualizada = (Mascota) this.sessionFactory.getCurrentSession()
                 .createQuery("FROM Mascota WHERE id = :id")
                 .setParameter("id", mascota.getId())

@@ -1,8 +1,10 @@
 package com.tallerwebi.dominio.servicios;
 
+import com.tallerwebi.dominio.Mascota;
 import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.PublicacionHistoria;
 import com.tallerwebi.dominio.Zona;
+import com.tallerwebi.dominio.excepcion.MascotaNoEncontrada;
 import com.tallerwebi.infraestructura.RepositorioMascotaImpl;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.SessionFactory;
@@ -24,16 +26,7 @@ public class ServicioPublicacionHistoriaImpl implements ServicioPublicacionHisto
 
     @Override
     public List<PublicacionHistoria> filtrarHistoriasPorZona(Zona zona) {
-        List<PublicacionHistoria> historiasFiltradas = new ArrayList<>();
-        List<PublicacionHistoria> historias = new ArrayList<>();
-        historias.addAll(obtenerSoloHistorias(this.repositorioPublicacionesImp.getPublicaciones()));
-
-        for (PublicacionHistoria historia : historias) {
-            if (zona.equals(historia.getZona())) {
-                historiasFiltradas.add(historia);
-            }
-        }
-        return historiasFiltradas;
+        return repositorioPublicacionesImp.getPublicacionesHistoriaPorZona(zona);
     }
 
     private static List<PublicacionHistoria> obtenerSoloHistorias(List<Publicacion> todasPublicaciones) {

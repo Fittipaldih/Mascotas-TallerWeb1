@@ -19,7 +19,7 @@ public class ControladorVistaHistoria {
 
     @Autowired
     public ControladorVistaHistoria(ServicioPublicacionHistoriaImpl servicioHistorias) {
-        this.servicioHistorias= new ServicioPublicacionHistoriaImpl();
+        this.servicioHistorias = servicioHistorias;
     }
 
     @Transactional
