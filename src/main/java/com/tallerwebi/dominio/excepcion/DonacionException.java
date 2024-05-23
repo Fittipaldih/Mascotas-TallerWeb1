@@ -1,7 +1,7 @@
 package com.tallerwebi.dominio.excepcion;
 
 public class DonacionException extends Exception {
-    public DonacionException() {
+    public DonacionException(String errorAlPublicar) {
         super("La Donacion no pudo ser publicada");
     }
 }

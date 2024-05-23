@@ -1,7 +1,7 @@
 package com.tallerwebi.dominio;
 
-import com.tallerwebi.dominio.excepcion.HistoriaException;
-import com.tallerwebi.dominio.servicios.ServicioPublicarHistoriaImp;
+import com.tallerwebi.dominio.excepcion.DonacionException;
+import com.tallerwebi.dominio.servicios.ServicioPublicarDonacionImp;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,13 +17,13 @@ import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class ServicioPublicarHistoriaTest {
+class ServicioPublicarDonacionTest {
 
     @Mock
     private RepositorioPublicacionImpl repositorioPublicacion;
 
     @InjectMocks
-    private ServicioPublicarHistoriaImp servicioPublicarHistoria;
+    private ServicioPublicarDonacionImp servicioPublicarDonacion;
 
     @BeforeEach
     void init() {
@@ -31,9 +31,9 @@ class ServicioPublicarHistoriaTest {
     }
 
     @Test
-    void quePubliqueUnaHistoriaConImagen() throws IOException, HistoriaException {
+    void quePubliqueUnaDonacionConImagen() throws IOException, DonacionException {
         //preparacion
-        PublicacionHistoria historia = new PublicacionHistoria();
+        PublicacionDonacion donacion = new PublicacionDonacion();
         MultipartFile imagenMock = mock(MultipartFile.class);
         byte[] imagenBytes = "imagen".getBytes();
 
@@ -41,33 +41,33 @@ class ServicioPublicarHistoriaTest {
         when(imagenMock.getBytes()).thenReturn(imagenBytes);
 
         //ejecucion
-        servicioPublicarHistoria.publicarHistoria(historia, imagenMock);
+        servicioPublicarDonacion.publicarDonacion(donacion, imagenMock);
 
         //verificacion
-        assertArrayEquals(imagenBytes, historia.getImagen());
-        verify(repositorioPublicacion, times(1)).guardarHistoria(historia);
+        assertArrayEquals(imagenBytes, donacion.getImagen());
+        verify(repositorioPublicacion, times(1)).guardarDonacion(donacion);
     }
 
     @Test
-    void quePubliqueUnaHistoriaSinImagen() throws HistoriaException {
+    void quePubliqueUnaDonacionSinImagen() throws DonacionException {
         //preparacion
-        PublicacionHistoria historia = new PublicacionHistoria();
+        PublicacionDonacion donacion = new PublicacionDonacion();
         MultipartFile imagenMock = mock(MultipartFile.class);
 
         when(imagenMock.isEmpty()).thenReturn(true);
 
         //ejecucion
-        servicioPublicarHistoria.publicarHistoria(historia, imagenMock);
+        servicioPublicarDonacion.publicarDonacion(donacion, imagenMock);
 
         //verificacion
-        assertNull(historia.getImagen());
-        verify(repositorioPublicacion, times(1)).guardarHistoria(historia);
+        assertNull(donacion.getImagen());
+        verify(repositorioPublicacion, times(1)).guardarDonacion(donacion);
     }
 
     @Test
     void queDevuelvaMensajeDeErrorCuandoHayErrorEnLaImagen() throws IOException {
         //preparacion
-        PublicacionHistoria historia = new PublicacionHistoria();
+        PublicacionDonacion donacion = new PublicacionDonacion();
         MultipartFile imagenMock = mock(MultipartFile.class);
 
         when(imagenMock.isEmpty()).thenReturn(false);
@@ -75,11 +75,11 @@ class ServicioPublicarHistoriaTest {
 
         //ejecucion
         Exception exception = assertThrows(RuntimeException.class, () -> {
-            servicioPublicarHistoria.publicarHistoria(historia, imagenMock);
+            servicioPublicarDonacion.publicarDonacion(donacion, imagenMock);
         });
 
         //verificacion
         assertThat(exception.getMessage(), equalToIgnoringCase("Error al procesar la imagen"));
-        verify(repositorioPublicacion, never()).guardarHistoria(historia);
+        verify(repositorioPublicacion, never()).guardarDonacion(donacion);
     }
 }

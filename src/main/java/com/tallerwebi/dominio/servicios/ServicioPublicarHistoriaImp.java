@@ -1,8 +1,6 @@
 package com.tallerwebi.dominio.servicios;
 
-import com.tallerwebi.dominio.PublicacionHistoria;
-import com.tallerwebi.dominio.PublicacionPerdido;
-import com.tallerwebi.dominio.PublicacionTipo;
+import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.HistoriaException;
 import com.tallerwebi.dominio.excepcion.PerdidoException;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
@@ -11,11 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class ServicioPublicarHistoriaImp implements ServicioPublicarHistoria {
     @Autowired
     private RepositorioPublicacionImpl repositorioPublicarHistoria;
+    @Autowired
+    private PublicacionConversionService publicacionConversionService;
 
     @Override
     public void publicarHistoria(PublicacionHistoria historia, MultipartFile imagen) throws HistoriaException {
@@ -28,5 +29,10 @@ public class ServicioPublicarHistoriaImp implements ServicioPublicarHistoria {
         }
         historia.setTipoPublicacion(PublicacionTipo.HISTORIA);
         repositorioPublicarHistoria.guardarHistoria(historia);
+    }
+
+    public List<PublicacionDTO> obtenerTodasLasDonaciones() {
+        List<Publicacion> publicaciones = repositorioPublicarHistoria.getPublicacionesPorTipoPublicacion(PublicacionTipo.HISTORIA);
+        return publicacionConversionService.convertirEntidadesADTOs(publicaciones);
     }
 }

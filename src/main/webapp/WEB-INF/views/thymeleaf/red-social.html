@@ -25,62 +25,35 @@
 </nav>
 <main role="main" class="container">
     <section class="todas-publicaciones">
-        <!--Aca van las publicaciones-->
+        <!-- Aca van las publicaciones -->
         <div class="card-deck">
-            <div class="card">
-                <div class="card-body">
-
-                    <table th:if="${todasLasPublicaciones}" class="table table-striped">  <thead>
-                    <tr>
-                        <th>Publicación Nº</th>
-                        <th>Tipo</th>
-                        <th>Publicado el día</th>
-                        <th>Zona</th>
-                        <th>Descripción</th>
-                        <th>Nombre mascota</th>
-                        <th>Color</th>
-                        <th>Foto</th>
-                    </tr>
-                    </thead>
-                        <tbody>
-                        <tr th:each="publicacion : ${todasLasPublicaciones}">
-                            <!--<img class="card-img-top" th:src="@{/img/publicacion.getImagen()}" alt="Card image">-->
-                            <td th:text="${publicacion.getIdPublicacion()}"></td>
-                            <td th:text="${publicacion.getTipoPublicacion()}"></td>
-                            <td th:text="${publicacion.getFechaPublicacion()}"></td>
-                            <td th:text="${publicacion.getZona()}"></td>
-                            <td th:text="${publicacion.getDescripcion()}"></td>
-                            <td th:text="${publicacion.getNombreMascota()}"></td>
-                            <td th:text="${publicacion.getMascotaColor()}"></td>
-                            <td th:text="${publicacion.getImagen()}"></td>
-                        </tr>
-                        </tbody>
-                        <div class="container-btn">
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
-                            <form th:action="@{/perfil-mascota/}" method="get">
-                                <input type="hidden" name="id" th:value="1">
-                                <button type="submit" class="btn btn-dark">Ver perfil</button>
-                            </form>
+            <div class="row">
+                <div class="col-md-4" th:each="publicacion : ${todasLasPublicaciones}">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="card-img-top" th:src="'data:image/jpeg;base64,' + ${publicacion.imagen}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${publicacion.tipoPublicacion == 'BUSCADO_POR_DUENIO' ? 'PERDIDOS' : publicacion.tipoPublicacion}"></h5>
+                            <p class="card-text" th:text="${publicacion.descripcion}"></p>
+                            <p class="card-text"><small class="text-muted">Fecha de publicación: <span th:text="${publicacion.fechaPublicacion}"></span></small></p>
+                            <p class="card-text"><small class="text-muted">Zona: <span th:text="${publicacion.zona}"></span></small></p>
+                            <p class="card-text"><small class="text-muted">Nombre: <span th:text="${publicacion.nombreMascota}"></span></small></p>
+                            <p class="card-text" th:if="${publicacion.mascotaColor}"><small class="text-muted">Color: <span th:text="${publicacion.mascotaColor}"></span></small></p>
                         </div>
-
-                    </table>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="tipo-publicacion" >
-
+    <section class="tipo-publicacion">
         <div class="tipo-publicacion2">
-                <h1>¿Qué desea hacer?</h1>
-                <a href="http://localhost:8080/spring/publicar" class="btn btn-outline-light">Publicar</a>
-                <br>
-                <h1>Filtrar por...</h1>
-                <a href="http://localhost:8080/spring/perdidos" class="btn btn-outline-light">Mascotas perdidas</a>
-                <a href="http://localhost:8080/spring/historias" class="btn btn-outline-light">Historias de mascotas</a>
-                <a href="http://localhost:8080/spring/donaciones" class="btn btn-outline-light">Solicitan donación</a>
+            <h1>¿Qué desea hacer?</h1>
+            <a href="http://localhost:8080/spring/publicar" class="btn btn-outline-light">Publicar</a>
+            <br>
+            <h1>Filtrar por...</h1>
+            <a href="http://localhost:8080/spring/perdidos" class="btn btn-outline-light">Mascotas perdidas</a>
+            <a href="http://localhost:8080/spring/historias" class="btn btn-outline-light">Historias de mascotas</a>
+            <a href="http://localhost:8080/spring/donaciones" class="btn btn-outline-light">Solicitan donación</a>
         </div>
     </section>
 </main>

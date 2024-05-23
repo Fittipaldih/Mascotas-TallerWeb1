@@ -2,7 +2,9 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.Mascota;
 import com.tallerwebi.dominio.Publicacion;
+import com.tallerwebi.dominio.PublicacionDTO;
 import com.tallerwebi.dominio.excepcion.MascotaNoEncontrada;
+import com.tallerwebi.dominio.servicios.PublicacionConversionService;
 import com.tallerwebi.dominio.servicios.ServicioRedSocial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,12 +24,15 @@ public class ControladorRedSocial {
 
     @Autowired
     ServicioRedSocial servicioRedSocial;
+    @Autowired
+    PublicacionConversionService publicacionConversionService;
 
     @RequestMapping(value = "/red-social", method = RequestMethod.GET)
     public ModelAndView mostrarTodasLasPublicaciones(){
         ModelMap model = new ModelMap();
         List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
-        model.put("todasLasPublicaciones", todasLasPublicaciones);
+        List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(todasLasPublicaciones);
+        model.put("todasLasPublicaciones", todasLasPublicacionesDTO);
         return new ModelAndView("red-social", model);
     }
 
