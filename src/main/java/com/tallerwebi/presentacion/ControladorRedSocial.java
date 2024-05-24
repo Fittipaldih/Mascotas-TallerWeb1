@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -27,6 +28,7 @@ public class ControladorRedSocial {
     public ModelAndView mostrarTodasLasPublicaciones(){
         ModelMap model = new ModelMap();
         List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
+        Collections.reverse(todasLasPublicaciones);
         List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(todasLasPublicaciones);
         model.put("todasLasPublicaciones", todasLasPublicacionesDTO);
         return new ModelAndView("red-social", model);

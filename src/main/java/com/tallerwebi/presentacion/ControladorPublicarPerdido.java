@@ -1,8 +1,9 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.excepcion.PerdidoException;
+import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
 import com.tallerwebi.dominio.servicios.ServicioPublicarPerdidoImp;
+import com.tallerwebi.dominio.servicios.ServicioRedSocialImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -13,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 @Transactional
@@ -20,6 +23,10 @@ public class ControladorPublicarPerdido {
 
     @Autowired
     private ServicioPublicarPerdidoImp servicioPublicarPerdidoImp;
+    @Autowired
+    ServicioRedSocialImpl servicioRedSocial;
+    @Autowired
+    ServicioPublicacionConversion publicacionConversionService;
 
     @RequestMapping(value = "/nuevo-perdido", method = RequestMethod.POST)
     public ModelAndView publicarPerdido(@RequestParam(value = "direccion") String direccion,
@@ -32,7 +39,7 @@ public class ControladorPublicarPerdido {
                                         @RequestParam(value = "tipoPublicacionPerdido") PublicacionTipo tipoPublicacionPerdido,
                                         @RequestParam(value = "mascotaRaza") MascotaRaza mascotaRaza,
                                         @RequestParam(value = "imagen", required = false) MultipartFile imagen
-                                        ) throws PerdidoException {
+                                        ) {
         ModelMap modelMap = new ModelMap();
         try {
             byte[] imagenBytes = null;
@@ -41,11 +48,16 @@ public class ControladorPublicarPerdido {
             }
             PublicacionPerdido perdido = new PublicacionPerdido(nombreMascota, direccion, nombreContacto, zona, mascotaColor, descripcion, telefonoContacto, tipoPublicacionPerdido, mascotaRaza, imagenBytes);
             servicioPublicarPerdidoImp.publicarPerdido(perdido, imagen);
+            List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
+            Collections.reverse(todasLasPublicaciones);
+            List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(todasLasPublicaciones);
+            modelMap.put("todasLasPublicaciones", todasLasPublicacionesDTO);
             modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
+            return new ModelAndView("red-social", modelMap);
         } catch (Exception e) {
             modelMap.put("error", "Error al publicar la mascota perdida. Intentá nuevamente.");
+            return new ModelAndView("publicar", modelMap);
         }
-        return new ModelAndView("publicar", modelMap);
     }
 
 }

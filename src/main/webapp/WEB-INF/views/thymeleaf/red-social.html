@@ -23,6 +23,7 @@
     <!-- Entry points -->
     <div th:include="'entry-points'"></div>
 </nav>
+<h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
 <main role="main" class="container">
     <section class="todas-publicaciones">
         <!-- Aca van las publicaciones -->

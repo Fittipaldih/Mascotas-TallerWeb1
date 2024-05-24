@@ -1,8 +1,9 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.excepcion.HistoriaException;
+import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
 import com.tallerwebi.dominio.servicios.ServicioPublicarHistoriaImp;
+import com.tallerwebi.dominio.servicios.ServicioRedSocialImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.transaction.Transactional;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 @Transactional
@@ -20,6 +23,10 @@ public class ControladorPublicarHistoria {
 
     @Autowired
     private ServicioPublicarHistoriaImp servicioPublicarHistoriaImp = new ServicioPublicarHistoriaImp();
+    @Autowired
+    ServicioRedSocialImpl servicioRedSocial;
+    @Autowired
+    ServicioPublicacionConversion publicacionConversionService;
 
     @RequestMapping(value = "/nueva-historia", method = RequestMethod.POST)
     public ModelAndView publicarHistoria(@RequestParam(value = "titular") String titular,
@@ -27,20 +34,25 @@ public class ControladorPublicarHistoria {
                                          @RequestParam(value = "zona") Zona zona,
                                          @RequestParam(value = "descripcion") String descripcion,
                                          @RequestParam(value = "imagen", required = false) MultipartFile imagen
-                                         ) throws HistoriaException {
+    ) {
         ModelMap modelMap = new ModelMap();
         try {
             byte[] imagenBytes = null;
-            if(imagen != null && !imagen.isEmpty()){
+            if (imagen != null && !imagen.isEmpty()) {
                 imagenBytes = imagen.getBytes();
             }
-            PublicacionHistoria historia = new PublicacionHistoria(titular,nombreMascota,zona,descripcion,PublicacionTipo.HISTORIA,imagenBytes);
+            PublicacionHistoria historia = new PublicacionHistoria(titular, nombreMascota, zona, descripcion, PublicacionTipo.HISTORIA, imagenBytes);
             servicioPublicarHistoriaImp.publicarHistoria(historia, imagen);
+            List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
+            Collections.reverse(todasLasPublicaciones);
+            List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(todasLasPublicaciones);
+            modelMap.put("todasLasPublicaciones", todasLasPublicacionesDTO);
             modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
+            return new ModelAndView("red-social", modelMap);
         } catch (Exception e) {
             modelMap.put("error", "Error al publicar la historia. Intentá nuevamente.");
+            return new ModelAndView("publicar", modelMap);
         }
-        return new ModelAndView("publicar", modelMap);
     }
 
 }
