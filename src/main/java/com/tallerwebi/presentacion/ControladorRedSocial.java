@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.transaction.Transactional;
@@ -25,10 +26,12 @@ public class ControladorRedSocial {
     ServicioPublicacionConversion publicacionConversionService;
 
     @RequestMapping(value = "/red-social", method = RequestMethod.GET)
-    public ModelAndView mostrarTodasLasPublicaciones(){
+    public ModelAndView mostrarTodasLasPublicaciones(@RequestParam(value = "ordenar", required = false, defaultValue = "ASC") String ordenar) {
         ModelMap model = new ModelMap();
         List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
-        Collections.reverse(todasLasPublicaciones);
+        if ("ASC".equalsIgnoreCase(ordenar)) {
+            Collections.reverse(todasLasPublicaciones);
+        }
         List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(todasLasPublicaciones);
         model.put("todasLasPublicaciones", todasLasPublicacionesDTO);
         return new ModelAndView("red-social", model);

@@ -30,12 +30,14 @@ section {
 
 .tipo-publicacion{
     background-color: #343a40;
+    position: sticky;
 }
 
 .tipo-publicacion2 {
     padding: 5vh 5vh;
     width: 40vh;
     display: flex;
+    position: sticky;
     flex-direction: column;
     gap: 1.5vh;
 }

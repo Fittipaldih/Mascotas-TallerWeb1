@@ -35,21 +35,20 @@
                         <img class="card-img-top" th:src="${publicacion.imagen != null} ? 'data:image/jpeg;base64,' + ${publicacion.imagen} : '/spring/img/sin-imagen.jpg'" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${publicacion.tipoPublicacion == 'BUSCADO_POR_DUENIO' ? 'PERDIDOS' : publicacion.tipoPublicacion == 'BUSCANDO_AL_DUENIO' ? 'PERDIDOS' : publicacion.tipoPublicacion}"></h5>
-                            <p class="card-text" th:text="${publicacion.descripcion}"></p>
+                            <p class="card-text" th:text="${publicacion.descripcion.length() > 25 ? publicacion.descripcion.substring(0, 25) + '...' : publicacion.descripcion}"></p>
                             <p class="card-text"><small class="text-muted">Publicado el: <span th:text="${publicacion.fechaPublicacion}"></span></small></p>
                             <p class="card-text"><small class="text-muted">Zona: <span th:text="${publicacion.zona}"></span></small></p>
                             <p class="card-text"><small class="text-muted">Nombre: <span th:text="${publicacion.nombreMascota}"></span></small></p>
-                            <p class="card-text" th:if="${publicacion.mascotaColor}"><small class="text-muted">Color: <span th:text="${publicacion.mascotaColor}"></span></small></p>
-<!--
-                        <div class="container-btn">
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
-                            <form th:action="@{/perfil-mascota/}" method="get">
-                                <input type="hidden" name="id" th:value="1">
-                                <button type="submit" class="btn btn-dark">Ver perfil</button>
-                            </form>
--->
+                            <!--<p class="card-text" th:if="${publicacion.mascotaColor}"><small class="text-muted">Color: <span th:text="${publicacion.mascotaColor}"></span></small></p>
+                            --><div class="container-btn">
+                                <button type="button" class="btn btn-outline-success" th:onclick="mostrarMensaje()">Contactar</button>
+                                <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
+                                <button type="button" class="btn btn-outline-secondary" th:onclick="mostrarMensaje()">Comentar</button>
+                                <form th:action="@{/perfil-mascota/}" method="get">
+                                    <input type="hidden" name="id" th:value="1">
+                                    <button type="submit" class="btn btn-outline-dark">Ver perfil</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -61,11 +60,36 @@
         <div class="tipo-publicacion2">
             <h1>¿Qué desea hacer?</h1>
             <a href="http://localhost:8080/spring/publicar" class="btn btn-outline-light">Publicar</a>
-            <br>
-            <h1>Filtrar por...</h1>
+            <a href="http://localhost:8080/spring/publicar" class="btn btn-outline-light">Mis publicacioens</a>
+            <h1>Quiero ver...</h1>
+            <a href="http://localhost:8080/spring/red-social?ordenar=DESC" class="btn btn-outline-light">Antiguas primero</a>
+            <a href="http://localhost:8080/spring/red-social?ordenar=ASC" class="btn btn-outline-light">Recientes primero</a>
+            <h1>Ver solo...</h1>
             <a href="http://localhost:8080/spring/perdidos" class="btn btn-outline-light">Mascotas perdidas</a>
             <a href="http://localhost:8080/spring/historias" class="btn btn-outline-light">Historias de mascotas</a>
             <a href="http://localhost:8080/spring/donaciones" class="btn btn-outline-light">Solicitan donación</a>
+            <!--<form th:action="@{/historias-f}" method="get">-->
+            <h1>Filtrar por...</h1>
+            <label style="color: white" for="zona">Zona:</label>
+            <select id="zona" name="zona" class="form-control">
+                <option value="">Elija una zona</option>
+                <option value="NORTE">Norte</option>
+                <option value="SUR">Sur</option>
+                <option value="OESTE">Oeste</option>
+                <option value="CABA">Caba</option>
+            </select>
+            <label style="color: white" for="tiempoPublicacion">Fecha publicación</label>
+            <select id="tiempoPublicacion" class="form-control">
+                <option value="">Elija una fecha</option>
+                <option value="DIA">Hace un día</option>
+                <option value="SEMANA">Hace una semana</option>
+                <option value="MES">Hace un mes</option>
+                <option value="ULTIMO_ANIO">Hace mas de un mes</option>
+            </select>
+            <br>
+            <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-light">Volver</a>
+            <button type="submit" class="btn btn-outline-light" th:onclick="mostrarMensaje()">Filtrar</button>
+            <!--</form>-->
         </div>
     </section>
 </main>
