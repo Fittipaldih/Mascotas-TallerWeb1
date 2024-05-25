@@ -60,6 +60,20 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         return query.getResultList();
     }
 
+    @Override
+    public void eliminarPublicacion(Publicacion publicacion) {
+        Publicacion publicacionAEliminar = this.sessionFactory.getCurrentSession().get(Publicacion.class, publicacion.getIdPublicacion());
+        if (publicacionAEliminar != null) {
+            this.sessionFactory.getCurrentSession().delete(publicacionAEliminar);
+        }
+    }
+
+    @Override
+    public Publicacion getPublicacionPorId(Long id) {
+        return this.sessionFactory.getCurrentSession().get(Publicacion.class, id);
+    }
+
+
 /*
     @Override
     public void modificarTelefonoPublicacion(Publicacion publicacion) {
@@ -93,23 +107,6 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         } else {
             this.crearPublicacionParaMascotaExistente(mascota, tipoPublicacion, descripcion);
         }
-    }
-
-    @Override
-    public void eliminarPublicacion(Publicacion publicacion) {
-        Publicacion publicacionAEliminar = this.sessionFactory.getCurrentSession().get(Publicacion.class, publicacion.getIdPublicacion());
-        if (publicacionAEliminar != null) {
-            this.sessionFactory.getCurrentSession().delete(publicacionAEliminar);
-        }
-    }
-
-    @Override
-    public Publicacion buscarPublicacion(Publicacion publicacion) {
-        Publicacion publicacionEncontrada = this.sessionFactory.getCurrentSession().get(Publicacion.class, publicacion.getIdPublicacion());
-        if (publicacionEncontrada != null) {
-            return publicacionEncontrada;
-        }
-        return null;
     }
 
     @Override

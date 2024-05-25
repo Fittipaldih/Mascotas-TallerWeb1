@@ -127,4 +127,6 @@ public abstract class Publicacion {
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
+
+
 }

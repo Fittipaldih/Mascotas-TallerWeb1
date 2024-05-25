@@ -18,10 +18,11 @@ public interface RepositorioPublicacion {
 
     List<Publicacion> buscarPublicacionesPorZona(Zona zona);
 
+    void eliminarPublicacion(Publicacion publicacion);
+
+    Publicacion getPublicacionPorId(Long id);
 /*
    void nuevaPublicacion(String nombre, String foto, String descripcion, Zona zona, MascotaTipo tipoMascota, MascotaRaza raza, MascotaColor color, Usuario usuario, MascotaEstado estado, PublicacionTipo tipoPublicacion);
-
-    void eliminarPublicacion(Publicacion publicacion);
 
     Publicacion buscarPublicacion(Publicacion publicacion);
 

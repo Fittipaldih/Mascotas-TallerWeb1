@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Perfil</title>
+
+    <!-- Bootstrap core css -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+
+    <!-- Custom style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/detalle-publicacion.css}"/>
+
+</head>
+
+<body>
+
+<div class="background-container"></div>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <!-- Logo  -->
+    <a class="nav-link" href="http://localhost:8080/spring/">
+        <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
+    </a>
+
+    <!-- Título -->
+    <span class="navbar-brand ml-3 text-left">Perfil</span>
+
+    <!-- Entry points -->
+    <div th:include="'entry-points'"></div>
+</nav>
+
+<main role="main" class="container">
+    <div class="card-deck shadow-sm">
+        <div class="card">
+                <img class="card-img-top" th:src="${publicacionData.imagen != null} ? 'data:image/jpeg;base64,' + ${publicacionData.imagen} : '/spring/img/sin-imagen.jpg'" alt="Foto publicacion">
+            <div class="card-body">
+                <!-- Verificamos el tipo de publicacion, para ver sus atributos -->
+                <h1 class="card-text font-monospace" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).BUSCADO_POR_DUENIO}">
+                    Perdi mi mascota
+                </h1>
+                <h1 class="card-text font-monospace" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).BUSCANDO_AL_DUENIO}">
+                    Busco al dueño
+                </h1>
+                <h1 class="card-text font-monospace" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).DONACION}">
+                    Solicito donación
+                </h1>
+                <h1 class="card-title font-monospace" th:if="${historia} and ${historia.getTitular() != null}"
+                    th:text="${historia.getTitular()}">
+                </h1>
+                <h3 class="card-text fw-normal" th:text="${publicacionData.getDescripcion()}"></h3>
+                <h4 class="card-text fs-5 text-primary fw-normal" th:if="${donacion} and ${donacion.getMontoACubrir() != null}" th:text="'Monto a cubrir: $ ' + ${donacion.getMontoACubrir()}"></h4>
+                <h4 class="card-text fs-5 text-primary fw-normal" th:if="${donacion} and ${donacion.getRecaudacion() != null}" th:text="'Monto recaudado: $ ' + ${donacion.getRecaudacion()}"></h4>
+                <h4 class="card-text fs-5 text-primary fw-normal" th:if="${perdido} and ${perdido.getDireccion() != null}" th:text="'Visto por última vez: ' + ${perdido.getDireccion()}"></h4>
+                <h4 class="card-text fs-5 text-primary fw-normal" th:if="${perdido} and ${perdido.getNombreContacto() != null}" th:text="'Persona de contacto: ' + ${perdido.getNombreContacto()}"></h4>
+                <h4 class="card-text fs-5 text-primary fw-normal" th:if="${perdido} and ${perdido.getTelefonoContacto() != null}" th:text="'Teléfono de contacto: ' + ${perdido.getTelefonoContacto()}"></h4>
+                <h5 class="card-text fs-6 text-secondary fw-normal" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).HISTORIA}">Historia</h5>
+                <br>
+                <!-- En comun para todos los tipos -->
+                <h5 class="card-text fs-6 text-secondary fw-normal">Nombre: <span class="text-primary" th:text="${publicacionData.getNombreMascota() != null ? publicacionData.getNombreMascota() : 'No se especifico'}"></span></h5>
+                <h5 class="card-text fs-6 text-secondary fw-normal">Color: <span class="text-primary" th:text="${publicacionData.getMascotaColor() != null ? publicacionData.getMascotaColor() : 'No se especifico'}"></span></h5>
+                <h5 class="card-text fs-6 text-secondary fw-normal">Raza: <span class="text-primary" th:text="${publicacionData.getMascotaRaza() != null ? publicacionData.getMascotaRaza() : 'No se especifico'}"></span></h5>
+                <h5 class="card-text fs-6 text-secondary fw-normal">Zona: <span class="text-primary" th:text="${publicacionData.getZona()}"></span></h5>
+                <p class="card-text text-end"><small class="text-muted fst-italic">Publicado el <span th:text="${publicacionData.getFechaPublicacion()}"></span></small></p>
+                <div class="container-btn text-center">
+                    <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-secondary">Volver</a>
+                    <button type="button" class="btn btn-outline-success" th:onclick="mostrarMensaje()">Contactar</button>
+                    <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
+                    <button type="button" class="btn btn-outline-secondary" th:onclick="mostrarMensaje()">Comentar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Bootstrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

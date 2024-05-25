@@ -32,4 +32,27 @@ public class PublicacionPerdido extends Publicacion{
 
     }
 
+    public Long getTelefonoContacto() {
+        return telefonoContacto;
+    }
+
+    public void setTelefonoContacto(Long telefonoContacto) {
+        this.telefonoContacto = telefonoContacto;
+    }
+
+    public String getNombreContacto() {
+        return nombreContacto;
+    }
+
+    public void setNombreContacto(String nombreContacto) {
+        this.nombreContacto = nombreContacto;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 }

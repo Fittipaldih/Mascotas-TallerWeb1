@@ -44,9 +44,9 @@
                                 <button type="button" class="btn btn-outline-success" th:onclick="mostrarMensaje()">Contactar</button>
                                 <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
                                 <button type="button" class="btn btn-outline-secondary" th:onclick="mostrarMensaje()">Comentar</button>
-                                <form th:action="@{/perfil-mascota/}" method="get">
-                                    <input type="hidden" name="id" th:value="1">
-                                    <button type="submit" class="btn btn-outline-dark">Ver perfil</button>
+                                <form th:action="@{/detalle-publicacion/}" method="get">
+                                    <input type="hidden" name="id" th:value="${publicacion.getIdPublicacion()}">
+                                    <button type="submit" class="btn btn-outline-dark">Ir a la publicacion</button>
                                 </form>
                             </div>
                         </div>
