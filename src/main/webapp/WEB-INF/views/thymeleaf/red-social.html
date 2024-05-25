@@ -41,12 +41,9 @@
                             <p class="card-text"><small class="text-muted">Nombre: <span th:text="${publicacion.nombreMascota}"></span></small></p>
                             <!--<p class="card-text" th:if="${publicacion.mascotaColor}"><small class="text-muted">Color: <span th:text="${publicacion.mascotaColor}"></span></small></p>
                             --><div class="container-btn">
-                                <button type="button" class="btn btn-outline-success" th:onclick="mostrarMensaje()">Contactar</button>
-                                <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
-                                <button type="button" class="btn btn-outline-secondary" th:onclick="mostrarMensaje()">Comentar</button>
                                 <form th:action="@{/detalle-publicacion/}" method="get">
                                     <input type="hidden" name="id" th:value="${publicacion.getIdPublicacion()}">
-                                    <button type="submit" class="btn btn-outline-dark">Ir a la publicacion</button>
+                                    <button type="submit" class="btn btn-outline-dark">Ver publicacion</button>
                                 </form>
                             </div>
                         </div>
