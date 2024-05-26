@@ -9,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Collections;
+
 @Controller
 @Transactional
 public class ControladorDetallePublicacion {
@@ -21,6 +23,7 @@ public class ControladorDetallePublicacion {
         ModelMap model = new ModelMap();
         try {
             Publicacion publicacion = servicioDetallePublicacion.getPublicacion(id);
+            Collections.reverse(publicacion.getComentarios());
             model.put("publicacionData", publicacion);
 
             if (publicacion instanceof PublicacionHistoria) {
