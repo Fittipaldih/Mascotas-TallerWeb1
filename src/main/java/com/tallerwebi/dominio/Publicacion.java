@@ -3,6 +3,7 @@ package com.tallerwebi.dominio;
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Date;
 
@@ -142,4 +143,19 @@ public abstract class Publicacion {
         this.imagen = imagen;
     }
 
+    @Override
+    public String toString() {
+        return "Publicacion{" +
+                "idPublicacion=" + idPublicacion +
+                ", tipoPublicacion=" + tipoPublicacion +
+                ", fechaPublicacion='" + fechaPublicacion + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", nombreMascota='" + nombreMascota + '\'' +
+                ", zona=" + zona +
+                ", mascotaColor=" + mascotaColor +
+                ", mascotaRaza=" + mascotaRaza +
+                ", imagen=" + Arrays.toString(imagen) +
+                ", comentarios=" + comentarios +
+                '}';
+    }
 }

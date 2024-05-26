@@ -1,5 +1,7 @@
 package com.tallerwebi.dominio;
 
+import org.springframework.core.style.ToStringCreator;
+
 import javax.persistence.Entity;
 
 @Entity
@@ -27,5 +29,12 @@ public class PublicacionHistoria extends Publicacion{
     }
     public void setTitular(String titular) {
         this.titular = titular;
+    }
+
+    @Override
+    public String toString() {
+        return "PublicacionHistoria{" +
+                "titular='" + titular + '\'' +
+                '}';
     }
 }

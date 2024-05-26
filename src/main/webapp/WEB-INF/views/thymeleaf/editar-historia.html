@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Red social Mascotera</title>
+    <!-- Bootstrap core css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/red-social.css}"/>
+    <link rel="stylesheet" th:href="@{/css/publicar.css}"/>
+</head>
+<body>
+<div class="background-container"></div>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <!-- Logo  -->
+    <a class="nav-link" href="home">
+        <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
+    </a>
+    <!-- Título -->
+    <span class="navbar-brand ml-3 text-left">Publicar Historia</span>
+    <!-- Entry points -->
+    <div th:include="'entry-points'"></div>
+</nav>
+<main role="main" class="container">
+    <h1>Historia a editar</h1>
+
+    <div class="card-deck">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <!--<img class="card-img-top" th:src="'data:image/jpeg;base64,' + ${publicacion.imagen}" alt="Card image cap">-->
+                    <img class="card-img-top" th:src="${publicacionBuscada.imagen}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${publicacionBuscada.tipoPublicacion}"></h5>
+                        <p class="card-text" th:text="${publicacionBuscada.descripcion}"></p>
+                        <p class="card-text"><small class="text-muted">Publicado el: <span th:text="${publicacionBuscada.fechaPublicacion}"></span></small></p>
+                        <p class="card-text"><small class="text-muted">Zona: <span th:text="${publicacionBuscada.zona}"></span></small></p>
+                        <p class="card-text"><small class="text-muted">Nombre: <span th:text="${publicacionBuscada.nombreMascota}"></span></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form th:action="@{/editar-historia}" method="post" enctype="multipart/form-data" class="form-group" accept-charset="UTF-8">
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <input type="hidden" name="idPublicacion" th:value="${publicacionBuscada.idPublicacion}">
+
+                <label for="titular">Titulo de la historia</label>
+                <input type="text" id="titular" name="titular" class="form-control" required placeholder="Escribe un titulo original..." th:value="${publicacionBuscada.titular}"><br>
+
+                <label for="nombre">Nombre de la mascota</label>
+                <input type="text" maxlength="100" id="nombre" name="nombre" class="form-control" placeholder="Peludito" required th:value="${publicacionBuscada.nombreMascota}"><br>
+
+                <label for="zona">Zona donde ocurre/ocurrió</label>
+                <select id="zona" name="zona" class="form-control">
+                    <option value="">Seleccionar para mayor visibilidad</option>
+                    <option value="NORTE" th:selected="${publicacionBuscada.zona == 'NORTE'}">Norte</option>
+                    <option value="SUR" th:selected="${publicacionBuscada.zona == 'SUR'}">Sur</option>
+                    <option value="OESTE" th:selected="${publicacionBuscada.zona == 'OESTE'}">Oeste</option>
+                    <option value="CABA" th:selected="${publicacionBuscada.zona == 'CABA'}">CABA</option>
+                </select><br>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="descripcion">Descripción de la historia</label><br>
+                <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="Ej: Fue muy divertido ..."></textarea><br>
+
+                <label for="imagen">Foto de la Mascota</label>
+                <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <a href="http://localhost:8080/spring/perdidos" class="btn btn-secondary">Volver</a>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="submit" class="btn btn-primary">Publicar</button>
+            </div>
+        </div>
+    </form>
+</main>
+<!-- Bootstrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

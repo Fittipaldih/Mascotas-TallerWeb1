@@ -45,4 +45,25 @@ public class ServicioRedSocialImpl implements ServicioRedSocial {
         return this.repositorioPublicacion.getPublicacionesPorTipoPublicacion(PublicacionTipo.HISTORIA);
     }
 
+    @Override
+    public String getSeccionEditar(PublicacionTipo publicacionTipo) {
+        String seccionEditar = "";
+        switch (publicacionTipo) {
+           case HISTORIA:
+               seccionEditar = "historia";
+               break;
+           case DONACION:
+               seccionEditar= "donacion";
+               break;
+           case BUSCADO_POR_DUENIO:
+               seccionEditar= "perdido";
+        }
+        return seccionEditar;
+    }
+
+    @Override
+    public Publicacion getPublicacionPorId(Long idPublicacion) {
+      return  this.repositorioPublicacion.getPublicacionPorId(idPublicacion);
+    }
+
 }

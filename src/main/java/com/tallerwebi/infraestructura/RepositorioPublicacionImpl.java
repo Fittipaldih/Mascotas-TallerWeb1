@@ -12,7 +12,8 @@ import java.util.List;
 @Repository
 public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 
-     SessionFactory sessionFactory;
+    @Autowired
+    private SessionFactory sessionFactory;
 
     @Autowired
     public RepositorioPublicacionImpl(SessionFactory sessionFactory) {
@@ -71,6 +72,25 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     @Override
     public Publicacion getPublicacionPorId(Long id) {
         return this.sessionFactory.getCurrentSession().get(Publicacion.class, id);
+    }
+
+    @Override
+    public void editarHistoria(Long idPublicacion, String titular, String nombreMascota, Zona zona, String descripcion, byte[] imagenBytes) {
+        String hql = "UPDATE PublicacionHistoria p SET p.descripcion = :descripcion, " +
+                "p.zona = :zona, " +
+                "p.imagen = :imagenBytes, " +
+                "p.nombreMascota = :nombreMascota, " +
+                "p.titular = :titular " +
+                "WHERE p.idPublicacion = :idPublicacion";
+
+        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("descripcion", descripcion);
+        query.setParameter("zona", zona);
+        query.setParameter("imagenBytes", imagenBytes);
+        query.setParameter("nombreMascota", nombreMascota);
+        query.setParameter("titular", titular);
+        query.setParameter("idPublicacion", idPublicacion);
+        query.executeUpdate();
     }
 
 

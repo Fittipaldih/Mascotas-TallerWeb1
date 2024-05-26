@@ -21,6 +21,8 @@ public interface RepositorioPublicacion {
     void eliminarPublicacion(Publicacion publicacion);
 
     Publicacion getPublicacionPorId(Long id);
+
+    void editarHistoria(Long idPublicacion, String titular, String nombreMascota, Zona zona, String descripcion, byte[] imagenBytes);
 /*
    void nuevaPublicacion(String nombre, String foto, String descripcion, Zona zona, MascotaTipo tipoMascota, MascotaRaza raza, MascotaColor color, Usuario usuario, MascotaEstado estado, PublicacionTipo tipoPublicacion);
 

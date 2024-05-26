@@ -24,6 +24,7 @@
     <div th:include="'entry-points'"></div>
 </nav>
 <h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
+<h2 th:if="${error}" class="alert alert-warning" th:text="${error}"></h2>
 <main role="main" class="container">
     <section class="todas-publicaciones">
         <!-- Aca van las publicaciones -->
@@ -43,6 +44,12 @@
                                 <form th:action="@{/detalle-publicacion/}" method="get">
                                     <input type="hidden" name="id" th:value="${publicacion.getIdPublicacion()}">
                                     <button type="submit" class="btn btn-outline-dark">Ver publicacion</button>
+                                </form>
+
+                                <form th:action="@{/editar-publicacion}" method="get">
+                                    <input type="hidden" name="idPublicacion" th:value="${publicacion.getIdPublicacion()}">
+                                    <input type="hidden" name="tipoPublicacion" th:value="${publicacion.getTipoPublicacion()}">
+                                    <button type="submit" class="btn btn-outline-dark"><img src="/spring/img/edit-option.svg"></button>
                                 </form>
                             </div>
                         </div>
