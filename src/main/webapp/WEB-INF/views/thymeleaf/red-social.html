@@ -39,8 +39,7 @@
                             <p class="card-text"><small class="text-muted">Publicado el: <span th:text="${publicacion.fechaPublicacion}"></span></small></p>
                             <p class="card-text"><small class="text-muted">Zona: <span th:text="${publicacion.zona}"></span></small></p>
                             <p class="card-text"><small class="text-muted">Nombre: <span th:text="${publicacion.nombreMascota}"></span></small></p>
-                            <!--<p class="card-text" th:if="${publicacion.mascotaColor}"><small class="text-muted">Color: <span th:text="${publicacion.mascotaColor}"></span></small></p>
-                            --><div class="container-btn">
+                            <div class="container-btn">
                                 <form th:action="@{/detalle-publicacion/}" method="get">
                                     <input type="hidden" name="id" th:value="${publicacion.getIdPublicacion()}">
                                     <button type="submit" class="btn btn-outline-dark">Ver publicacion</button>

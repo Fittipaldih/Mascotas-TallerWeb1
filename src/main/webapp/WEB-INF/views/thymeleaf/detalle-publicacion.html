@@ -33,6 +33,7 @@
 </nav>
 
 <main role="main" class="container">
+    <h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
     <div class="card-deck shadow-sm">
         <div class="card">
                 <img class="card-img-top" th:src="${publicacionData.imagen != null} ? 'data:image/jpeg;base64,' + ${publicacionData.imagen} : '/spring/img/sin-imagen.jpg'" alt="Foto publicacion">
@@ -68,10 +69,35 @@
                     <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-secondary">Volver</a>
                     <button type="button" class="btn btn-outline-success" th:onclick="mostrarMensaje()">Contactar</button>
                     <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
-                    <button type="button" class="btn btn-outline-secondary" th:onclick="mostrarMensaje()">Comentar</button>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="card-footer">
+            <form th:action="@{/comentarPublicacion/}" method="POST">
+                <input type="hidden" name="idPublicacion" th:value="${publicacionData.getIdPublicacion()}">
+                <label class="card-text fs-5 text-primary fw-normal" for="textoDelComentario">Realizar comentario</label>
+                <br>
+                <textarea id="textoDelComentario" maxlength="250" name="textoDelComentario" rows="5" cols="50" required class="form-control" placeholder="Escribe tu comentario aquí..."></textarea>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-dark">Comentar</button>
+                </div>
+
+            </form>
+        </div>
+        <br>
+        <div class="fw-normal text-start">
+            <h4 class="card-text fs-5 text-primary fw-normal">Comentarios:</h4>
+            <div th:each="comentario : ${publicacionData.comentarios}">
+                <div class="card-text">
+                    <p th:text="${comentario.getId() +' '+ comentario.contenido }"></p>
                 </div>
             </div>
         </div>
+        <br>
+        <br>
+
     </div>
 </main>
 <!-- Bootstrap core js -->

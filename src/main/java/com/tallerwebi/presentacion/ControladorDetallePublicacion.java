@@ -1,9 +1,6 @@
 package com.tallerwebi.presentacion;
 
-import com.tallerwebi.dominio.Publicacion;
-import com.tallerwebi.dominio.PublicacionDonacion;
-import com.tallerwebi.dominio.PublicacionHistoria;
-import com.tallerwebi.dominio.PublicacionPerdido;
+import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.servicios.ServicioDetallePublicacionImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,6 +40,20 @@ public class ControladorDetallePublicacion {
             return new ModelAndView("home", model);
         }
     }
+
+    @RequestMapping(value = "/comentarPublicacion", method = RequestMethod.POST)
+    public String realizarComentario(@RequestParam(value = "idPublicacion") Long idPublicacion,
+                                     @RequestParam(value = "textoDelComentario") String textoDelComentario
+    ) {
+        try {
+            servicioDetallePublicacion.hacerComentario(textoDelComentario, idPublicacion);
+            return "redirect:/detalle-publicacion?id=" + idPublicacion;
+
+        } catch (Exception e) {
+            return "redirect:/detalle-publicacion?id=" + idPublicacion;
+        }
+    }
+
 
 }
 

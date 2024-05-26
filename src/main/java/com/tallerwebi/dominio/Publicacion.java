@@ -2,7 +2,10 @@ package com.tallerwebi.dominio;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
+
 
 @Entity
 public abstract class Publicacion {
@@ -27,6 +30,9 @@ public abstract class Publicacion {
 
     @Lob
     private byte[] imagen;
+
+    @OneToMany(mappedBy = "publicacion")
+    private List<Comentario> comentarios = new ArrayList<>();
 
     // Perdido
     public Publicacion( String nombreMascota, PublicacionTipo tipoPublicacion, Zona zona, MascotaColor colorPelo, String descripcion, MascotaRaza mascotaRaza, byte[] imagen) {
@@ -58,6 +64,14 @@ public abstract class Publicacion {
         String formattedDate = dateFormat.format(new Date(timestamp));
 
         return formattedDate;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
     public Long getIdPublicacion() {
@@ -127,6 +141,5 @@ public abstract class Publicacion {
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
-
 
 }
