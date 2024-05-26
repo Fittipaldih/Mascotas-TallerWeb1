@@ -10,3 +10,18 @@
     background-repeat: no-repeat;
     z-index: -1;
 }
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 0.5rem 0;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+.nav-link {
+    margin-right: 1rem;
+}
+h1, h2, h4 {
+    font-family: 'Roboto', sans-serif !important;
+}

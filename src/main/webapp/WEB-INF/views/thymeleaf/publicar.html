@@ -3,16 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Red social Mascotera</title>
+    <title>Publicar - Red Social Mascotera</title>
     <!-- Bootstrap core css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <!-- Custom style -->
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <link rel="stylesheet" th:href="@{/css/red-social.css}"/>
     <link rel="stylesheet" th:href="@{/css/publicar.css}"/>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <div class="background-container"></div>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <!-- Logo  -->
@@ -24,21 +23,52 @@
     <!-- Entry points -->
     <div th:include="'entry-points'"></div>
 </nav>
-<main role="main" class="container">
-    <section>
-        <h1>Quiero hacer una<br>publicación acerca<br>de...</h1>
-        <br>
-        <br>
-        <a href="red-social" class="btn btn-primary btn-sm m-1">Volver a Red Social</a>
-    </section>
-    <section>
-        <a href="publicarPerdido" class="btn btn-primary btn-lg m-2">Mascota<br>Perdida</a>
-        <a href="publicarHistoria" class="btn btn-primary btn-lg m-2">Nueva<br>historia</a>
-        <a href="publicarDonacion" class="btn btn-primary btn-lg m-2">Solicitar<br>donación</a>
-    </section>
+<main role="main" class="container flex-grow-1 d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="text-container">
+                    <h2 th:if="${mensaje}" class="card-title alert alert-warning" th:text="${mensaje}"></h2>
+                    <h1 class="text-left fs-1 fw-bold display-1">Quiero publicar acerca de...</h1>
+                    <br>
+                    <div class="button-container d-flex justify-content-around">
+                        <div class="d-flex flex-column align-items-center m-2">
+                            <img src="/spring/img/icono-mascota-perdida.png" alt="Lupita" class="icon-img"> <!-- Placeholder for icon -->
+                            <a href="publicarPerdido" class="btn btn-primary btn-lg m-2">Mascota<br>Perdida</a>
+                        </div>
+                        <div class="d-flex flex-column align-items-center m-2">
+                            <img src="/spring/img/icono-nueva-historia.png" alt="Megáfono" class="icon-img"> <!-- Placeholder for icon -->
+                            <a href="publicarHistoria" class="btn btn-secondary btn-lg m-2">Nueva<br>Historia</a>
+                        </div>
+                        <div class="d-flex flex-column align-items-center m-2">
+                            <img src="/spring/img/icono-solicitar-donacion.png" alt="Caja con Corazón" class="icon-img"> <!-- Placeholder for icon -->
+                            <a href="publicarDonacion" class="btn btn-primary btn-lg m-2">Solicitar<br>Donación</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="latest-publications-container">
+                    <h3 class="fw-bold">Últimas publicaciones</h3>
+                    <div class="publication">
+                        <i class="bi bi-link-45deg"></i>
+                        <a href="red-social.html">HISTORIA - Encontramos peluquería y quería...</a>
+                    </div>
+                    <div class="publication fs-6">
+                        <i class="bi bi-link-45deg"></i>
+                        <a href="red-social.html"><i class="bi bi-link-45deg"></i>DONACIÓN - Necesitamos ayuda para operar...</a>
+                    </div>
+                    <div class="publication">
+                        <i class="bi bi-link-45deg"></i>
+                        <a href="red-social.html">PERDIDO - Estamos buscando a Tito, se perdió...</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
-<h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
-<h2 th:if="${error}" class="alert alert-warning" th:text="${error}"></h2>
+<!-- Footer -->
+<div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
 <!-- Bootstrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>
