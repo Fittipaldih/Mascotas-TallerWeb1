@@ -1,12 +1,16 @@
 package com.tallerwebi.dominio.servicios;
 
+import com.tallerwebi.dominio.Comentario;
 import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.excepcion.MascotaNoEncontrada;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioComentario;
+import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ServicioDetallePublicacionImpl implements ServicioDetallePublicacion {
@@ -15,6 +19,9 @@ public class ServicioDetallePublicacionImpl implements ServicioDetallePublicacio
     private RepositorioPublicacion repositorioPublicacion;
     @Autowired
     private RepositorioComentario repositorioComentario;
+
+    @Autowired
+    private RepositorioPublicacionImpl repositorioPublicacionImpl;
 
     public ServicioDetallePublicacionImpl(RepositorioPublicacion repositorioPublicacion, RepositorioComentario repositorioComentario) {
         this.repositorioPublicacion = repositorioPublicacion;
@@ -29,6 +36,21 @@ public class ServicioDetallePublicacionImpl implements ServicioDetallePublicacio
         }
         Hibernate.initialize(publicacion.getComentarios());
         return publicacion;
+    }
+
+    @Override
+    public void eliminarPublicacion(Long idPublicacion) {
+        eliminarComentariosAsociados(idPublicacion);
+        this.repositorioPublicacionImpl.eliminarPublicacionPorId(idPublicacion);
+
+    }
+
+    private void eliminarComentariosAsociados(Long idPublicacion) {
+        Publicacion publicacion = this.repositorioPublicacionImpl.getPublicacionPorId(idPublicacion);
+        List<Comentario> comentarios =  publicacion.getComentarios();
+        for (Comentario comentario : comentarios) {
+            this.repositorioPublicacionImpl.eliminarComentarioPorId(comentario.getId());
+        }
     }
 
     public void hacerComentario(String textoDelComentario, Long idPublicacion) throws Exception {

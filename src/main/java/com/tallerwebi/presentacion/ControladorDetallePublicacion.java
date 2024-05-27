@@ -2,14 +2,18 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.servicios.ServicioDetallePublicacionImpl;
+import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
+import com.tallerwebi.dominio.servicios.ServicioRedSocialImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collections;
+import java.util.List;
 
 @Controller
 @Transactional
@@ -17,6 +21,10 @@ public class ControladorDetallePublicacion {
 
     @Autowired
     private ServicioDetallePublicacionImpl servicioDetallePublicacion;
+    @Autowired
+    ServicioRedSocialImpl servicioRedSocial;
+    @Autowired
+    ServicioPublicacionConversion publicacionConversionService;
 
     @RequestMapping(value = "/detalle-publicacion", method = RequestMethod.GET)
     public ModelAndView mostrarDetallePublicacion(@RequestParam Long id){
@@ -56,7 +64,25 @@ public class ControladorDetallePublicacion {
             return "redirect:/detalle-publicacion?id=" + idPublicacion;
         }
     }
+    @RequestMapping(value = "/eliminar-publicacion", method = RequestMethod.POST)
+    public ModelAndView eliminarPublicacion( @RequestParam(value = "idPublicacion") Long idPublicacion) {
+        ModelMap modelMap = new ModelMap();
+        try {
 
+            servicioDetallePublicacion.eliminarPublicacion(idPublicacion);
+
+
+            List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
+            Collections.reverse(todasLasPublicaciones);
+            List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(todasLasPublicaciones);
+            modelMap.put("todasLasPublicaciones", todasLasPublicacionesDTO);
+            modelMap.put("mensaje", "¡La publicacion ha sido eliminada con exito!");
+            return new ModelAndView("red-social", modelMap);
+        } catch (Exception e) {
+            modelMap.put("error", "Error al eliminar la publicacion. Intentá nuevamente.");
+            return new ModelAndView("red-social", modelMap);
+        }
+    }
 
 }
 

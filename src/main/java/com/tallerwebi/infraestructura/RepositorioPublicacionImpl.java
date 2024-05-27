@@ -70,6 +70,24 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
     }
 
     @Override
+    public void eliminarPublicacionPorId(Long id) {
+        String hql = "DELETE FROM Publicacion p WHERE p.id = :id";
+
+        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("id", id);
+        query.executeUpdate();
+    }
+
+    @Override
+    public void eliminarComentarioPorId(Long id) {
+        String hql = "DELETE FROM Comentario c WHERE c.id = :id";
+
+        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("id", id);
+        query.executeUpdate();
+    }
+
+    @Override
     public Publicacion getPublicacionPorId(Long id) {
         return this.sessionFactory.getCurrentSession().get(Publicacion.class, id);
     }

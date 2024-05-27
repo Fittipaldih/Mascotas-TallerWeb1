@@ -20,6 +20,10 @@ public interface RepositorioPublicacion {
 
     void eliminarPublicacion(Publicacion publicacion);
 
+    void eliminarPublicacionPorId(Long id);
+
+    void eliminarComentarioPorId(Long id);
+
     Publicacion getPublicacionPorId(Long id);
 
     void editarHistoria(Long idPublicacion, String titular, String nombreMascota, Zona zona, String descripcion, byte[] imagenBytes);

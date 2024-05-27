@@ -69,6 +69,12 @@
                     <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-secondary">Volver</a>
                     <button type="button" class="btn btn-outline-success" th:onclick="mostrarMensaje()">Contactar</button>
                     <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
+
+                    <form th:action="@{/eliminar-publicacion}" method="post">
+                        <input type="hidden" name="idPublicacion" th:value="${publicacionData.getIdPublicacion()}">
+                        <button type="submit" class="btn btn-outline-dark">Eliminar</button>
+                    </form>
+
                 </div>
             </div>
 
