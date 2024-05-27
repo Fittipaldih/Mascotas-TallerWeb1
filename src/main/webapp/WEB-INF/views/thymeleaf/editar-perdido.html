@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Red social Mascotera</title>
+    <!-- Bootstrap core css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/red-social.css}"/>
+    <link rel="stylesheet" th:href="@{/css/publicar.css}"/>
+</head>
+<body>
+<div class="background-container"></div>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <!-- Logo  -->
+    <a class="nav-link" href="home">
+        <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
+    </a>
+    <!-- Título -->
+    <span class="navbar-brand ml-3 text-left">Editar Perdido</span>
+    <!-- Entry points -->
+    <div th:include="'entry-points'"></div>
+</nav>
+<main role="main" class="container editar-perdido" style="display: flex; flex-direction: column">
+    <h1>Publicacion a editar</h1>
+
+    <div class="card-deck" style="width: 100%;">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <!--<img class="card-img-top" th:src="'data:image/jpeg;base64,' + ${publicacion.imagen}" alt="Card image cap">-->
+                    <img class="card-img-top" th:src="${publicacionBuscada.imagen}" alt="Card image cap">
+                    <div class="card-body">
+<!--                        <h5 class="card-title" th:text="${publicacionBuscada.tipoPublicacion}"></h5>-->
+                        <h1 class="card-text font-monospace" th:if="${publicacionBuscada.tipoPublicacion == T(com.tallerwebi.dominio.PublicacionTipo).BUSCADO_POR_DUENIO}">
+                            Perdi mi mascota
+                        </h1>
+                        <h1 class="card-text font-monospace" th:if="${publicacionBuscada.tipoPublicacion == T(com.tallerwebi.dominio.PublicacionTipo).BUSCANDO_AL_DUENIO}">
+                            Busco al dueño
+                        </h1>
+                        <p>Ultima vez visto en:</p>
+                        <h5 class="card-title" th:text="${publicacionBuscada.direccion}"></h5>
+                        <p>Color de la  mascota:</p>
+                        <h5 class="card-title" th:text="${publicacionBuscada.mascotaColor}"></h5>
+                        <p>Raza de la  mascota:</p>
+                        <h5 class="card-title" th:text="${publicacionBuscada.mascotaRaza}"></h5>
+                        <p>Nombre de contacto:</p>
+                        <h5 class="card-title" th:text="${publicacionBuscada.nombreContacto}"></h5>
+                        <p>Telefono de contacto:</p>
+                        <h5 class="card-title" th:text="${publicacionBuscada.telefonoContacto}"></h5>
+                        <p>Descripcion:</p>
+                        <p class="card-text" th:text="${publicacionBuscada.descripcion}"></p>
+                        <p class="card-text"><small class="text-muted">Publicado el: <span th:text="${publicacionBuscada.fechaPublicacion}"></span></small></p>
+                        <p class="card-text"><small class="text-muted">Zona: <span th:text="${publicacionBuscada.zona}"></span></small></p>
+                        <p class="card-text"><small class="text-muted">Nombre: <span th:text="${publicacionBuscada.nombreMascota}"></span></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form th:action="@{/editar-perdido}" method="post" enctype="multipart/form-data" class="form-group" ACCEPT-CHARSET="UTF-8">
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <input type="hidden" name="idPublicacion" th:value="${publicacionBuscada.idPublicacion}">
+
+                <label for="tipoPublicacion">Tipo de publicación</label>
+                <select id="tipoPublicacion" name="tipoPublicacion" required class="form-control">
+                    <option value="">Seleccionar</option>
+                    <option value="BUSCADO_POR_DUENIO" th:selected="${publicacionBuscada.tipoPublicacion == 'BUSCADO_POR_DUENIO'}">Perdí mi mascota</option>
+                    <option value="BUSCANDO_AL_DUENIO" th:selected="${publicacionBuscada.tipoPublicacion == 'BUSCANDO_AL_DUENIO'}">Busco al dueño</option>
+                </select>
+                <br>
+                <label for="nombre">Nombre de la mascota</label>
+                <!-- No es requerido porque en caso de que no tenga chapita y lo encontramos no sabemos su nombre-->
+                <input type="text" maxlength="100" id="nombre" name="nombre" class="form-control" placeholder="Peludito" th:value="${publicacionBuscada.nombreMascota}">
+                <br>
+                <label for="direccion">Visto por última vez en</label>
+                <input type="text" maxlength="150" id="direccion" name="direccion" required class="form-control" placeholder="Completar dirección" th:value="${publicacionBuscada.direccion}">
+                <br>
+
+                <label for="zona">Zona donde se perdió</label>
+                <select id="zona" name="zona" class="form-control">
+                    <option value="">Seleccionar para mayor visibilidad</option>
+                    <option value="NORTE" th:selected="${publicacionBuscada.zona == 'NORTE'}">Norte</option>
+                    <option value="SUR" th:selected="${publicacionBuscada.zona == 'SUR'}">Sur</option>
+                    <option value="OESTE" th:selected="${publicacionBuscada.zona == 'OESTE'}">Oeste</option>
+                    <option value="CABA" th:selected="${publicacionBuscada.zona == 'CABA'}">CABA</option>
+                </select>
+                <br>
+
+                <label for="mascotaColor">Color de pelo</label>
+                <select id="mascotaColor" name="mascotaColor" required class="form-control">
+                    <option value="">Seleccionar</option>
+                    <option value="BLANCO" th:selected="${publicacionBuscada.mascotaColor == 'BLANCO'}">Blanco</option>
+                    <option value="GRIS" th:selected="${publicacionBuscada.mascotaColor == 'GRIS'}">Gris</option>
+                    <option value="NEGRO" th:selected="${publicacionBuscada.mascotaColor == 'NEGRO'}">Negro</option>
+                    <option value="MARRON" th:selected="${publicacionBuscada.mascotaColor == 'MARRON'}">Marrón</option>
+                    <option value="DORADO" th:selected="${publicacionBuscada.mascotaColor == 'DORADO'}">Dorado</option>
+                    <option value="OTRO" th:selected="${publicacionBuscada.mascotaColor == 'OTRO'}">Otro</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 form-group">
+                <label for="descripcion">Descripción de la Mascota</label><br>
+                <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="Ej: Lleva un collar ..."></textarea><br>
+
+                <label for="mascotaRaza">Raza</label>
+                <select id="mascotaRaza" name="mascotaRaza" required class="form-control">
+                    <option value="">Seleccionar</option>
+                    <option value="MESTIZO">Mestizo</option>
+                    <option value="GOLDEN">Golden Retriever</option>
+                    <option value="LABRADOR">Labrador Retriever</option>
+                    <option value="PASTOR_ALEMAN">Pastor Alemán</option>
+                    <option value="BEAGLE">Beagle</option>
+                    <option value="BULLDOG">Bulldog</option>
+                    <option value="BOXER">Boxer</option>
+                    <option value="CHIHUAHUA">Chihuahua</option>
+                    <option value="COCKER">Cocker Spaniel</option>
+                    <option value="ROTTWEILER">Rottweiler</option>
+                    <option value="SALCHICHA">Salchicha (Dachshund)</option>
+                    <option value="ABISINIO">Abisinio</option>
+                    <option value="BENGALI">Bengalí</option>
+                    <option value="BRITISH">British Shorthair</option>
+                    <option value="ESFINGE">Esfinge</option>
+                    <option value="MAINE_COON">Maine Coon</option>
+                    <option value="PERSA">Persa</option>
+                    <option value="RAGDOLL">Ragdoll</option>
+                    <option value="RUSSIAN_BLUE">Russian Blue</option>
+                    <option value="SAVANNAH">Savannah</option>
+                    <option value="SIAMES">Siamés</option>
+                </select>
+                <br>
+                <label for="nombreContacto">Persona de contacto</label>
+                <input type="text" id="nombreContacto" name="nombreContacto" required class="form-control" placeholder="Completar nombre" th:value="${publicacionBuscada.nombreContacto}">
+                <br>
+                <label for="telefonoContacto">Número de contacto</label>
+                <input onchange="validateTelefono(this)" type="number" id="telefonoContacto" name="telefonoContacto" required class="form-control" placeholder="Completar telefono" th:value="${publicacionBuscada.telefonoContacto}">
+            </div>
+            <label for="imagen">Foto de la Mascota</label>
+            <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <a href="http://localhost:8080/spring/red-social" class="btn btn-secondary">Volver</a>
+            </div>
+
+            <div class="col-md-6 text-right">
+                <button type="submit" class="btn btn-primary">Publicar</button>
+            </div>
+        </div>
+    </form>
+</main>
+<!-- Bootstrap core js -->
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -46,7 +46,7 @@ public class ControladorRedSocial {
         Publicacion publicacionBuscada =  this.servicioRedSocial.getPublicacionPorId(idPublicacion);
 
         model.addAttribute("publicacionBuscada", publicacionBuscada);
-        model.put("mensaje", "Debe ser algo asi");
+//        model.put("mensaje", "Debe ser algo asi");
 
         return new ModelAndView("editar-" + seccionEditar,model);
     }
