@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Red social Mascotera</title>
     <!-- Bootstrap core css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <!-- Custom style -->
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/red-social.css}"/>
+    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
 </head>
 <body>
 <div class="background-container"></div>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <!-- Logo  -->
     <a class="nav-link" href="home">
         <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
@@ -26,79 +27,84 @@
 <main role="main" class="container">
     <section class="todas-publicaciones">
         <!--mostrar todas las publicaciones-->
-        <div class="card-deck">
-
-            <div class="card">
-                <img class="card-img-top" th:src="@{/img/mascota-01.jpg}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Historia</h5>
-                    <p class="card-text">Estamos buscando al dueño, fue encontrado en Martin Fierro al 1452</p>
-                    <div class="container-btn">
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top" th:src="@{/img/mascota-01.jpg}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Historia</h5>
+                        <p class="card-text">Estamos buscando al dueño, fue encontrado en Martin Fierro al 1452</p>
+                        <div class="container-btn">
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar</button>
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="card">
-                <img class="card-img-top" th:src="@{/img/mascota-02.jpg}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Historia</h5>
-                    <p class="card-text">Apareció!! Muchas Gracias por ayudarme a encontrar a Cleo!!</p>
-                    <div class="container-btn">
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top" th:src="@{/img/mascota-02.jpg}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Historia</h5>
+                        <p class="card-text">Apareció!! Muchas Gracias por ayudarme a encontrar a Cleo!!</p>
+                        <div class="container-btn">
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar</button>
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <img class="card-img-top" th:src="@{/img/mascota-03.jpeg}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Historia</h5>
-                    <p class="card-text">Estamos buscando a Raul! Si lo vieron no duden en contactar</p>
-                    <div class="container-btn">
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Contactar</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Compartir</button>
-                        <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()" >Comentar</button>
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top" th:src="@{/img/mascota-03.jpeg}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Historia</h5>
+                        <p class="card-text">Estamos buscando a Raul! Si lo vieron no duden en contactar</p>
+                        <div class="container-btn">
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar</button>
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
+                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="tipo-publicacion" >
+    <section class="tipo-publicacion">
         <div class="tipo-publicacion2">
             <h1>¿Qué desea hacer?</h1>
             <a class="btn btn-outline-light" href="http://localhost:8080/spring/publicar">Publicar</a>
             <!--<form th:action="@{/historias-f}" method="get">-->
-                <h1>Filtrar por...</h1>
-                <label style="color: white" for="nombre">Nombre de Mascota</label>
-                <input type="number" id="menorA" name="menorA" class="form-control"/>
-                <label style="color: white" for="zona">Zona:</label>
-                <select id="zona" name="zona" class="form-control">
-                    <option value="">Elija una zona</option>
-                    <option value="NORTE">Norte</option>
-                    <option value="SUR">Sur</option>
-                    <option value="OESTE">Oeste</option>
-                    <option value="CABA">Caba</option>
-                </select>
-                <label style="color: white" for="tiempoPublicacion">Fecha publicación</label>
-                <select id="tiempoPublicacion" class="form-control">
-                    <option value="">Elija un tiempo</option>
-                    <option value="DIA">Hace un día</option>
-                    <option value="SEMANA">Hace una semana</option>
-                    <option value="MES">Hace un mes</option>
-                    <option value="ULTIMO_ANIO">Hace mas de un mes</option>
-                </select>
-                <br>
-                <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-light">Volver</a>
-                <button type="submit" class="btn btn-outline-light" th:onclick="mostrarMensaje()">Filtrar</button>
+            <h1>Filtrar por...</h1>
+            <label style="color: white" for="nombre">Nombre de Mascota</label>
+            <input type="number" id="menorA" name="menorA" class="form-control"/>
+            <label style="color: white" for="zona">Zona:</label>
+            <select id="zona" name="zona" class="form-control">
+                <option value="">Elija una zona</option>
+                <option value="NORTE">Norte</option>
+                <option value="SUR">Sur</option>
+                <option value="OESTE">Oeste</option>
+                <option value="CABA">Caba</option>
+            </select>
+            <label style="color: white" for="tiempoPublicacion">Fecha publicación</label>
+            <select id="tiempoPublicacion" class="form-control">
+                <option value="">Elija un tiempo</option>
+                <option value="DIA">Hace un día</option>
+                <option value="SEMANA">Hace una semana</option>
+                <option value="MES">Hace un mes</option>
+                <option value="ULTIMO_ANIO">Hace mas de un mes</option>
+            </select>
+            <br>
+            <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-light">Volver</a>
+            <button type="submit" class="btn btn-outline-light" th:onclick="mostrarMensaje()">Filtrar</button>
             <!--</form>-->
         </div>
     </section>
 </main>
+<div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
 <!-- Bootstrap core js -->
-<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>
