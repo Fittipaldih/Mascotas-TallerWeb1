@@ -3,3 +3,10 @@
     align-items: center;
     padding: 1rem;
 }
+
+.options{
+    display: flex;
+    gap: 5vh;
+    justify-content: space-evenly;
+    width:80%;
+}

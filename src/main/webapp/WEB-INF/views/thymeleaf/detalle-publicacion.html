@@ -65,14 +65,21 @@
                 <h5 class="card-text fs-6 text-secondary fw-normal">Raza: <span class="text-primary" th:text="${publicacionData.getMascotaRaza() != null ? publicacionData.getMascotaRaza() : 'No se especifico'}"></span></h5>
                 <h5 class="card-text fs-6 text-secondary fw-normal">Zona: <span class="text-primary" th:text="${publicacionData.getZona()}"></span></h5>
                 <p class="card-text text-end"><small class="text-muted fst-italic">Publicado el <span th:text="${publicacionData.getFechaPublicacion()}"></span></small></p>
-                <div class="container-btn text-center">
+                <div class="container-btn text-center options">
                     <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-secondary">Volver</a>
                     <button type="button" class="btn btn-outline-success" th:onclick="mostrarMensaje()">Contactar</button>
                     <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
 
                     <form th:action="@{/eliminar-publicacion}" method="post">
                         <input type="hidden" name="idPublicacion" th:value="${publicacionData.getIdPublicacion()}">
-                        <button type="submit" class="btn btn-outline-dark">Eliminar</button>
+                        <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                    </form>
+
+                    <form th:action="@{/editar-publicacion}" method="get">
+                        <input type="hidden" name="idPublicacion" th:value="${publicacionData.getIdPublicacion()}">
+                        <input type="hidden" name="tipoPublicacion" th:value="${publicacionData.getTipoPublicacion()}">
+                        <!--                                    <button type="submit" class="btn btn-outline-dark"><img src="/spring/img/edit-option.svg"></button>-->
+                        <button type="submit" class="btn btn-outline-info">Editar</button>
                     </form>
 
                 </div>
