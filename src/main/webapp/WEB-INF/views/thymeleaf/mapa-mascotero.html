@@ -10,6 +10,7 @@
     <!-- Custom style -->
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/mapa-mascotero.css}"/>
+    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
 </head>
 
 <body>
@@ -26,7 +27,7 @@
 
     <!-- Entry points -->
     <div th:include="'entry-points'"></div>
-
+</nav>
 <main role="main" class="container">
     <section class="todas-publicaciones">
         <div class="card-deck">
@@ -115,7 +116,7 @@
     </section>
 
 </main>
-
+<div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
 <!-- Bootstrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>

@@ -81,3 +81,15 @@ main {
 h1, h2 {
     font-family: 'Roboto', sans-serif;
 }
+.title {
+    margin-top: 7rem;
+    margin-bottom: 2rem;
+}
+.button {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+.btn{
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+}

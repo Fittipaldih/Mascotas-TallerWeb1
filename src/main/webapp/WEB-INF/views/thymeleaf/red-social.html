@@ -10,6 +10,7 @@
     <!-- Custom style -->
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/red-social.css}"/>
+    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
 </head>
 <body>
 <div class="background-container"></div>
@@ -34,7 +35,7 @@
                         <!--<img class="card-img-top" th:src="'data:image/jpeg;base64,' + ${publicacion.imagen}" alt="Card image cap">-->
                         <img class="card-img-top" th:src="${publicacion.imagen != null} ? 'data:image/jpeg;base64,' + ${publicacion.imagen} : '/spring/img/sin-imagen.jpg'" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title" th:text="${publicacion.tipoPublicacion == 'BUSCADO_POR_DUENIO' ? 'PERDIDOS' : publicacion.tipoPublicacion == 'BUSCANDO_AL_DUENIO' ? 'PERDIDOS' : publicacion.tipoPublicacion}"></h5>
+                            <h5 class="card-title" th:text="${publicacion.tipoPublicacion == 'BUSCADO_POR_DUENIO' ? 'PERDIDOS' : (publicacion.tipoPublicacion == 'BUSCANDO_AL_DUENIO' ? 'PERDIDOS' : publicacion.tipoPublicacion)}"></h5>
                             <p class="card-text" th:text="${publicacion.descripcion.length() > 25 ? publicacion.descripcion.substring(0, 25) + '...' : publicacion.descripcion}"></p>
                             <p class="card-text"><small class="text-muted">Publicado el: <span th:text="${publicacion.fechaPublicacion}"></span></small></p>
                             <p class="card-text"><small class="text-muted">Zona: <span th:text="${publicacion.zona}"></span></small></p>
@@ -89,6 +90,7 @@
         </div>
     </section>
 </main>
+<div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
 <!-- Bootstrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>
