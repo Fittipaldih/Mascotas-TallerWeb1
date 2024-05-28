@@ -1,6 +1,7 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.excepcion.PublicacionInexistenteExeption;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,76 +90,86 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 
     @Override
     public Publicacion getPublicacionPorId(Long id) {
-        return this.sessionFactory.getCurrentSession().get(Publicacion.class, id);
+        String hql = "FROM Publicacion P WHERE P.id = :id";
+
+        org.hibernate.query.Query<Publicacion> query = this.sessionFactory.getCurrentSession().createQuery(hql, Publicacion.class);
+        query.setParameter("id", id);
+
+        return query.uniqueResult();
     }
+
+
 
     @Override
     public void editarHistoria(Long idPublicacion, String titular, String nombreMascota, Zona zona, String descripcion, byte[] imagenBytes) {
-        String hql = "UPDATE PublicacionHistoria p SET p.descripcion = :descripcion, " +
-                "p.zona = :zona, " +
-                "p.imagen = :imagenBytes, " +
-                "p.nombreMascota = :nombreMascota, " +
-                "p.titular = :titular " +
-                "WHERE p.idPublicacion = :idPublicacion";
+            String hql = "UPDATE PublicacionHistoria p SET p.descripcion = :descripcion, " +
+                    "p.zona = :zona, " +
+                    "p.imagen = :imagenBytes, " +
+                    "p.nombreMascota = :nombreMascota, " +
+                    "p.titular = :titular " +
+                    "WHERE p.idPublicacion = :idPublicacion";
 
-        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-        query.setParameter("descripcion", descripcion);
-        query.setParameter("zona", zona);
-        query.setParameter("imagenBytes", imagenBytes);
-        query.setParameter("nombreMascota", nombreMascota);
-        query.setParameter("titular", titular);
-        query.setParameter("idPublicacion", idPublicacion);
-        query.executeUpdate();
+            Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+            query.setParameter("descripcion", descripcion);
+            query.setParameter("zona", zona);
+            query.setParameter("imagenBytes", imagenBytes);
+            query.setParameter("nombreMascota", nombreMascota);
+            query.setParameter("titular", titular);
+            query.setParameter("idPublicacion", idPublicacion);
+            query.executeUpdate();
     }
 
     @Override
-    public void editarPerdido(Long idPublicacion, String nombreMascota, Long telefonoContacto, String nombreContacto, MascotaColor mascotaColor, MascotaRaza mascotaRaza, PublicacionTipo tipoPublicacion, Zona zona, String descripcion, String direccion, byte[] imagenBytes) {
-        String hql = "UPDATE PublicacionPerdido p SET p.descripcion = :descripcion, " +
-                "p.zona = :zona, " +
-                "p.imagen = :imagenBytes, " +
-                "p.nombreMascota = :nombreMascota, " +
-                "p.nombreContacto = :nombreContacto, " +
-                "p.telefonoContacto = :telefonoContacto, " +
-                "p.mascotaColor = :mascotaColor, " +
-                "p.mascotaRaza = :mascotaRaza, " +
-                "p.tipoPublicacion = :tipoPublicacion, " +
-                "p.direccion = :direccion " +
-                "WHERE p.idPublicacion = :idPublicacion";
+    public void editarPerdido(Long idPublicacion, String nombreMascota, Long telefonoContacto,
+                              String nombreContacto, MascotaColor mascotaColor, MascotaRaza mascotaRaza,
+                              PublicacionTipo tipoPublicacion, Zona zona, String descripcion,
+                              String direccion, byte[] imagenBytes)  {
+            String hql = "UPDATE PublicacionPerdido p SET p.descripcion = :descripcion, " +
+                    "p.zona = :zona, " +
+                    "p.imagen = :imagenBytes, " +
+                    "p.nombreMascota = :nombreMascota, " +
+                    "p.nombreContacto = :nombreContacto, " +
+                    "p.telefonoContacto = :telefonoContacto, " +
+                    "p.mascotaColor = :mascotaColor, " +
+                    "p.mascotaRaza = :mascotaRaza, " +
+                    "p.tipoPublicacion = :tipoPublicacion, " +
+                    "p.direccion = :direccion " +
+                    "WHERE p.idPublicacion = :idPublicacion";
 
-        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-        query.setParameter("descripcion", descripcion);
-        query.setParameter("zona", zona);
-        query.setParameter("imagenBytes", imagenBytes);
-        query.setParameter("nombreMascota", nombreMascota);
-        query.setParameter("nombreContacto", nombreContacto);
-        query.setParameter("telefonoContacto", telefonoContacto);
-        query.setParameter("mascotaColor", mascotaColor);
-        query.setParameter("mascotaRaza", mascotaRaza);
-        query.setParameter("tipoPublicacion", tipoPublicacion);
-        query.setParameter("direccion", direccion);
-        query.setParameter("idPublicacion", idPublicacion);
-        query.executeUpdate();
+            Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+            query.setParameter("descripcion", descripcion);
+            query.setParameter("zona", zona);
+            query.setParameter("imagenBytes", imagenBytes);
+            query.setParameter("nombreMascota", nombreMascota);
+            query.setParameter("nombreContacto", nombreContacto);
+            query.setParameter("telefonoContacto", telefonoContacto);
+            query.setParameter("mascotaColor", mascotaColor);
+            query.setParameter("mascotaRaza", mascotaRaza);
+            query.setParameter("tipoPublicacion", tipoPublicacion);
+            query.setParameter("direccion", direccion);
+            query.setParameter("idPublicacion", idPublicacion);
+            query.executeUpdate();
     }
 
 
     @Override
     public void editarDonacion(Long idPublicacion, String nombreMascota, Double montoACubrir, Zona zona, String descripcion, byte[] imagenBytes) {
-        String hql = "UPDATE PublicacionDonacion p SET p.descripcion = :descripcion, " +
-                "p.zona = :zona, " +
-                "p.imagen = :imagenBytes, " +
-                "p.nombreMascota = :nombreMascota, " +
-                "p.montoACubrir = :montoACubrir, " +
-                "p.nombreMascota = :nombreMascota " +
-                "WHERE p.idPublicacion = :idPublicacion";
+            String hql = "UPDATE PublicacionDonacion p SET p.descripcion = :descripcion, " +
+                    "p.zona = :zona, " +
+                    "p.imagen = :imagenBytes, " +
+                    "p.nombreMascota = :nombreMascota, " +
+                    "p.montoACubrir = :montoACubrir, " +
+                    "p.nombreMascota = :nombreMascota " +
+                    "WHERE p.idPublicacion = :idPublicacion";
 
-        Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-        query.setParameter("descripcion", descripcion);
-        query.setParameter("zona", zona);
-        query.setParameter("imagenBytes", imagenBytes);
-        query.setParameter("nombreMascota", nombreMascota);
-        query.setParameter("montoACubrir", montoACubrir);
-        query.setParameter("idPublicacion", idPublicacion);
-        query.executeUpdate();
+            Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+            query.setParameter("descripcion", descripcion);
+            query.setParameter("zona", zona);
+            query.setParameter("imagenBytes", imagenBytes);
+            query.setParameter("nombreMascota", nombreMascota);
+            query.setParameter("montoACubrir", montoACubrir);
+            query.setParameter("idPublicacion", idPublicacion);
+            query.executeUpdate();
     }
 
 
