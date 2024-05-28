@@ -1,10 +1,7 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.servicios.ServicioEditarHistoriaImp;
-import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
-import com.tallerwebi.dominio.servicios.ServicioRedSocial;
-import com.tallerwebi.dominio.servicios.ServicioRedSocialImpl;
+import com.tallerwebi.dominio.servicios.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,6 +21,12 @@ public class ControladorEditarHistoria {
 
     @Autowired
     private ServicioEditarHistoriaImp servicioEditarHistoriaImp;
+
+    @Autowired
+    public ControladorEditarHistoria(ServicioEditarHistoriaImp servicioEditarHistoriaImp) {
+        this.servicioEditarHistoriaImp = servicioEditarHistoriaImp;
+    }
+
     @Autowired
     ServicioRedSocialImpl servicioRedSocial;
     @Autowired

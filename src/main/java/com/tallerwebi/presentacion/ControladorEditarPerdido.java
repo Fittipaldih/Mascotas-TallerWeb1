@@ -1,7 +1,6 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.servicios.ServicioEditarHistoriaImp;
 import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
 import com.tallerwebi.dominio.servicios.ServicioRedSocialImpl;
 import com.tallerwebi.dominio.servicios.ServicioEditarPerdidoImp;
@@ -21,9 +20,14 @@ import java.util.List;
 @Controller
 @Transactional
 public class ControladorEditarPerdido {
+    @Autowired
+    private ServicioEditarPerdidoImp servicioEditarPerdidoImp;
 
     @Autowired
-    private ServicioEditarPerdidoImp servicioEditarPerdidoImpImp;
+    public ControladorEditarPerdido(ServicioEditarPerdidoImp servicioEditarPerdidoImp) {
+        this.servicioEditarPerdidoImp = servicioEditarPerdidoImp;
+    }
+
     @Autowired
     ServicioRedSocialImpl servicioRedSocial;
     @Autowired
@@ -48,7 +52,7 @@ public class ControladorEditarPerdido {
             if (imagen != null && !imagen.isEmpty()) {
                 imagenBytes = imagen.getBytes();
             }
-            servicioEditarPerdidoImpImp.editarPerdido(idPublicacion,nombreMascota,telefonoContacto,nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagenBytes);
+            servicioEditarPerdidoImp.editarPerdido(idPublicacion,nombreMascota,telefonoContacto,nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagenBytes);
 
 
             List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();

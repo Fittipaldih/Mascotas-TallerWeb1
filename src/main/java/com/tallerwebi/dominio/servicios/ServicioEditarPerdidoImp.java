@@ -14,11 +14,6 @@ public class ServicioEditarPerdidoImp implements ServicioEditar {
 
     private RepositorioPublicacionImpl repositorioPublicacionImp;
 
-    @Autowired
-    public ServicioEditarPerdidoImp(SessionFactory sessionFactory) {
-        this.repositorioPublicacionImp = new RepositorioPublicacionImpl(sessionFactory);
-    }
-
     @Override
     public void editarHistoria(Long idPublicacion, String titular, String nombreMascota, Zona zona, String descripcion, byte[] imagenBytes) {
 
