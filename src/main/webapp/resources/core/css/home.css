@@ -10,3 +10,9 @@
     background-repeat: no-repeat;
     z-index: -1;
 }
+.nav-link {
+    margin-right: 1rem;
+}
+h1, h2, h4 {
+    font-family: 'Roboto', sans-serif !important;
+}

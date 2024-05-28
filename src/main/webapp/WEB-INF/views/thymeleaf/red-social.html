@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Red social Mascotera</title>
     <!-- Bootstrap core css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <!-- Custom style -->
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/red-social.css}"/>
+    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
 </head>
 <body>
 <div class="background-container"></div>
@@ -25,7 +26,8 @@
 </nav>
 <h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
 <h2 th:if="${error}" class="alert alert-warning" th:text="${error}"></h2>
-<main role="main" class="container">
+
+<main role="main" class="container flex-grow-1 d-flex align-items-center">
     <section class="todas-publicaciones">
         <!-- Aca van las publicaciones -->
         <div class="card-deck">
@@ -35,7 +37,7 @@
                         <!--<img class="card-img-top" th:src="'data:image/jpeg;base64,' + ${publicacion.imagen}" alt="Card image cap">-->
                         <img class="card-img-top" th:src="${publicacion.imagen != null} ? 'data:image/jpeg;base64,' + ${publicacion.imagen} : '/spring/img/sin-imagen.jpg'" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title" th:text="${publicacion.tipoPublicacion == 'BUSCADO_POR_DUENIO' ? 'PERDIDOS' : publicacion.tipoPublicacion == 'BUSCANDO_AL_DUENIO' ? 'PERDIDOS' : publicacion.tipoPublicacion}"></h5>
+                            <h5 class="card-title" th:text="${publicacion.tipoPublicacion == 'BUSCADO_POR_DUENIO' ? 'PERDIDOS' : (publicacion.tipoPublicacion == 'BUSCANDO_AL_DUENIO' ? 'PERDIDOS' : publicacion.tipoPublicacion)}"></h5>
                             <p class="card-text" th:text="${publicacion.descripcion.length() > 25 ? publicacion.descripcion.substring(0, 25) + '...' : publicacion.descripcion}"></p>
                             <p class="card-text"><small class="text-muted">Publicado el: <span th:text="${publicacion.fechaPublicacion}"></span></small></p>
                             <p class="card-text"><small class="text-muted">Zona: <span th:text="${publicacion.zona}"></span></small></p>
@@ -90,6 +92,7 @@
         </div>
     </section>
 </main>
+<div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
 <!-- Bootstrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>

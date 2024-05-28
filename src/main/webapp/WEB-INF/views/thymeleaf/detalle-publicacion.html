@@ -8,10 +8,11 @@
 
     <!-- Bootstrap core css -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Custom style -->
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" th:href="@{/css/detalle-publicacion.css}"/>
+    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
 
 </head>
 
@@ -32,7 +33,7 @@
     <div th:include="'entry-points'"></div>
 </nav>
 
-<main role="main" class="container">
+<main role="main" class="container-detalle-publicacion">
     <h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
     <div class="card-deck shadow-sm">
         <div class="card">
@@ -93,6 +94,7 @@
                 <label class="card-text fs-5 text-primary fw-normal" for="textoDelComentario">Realizar comentario</label>
                 <br>
                 <textarea id="textoDelComentario" maxlength="250" name="textoDelComentario" rows="5" cols="50" required class="form-control" placeholder="Escribe tu comentario aquí..."></textarea>
+                <br>
                 <div class="text-end">
                     <button type="submit" class="btn btn-dark">Comentar</button>
                 </div>
@@ -113,6 +115,7 @@
 
     </div>
 </main>
+<div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
 <!-- Bootstrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>

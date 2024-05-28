@@ -1,12 +1,23 @@
-
-.card{
+.card {
     align-items: center;
     padding: 1rem;
 }
 
-.options{
+.options {
     display: flex;
     gap: 5vh;
     justify-content: space-evenly;
-    width:80%;
+    width: 80%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container-detalle-publicacion {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+    width: 90%;
+    margin-left: 5%;
 }
