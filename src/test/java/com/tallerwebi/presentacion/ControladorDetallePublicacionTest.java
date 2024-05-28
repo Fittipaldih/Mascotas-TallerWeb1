@@ -113,5 +113,11 @@ public class ControladorDetallePublicacionTest {
         // Verificación
         verify(mockServicioDetallePublicacion, times(1)).eliminarPublicacion(idPublicacion);
     }
-
+    @Test
+    public void queDevuelvaUnModelAndViewComoObjeto() {
+        // Ejecucion
+        ModelAndView vistaDonacion = controladorDetallePublicacion.mostrarDetallePublicacion(1L);
+        // Verificacion
+        assertThat(vistaDonacion.getClass().getSimpleName(), equalToIgnoringCase("ModelAndView"));
+    }
 }

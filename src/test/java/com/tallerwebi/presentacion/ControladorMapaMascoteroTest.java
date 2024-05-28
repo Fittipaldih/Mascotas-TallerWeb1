@@ -154,5 +154,12 @@ public class ControladorMapaMascoteroTest {
         assertEquals(new ArrayList<>(), vista.getModel().get("peluquerias"));
         verify(mockServicioMapaMascotero).getPeluquerias();
     }
+    @Test
+    public void queDevuelvaUnModelAndViewComoObjeto() {
+        // Ejecucion
+        ModelAndView vistaDonacion = controladorMapaMascotero.filtrarPublicaciones("veterinarias");
+        // Verificacion
+        assertThat(vistaDonacion.getClass().getSimpleName(), equalToIgnoringCase("ModelAndView"));
+    }
 
 }
