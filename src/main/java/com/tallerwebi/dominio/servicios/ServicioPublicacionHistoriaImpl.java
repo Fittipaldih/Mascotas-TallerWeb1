@@ -1,10 +1,9 @@
 package com.tallerwebi.dominio.servicios;
 
-import com.tallerwebi.dominio.Mascota;
 import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.PublicacionHistoria;
 import com.tallerwebi.dominio.Zona;
-import com.tallerwebi.dominio.excepcion.MascotaNoEncontrada;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioPublicacionHistoria;
 import com.tallerwebi.infraestructura.RepositorioMascotaImpl;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.SessionFactory;

@@ -2,6 +2,7 @@ package com.tallerwebi.dominio.servicios;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.HistoriaException;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioPublicarHistoria;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.internal.SessionFactoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;

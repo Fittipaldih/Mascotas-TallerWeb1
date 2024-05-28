@@ -4,6 +4,7 @@ import com.tallerwebi.dominio.MascotaColor;
 import com.tallerwebi.dominio.MascotaRaza;
 import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.Zona;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioEditar;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

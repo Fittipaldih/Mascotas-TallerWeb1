@@ -4,7 +4,6 @@ import com.tallerwebi.dominio.PublicacionDonacion;
 import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.excepcion.DonacionException;
-import com.tallerwebi.dominio.servicios.ServicioPublicarDonacion;
 import com.tallerwebi.dominio.servicios.ServicioPublicarDonacionImp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +25,7 @@ public class ControladorPublicarDonacionTest{
 
     @BeforeEach
     public void init() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test

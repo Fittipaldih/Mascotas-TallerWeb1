@@ -1,14 +1,12 @@
 package com.tallerwebi.dominio.servicios;
 
-import com.tallerwebi.dominio.Mascota;
 import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.PublicacionTipo;
-import com.tallerwebi.dominio.excepcion.MascotaNoEncontrada;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioRedSocial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

@@ -1,13 +1,12 @@
 package com.tallerwebi.dominio.servicios;
 
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioEditar;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 @Service
 public class ServicioEditarHistoriaImp implements ServicioEditar {
     private RepositorioPublicacionImpl repositorioPublicacionImp;

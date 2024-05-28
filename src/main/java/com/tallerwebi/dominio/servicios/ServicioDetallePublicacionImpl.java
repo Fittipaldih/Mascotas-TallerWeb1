@@ -2,9 +2,9 @@ package com.tallerwebi.dominio.servicios;
 
 import com.tallerwebi.dominio.Comentario;
 import com.tallerwebi.dominio.Publicacion;
-import com.tallerwebi.dominio.excepcion.MascotaNoEncontrada;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioComentario;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioDetallePublicacion;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;

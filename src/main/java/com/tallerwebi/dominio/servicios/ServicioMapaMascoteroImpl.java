@@ -7,6 +7,7 @@ import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioMascota;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPeluqueria;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioVeterinaria;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioMapaMascotero;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

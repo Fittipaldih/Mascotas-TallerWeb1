@@ -2,7 +2,7 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.PerdidoException;
-import com.tallerwebi.dominio.servicios.ServicioPublicarPerdido;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioPublicarPerdido;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

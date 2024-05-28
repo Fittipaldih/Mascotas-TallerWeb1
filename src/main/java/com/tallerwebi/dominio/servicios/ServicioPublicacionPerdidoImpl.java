@@ -2,6 +2,7 @@ package com.tallerwebi.dominio.servicios;
 
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioPublicacionPerdido;
 import com.tallerwebi.infraestructura.RepositorioMascotaImpl;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.SessionFactory;

@@ -5,6 +5,7 @@ import com.tallerwebi.dominio.PublicacionDTO;
 import com.tallerwebi.dominio.PublicacionDonacion;
 import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.excepcion.DonacionException;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioPublicarDonacion;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.internal.SessionFactoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;

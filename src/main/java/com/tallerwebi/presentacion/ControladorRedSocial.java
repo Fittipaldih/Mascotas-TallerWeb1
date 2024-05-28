@@ -2,9 +2,8 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.PublicacionDTO;
-import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
-import com.tallerwebi.dominio.servicios.ServicioRedSocial;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioRedSocial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

@@ -4,7 +4,7 @@ import com.tallerwebi.dominio.PublicacionHistoria;
 import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.excepcion.HistoriaException;
-import com.tallerwebi.dominio.servicios.ServicioPublicarHistoria;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioPublicarHistoria;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
