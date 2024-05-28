@@ -64,14 +64,12 @@ public class ControladorDetallePublicacion {
             return "redirect:/detalle-publicacion?id=" + idPublicacion;
         }
     }
+
     @RequestMapping(value = "/eliminar-publicacion", method = RequestMethod.POST)
     public ModelAndView eliminarPublicacion( @RequestParam(value = "idPublicacion") Long idPublicacion) {
         ModelMap modelMap = new ModelMap();
         try {
-
             servicioDetallePublicacion.eliminarPublicacion(idPublicacion);
-
-
             List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
             Collections.reverse(todasLasPublicaciones);
             List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(todasLasPublicaciones);
@@ -83,6 +81,7 @@ public class ControladorDetallePublicacion {
             return new ModelAndView("red-social", modelMap);
         }
     }
+
     @RequestMapping(value = "/editar-publicacion", method = RequestMethod.GET)
     public ModelAndView editarPublicacion(@RequestParam(value = "tipoPublicacion") PublicacionTipo publicacionTipo,
                                           @RequestParam(value = "idPublicacion") Long idPublicacion) {
@@ -91,11 +90,8 @@ public class ControladorDetallePublicacion {
         Publicacion publicacionBuscada =  this.servicioRedSocial.getPublicacionPorId(idPublicacion);
 
         model.addAttribute("publicacionBuscada", publicacionBuscada);
-//        model.put("mensaje", "Debe ser algo asi");
-
         return new ModelAndView("editar-" + seccionEditar,model);
     }
-
 
 }
 
