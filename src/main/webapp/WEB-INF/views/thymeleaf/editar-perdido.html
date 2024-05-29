@@ -24,13 +24,13 @@
     <!-- Entry points -->
     <div th:include="'entry-points'"></div>
 </nav>
-<main role="main" class="container editar-perdido" style="display: flex; flex-direction: column">
-    <h1>Publicacion a editar</h1>
+<h1 class="editarTitulo">Publicacion a editar</h1>
+<main role="main" class="container containerEditar">
 
-    <div class="card-deck" style="width: 100%;">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
+    <div class="container-fluid full-heigh" >
+        <div class="row full-height">
+            <div class="col-12 centered-card">
+                <div class="card mb-4 shadow-sm" style="max-width: 400px;">
                     <!--<img class="card-img-top" th:src="'data:image/jpeg;base64,' + ${publicacion.imagen}" alt="Card image cap">-->
                     <img class="card-img-top" th:src="${publicacionBuscada.imagen}" alt="Card image cap">
                     <div class="card-body">
@@ -41,17 +41,17 @@
                         <h1 class="card-text font-monospace" th:if="${publicacionBuscada.tipoPublicacion == T(com.tallerwebi.dominio.PublicacionTipo).BUSCANDO_AL_DUENIO}">
                             Busco al dueño
                         </h1>
-                        <p>Ultima vez visto en:</p>
-                        <h5 class="card-title" th:text="${publicacionBuscada.direccion}"></h5>
-                        <p>Color de la  mascota:</p>
-                        <h5 class="card-title" th:text="${publicacionBuscada.mascotaColor}"></h5>
-                        <p>Raza de la  mascota:</p>
-                        <h5 class="card-title" th:text="${publicacionBuscada.mascotaRaza}"></h5>
-                        <p>Nombre de contacto:</p>
-                        <h5 class="card-title" th:text="${publicacionBuscada.nombreContacto}"></h5>
-                        <p>Telefono de contacto:</p>
-                        <h5 class="card-title" th:text="${publicacionBuscada.telefonoContacto}"></h5>
-                        <p>Descripcion:</p>
+                        <h5 class="card-title">Ultima vez visto en:</h5>
+                        <p  th:text="${publicacionBuscada.direccion}"></p>
+                        <h5 class="card-title">Color de la  mascota:</h5>
+                        <p th:text="${publicacionBuscada.mascotaColor}"></p>
+                        <h5 class="card-title">Raza de la  mascota:</h5>
+                        <p th:text="${publicacionBuscada.mascotaRaza}"></p>
+                        <h5 class="card-title">Nombre de contacto:</h5>
+                        <p th:text="${publicacionBuscada.nombreContacto}"></p>
+                        <h5 class="card-title">Telefono de contacto:</h5>
+                        <p th:text="${publicacionBuscada.telefonoContacto}"></p>
+                        <h5 class="card-title">Descripcion:</h5>
                         <p class="card-text" th:text="${publicacionBuscada.descripcion}"></p>
                         <p class="card-text"><small class="text-muted">Publicado el: <span th:text="${publicacionBuscada.fechaPublicacion}"></span></small></p>
                         <p class="card-text"><small class="text-muted">Zona: <span th:text="${publicacionBuscada.zona}"></span></small></p>

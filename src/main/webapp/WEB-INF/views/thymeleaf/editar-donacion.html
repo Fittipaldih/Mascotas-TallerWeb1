@@ -24,23 +24,22 @@
     <!-- Entry points -->
     <div th:include="'entry-points'"></div>
 </nav>
-<main role="main" class="container">
-    <h1>Publicacion a editar</h1>
-
-    <div class="card-deck">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
+<h1 class="editarTitulo">Publicacion a editar</h1>
+<main role="main" class="container containerEditar">
+    <div class="container-fluid full-heigh">
+        <div class="row full-height">
+            <div class="col-12 centered-card">
+                <div class="card mb-4 shadow-sm" style="max-width: 400px;">
                     <!--<img class="card-img-top" th:src="'data:image/jpeg;base64,' + ${publicacion.imagen}" alt="Card image cap">-->
                     <img class="card-img-top" th:src="${publicacionBuscada.imagen}" alt="Card image cap">
                     <div class="card-body">
                         <h1 class="card-text font-monospace" th:if="${publicacionBuscada.tipoPublicacion == T(com.tallerwebi.dominio.PublicacionTipo).DONACION}">
                             Solicito donación
                         </h1>
-                        <p>Monto a cubrir:</p>
-                        <h5 class="card-title" th:text="${publicacionBuscada.montoACubrir}"></h5>
-                        <p>Descripcion:</p>
-                        <p class="card-text" th:text="${publicacionBuscada.descripcion}"></p>
+                        <h5 class="card-title">Monto a cubrir:</h5>
+                        <p  th:text="${publicacionBuscada.montoACubrir}"></p>
+                        <h5 class="card-title">Descripcion:</h5>
+                        <p  th:text="${publicacionBuscada.descripcion}"></p>
                         <p class="card-text"><small class="text-muted">Publicado el: <span th:text="${publicacionBuscada.fechaPublicacion}"></span></small></p>
                         <p class="card-text"><small class="text-muted">Zona: <span th:text="${publicacionBuscada.zona}"></span></small></p>
                         <p class="card-text"><small class="text-muted">Nombre: <span th:text="${publicacionBuscada.nombreMascota}"></span></small></p>
