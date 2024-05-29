@@ -5,18 +5,20 @@ import com.tallerwebi.dominio.MascotaRaza;
 import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioEditar;
+import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.excepcion.PublicacionInexistenteExeption;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ServicioEditarDonacionImp implements ServicioEditar {
+    @Autowired
     private RepositorioPublicacionImpl repositorioPublicacionImp;
 
     @Autowired
-    public ServicioEditarDonacionImp(SessionFactory sessionFactory) {
-        this.repositorioPublicacionImp = new RepositorioPublicacionImpl(sessionFactory);
+    public ServicioEditarDonacionImp(RepositorioPublicacionImpl repositorioPublicacionImp) {
+        this.repositorioPublicacionImp = repositorioPublicacionImp;
     }
 
     @Override
@@ -30,9 +32,14 @@ public class ServicioEditarDonacionImp implements ServicioEditar {
     }
 
     @Override
-    public void editarDonacion(Long idPublicacion, String nombreMascota, Double montoACubrir,Zona zona, String descripcion, byte[] imagenBytes) {
-        this.repositorioPublicacionImp.editarDonacion(idPublicacion,nombreMascota,montoACubrir,zona,descripcion,imagenBytes);
+    public void editarDonacion(Long idPublicacion, String nombreMascota, Double montoACubrir,
+                               Zona zona, String descripcion, byte[] imagenBytes) throws PublicacionInexistenteExeption {
 
+        Publicacion publicacionBuscada = this.repositorioPublicacionImp.getPublicacionPorId(idPublicacion);
+        if (publicacionBuscada instanceof PublicacionDonacion) {
+            this.repositorioPublicacionImp.editarDonacion(idPublicacion, nombreMascota, montoACubrir, zona, descripcion, imagenBytes);
+        }else {
+            throw new PublicacionInexistenteExeption();
+        }
     }
-
 }

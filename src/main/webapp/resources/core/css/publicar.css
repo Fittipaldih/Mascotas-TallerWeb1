@@ -93,3 +93,17 @@ h1, h2 {
     padding: 1rem 2rem;
     font-size: 1.2rem;
 }
+
+section{
+    margin-top: 20vh;
+}
+
+.containerEditar{
+    display: flex;
+    margin-top: 50px;
+}
+.editarTitulo{
+    margin-left: 50px;
+    margin-top: 25px;
+}
+

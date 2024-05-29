@@ -25,6 +25,16 @@ import java.util.List;
 public class ControladorEditarDonacion {
 
     @Autowired
+    private ServicioEditarDonacionImp servicioEditarDonacionImp;
+
+    @Autowired
+    public ControladorEditarDonacion(ServicioEditarDonacionImp servicioEditarDonacionImp) {
+        this.servicioEditarDonacionImp = servicioEditarDonacionImp;
+    }
+
+
+
+    @Autowired
     private ServicioEditarDonacionImp servicioEditarDonacionImpImp;
     @Autowired
     ServicioRedSocialImpl servicioRedSocial;
@@ -45,7 +55,7 @@ public class ControladorEditarDonacion {
             if (imagen != null && !imagen.isEmpty()) {
                 imagenBytes = imagen.getBytes();
             }
-            servicioEditarDonacionImpImp.editarDonacion(idPublicacion, nombreMascota,montoACubrir, zona, descripcion, imagenBytes);
+            servicioEditarDonacionImp.editarDonacion(idPublicacion, nombreMascota,montoACubrir, zona, descripcion, imagenBytes);
 
             List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
             Collections.reverse(todasLasPublicaciones);

@@ -23,6 +23,12 @@ public class ControladorEditarHistoria {
 
     @Autowired
     private ServicioEditarHistoriaImp servicioEditarHistoriaImp;
+
+    @Autowired
+    public ControladorEditarHistoria(ServicioEditarHistoriaImp servicioEditarHistoriaImp) {
+        this.servicioEditarHistoriaImp = servicioEditarHistoriaImp;
+    }
+
     @Autowired
     ServicioRedSocialImpl servicioRedSocial;
     @Autowired

@@ -5,19 +5,19 @@ import com.tallerwebi.dominio.MascotaRaza;
 import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioEditar;
+import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.excepcion.PublicacionInexistenteExeption;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ServicioEditarPerdidoImp implements ServicioEditar {
-
-    private RepositorioPublicacionImpl repositorioPublicacionImp;
-
     @Autowired
-    public ServicioEditarPerdidoImp(SessionFactory sessionFactory) {
-        this.repositorioPublicacionImp = new RepositorioPublicacionImpl(sessionFactory);
+    private RepositorioPublicacionImpl repositorioPublicacionImp;
+    @Autowired
+    public ServicioEditarPerdidoImp(RepositorioPublicacionImpl repositorioPublicacionImp) {
+        this.repositorioPublicacionImp = repositorioPublicacionImp;
     }
 
     @Override
@@ -26,8 +26,18 @@ public class ServicioEditarPerdidoImp implements ServicioEditar {
     }
 
     @Override
-    public void editarPerdido(Long idPublicacion, String nombreMascota, Long telefonoContacto, String nombreContacto, MascotaColor mascotaColor, MascotaRaza mascotaRaza, PublicacionTipo tipoPublicacion, Zona zona, String descripcion, String direccion, byte[] imagen) {
-        this.repositorioPublicacionImp.editarPerdido(idPublicacion,nombreMascota,telefonoContacto,nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagen);
+    public void editarPerdido(Long idPublicacion, String nombreMascota, Long telefonoContacto,
+                              String nombreContacto, MascotaColor mascotaColor, MascotaRaza mascotaRaza,
+                              PublicacionTipo tipoPublicacion, Zona zona, String descripcion,
+                              String direccion, byte[] imagen) throws PublicacionInexistenteExeption {
+
+        Publicacion publicacionBuscada = this.repositorioPublicacionImp.getPublicacionPorId(idPublicacion);
+        if (publicacionBuscada instanceof PublicacionPerdido){
+            this.repositorioPublicacionImp.editarPerdido(idPublicacion,nombreMascota,telefonoContacto,
+                    nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagen);
+        }else {
+            throw new PublicacionInexistenteExeption() ;
+        }
     }
 
     @Override
