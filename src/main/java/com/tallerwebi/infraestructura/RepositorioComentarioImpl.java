@@ -21,6 +21,9 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
     @Override
     @Transactional
     public void guardarNuevoComentarioEnPublicacion(String contenido, Long idPublicacion) {
+        if (contenido == null || contenido.trim().isEmpty()) {
+            return;
+        }
         Publicacion publicacion = this.sessionFactory.getCurrentSession().get(Publicacion.class, idPublicacion);
 
         if (publicacion != null) {
