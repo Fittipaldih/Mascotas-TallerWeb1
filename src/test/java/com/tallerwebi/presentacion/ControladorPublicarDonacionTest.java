@@ -4,7 +4,6 @@ import com.tallerwebi.dominio.PublicacionDonacion;
 import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.excepcion.DonacionException;
-import com.tallerwebi.dominio.servicios.ServicioPublicarDonacion;
 import com.tallerwebi.dominio.servicios.ServicioPublicarDonacionImp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +25,7 @@ public class ControladorPublicarDonacionTest{
 
     @BeforeEach
     public void init() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
@@ -59,12 +58,108 @@ public class ControladorPublicarDonacionTest{
                 "imagen.jpg",
                 "image/jpeg",
                 "Imagen de prueba".getBytes());
-        // Configurar el mock para lanzar una excepción
+        // Configurar el mock para excepcion
         doThrow(new DonacionException("Error al publicar")).when(servicioPublicarDonacion).publicarDonacion(new PublicacionDonacion(monto, PublicacionTipo.DONACION, nombreMascota, zona, descripcion, imagen.getBytes()), imagen);
-        // Ejecución
+        // Ejecucion
         ModelAndView modelAndView = controladorPublicarDonacion.publicarDonacion(nombreMascota, monto, zona, descripcion, imagen);
-        // Verificación
+        // Verificacion
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("publicar"));
     }
+
+    @Test
+    public void queValideElNombreMascotaVacioYDevuelvaMensajeDeError() throws Exception {
+        // Preparacion
+        String nombreMascota = ""; // Nombre vacio
+        Double monto = 5000.0;
+        Zona zona = Zona.NORTE;
+        String descripcion = "Descripcion";
+        MockMultipartFile imagen = new MockMultipartFile(
+                "imagen",
+                "imagen.jpg",
+                "image/jpeg",
+                "Imagen de prueba".getBytes());
+        // Ejecucion
+        ModelAndView vista = controladorPublicarDonacion.publicarDonacion(nombreMascota, monto, zona, descripcion, imagen);
+        // Verificacion
+        assertThat(vista.getViewName(), equalToIgnoringCase("publicar"));
+        assertThat(vista.getModel().get("error").toString(), equalToIgnoringCase("Error al publicar la donación. Intentá nuevamente."));
+    }
+
+    @Test
+    public void queValideElMontoDeDonacionNoValidoPorSerNegativoYDevuelvaMensajeDeError() throws Exception {
+        // Preparacion
+        String nombreMascota = "Cleo";
+        Double monto = -1000.0; // Monto negativo
+        Zona zona = Zona.SUR;
+        String descripcion = "Descripcionn";
+        MockMultipartFile imagen = new MockMultipartFile(
+                "imagen",
+                "imagen.jpg",
+                "image/jpeg",
+                "Imagen de prueba".getBytes());
+        // Ejecucion
+        ModelAndView vista = controladorPublicarDonacion.publicarDonacion(nombreMascota, monto, zona, descripcion, imagen);
+        // Verificacion
+        assertThat(vista.getViewName(), equalToIgnoringCase("publicar"));
+        assertThat(vista.getModel().get("error").toString(), equalToIgnoringCase("Error al publicar la donación. Intentá nuevamente."));
+    }
+
+    @Test
+    public void queValideElMontoDeDonacionNoValidoPorSerMuyGrandeYDevuelvaMensajeDeError() throws Exception {
+        // Preparacion
+        String nombreMascota = "Cleo";
+        Double monto = 143143143143124000.0; // Monto gigante
+        Zona zona = Zona.SUR;
+        String descripcion = "Descripcionn";
+        MockMultipartFile imagen = new MockMultipartFile(
+                "imagen",
+                "imagen.jpg",
+                "image/jpeg",
+                "Imagen de prueba".getBytes());
+        // Ejecucion
+        ModelAndView vista = controladorPublicarDonacion.publicarDonacion(nombreMascota, monto, zona, descripcion, imagen);
+        // Verificacion
+        assertThat(vista.getViewName(), equalToIgnoringCase("publicar"));
+        assertThat(vista.getModel().get("error").toString(), equalToIgnoringCase("Error al publicar la donación. Intentá nuevamente."));
+    }
+
+    @Test
+    public void queValideLaZonaNoSeleccionadaYDevuelvaMensajeDeError() throws Exception {
+        // Preparacion
+        String nombreMascota = "Terry";
+        Double monto = 5000.0;
+        Zona zona = null; // Zona no seleccionada
+        String descripcion = "Descripcionn";
+        MockMultipartFile imagen = new MockMultipartFile(
+                "imagen",
+                "imagen.jpg",
+                "image/jpeg",
+                "Imagen de prueba".getBytes());
+        // Ejecucion
+        ModelAndView vista = controladorPublicarDonacion.publicarDonacion(nombreMascota, monto, zona, descripcion, imagen);
+        // Verificacion
+        assertThat(vista.getViewName(), equalToIgnoringCase("publicar"));
+        assertThat(vista.getModel().get("error").toString(), equalToIgnoringCase("Error al publicar la donación. Intentá nuevamente."));
+    }
+
+    @Test
+    public void queValideLaDescripcionVaciaYDevuelvaMensajeDeError() throws Exception {
+        // Preparacion
+        String nombreMascota = "Lolo";
+        Double monto = 5000.0;
+        Zona zona = Zona.NORTE;
+        String descripcion = ""; // Descripcion vacía
+        MockMultipartFile imagen = new MockMultipartFile(
+                "imagen",
+                "imagen.jpg",
+                "image/jpeg",
+                "Imagen de prueba".getBytes());
+        // Ejecucion
+        ModelAndView vista = controladorPublicarDonacion.publicarDonacion(nombreMascota, monto, zona, descripcion, imagen);
+        // Verificacion
+        assertThat(vista.getViewName(), equalToIgnoringCase("publicar"));
+        assertThat(vista.getModel().get("error").toString(), equalToIgnoringCase("Error al publicar la donación. Intentá nuevamente."));
+    }
+
 
 }

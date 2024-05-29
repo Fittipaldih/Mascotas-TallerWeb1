@@ -1,8 +1,7 @@
-package com.tallerwebi.dominio.servicios;
+package com.tallerwebi.dominio.servicios.interfaces;
 
 import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.PublicacionTipo;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 

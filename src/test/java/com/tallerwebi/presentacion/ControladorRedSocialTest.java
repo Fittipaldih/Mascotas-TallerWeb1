@@ -57,4 +57,12 @@ public class ControladorRedSocialTest {
         //verificacion
         assertThat(vista.getViewName(), equalToIgnoringCase("donaciones"));
     }
+
+    @Test
+    public void queDevuelvaUnModelAndViewComoObjeto() {
+        // Ejecucion
+        ModelAndView vistaDonacion = controladorRedSocial.irADonaciones();
+        // Verificacion
+        assertThat(vistaDonacion.getClass().getSimpleName(), equalToIgnoringCase("ModelAndView"));
+    }
 }

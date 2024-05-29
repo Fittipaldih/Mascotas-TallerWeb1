@@ -5,6 +5,7 @@ import com.tallerwebi.dominio.PublicacionDTO;
 import com.tallerwebi.dominio.PublicacionPerdido;
 import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.excepcion.PerdidoException;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioPublicarPerdido;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

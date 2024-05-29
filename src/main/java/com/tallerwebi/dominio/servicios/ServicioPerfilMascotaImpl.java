@@ -3,6 +3,7 @@ package com.tallerwebi.dominio.servicios;
 import com.tallerwebi.dominio.Mascota;
 import com.tallerwebi.dominio.excepcion.MascotaNoEncontrada;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioMascota;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioPerfilMascota;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

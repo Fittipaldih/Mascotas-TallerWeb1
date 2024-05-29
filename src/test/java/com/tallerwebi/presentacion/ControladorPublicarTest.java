@@ -37,4 +37,12 @@ public class ControladorPublicarTest {
         //verificacion
         assertThat(vistaHistoria.getViewName(), equalToIgnoringCase("publicarHistoria"));
     }
+    @Test
+    public void queDevuelvaUnModelAndViewComoObjeto() {
+        // Ejecucion
+        ModelAndView vistaDonacion = controladorPublicar.irPublicarDonacion();
+        // Verificacion
+        assertThat(vistaDonacion.getClass().getSimpleName(), equalToIgnoringCase("ModelAndView"));
+    }
+
 }
