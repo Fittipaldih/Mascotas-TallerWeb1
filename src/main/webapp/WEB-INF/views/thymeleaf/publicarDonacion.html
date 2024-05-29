@@ -66,15 +66,7 @@
 </main>
 <!-- Footer -->
 <div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
-<script>
-    function validateMonto(input) {
-        const value = parseInt(input.value, 10);
-        if (value > 999999) {
-            input.value = "";
-            alert("El monto ingresado supera el límite. Max 999999.");
-        }
-    }
-</script>
+<script type="text/javascript" th:src="@{/js/publicar.js}"></script>
 <!-- Bootstrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>

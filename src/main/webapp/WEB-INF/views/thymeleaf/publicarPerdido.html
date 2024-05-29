@@ -120,16 +120,10 @@
 </main>
 <!-- Footer -->
 <div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
-<script>
-    function validateTelefono(input) {
-        const telefono = input.value.trim();
-        const regex = /^[0-9]+$/;
-        if (!regex.test(telefono) || telefono.length > 10 || telefono.includes('.')) {
-            input.value = "";
-            alert("El teléfono de contacto es inválido. Intentá de nuevo.");
-        }
-    }
-</script>
+<!-- JS -->
+<script type="text/javascript" th:src="@{/js/publicar.js}"></script>
+<!-- JS -->
+<script type="text/javascript" th:src="@{/js/publicar.js}"></script>
 <!-- Bootstrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>
