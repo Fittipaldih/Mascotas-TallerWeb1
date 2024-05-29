@@ -28,7 +28,7 @@ public class ServicioEditarPerdidoImpTest {
 //    Que el método del repositorio se llama cuando la publicación existe.
 
     @Test
-    public void queLanceExcepcionCuandoPublicacionNoExiste()  {
+    public void queLanceExcepcionCuandoSeIntenteEditarUnaPublicacionNoExistente()  {
         Long idPublicacionInexistente = 99L;
 
         when(repositorioPublicacionMock.getPublicacionPorId(idPublicacionInexistente)).thenReturn(null);
@@ -54,6 +54,20 @@ public class ServicioEditarPerdidoImpTest {
         verify(repositorioPublicacionMock, times(1)).editarPerdido(eq(idPublicacionExistente), eq("Capo"), eq(1138721497L),
                 eq("Agustin"), eq(MascotaColor.NEGRO), eq(MascotaRaza.MAINE_COON), eq(PublicacionTipo.BUSCANDO_AL_DUENIO),
                 eq(Zona.OESTE), eq("Esto es una descripcion de prueba"), eq("Esto es una direccion de prueba"), any(byte[].class));
+    }
+
+    @Test
+    public void queLanceExcepcionCuandoSeIntenteEditarUnaPublicacionYNoSeaUnaPublicacionPerdido()  {
+        Long idPublicacionIncorrecta = 1L;
+        Publicacion publicacionIncorrecta = new PublicacionHistoria();
+
+        when(repositorioPublicacionMock.getPublicacionPorId(idPublicacionIncorrecta)).thenReturn(publicacionIncorrecta);
+
+        assertThrows(PublicacionInexistenteExeption.class, () -> {
+            servicioEditarPerdidoImp.editarPerdido(idPublicacionIncorrecta, "Capo", 1138721497L,
+                    "Agustin", MascotaColor.NEGRO, MascotaRaza.MAINE_COON, PublicacionTipo.BUSCANDO_AL_DUENIO,
+                    Zona.OESTE, "Esto es una descripcion de prueba", "Esto es una direccion de prueba", new byte[021]);
+        });
     }
 }
 

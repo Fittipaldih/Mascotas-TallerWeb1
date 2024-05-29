@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ServicioEditarPerdidoImp implements ServicioEditar {
-
+    @Autowired
     private RepositorioPublicacionImpl repositorioPublicacionImp;
-
+    @Autowired
     public ServicioEditarPerdidoImp(RepositorioPublicacionImpl repositorioPublicacionImp) {
         this.repositorioPublicacionImp = repositorioPublicacionImp;
     }
@@ -29,7 +29,7 @@ public class ServicioEditarPerdidoImp implements ServicioEditar {
                               String direccion, byte[] imagen) throws PublicacionInexistenteExeption {
 
         Publicacion publicacionBuscada = this.repositorioPublicacionImp.getPublicacionPorId(idPublicacion);
-        if (publicacionBuscada != null){
+        if (publicacionBuscada instanceof PublicacionPerdido){
             this.repositorioPublicacionImp.editarPerdido(idPublicacion,nombreMascota,telefonoContacto,
                     nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagen);
         }else {
