@@ -24,12 +24,13 @@
     <!-- Entry points -->
     <div th:include="'entry-points'"></div>
 </nav>
-<h1 class="editarTitulo">Publicacion a editar</h1>
+
 <main role="main" class="container containerEditar">
     <div class="container-fluid full-heigh">
         <div class="row full-height">
             <div class="col-12 centered-card">
-                <div class="card mb-4 shadow-sm" style="max-width: 400px;">
+                <div class="card mb-4 shadow-sm m-5 p-5" style="max-width: 600px;">
+                    <h1>Historia a editar...</h1>
                     <img class="card-img-top" th:src="${publicacionBuscada.imagen}" alt="Foto publicacion">
                     <div class="card-body">
                         <h5 class="card-title">Titular:</h5>
@@ -59,8 +60,7 @@
                 <input type="text" maxlength="100" id="nombre" name="nombre" class="form-control" placeholder="Peludito" required th:value="${publicacionBuscada.nombreMascota}"><br>
 
                 <label for="zona">Zona donde ocurre/ocurrió</label>
-                <select id="zona" name="zona" th:field="*{publicacionBuscada.zona}" class="form-control">
-                    <option value="">Seleccione una zona</option>
+                <select id="zona" name="zona" th:field="*{publicacionBuscada.zona}" class="form-control" required>
                     <option value="NORTE">Norte</option>
                     <option value="SUR">Sur</option>
                     <option value="OESTE">Oeste</option>
@@ -71,7 +71,6 @@
             <div class="col-md-6 form-group">
                 <label for="descripcion">Descripción de la historia</label><br>
                 <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" th:text="${publicacionBuscada.descripcion}"></textarea><br>
-
                 <label for="imagen">Foto de la Mascota</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
             </div>
@@ -110,6 +109,9 @@
         </div>
     </form>
 </main>
+
+<div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
+
 <!-- Bootstrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 <script>
