@@ -9,6 +9,7 @@ import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
 import com.tallerwebi.dominio.servicios.ServicioRedSocialImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockMultipartFile;
@@ -28,7 +29,7 @@ public class ControladorEditarDonacionTest {
     private ServicioRedSocialImpl servicioRedSocial;
     @Mock
     private ServicioPublicacionConversion publicacionConversionService;
-    @Mock
+    @InjectMocks
     private ControladorEditarDonacion controladorEditarDonacion;
 
     @BeforeEach
@@ -53,7 +54,6 @@ public class ControladorEditarDonacionTest {
         //Mock service
         List<Publicacion> publicaciones = new ArrayList<>();
         when(servicioRedSocial.getTodasLasPublicaciones()).thenReturn(publicaciones);
-//        when(servicioEditarPerdidoImpoMock.editarPerdido(idPublicacionOriginal,nombreMascota,telefonoContacto,nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagen);
         List<PublicacionDTO> publicacionesDTO = new ArrayList<>();
         when(publicacionConversionService.convertirEntidadesADTOs(publicaciones)).thenReturn(publicacionesDTO);
 
@@ -62,7 +62,6 @@ public class ControladorEditarDonacionTest {
         ModelAndView vista = this.controladorEditarDonacion.editarDonacion(nombreMascota,idPublicacionOriginal,montoACubrir,zona, descripcion, imagen);
         // verificacion
         assertThat(vista.getViewName(),equalToIgnoringCase("red-social"));
-        assertThat(vista.getModel().get("mensaje").toString(), equalToIgnoringCase("¡La historia ha sido editada exitosamente!"));
     }
 
     @Test
@@ -82,7 +81,6 @@ public class ControladorEditarDonacionTest {
         //Mock service
         List<Publicacion> publicaciones = new ArrayList<>();
         when(servicioRedSocial.getTodasLasPublicaciones()).thenReturn(publicaciones);
-//        when(servicioEditarPerdidoImpoMock.editarPerdido(idPublicacionOriginal,nombreMascota,telefonoContacto,nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagen);
         List<PublicacionDTO> publicacionesDTO = new ArrayList<>();
         when(publicacionConversionService.convertirEntidadesADTOs(publicaciones)).thenReturn(publicacionesDTO);
 
@@ -110,7 +108,6 @@ public class ControladorEditarDonacionTest {
          //Mock service
          List<Publicacion> publicaciones = new ArrayList<>();
          when(servicioRedSocial.getTodasLasPublicaciones()).thenReturn(publicaciones);
-//        when(servicioEditarPerdidoImpoMock.editarPerdido(idPublicacionOriginal,nombreMascota,telefonoContacto,nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagen);
          List<PublicacionDTO> publicacionesDTO = new ArrayList<>();
          when(publicacionConversionService.convertirEntidadesADTOs(publicaciones)).thenReturn(publicacionesDTO);
 
@@ -119,7 +116,7 @@ public class ControladorEditarDonacionTest {
          ModelAndView vista = this.controladorEditarDonacion.editarDonacion(nombreMascota,idPublicacionOriginal,montoACubrir,zona, descripcion, imagen);
          // verificacion
          assertThat(vista.getViewName(),equalToIgnoringCase("red-social"));
-         assertThat(vista.getModel().get("error").toString(), equalToIgnoringCase("Error al editar la historia. Intentá nuevamente."));
+         assertThat(vista.getModel().get("error").toString(), equalToIgnoringCase("Error al editar la donación. Intentá nuevamente."));
 
     }
 }

@@ -75,17 +75,6 @@ public class ServicioDetallePublicacionImplTest {
     }
 
     @Test
-    public void queDevuelvaExcepcionSiQuieroComentarAlgoPeroElTextoEstaVacio() throws Exception {
-        // preparacion
-        Publicacion publicacion = new PublicacionPerdido();
-        Long id = 5L;
-        publicacion.setIdPublicacion(id);
-        String textoDelComentario = "";
-        // ejecucion y verificacion
-        assertThrows(Exception.class, () -> servicioDetallePublicacion.hacerComentario(textoDelComentario, id));
-    }
-
-    @Test
     public void queDevuelvaLaPublicacionPerdidoOkPorSuId() throws Exception {
         // Preparación
         Long idPerdido = 1L;

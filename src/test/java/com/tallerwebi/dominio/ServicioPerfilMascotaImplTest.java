@@ -8,6 +8,9 @@ import com.tallerwebi.infraestructura.RepositorioPeluqueriaImpl;
 import com.tallerwebi.infraestructura.RepositorioVeterinariaImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +20,14 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.*;
 
 public class ServicioPerfilMascotaImplTest {
-
+    @Mock
     private RepositorioMascotaImpl repositorioMascotaMock;
+    @InjectMocks
     private ServicioPerfilMascotaImpl servicioPerfilMascotaImpl;
 
     @BeforeEach
     public void init() {
-        repositorioMascotaMock = mock(RepositorioMascotaImpl.class);
-        servicioPerfilMascotaImpl = mock(ServicioPerfilMascotaImpl.class);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test

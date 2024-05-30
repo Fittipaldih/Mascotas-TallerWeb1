@@ -7,6 +7,9 @@ import com.tallerwebi.dominio.servicios.ServicioRedSocialImpl;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockMultipartFile;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -14,14 +17,14 @@ import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.mock;
 
 public class ServicioEditarPerdidoImpTest {
-
+    @Mock
     private RepositorioPublicacionImpl repositorioPublicacionMock;
+    @InjectMocks
     private ServicioEditarPerdidoImp servicioEditarPerdidoImp;
 
     @BeforeEach
     public void init() {
-        this.repositorioPublicacionMock = mock(RepositorioPublicacionImpl.class);
-        this.servicioEditarPerdidoImp = mock(ServicioEditarPerdidoImp.class);
+        MockitoAnnotations.openMocks(this);
     }
 // casos a verficar
 //

@@ -21,6 +21,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {HibernateTestInfraestructuraConfig.class})
@@ -69,15 +70,11 @@ public class RepositorioComentarioImplTest {
 
         String contenido = "";
 
-        //Ejecucion
-        repositorioComentario.guardarNuevoComentarioEnPublicacion(contenido, publicacion.getIdPublicacion());
+        //Ejecucion y verificacion
+        assertThrows(Exception.class, () -> {
+            repositorioComentario.guardarNuevoComentarioEnPublicacion(contenido, publicacion.getIdPublicacion());
 
-        //Verificacion
-        Query query = this.sessionFactory.getCurrentSession().createQuery("FROM Comentario WHERE publicacion.idPublicacion = :idPublicacion");
-        query.setParameter("idPublicacion", publicacion.getIdPublicacion());
-        List<Comentario> comentarios = query.getResultList();
-
-        assertThat(comentarios, is(empty()));
+        });
     }
 
     @Test
@@ -89,7 +86,7 @@ public class RepositorioComentarioImplTest {
         Long idPublicacionInvalida = -1L;
 
         //Ejecucion - verificacion
-        IllegalArgumentException exception = org.junit.jupiter.api.Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             repositorioComentario.guardarNuevoComentarioEnPublicacion(contenido, idPublicacionInvalida);
         });
 

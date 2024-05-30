@@ -6,19 +6,23 @@ import com.tallerwebi.dominio.servicios.ServicioEditarPerdidoImp;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 public class ServicioEditarHistoriaImpTest {
 
+    @Mock
     private RepositorioPublicacionImpl repositorioPublicacionMock;
+    @InjectMocks
     private ServicioEditarHistoriaImp servicioEditarHistoriaImp;
 
     @BeforeEach
     public void init() {
-        this.repositorioPublicacionMock = mock(RepositorioPublicacionImpl.class);
-        this.servicioEditarHistoriaImp = mock(ServicioEditarHistoriaImp.class);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test

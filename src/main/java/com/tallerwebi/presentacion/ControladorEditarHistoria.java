@@ -26,6 +26,7 @@ public class ControladorEditarHistoria {
     private final ServicioRedSocial servicioRedSocial;
     private final ServicioPublicacionConversion publicacionConversionService;
 
+@Autowired
     public ControladorEditarHistoria(ServicioEditarHistoriaImp servicioEditarHistoriaImp, ServicioRedSocial servicioRedSocial, ServicioPublicacionConversion publicacionConversionService) {
         this.servicioEditarHistoriaImp = servicioEditarHistoriaImp;
         this.servicioRedSocial = servicioRedSocial;

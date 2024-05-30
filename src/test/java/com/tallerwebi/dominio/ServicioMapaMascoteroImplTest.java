@@ -5,6 +5,9 @@ import com.tallerwebi.infraestructura.RepositorioPeluqueriaImpl;
 import com.tallerwebi.infraestructura.RepositorioVeterinariaImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,18 +17,18 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.*;
 
 public class ServicioMapaMascoteroImplTest {
-
+    @InjectMocks
     private ServicioMapaMascoteroImpl servicioMapaMascotero;
+    @Mock
     private RepositorioMascotaImpl repositorioMascotaMock;
+    @Mock
     private RepositorioVeterinariaImpl repositorioVeterinariaMock;
+    @Mock
     private RepositorioPeluqueriaImpl repositorioPeluqueriaMock;
 
     @BeforeEach
     public void init() {
-        repositorioMascotaMock = mock(RepositorioMascotaImpl.class);
-        repositorioVeterinariaMock = mock(RepositorioVeterinariaImpl.class);
-        repositorioPeluqueriaMock = mock(RepositorioPeluqueriaImpl.class);
-        servicioMapaMascotero = mock(ServicioMapaMascoteroImpl.class);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
