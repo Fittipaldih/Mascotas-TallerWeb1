@@ -68,7 +68,6 @@
                 <p class="card-text text-end"><small class="text-muted fst-italic">Publicado el <span th:text="${publicacionData.getFechaPublicacion()}"></span></small></p>
                 <div class="container-btn text-center options">
                     <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-secondary">Volver</a>
-                    <button type="button" class="btn btn-outline-success" th:onclick="mostrarMensaje()">Contactar</button>
                     <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
 
                     <form th:action="@{/eliminar-publicacion}" method="post">
@@ -79,7 +78,6 @@
                     <form th:action="@{/editar-publicacion}" method="get">
                         <input type="hidden" name="idPublicacion" th:value="${publicacionData.getIdPublicacion()}">
                         <input type="hidden" name="tipoPublicacion" th:value="${publicacionData.getTipoPublicacion()}">
-                        <!--                                    <button type="submit" class="btn btn-outline-dark"><img src="/spring/img/edit-option.svg"></button>-->
                         <button type="submit" class="btn btn-outline-info">Editar</button>
                     </form>
 
