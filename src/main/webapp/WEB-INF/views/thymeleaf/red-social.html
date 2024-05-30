@@ -24,12 +24,12 @@
     <!-- Entry points -->
     <div th:include="'entry-points'"></div>
 </nav>
-<h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
-<h2 th:if="${error}" class="alert alert-warning" th:text="${error}"></h2>
-
 <main role="main" class="container flex-grow-1 d-flex align-items-start">
+
     <!-- Contenedor de las publicaciones -->
     <section class="todas-publicaciones">
+        <h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
+        <h2 th:if="${error}" class="alert alert-warning" th:text="${error}"></h2>
         <div class="card-deck">
             <div class="row">
                 <div class="col-md-4" th:each="publicacion : ${todasLasPublicaciones}">
