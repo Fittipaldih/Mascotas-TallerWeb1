@@ -2,6 +2,7 @@ package com.tallerwebi.dominio.servicios;
 
 import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.PublicacionTipo;
+import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioRedSocial;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,11 @@ public class ServicioRedSocialImpl implements ServicioRedSocial {
 
     public ServicioRedSocialImpl(RepositorioPublicacion repositorioPublicacion) {
         this.repositorioPublicacion = repositorioPublicacion;
+    }
+
+    @Override
+    public Publicacion getPublicacionPorId(Long idPublicacion) {
+        return  this.repositorioPublicacion.getPublicacionPorId(idPublicacion);
     }
 
     @Override
@@ -44,24 +50,32 @@ public class ServicioRedSocialImpl implements ServicioRedSocial {
     }
 
     @Override
-    public String getSeccionEditar(PublicacionTipo publicacionTipo) {
-        String seccionEditar = "";
-        switch (publicacionTipo) {
-           case HISTORIA:
-               seccionEditar = "historia";
-               break;
-           case DONACION:
-               seccionEditar= "donacion";
-               break;
-           case BUSCADO_POR_DUENIO:
-               seccionEditar= "perdido";
+    public List<Publicacion> getPublicacionesSegunFiltros(Zona zona, String nombre) {
+        if (nombre != null && zona != null) {
+            return this.repositorioPublicacion.getPublicacionesPorZonaYNombreMascota(zona, nombre);
+        } else if (nombre != null) {
+            return this.repositorioPublicacion.getPublicacionesPorNombreMascota(nombre);
+        } else if (zona != null) {
+            return this.repositorioPublicacion.getPublicacionesPorZona(zona);
+        } else {
+            return this.getTodasLasPublicaciones();
         }
-        return seccionEditar;
     }
 
     @Override
-    public Publicacion getPublicacionPorId(Long idPublicacion) {
-      return  this.repositorioPublicacion.getPublicacionPorId(idPublicacion);
+    public String getSeccionEditar(PublicacionTipo publicacionTipo) {
+        String seccionEditar = "";
+        switch (publicacionTipo) {
+            case HISTORIA:
+                seccionEditar = "historia";
+                break;
+            case DONACION:
+                seccionEditar= "donacion";
+                break;
+            case BUSCADO_POR_DUENIO:
+                seccionEditar= "perdido";
+        }
+        return seccionEditar;
     }
 
 }

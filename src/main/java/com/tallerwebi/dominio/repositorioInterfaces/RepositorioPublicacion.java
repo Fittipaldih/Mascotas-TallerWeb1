@@ -15,9 +15,13 @@ public interface RepositorioPublicacion {
 
     List<Publicacion> getPublicaciones();
 
+    List<Publicacion> getPublicacionesPorNombreMascota(String nombre);
+
     List<Publicacion> getPublicacionesPorTipoPublicacion(PublicacionTipo tipo);
 
-    List<Publicacion> buscarPublicacionesPorZona(Zona zona);
+    List<Publicacion> getPublicacionesPorZona(Zona zona);
+
+    List<Publicacion> getPublicacionesPorZonaYNombreMascota(Zona zona, String nombre);
 
     void eliminarPublicacion(Publicacion publicacion);
 

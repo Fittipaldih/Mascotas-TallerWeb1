@@ -2,6 +2,8 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.PublicacionDTO;
+import com.tallerwebi.dominio.PublicacionTiempo;
+import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioRedSocial;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +28,16 @@ public class ControladorRedSocial {
     ServicioPublicacionConversion publicacionConversionService;
 
     @RequestMapping(value = "/red-social", method = RequestMethod.GET)
-    public ModelAndView mostrarTodasLasPublicaciones(@RequestParam(value = "ordenar", required = false, defaultValue = "ASC") String ordenar) {
+    public ModelAndView mostrarYFiltrarPublicaciones(@RequestParam(value = "ordenar", required = false, defaultValue = "ASC") String ordenar,
+                                                     @RequestParam(value = "zona", required = false) Zona zona,
+                                                     @RequestParam(value = "nombre", required = false) String nombre) {
         ModelMap model = new ModelMap();
-        List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
+        List<Publicacion> publicaciones = servicioRedSocial.getPublicacionesSegunFiltros(zona, nombre);;
+
         if ("ASC".equalsIgnoreCase(ordenar)) {
-            Collections.reverse(todasLasPublicaciones);
+            Collections.reverse(publicaciones);
         }
-        List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(todasLasPublicaciones);
+        List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(publicaciones);
         model.put("todasLasPublicaciones", todasLasPublicacionesDTO);
         return new ModelAndView("red-social", model);
     }
