@@ -22,7 +22,7 @@ import java.util.List;
 @Transactional
 public class ControladorEditarPerdido {
 
-    private ServicioEditarPerdidoImp servicioEditarPerdidoImp;
+    private final ServicioEditarPerdidoImp servicioEditarPerdidoImp;
     private final ServicioRedSocial servicioRedSocial;
     private final ServicioPublicacionConversion publicacionConversionService;
 

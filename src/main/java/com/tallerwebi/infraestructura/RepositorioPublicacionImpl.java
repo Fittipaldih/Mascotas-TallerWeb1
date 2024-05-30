@@ -66,7 +66,6 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         return query.getResultList();
     }
 
-
     @Override
     public List<Publicacion> getPublicacionesPorTipoPublicacion(PublicacionTipo tipo) {
         String hql = "FROM Publicacion p WHERE p.tipoPublicacion = :tipo";

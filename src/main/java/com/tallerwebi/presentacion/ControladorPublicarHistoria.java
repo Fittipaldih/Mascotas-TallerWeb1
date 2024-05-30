@@ -4,6 +4,7 @@ import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
 import com.tallerwebi.dominio.servicios.ServicioPublicarHistoriaImp;
 import com.tallerwebi.dominio.servicios.ServicioRedSocialImpl;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioPublicarHistoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,14 +22,18 @@ import java.util.List;
 @Transactional
 public class ControladorPublicarHistoria {
 
+    private final ServicioPublicarHistoria servicioPublicarHistoriaImp;
+    private final ServicioRedSocialImpl servicioRedSocial;
+    private final ServicioPublicacionConversion publicacionConversionService;
+    private final ControladorPublicar controladorPublicar;
+
     @Autowired
-    private ServicioPublicarHistoriaImp servicioPublicarHistoriaImp;
-    @Autowired
-    ServicioRedSocialImpl servicioRedSocial;
-    @Autowired
-    ServicioPublicacionConversion publicacionConversionService;
-    @Autowired
-    ControladorPublicar controladorPublicar;
+    public ControladorPublicarHistoria(ServicioPublicarHistoria servicioPublicarHistoriaImp, ServicioRedSocialImpl servicioRedSocial, ServicioPublicacionConversion publicacionConversionService, ControladorPublicar controladorPublicar) {
+        this.servicioPublicarHistoriaImp = servicioPublicarHistoriaImp;
+        this.servicioRedSocial = servicioRedSocial;
+        this.publicacionConversionService = publicacionConversionService;
+        this.controladorPublicar = controladorPublicar;
+    }
 
     @RequestMapping(value = "/nueva-historia", method = RequestMethod.POST)
     public ModelAndView publicarHistoria(@RequestParam(value = "titular") String titular,
