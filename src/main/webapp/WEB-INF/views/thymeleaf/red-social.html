@@ -65,20 +65,17 @@
     <!-- Contenedor del cuadro de la derecha -->
     <section class="tipo-publicacion">
         <div class="tipo-publicacion2">
-            <h1>¿Qué desea hacer?</h1>
             <a href="http://localhost:8080/spring/publicar" class="btn btn-outline-light">Publicar</a>
-            <a href="http://localhost:8080/spring/publicar" class="btn btn-outline-light">Mis publicacioens</a>
-            <h1>Quiero ver...</h1>
-            <a href="http://localhost:8080/spring/red-social?ordenar=DESC" class="btn btn-outline-light">Antiguas
+            <h1><small>Quiero ver...</small></h1>
+            <a href="http://localhost:8080/spring/red-social?ordenar=DESC" class="btn btn-outline-light btn-sm">Antiguas
                 primero</a>
-            <a href="http://localhost:8080/spring/red-social?ordenar=ASC" class="btn btn-outline-light">Recientes
+            <a href="http://localhost:8080/spring/red-social?ordenar=ASC" class="btn btn-outline-light btn-sm">Recientes
                 primero</a>
-            <h1>Ver solo...</h1>
-            <a href="http://localhost:8080/spring/perdidos" class="btn btn-outline-light">Mascotas perdidas</a>
-            <a href="http://localhost:8080/spring/historias" class="btn btn-outline-light">Historias de mascotas</a>
-            <a href="http://localhost:8080/spring/donaciones" class="btn btn-outline-light">Solicitan donación</a>
-            <form th:action="@{/red-social}" method="get">-->
-                <h1>Filtrar por...</h1>
+            <h1><small>Solo ver...</small></h1>
+            <a href="http://localhost:8080/spring/perdidos" class="btn btn-outline-light btn-sm">Mascotas perdidas</a>
+            <a href="http://localhost:8080/spring/historias" class="btn btn-outline-light btn-sm">Historias de mascotas</a>
+            <a href="http://localhost:8080/spring/donaciones" class="btn btn-outline-light btn-sm">Solicitan donación</a>
+            <form th:action="@{/red-social}" method="get">
                 <label style="color: white" for="zona">Zona:</label>
                 <select id="zona" name="zona" class="form-select">
                     <option value="">Ingrese una zona</option>
@@ -87,14 +84,12 @@
                     <option value="OESTE">Oeste</option>
                     <option value="CABA">Caba</option>
                 </select>
-                <br>
-                <label style="color: white" for="nombre">Nombre mascota:</label>
+                <label class="mt-1" style="color: white" for="nombre">Nombre mascota:</label>
                 <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre..">
                 <br>
                 <button type="submit" class="btn btn-outline-light">Filtrar</button>
             </form>
-            <br>
-            <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-light">Volver</a>
+            <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-light btn-sm">Limpiar filtros</a>
         </div>
     </section>
 </main>

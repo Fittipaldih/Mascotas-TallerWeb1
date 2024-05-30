@@ -33,14 +33,18 @@
                 <div class="card">
                     <img class="card-img-top" th:src="'data:image/jpeg;base64,' + ${publicacion.imagen}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${publicacion.tipoPublicacion}">Perdido</h5>
+                        <h5 class="card-title"
+                            th:text="${publicacion.tipoPublicacion == 'BUSCADO_POR_DUENIO' ? 'BUSCADO POR DUEÑO' :
+                            (publicacion.tipoPublicacion == 'BUSCANDO_AL_DUENIO' ? 'BUSCANDO AL DUEÑO' : publicacion.tipoPublicacion)}">
+                        </h5>
                         <p class="card-text" th:text="${publicacion.descripcion}">Descripción de la publicación</p>
                         <p class="card-text"><small class="text-muted" th:text="'Zona: ' + ${publicacion.zona}">Zona: zona</small></p>
                         <p class="card-text"><small class="text-muted" th:text="'Nombre: ' + ${publicacion.nombreMascota}">Nombre: nombre</small></p>
                         <div class="container-btn">
-                            <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Contactar</button>
-                            <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Compartir</button>
-                            <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Comentar</button>
+                            <form th:action="@{/detalle-publicacion/}" method="get">
+                                <input type="hidden" name="id" th:value="${publicacion.getIdPublicacion()}">
+                                <button type="submit" class="btn btn-outline-dark">Ver publicacion</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -35,9 +35,10 @@
                         <h5 class="card-title" th:text="${publicacion.tipoPublicacion}"></h5>
                         <p class="card-text" th:text="${publicacion.descripcion}"></p>
                         <div class="container-btn">
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar</button>
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar</button>
+                            <form th:action="@{/detalle-publicacion/}" method="get">
+                                <input type="hidden" name="id" th:value="${publicacion.getIdPublicacion()}">
+                                <button type="submit" class="btn btn-outline-dark">Ver publicacion</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -20,8 +20,8 @@
 
 .tipo-publicacion h1 {
     color: white;
-    font-size: medium;
-    margin-bottom: 3vh;
+    margin-bottom: 0vh;
+    margin-top: 2px;
 }
 
 .tipo-publicacion {
@@ -30,7 +30,7 @@
 }
 
 .todas-publicaciones {
-    margin-top: 2rem; /* Ajuste positivo para dar espacio suficiente */
+    margin-top: 4rem; /* Ajuste positivo para dar espacio suficiente */
     flex: 3;
 }
 

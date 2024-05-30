@@ -50,18 +50,11 @@
             </div>
             <div class="col-md-4">
                 <div class="latest-publications-container">
-                    <h3 class="fw-bold">Últimas publicaciones</h3>
-                    <div class="publication">
+                    <h4 class="fw-bold">Últimas publicaciones</h4>
+                    <div class="publication" th:each="publicacion : ${ultimasPublicaciones}">
                         <i class="bi bi-link-45deg"></i>
-                        <a href="red-social.html">HISTORIA - Encontramos peluquería y quería...</a>
-                    </div>
-                    <div class="publication fs-6">
-                        <i class="bi bi-link-45deg"></i>
-                        <a href="red-social.html"><i class="bi bi-link-45deg"></i>DONACIÓN - Necesitamos ayuda para operar...</a>
-                    </div>
-                    <div class="publication">
-                        <i class="bi bi-link-45deg"></i>
-                        <a href="red-social.html">PERDIDO - Estamos buscando a Tito, se perdió...</a>
+                        <a th:href="@{'/detalle-publicacion/?id=' + ${publicacion.idPublicacion}}"
+                           th:text="${publicacion.tipoPublicacion.name()} + ' - ' + ${#strings.abbreviate(publicacion.descripcion, 50)}"></a>
                     </div>
                 </div>
             </div>

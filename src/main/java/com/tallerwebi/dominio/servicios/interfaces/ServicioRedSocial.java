@@ -24,5 +24,8 @@ public interface ServicioRedSocial {
 
     List<Publicacion> getPublicacionesSegunFiltros(Zona zona, String nombre);
 
+    List<Publicacion> obtenerUltimasPublicaciones(int cantidad);
+
     String getSeccionEditar(PublicacionTipo publicacionTipo);
+
 }

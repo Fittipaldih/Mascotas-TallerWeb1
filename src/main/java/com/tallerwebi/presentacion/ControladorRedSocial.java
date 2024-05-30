@@ -39,12 +39,20 @@ public class ControladorRedSocial {
         }
         List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(publicaciones);
         model.put("todasLasPublicaciones", todasLasPublicacionesDTO);
+
+        List<Publicacion> ultimasPublicaciones = servicioRedSocial.obtenerUltimasPublicaciones(3);
+        List<PublicacionDTO> ultimasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(ultimasPublicaciones);
+        model.put("ultimasPublicaciones", ultimasPublicacionesDTO);
+
         return new ModelAndView("red-social", model);
     }
 
     @RequestMapping(value = "/publicar", method = RequestMethod.GET)
     public ModelAndView publicar() {
-        return new ModelAndView("publicar");
+        ModelMap model = new ModelMap();
+        List<Publicacion> ultimasPublicaciones = servicioRedSocial.obtenerUltimasPublicaciones(3);
+        model.addAttribute("ultimasPublicaciones", ultimasPublicaciones);
+        return new ModelAndView("publicar", model);
     }
 
     @RequestMapping(value = "/perdidos", method = RequestMethod.GET)
