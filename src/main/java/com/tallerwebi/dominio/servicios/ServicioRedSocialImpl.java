@@ -7,7 +7,9 @@ import com.tallerwebi.dominio.servicios.interfaces.ServicioRedSocial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ServicioRedSocialImpl implements ServicioRedSocial {
@@ -70,6 +72,15 @@ public class ServicioRedSocialImpl implements ServicioRedSocial {
     @Override
     public Publicacion getPublicacionPorId(Long idPublicacion) {
       return  this.repositorioPublicacion.getPublicacionPorId(idPublicacion);
+    }
+
+    @Override
+    public List<Publicacion> obtenerUltimasPublicaciones(int cantidad) {
+        List<Publicacion> todasLasPublicaciones = repositorioPublicacion.getPublicaciones();
+        todasLasPublicaciones.sort(Comparator.comparing(Publicacion::getFechaPublicacion).reversed());
+        return todasLasPublicaciones.stream()
+                .limit(cantidad)
+                .collect(Collectors.toList());
     }
 
 }

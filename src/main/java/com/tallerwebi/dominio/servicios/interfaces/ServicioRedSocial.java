@@ -16,4 +16,6 @@ public interface ServicioRedSocial {
     List<Publicacion> getPublicacionesTipoHistoria();
     String getSeccionEditar(PublicacionTipo publicacionTipo);
     Publicacion getPublicacionPorId(Long idPublicacion);
+
+    List<Publicacion> obtenerUltimasPublicaciones(int cantidad);
 }
