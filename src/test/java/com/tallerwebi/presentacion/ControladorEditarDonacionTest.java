@@ -24,20 +24,16 @@ import static org.mockito.Mockito.when;
 
 public class ControladorEditarDonacionTest {
 
-    private ControladorEditarDonacion controladorEditarDonacion;
-    private ServicioEditarDonacionImp servicioEditarDonacionImpMock;
-
     @Mock
     private ServicioRedSocialImpl servicioRedSocial;
-
     @Mock
     private ServicioPublicacionConversion publicacionConversionService;
+    @Mock
+    private ControladorEditarDonacion controladorEditarDonacion;
 
     @BeforeEach
     public void init() {
         MockitoAnnotations.openMocks(this);
-        this.servicioEditarDonacionImpMock = mock(ServicioEditarDonacionImp.class);
-        this.controladorEditarDonacion = new ControladorEditarDonacion(servicioEditarDonacionImpMock);
     }
 
     @Test

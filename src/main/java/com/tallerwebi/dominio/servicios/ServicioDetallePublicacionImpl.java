@@ -5,26 +5,21 @@ import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioComentario;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioDetallePublicacion;
-import com.tallerwebi.infraestructura.RepositorioComentarioImpl;
-import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class ServicioDetallePublicacionImpl implements ServicioDetallePublicacion {
 
-    @Autowired
-    private RepositorioPublicacion repositorioPublicacion;
-    @Autowired
-    private RepositorioComentarioImpl repositorioComentario;
+    private final RepositorioPublicacion repositorioPublicacion;
+    private final RepositorioComentario repositorioComentario;
 
     @Autowired
-    private RepositorioPublicacionImpl repositorioPublicacionImpl;
-
-    public ServicioDetallePublicacionImpl(RepositorioPublicacion repositorioPublicacion, RepositorioComentarioImpl repositorioComentario) {
+    public ServicioDetallePublicacionImpl(RepositorioPublicacion repositorioPublicacion, RepositorioComentario repositorioComentario ) {
         this.repositorioPublicacion = repositorioPublicacion;
         this.repositorioComentario = repositorioComentario;
     }
@@ -42,15 +37,15 @@ public class ServicioDetallePublicacionImpl implements ServicioDetallePublicacio
     @Override
     public void eliminarPublicacion(Long idPublicacion) {
         eliminarComentariosAsociados(idPublicacion);
-        this.repositorioPublicacionImpl.eliminarPublicacionPorId(idPublicacion);
+        this.repositorioPublicacion.eliminarPublicacionPorId(idPublicacion);
 
     }
 
     private void eliminarComentariosAsociados(Long idPublicacion) {
-        Publicacion publicacion = this.repositorioPublicacionImpl.getPublicacionPorId(idPublicacion);
+        Publicacion publicacion = this.repositorioPublicacion.getPublicacionPorId(idPublicacion);
         List<Comentario> comentarios =  publicacion.getComentarios();
         for (Comentario comentario : comentarios) {
-            this.repositorioPublicacionImpl.eliminarComentarioPorId(comentario.getId());
+            this.repositorioPublicacion.eliminarComentarioPorId(comentario.getId());
         }
     }
 

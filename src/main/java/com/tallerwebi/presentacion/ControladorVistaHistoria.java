@@ -1,7 +1,7 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.PublicacionHistoria;
-import com.tallerwebi.dominio.servicios.ServicioPublicacionHistoriaImpl;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioPublicacionHistoria;
 import com.tallerwebi.dominio.Zona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +15,11 @@ import java.util.List;
 
 @Controller
 public class ControladorVistaHistoria {
-    private ServicioPublicacionHistoriaImpl servicioHistorias;
+
+    private final ServicioPublicacionHistoria servicioHistorias;
 
     @Autowired
-    public ControladorVistaHistoria(ServicioPublicacionHistoriaImpl servicioHistorias) {
+    public ControladorVistaHistoria(ServicioPublicacionHistoria servicioHistorias) {
         this.servicioHistorias = servicioHistorias;
     }
 

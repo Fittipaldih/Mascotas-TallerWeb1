@@ -1,6 +1,7 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
+import com.tallerwebi.dominio.servicios.ServicioEditarDonacionImp;
 import com.tallerwebi.dominio.servicios.ServicioEditarHistoriaImp;
 import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
 import com.tallerwebi.dominio.servicios.ServicioRedSocialImpl;
@@ -21,20 +22,16 @@ import static org.mockito.Mockito.when;
 
 public class ControladorEditarHistoriaTest {
 
-    private ControladorEditarHistoria controladorEditarHistoria;
-    private ServicioEditarHistoriaImp servicioEditarHistoriaImpMock;
-
     @Mock
     private ServicioRedSocialImpl servicioRedSocial;
-
     @Mock
     private ServicioPublicacionConversion publicacionConversionService;
+    @Mock
+    private ControladorEditarHistoria controladorEditarHistoria;
 
     @BeforeEach
     public void init() {
         MockitoAnnotations.openMocks(this);
-        this.servicioEditarHistoriaImpMock = mock(ServicioEditarHistoriaImp.class);
-        this.controladorEditarHistoria = new ControladorEditarHistoria(servicioEditarHistoriaImpMock);
     }
 
     @Test
@@ -51,15 +48,12 @@ public class ControladorEditarHistoriaTest {
                 "image/jpeg",
                 "Imagen de prueba".getBytes());
         Long idPublicacionOriginal = 2L;
-
         //Mock service
         List<Publicacion> publicaciones = new ArrayList<>();
         when(servicioRedSocial.getTodasLasPublicaciones()).thenReturn(publicaciones);
 //        when(servicioEditarPerdidoImpoMock.editarPerdido(idPublicacionOriginal,nombreMascota,telefonoContacto,nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagen);
         List<PublicacionDTO> publicacionesDTO = new ArrayList<>();
         when(publicacionConversionService.convertirEntidadesADTOs(publicaciones)).thenReturn(publicacionesDTO);
-
-
         //ejecucion
         ModelAndView vista = this.controladorEditarHistoria.editarHistoria(titular,nombreMascota,idPublicacionOriginal,zona, descripcion, imagen);
         // verificacion
@@ -81,15 +75,12 @@ public class ControladorEditarHistoriaTest {
                 "image/jpeg",
                 "Imagen de prueba".getBytes());
         Long idPublicacionOriginal = 2L;
-
         //Mock service
         List<Publicacion> publicaciones = new ArrayList<>();
         when(servicioRedSocial.getTodasLasPublicaciones()).thenReturn(publicaciones);
 //        when(servicioEditarPerdidoImpoMock.editarPerdido(idPublicacionOriginal,nombreMascota,telefonoContacto,nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagen);
         List<PublicacionDTO> publicacionesDTO = new ArrayList<>();
         when(publicacionConversionService.convertirEntidadesADTOs(publicaciones)).thenReturn(publicacionesDTO);
-
-
         //ejecucion
         ModelAndView vista = this.controladorEditarHistoria.editarHistoria(titular,nombreMascota,idPublicacionOriginal,zona, descripcion, imagen);
         // verificacion
@@ -110,15 +101,12 @@ public class ControladorEditarHistoriaTest {
                  "image/jpeg",
                  "Imagen de prueba".getBytes());
          Long idPublicacionOriginal = 2L;
-
          //Mock service
          List<Publicacion> publicaciones = new ArrayList<>();
          when(servicioRedSocial.getTodasLasPublicaciones()).thenReturn(publicaciones);
 //        when(servicioEditarPerdidoImpoMock.editarPerdido(idPublicacionOriginal,nombreMascota,telefonoContacto,nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagen);
          List<PublicacionDTO> publicacionesDTO = new ArrayList<>();
          when(publicacionConversionService.convertirEntidadesADTOs(publicaciones)).thenReturn(publicacionesDTO);
-
-
          //ejecucion
          ModelAndView vista = this.controladorEditarHistoria.editarHistoria(titular,nombreMascota,idPublicacionOriginal,zona, descripcion, imagen);
          // verificacion

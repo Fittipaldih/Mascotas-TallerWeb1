@@ -4,6 +4,8 @@ import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.servicios.ServicioDetallePublicacionImpl;
 import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
 import com.tallerwebi.dominio.servicios.ServicioRedSocialImpl;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioDetallePublicacion;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioRedSocial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,12 +21,16 @@ import java.util.List;
 @Transactional
 public class ControladorDetallePublicacion {
 
+    private final ServicioDetallePublicacion servicioDetallePublicacion;
+    private final ServicioRedSocial servicioRedSocial;
+    private final ServicioPublicacionConversion publicacionConversionService;
+
     @Autowired
-    private ServicioDetallePublicacionImpl servicioDetallePublicacion;
-    @Autowired
-    ServicioRedSocialImpl servicioRedSocial;
-    @Autowired
-    ServicioPublicacionConversion publicacionConversionService;
+    public ControladorDetallePublicacion(ServicioDetallePublicacion servicioDetallePublicacion, ServicioRedSocial servicioRedSocial, ServicioPublicacionConversion publicacionConversionService) {
+        this.servicioDetallePublicacion = servicioDetallePublicacion;
+        this.servicioRedSocial = servicioRedSocial;
+        this.publicacionConversionService = publicacionConversionService;
+    }
 
     @RequestMapping(value = "/detalle-publicacion", method = RequestMethod.GET)
     public ModelAndView mostrarDetallePublicacion(@RequestParam Long id){

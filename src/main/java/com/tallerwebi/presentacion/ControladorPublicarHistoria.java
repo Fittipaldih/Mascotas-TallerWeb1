@@ -22,7 +22,7 @@ import java.util.List;
 public class ControladorPublicarHistoria {
 
     @Autowired
-    private ServicioPublicarHistoriaImp servicioPublicarHistoriaImp = new ServicioPublicarHistoriaImp();
+    private ServicioPublicarHistoriaImp servicioPublicarHistoriaImp;
     @Autowired
     ServicioRedSocialImpl servicioRedSocial;
     @Autowired

@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 import static org.mockito.Mockito.*;
@@ -19,10 +18,8 @@ public class ControladorPublicarPerdidoTest {
 
     @InjectMocks
     private ControladorPublicarPerdido controladorPublicarPerdido;
-
     @Mock
     private ServicioPublicarPerdido servicioPublicarPerdidoImp;
-
     @BeforeEach
     public void init() {
         MockitoAnnotations.openMocks(this);

@@ -18,7 +18,7 @@ public class ServicioEditarHistoriaImpTest {
     @BeforeEach
     public void init() {
         this.repositorioPublicacionMock = mock(RepositorioPublicacionImpl.class);
-        this.servicioEditarHistoriaImp = new ServicioEditarHistoriaImp(repositorioPublicacionMock);
+        this.servicioEditarHistoriaImp = mock(ServicioEditarHistoriaImp.class);
     }
 
     @Test

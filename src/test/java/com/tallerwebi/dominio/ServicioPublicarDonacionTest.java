@@ -36,13 +36,10 @@ class ServicioPublicarDonacionTest {
         PublicacionDonacion donacion = new PublicacionDonacion();
         MultipartFile imagenMock = mock(MultipartFile.class);
         byte[] imagenBytes = "imagen".getBytes();
-
         when(imagenMock.isEmpty()).thenReturn(false);
         when(imagenMock.getBytes()).thenReturn(imagenBytes);
-
         //ejecucion
         servicioPublicarDonacion.publicarDonacion(donacion, imagenMock);
-
         //verificacion
         assertArrayEquals(imagenBytes, donacion.getImagen());
         verify(repositorioPublicacion, times(1)).guardarDonacion(donacion);
@@ -53,12 +50,9 @@ class ServicioPublicarDonacionTest {
         //preparacion
         PublicacionDonacion donacion = new PublicacionDonacion();
         MultipartFile imagenMock = mock(MultipartFile.class);
-
         when(imagenMock.isEmpty()).thenReturn(true);
-
         //ejecucion
         servicioPublicarDonacion.publicarDonacion(donacion, imagenMock);
-
         //verificacion
         assertNull(donacion.getImagen());
         verify(repositorioPublicacion, times(1)).guardarDonacion(donacion);
@@ -69,15 +63,12 @@ class ServicioPublicarDonacionTest {
         //preparacion
         PublicacionDonacion donacion = new PublicacionDonacion();
         MultipartFile imagenMock = mock(MultipartFile.class);
-
         when(imagenMock.isEmpty()).thenReturn(false);
         when(imagenMock.getBytes()).thenThrow(new IOException("Error de IO"));
-
         //ejecucion
         Exception exception = assertThrows(RuntimeException.class, () -> {
             servicioPublicarDonacion.publicarDonacion(donacion, imagenMock);
         });
-
         //verificacion
         assertThat(exception.getMessage(), equalToIgnoringCase("Error al procesar la imagen"));
         verify(repositorioPublicacion, never()).guardarDonacion(donacion);

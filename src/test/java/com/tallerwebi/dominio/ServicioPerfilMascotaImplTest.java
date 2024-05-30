@@ -24,7 +24,7 @@ public class ServicioPerfilMascotaImplTest {
     @BeforeEach
     public void init() {
         repositorioMascotaMock = mock(RepositorioMascotaImpl.class);
-        servicioPerfilMascotaImpl = new ServicioPerfilMascotaImpl(repositorioMascotaMock);
+        servicioPerfilMascotaImpl = mock(ServicioPerfilMascotaImpl.class);
     }
 
     @Test

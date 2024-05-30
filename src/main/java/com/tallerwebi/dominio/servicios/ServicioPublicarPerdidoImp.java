@@ -5,6 +5,7 @@ import com.tallerwebi.dominio.PublicacionDTO;
 import com.tallerwebi.dominio.PublicacionPerdido;
 import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.excepcion.PerdidoException;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioPublicarPerdido;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,14 @@ import java.util.List;
 @Service
 public class ServicioPublicarPerdidoImp implements ServicioPublicarPerdido {
 
+    private final RepositorioPublicacion repositorioPublicarPerdido;
+    private final ServicioPublicacionConversion publicacionConversionService;
+
     @Autowired
-    private RepositorioPublicacionImpl repositorioPublicarPerdido;
-    @Autowired
-    private ServicioPublicacionConversion publicacionConversionService;
+    public ServicioPublicarPerdidoImp(RepositorioPublicacion repositorioPublicarPerdido, ServicioPublicacionConversion publicacionConversionService) {
+        this.repositorioPublicarPerdido = repositorioPublicarPerdido;
+        this.publicacionConversionService = publicacionConversionService;
+    }
 
     @Override
     public void publicarPerdido(PublicacionPerdido perdido, MultipartFile imagen) throws PerdidoException {

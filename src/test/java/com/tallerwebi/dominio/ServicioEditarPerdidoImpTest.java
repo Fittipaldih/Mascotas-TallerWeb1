@@ -11,6 +11,7 @@ import org.springframework.mock.web.MockMultipartFile;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 public class ServicioEditarPerdidoImpTest {
 
@@ -20,7 +21,7 @@ public class ServicioEditarPerdidoImpTest {
     @BeforeEach
     public void init() {
         this.repositorioPublicacionMock = mock(RepositorioPublicacionImpl.class);
-        this.servicioEditarPerdidoImp = new ServicioEditarPerdidoImp(repositorioPublicacionMock);
+        this.servicioEditarPerdidoImp = mock(ServicioEditarPerdidoImp.class);
     }
 // casos a verficar
 //

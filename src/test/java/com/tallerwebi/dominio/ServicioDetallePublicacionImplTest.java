@@ -1,6 +1,5 @@
 package com.tallerwebi.dominio;
 
-import com.tallerwebi.dominio.repositorioInterfaces.RepositorioComentario;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.servicios.ServicioDetallePublicacionImpl;
 import com.tallerwebi.infraestructura.RepositorioComentarioImpl;
@@ -42,10 +41,8 @@ public class ServicioDetallePublicacionImplTest {
         Publicacion publicacion = new PublicacionPerdido();
         publicacion.setIdPublicacion(id);
         when(this.repositorioPublicacionImpl.getPublicacionPorId(id)).thenReturn(publicacion);
-
         // Ejecución
         Publicacion publicacionObtenida = this.servicioDetallePublicacion.getPublicacion(id);
-
         // Verificación
         assertThat(publicacionObtenida, equalTo(publicacion));
     }
@@ -57,10 +54,8 @@ public class ServicioDetallePublicacionImplTest {
         Publicacion donacion = new PublicacionDonacion();
         donacion.setIdPublicacion(idDonacion);
         when(repositorioPublicacionImpl.getPublicacionPorId(donacion.getIdPublicacion())).thenReturn(donacion);
-
         // Ejecución
         Publicacion publicacionDonacionObtenida = repositorioPublicacionImpl.getPublicacionPorId(idDonacion);
-
         // Verificación
         assertThat(publicacionDonacionObtenida, equalTo(donacion));
     }
@@ -70,7 +65,6 @@ public class ServicioDetallePublicacionImplTest {
         // Preparación
         Long idPublicacionNoExistente = 99L;
         when(repositorioPublicacionImpl.getPublicacionPorId(idPublicacionNoExistente)).thenReturn(null);
-
         // Ejecución y verificación
         try {
             servicioDetallePublicacion.getPublicacion(idPublicacionNoExistente);
@@ -87,12 +81,9 @@ public class ServicioDetallePublicacionImplTest {
         Long id = 5L;
         publicacion.setIdPublicacion(id);
         String textoDelComentario = "";
-
         // ejecucion y verificacion
         assertThrows(Exception.class, () -> servicioDetallePublicacion.hacerComentario(textoDelComentario, id));
     }
-
-
 
     @Test
     public void queDevuelvaLaPublicacionPerdidoOkPorSuId() throws Exception {
@@ -101,10 +92,8 @@ public class ServicioDetallePublicacionImplTest {
         Publicacion perdido = new PublicacionPerdido();
         perdido.setIdPublicacion(idPerdido);
         when(repositorioPublicacionImpl.getPublicacionPorId(perdido.getIdPublicacion())).thenReturn(perdido);
-
         // Ejecución
         Publicacion publicacionPerdidoObtenida = repositorioPublicacionImpl.getPublicacionPorId(idPerdido);
-
         // Verificación
         assertThat(publicacionPerdidoObtenida, equalTo(perdido));
     }
@@ -116,10 +105,8 @@ public class ServicioDetallePublicacionImplTest {
         Publicacion historia = new PublicacionHistoria();
         historia.setIdPublicacion(idHistoria);
         when(repositorioPublicacionImpl.getPublicacionPorId(historia.getIdPublicacion())).thenReturn(historia);
-
         // Ejecución
         Publicacion publicacionHistoriaObtenida = repositorioPublicacionImpl.getPublicacionPorId(idHistoria);
-
         // Verificación
         assertThat(publicacionHistoriaObtenida, equalTo(historia));
     }

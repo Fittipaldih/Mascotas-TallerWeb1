@@ -2,7 +2,6 @@ package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.PublicacionDTO;
-import com.tallerwebi.dominio.PublicacionTiempo;
 import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioRedSocial;
@@ -22,10 +21,14 @@ import java.util.List;
 @Transactional
 public class ControladorRedSocial {
 
+    private final ServicioRedSocial servicioRedSocial;
+    private final ServicioPublicacionConversion publicacionConversionService;
+
     @Autowired
-    ServicioRedSocial servicioRedSocial;
-    @Autowired
-    ServicioPublicacionConversion publicacionConversionService;
+    public ControladorRedSocial(ServicioRedSocial servicioRedSocial, ServicioPublicacionConversion publicacionConversionService) {
+        this.servicioRedSocial = servicioRedSocial;
+        this.publicacionConversionService = publicacionConversionService;
+    }
 
     @RequestMapping(value = "/red-social", method = RequestMethod.GET)
     public ModelAndView mostrarYFiltrarPublicaciones(@RequestParam(value = "ordenar", required = false, defaultValue = "ASC") String ordenar,

@@ -8,7 +8,7 @@ import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 
 public class ControladorPublicarTest {
 
-    private ControladorPublicar controladorPublicar;
+    private final ControladorPublicar controladorPublicar;
 
     public ControladorPublicarTest() {
         this.controladorPublicar = new ControladorPublicar();

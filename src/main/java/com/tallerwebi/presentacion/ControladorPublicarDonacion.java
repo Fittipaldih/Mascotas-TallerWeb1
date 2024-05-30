@@ -22,7 +22,7 @@ import java.util.List;
 public class ControladorPublicarDonacion {
 
     @Autowired
-    private ServicioPublicarDonacionImp servicioPublicarDonacionImp = new ServicioPublicarDonacionImp();
+    private ServicioPublicarDonacionImp servicioPublicarDonacionImp;
     @Autowired
     ServicioRedSocialImpl servicioRedSocial;
     @Autowired

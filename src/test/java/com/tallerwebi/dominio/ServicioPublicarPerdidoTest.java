@@ -36,13 +36,10 @@ class ServicioPublicarPerdidoTest {
         PublicacionPerdido perdido = new PublicacionPerdido();
         MultipartFile imagenMock = mock(MultipartFile.class);
         byte[] imagenBytes = "imagen".getBytes();
-
         when(imagenMock.isEmpty()).thenReturn(false);
         when(imagenMock.getBytes()).thenReturn(imagenBytes);
-
         //ejecucion
         servicioPublicarPerdidoImp.publicarPerdido(perdido, imagenMock);
-
         //verificacion
         assertArrayEquals(imagenBytes, perdido.getImagen());
         verify(repositorioPublicacion, times(1)).guardarPerdido(perdido);
@@ -53,12 +50,9 @@ class ServicioPublicarPerdidoTest {
         //preparacion
         PublicacionPerdido perdido = new PublicacionPerdido();
         MultipartFile imagenMock = mock(MultipartFile.class);
-
         when(imagenMock.isEmpty()).thenReturn(true);
-
         //ejecucion
         servicioPublicarPerdidoImp.publicarPerdido(perdido, imagenMock);
-
         //verificacion
         assertNull(perdido.getImagen());
         verify(repositorioPublicacion, times(1)).guardarPerdido(perdido);
@@ -69,15 +63,12 @@ class ServicioPublicarPerdidoTest {
         //preparacion
         PublicacionPerdido perdido = new PublicacionPerdido();
         MultipartFile imagenMock = mock(MultipartFile.class);
-
         when(imagenMock.isEmpty()).thenReturn(false);
         when(imagenMock.getBytes()).thenThrow(new IOException("Error de IO"));
-
         //ejecucion
         Exception exception = assertThrows(RuntimeException.class, () -> {
             servicioPublicarPerdidoImp.publicarPerdido(perdido, imagenMock);
         });
-
         //verificacion
         assertThat(exception.getMessage(), equalToIgnoringCase("Error al procesar la imagen"));
         verify(repositorioPublicacion, never()).guardarPerdido(perdido);

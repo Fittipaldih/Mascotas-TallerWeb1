@@ -4,25 +4,23 @@ import com.tallerwebi.dominio.MascotaColor;
 import com.tallerwebi.dominio.MascotaRaza;
 import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.Zona;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioEditar;
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.PublicacionInexistenteExeption;
-import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class ServicioEditarPerdidoImp implements ServicioEditar {
-    @Autowired
-    private RepositorioPublicacionImpl repositorioPublicacionImp;
-    @Autowired
-    public ServicioEditarPerdidoImp(RepositorioPublicacionImpl repositorioPublicacionImp) {
-        this.repositorioPublicacionImp = repositorioPublicacionImp;
-    }
 
-    @Override
-    public void editarHistoria(Long idPublicacion, String titular, String nombreMascota, Zona zona, String descripcion, byte[] imagenBytes) {
+    private final RepositorioPublicacion repositorioPublicacion;
 
+    @Autowired
+    public ServicioEditarPerdidoImp(RepositorioPublicacion repositorioPublicacionImp) {
+        this.repositorioPublicacion = repositorioPublicacionImp;
     }
 
     @Override
@@ -31,13 +29,18 @@ public class ServicioEditarPerdidoImp implements ServicioEditar {
                               PublicacionTipo tipoPublicacion, Zona zona, String descripcion,
                               String direccion, byte[] imagen) throws PublicacionInexistenteExeption {
 
-        Publicacion publicacionBuscada = this.repositorioPublicacionImp.getPublicacionPorId(idPublicacion);
+        Publicacion publicacionBuscada = this.repositorioPublicacion.getPublicacionPorId(idPublicacion);
         if (publicacionBuscada instanceof PublicacionPerdido){
-            this.repositorioPublicacionImp.editarPerdido(idPublicacion,nombreMascota,telefonoContacto,
+            this.repositorioPublicacion.editarPerdido(idPublicacion,nombreMascota,telefonoContacto,
                     nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagen);
         }else {
             throw new PublicacionInexistenteExeption() ;
         }
+    }
+
+    @Override
+    public void editarHistoria(Long idPublicacion, String titular, String nombreMascota, Zona zona, String descripcion, byte[] imagenBytes) {
+
     }
 
     @Override

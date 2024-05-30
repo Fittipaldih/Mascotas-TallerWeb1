@@ -4,9 +4,9 @@ import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.PublicacionDTO;
 import com.tallerwebi.dominio.Zona;
 import com.tallerwebi.dominio.servicios.ServicioEditarDonacionImp;
-import com.tallerwebi.dominio.servicios.ServicioEditarHistoriaImp;
 import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
-import com.tallerwebi.dominio.servicios.ServicioRedSocialImpl;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioEditar;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioRedSocial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,22 +24,15 @@ import java.util.List;
 @Transactional
 public class ControladorEditarDonacion {
 
-    @Autowired
-    private ServicioEditarDonacionImp servicioEditarDonacionImp;
+    private final ServicioEditarDonacionImp servicioEditarDonacion;
+    private final ServicioRedSocial servicioRedSocial;
+    private final ServicioPublicacionConversion publicacionConversionService;
 
-    @Autowired
-    public ControladorEditarDonacion(ServicioEditarDonacionImp servicioEditarDonacionImp) {
-        this.servicioEditarDonacionImp = servicioEditarDonacionImp;
+    public ControladorEditarDonacion(ServicioEditarDonacionImp servicioEditarDonacion, ServicioRedSocial servicioRedSocial, ServicioPublicacionConversion publicacionConversionService) {
+        this.servicioEditarDonacion = servicioEditarDonacion;
+        this.servicioRedSocial = servicioRedSocial;
+        this.publicacionConversionService = publicacionConversionService;
     }
-
-
-
-    @Autowired
-    private ServicioEditarDonacionImp servicioEditarDonacionImpImp;
-    @Autowired
-    ServicioRedSocialImpl servicioRedSocial;
-    @Autowired
-    ServicioPublicacionConversion publicacionConversionService;
 
     @RequestMapping(value = "/editar-donacion", method = RequestMethod.POST)
     public ModelAndView editarDonacion(  @RequestParam(value = "nombreMascota") String nombreMascota,
@@ -55,7 +48,7 @@ public class ControladorEditarDonacion {
             if (imagen != null && !imagen.isEmpty()) {
                 imagenBytes = imagen.getBytes();
             }
-            servicioEditarDonacionImp.editarDonacion(idPublicacion, nombreMascota,montoACubrir, zona, descripcion, imagenBytes);
+            servicioEditarDonacion.editarDonacion(idPublicacion, nombreMascota,montoACubrir, zona, descripcion, imagenBytes);
 
             List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
             Collections.reverse(todasLasPublicaciones);

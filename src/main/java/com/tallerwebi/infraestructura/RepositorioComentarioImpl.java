@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class RepositorioComentarioImpl implements RepositorioComentario {
-    @Autowired
+
     private final SessionFactory sessionFactory;
 
     @Autowired

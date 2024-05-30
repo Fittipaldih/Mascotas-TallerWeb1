@@ -24,7 +24,6 @@ public class ControladorDetallePublicacionTest {
 
     @InjectMocks
     private ControladorDetallePublicacion controladorDetallePublicacion;
-
     @Mock
     private ServicioDetallePublicacionImpl mockServicioDetallePublicacion;
     @Mock

@@ -25,7 +25,7 @@ public class ServicioMapaMascoteroImplTest {
         repositorioMascotaMock = mock(RepositorioMascotaImpl.class);
         repositorioVeterinariaMock = mock(RepositorioVeterinariaImpl.class);
         repositorioPeluqueriaMock = mock(RepositorioPeluqueriaImpl.class);
-        servicioMapaMascotero = new ServicioMapaMascoteroImpl(repositorioMascotaMock, repositorioVeterinariaMock, repositorioPeluqueriaMock);
+        servicioMapaMascotero = mock(ServicioMapaMascoteroImpl.class);
     }
 
     @Test

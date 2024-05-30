@@ -1,7 +1,7 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.*;
-import com.tallerwebi.dominio.servicios.ServicioPublicacionPerdidoImpl;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioPublicacionPerdido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,8 +15,13 @@ import java.util.List;
 
 @Controller
 public class ControladorPerdidos {
+
+    private final ServicioPublicacionPerdido servicioPerdidosImp;
+
     @Autowired
-    private ServicioPublicacionPerdidoImpl servicioPerdidosImp;
+    public ControladorPerdidos(ServicioPublicacionPerdido servicioPerdidosImp) {
+        this.servicioPerdidosImp = servicioPerdidosImp;
+    }
 
     @RequestMapping(value = "/perdidosFilter", method = RequestMethod.GET)
     public ModelAndView filtrarPublicacion(@RequestParam(value = "zona") Zona zona,

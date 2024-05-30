@@ -7,11 +7,14 @@ import com.tallerwebi.dominio.servicios.interfaces.ServicioPerfilMascota;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class ServicioPerfilMascotaImpl implements ServicioPerfilMascota {
-    @Autowired
-    private RepositorioMascota repositorioMascota;
 
+    private final RepositorioMascota repositorioMascota;
+
+    @Autowired
     public ServicioPerfilMascotaImpl(RepositorioMascota repositorioMascota) {
         this.repositorioMascota = repositorioMascota;
     }

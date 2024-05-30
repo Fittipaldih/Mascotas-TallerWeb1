@@ -21,20 +21,16 @@ import static org.mockito.Mockito.when;
 
 public class ControladorEditarPerdidoTest {
 
-    private ControladorEditarPerdido controladorEditarPerdido;
-    private ServicioEditarPerdidoImp servicioEditarPerdidoImpoMock;
-
     @Mock
     private ServicioRedSocialImpl servicioRedSocial;
-
     @Mock
     private ServicioPublicacionConversion publicacionConversionService;
+    @Mock
+    private ControladorEditarPerdido controladorEditarPerdido;
 
     @BeforeEach
     public void init() {
         MockitoAnnotations.openMocks(this);
-        this.servicioEditarPerdidoImpoMock = mock(ServicioEditarPerdidoImp.class);
-        this.controladorEditarPerdido = new ControladorEditarPerdido(servicioEditarPerdidoImpoMock);
     }
 
     @Test
@@ -55,15 +51,12 @@ public class ControladorEditarPerdidoTest {
                 "image/jpeg",
                 "Imagen de prueba".getBytes());
         Long idPublicacionOriginal = 2L;
-
         //Mock service
         List<Publicacion> publicaciones = new ArrayList<>();
         when(servicioRedSocial.getTodasLasPublicaciones()).thenReturn(publicaciones);
 //        when(servicioEditarPerdidoImpoMock.editarPerdido(idPublicacionOriginal,nombreMascota,telefonoContacto,nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagen);
         List<PublicacionDTO> publicacionesDTO = new ArrayList<>();
         when(publicacionConversionService.convertirEntidadesADTOs(publicaciones)).thenReturn(publicacionesDTO);
-
-
         //ejecucion
         ModelAndView vista = this.controladorEditarPerdido.editarPerdido(nombreMascota,nombreContacto,telefonoContacto,mascotaColor,mascotaRaza,idPublicacionOriginal,tipoPublicacion,zona,descripcion,direccion,imagen);
         // verificacion
@@ -89,14 +82,11 @@ public class ControladorEditarPerdidoTest {
                 "image/jpeg",
                 "Imagen de prueba".getBytes());
         Long idPublicacionOriginal = 2L;
-
         //Mock service
         List<Publicacion> publicaciones = new ArrayList<>();
         when(servicioRedSocial.getTodasLasPublicaciones()).thenReturn(publicaciones);
         List<PublicacionDTO> publicacionesDTO = new ArrayList<>();
         when(publicacionConversionService.convertirEntidadesADTOs(publicaciones)).thenReturn(publicacionesDTO);
-
-
         //ejecucion
         ModelAndView vista = this.controladorEditarPerdido.editarPerdido(nombreMascota,nombreContacto,telefonoContacto,mascotaColor,mascotaRaza,idPublicacionOriginal,tipoPublicacion,zona,descripcion,direccion,imagen);
         // verificacion
@@ -121,14 +111,11 @@ public class ControladorEditarPerdidoTest {
                 "image/jpeg",
                 "Imagen de prueba".getBytes());
         Long idPublicacionOriginal = 2L;
-
         //Mock service
         List<Publicacion> publicaciones = new ArrayList<>();
         when(servicioRedSocial.getTodasLasPublicaciones()).thenReturn(publicaciones);
         List<PublicacionDTO> publicacionesDTO = new ArrayList<>();
         when(publicacionConversionService.convertirEntidadesADTOs(publicaciones)).thenReturn(publicacionesDTO);
-
-
         //ejecucion
         ModelAndView vista = this.controladorEditarPerdido.editarPerdido(nombreMascota,nombreContacto,telefonoContacto,mascotaColor,mascotaRaza,idPublicacionOriginal,tipoPublicacion,zona,descripcion,direccion,imagen);
         // verificacion

@@ -36,13 +36,10 @@ class ServicioPublicarHistoriaTest {
         PublicacionHistoria historia = new PublicacionHistoria();
         MultipartFile imagenMock = mock(MultipartFile.class);
         byte[] imagenBytes = "imagen".getBytes();
-
         when(imagenMock.isEmpty()).thenReturn(false);
         when(imagenMock.getBytes()).thenReturn(imagenBytes);
-
         //ejecucion
         servicioPublicarHistoria.publicarHistoria(historia, imagenMock);
-
         //verificacion
         assertArrayEquals(imagenBytes, historia.getImagen());
         verify(repositorioPublicacion, times(1)).guardarHistoria(historia);
@@ -53,12 +50,9 @@ class ServicioPublicarHistoriaTest {
         //preparacion
         PublicacionHistoria historia = new PublicacionHistoria();
         MultipartFile imagenMock = mock(MultipartFile.class);
-
         when(imagenMock.isEmpty()).thenReturn(true);
-
         //ejecucion
         servicioPublicarHistoria.publicarHistoria(historia, imagenMock);
-
         //verificacion
         assertNull(historia.getImagen());
         verify(repositorioPublicacion, times(1)).guardarHistoria(historia);
@@ -69,15 +63,12 @@ class ServicioPublicarHistoriaTest {
         //preparacion
         PublicacionHistoria historia = new PublicacionHistoria();
         MultipartFile imagenMock = mock(MultipartFile.class);
-
         when(imagenMock.isEmpty()).thenReturn(false);
         when(imagenMock.getBytes()).thenThrow(new IOException("Error de IO"));
-
         //ejecucion
         Exception exception = assertThrows(RuntimeException.class, () -> {
             servicioPublicarHistoria.publicarHistoria(historia, imagenMock);
         });
-
         //verificacion
         assertThat(exception.getMessage(), equalToIgnoringCase("Error al procesar la imagen"));
         verify(repositorioPublicacion, never()).guardarHistoria(historia);

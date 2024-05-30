@@ -28,10 +28,8 @@ class ServicioPublicacionConversionTest {
         publicacion.setMascotaColor(MascotaColor.DORADO);
         publicacion.setMascotaRaza(MascotaRaza.SALCHICHA);
         publicacion.setImagen("imagen".getBytes());
-
         //Ejecucion
         PublicacionDTO dto = servicioPublicacionConversion.convertirEntidadADTO(publicacion);
-
         //Verificacion
         assertNotNull(dto);
         assertEquals(publicacion.getIdPublicacion(), dto.getIdPublicacion());
@@ -56,10 +54,8 @@ class ServicioPublicacionConversionTest {
         publicacion.setZona(Zona.SUR);
         publicacion.setMascotaColor(MascotaColor.BLANCO);
         publicacion.setMascotaRaza(MascotaRaza.LABRADOR);
-
         //Ejecucion
         PublicacionDTO dto = servicioPublicacionConversion.convertirEntidadADTO(publicacion);
-
         //Verificacion
         assertNotNull(dto);
         assertEquals(publicacion.getIdPublicacion(), dto.getIdPublicacion());
@@ -83,7 +79,6 @@ class ServicioPublicacionConversionTest {
         publicacion1.setZona(Zona.OESTE);
         publicacion1.setMascotaColor(MascotaColor.GRIS);
         publicacion1.setMascotaRaza(MascotaRaza.PERSA);
-
         Publicacion publicacion2 = new PublicacionDonacion();
         publicacion2.setIdPublicacion(2L);
         publicacion2.setTipoPublicacion(PublicacionTipo.DONACION);
@@ -94,14 +89,11 @@ class ServicioPublicacionConversionTest {
         publicacion2.setMascotaRaza(MascotaRaza.PASTOR_ALEMAN);
 
         List<Publicacion> publicaciones = List.of(publicacion1, publicacion2);
-
         //Ejecucion
         List<PublicacionDTO> dtos = servicioPublicacionConversion.convertirEntidadesADTOs(publicaciones);
-
         //Verificacion
         assertNotNull(dtos);
         assertEquals(2, dtos.size());
-
         //Verificacion de la primera conversion
         PublicacionDTO dto1 = dtos.get(0);
         assertEquals(publicacion1.getIdPublicacion(), dto1.getIdPublicacion());
@@ -112,7 +104,6 @@ class ServicioPublicacionConversionTest {
         assertEquals(publicacion1.getZona().name(), dto1.getZona());
         assertEquals(publicacion1.getMascotaColor().name(), dto1.getMascotaColor());
         assertEquals(publicacion1.getMascotaRaza().name(), dto1.getMascotaRaza());
-
         //Verificacion de la segunda conversion
         PublicacionDTO dto2 = dtos.get(1);
         assertEquals(publicacion2.getIdPublicacion(), dto2.getIdPublicacion());

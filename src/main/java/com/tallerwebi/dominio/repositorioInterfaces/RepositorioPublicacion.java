@@ -21,6 +21,8 @@ public interface RepositorioPublicacion {
 
     List<Publicacion> getPublicacionesPorZona(Zona zona);
 
+    List<PublicacionHistoria> getPublicacionesHistoriaPorZona(Zona zona);
+
     List<Publicacion> getPublicacionesPorZonaYNombreMascota(Zona zona, String nombre);
 
     void eliminarPublicacion(Publicacion publicacion);

@@ -11,7 +11,7 @@ import java.util.List;
 @Repository("repositorioPeluqueria")
 public class RepositorioPeluqueriaImpl implements RepositorioPeluqueria {
 
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public RepositorioPeluqueriaImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

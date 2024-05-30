@@ -4,21 +4,35 @@ import com.tallerwebi.dominio.MascotaColor;
 import com.tallerwebi.dominio.MascotaRaza;
 import com.tallerwebi.dominio.PublicacionTipo;
 import com.tallerwebi.dominio.Zona;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioEditar;
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.PublicacionInexistenteExeption;
-import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class ServicioEditarDonacionImp implements ServicioEditar {
-    @Autowired
-    private RepositorioPublicacionImpl repositorioPublicacionImp;
+
+    private final RepositorioPublicacion repositorioPublicacion;
 
     @Autowired
-    public ServicioEditarDonacionImp(RepositorioPublicacionImpl repositorioPublicacionImp) {
-        this.repositorioPublicacionImp = repositorioPublicacionImp;
+    public ServicioEditarDonacionImp(RepositorioPublicacion repositorioPublicacionImp) {
+        this.repositorioPublicacion = repositorioPublicacionImp;
+    }
+
+    @Override
+    public void editarDonacion(Long idPublicacion, String nombreMascota, Double montoACubrir,
+                               Zona zona, String descripcion, byte[] imagenBytes) throws PublicacionInexistenteExeption {
+
+        Publicacion publicacionBuscada = this.repositorioPublicacion.getPublicacionPorId(idPublicacion);
+        if (publicacionBuscada instanceof PublicacionDonacion) {
+            this.repositorioPublicacion.editarDonacion(idPublicacion, nombreMascota, montoACubrir, zona, descripcion, imagenBytes);
+        }else {
+            throw new PublicacionInexistenteExeption();
+        }
     }
 
     @Override
@@ -31,15 +45,4 @@ public class ServicioEditarDonacionImp implements ServicioEditar {
 
     }
 
-    @Override
-    public void editarDonacion(Long idPublicacion, String nombreMascota, Double montoACubrir,
-                               Zona zona, String descripcion, byte[] imagenBytes) throws PublicacionInexistenteExeption {
-
-        Publicacion publicacionBuscada = this.repositorioPublicacionImp.getPublicacionPorId(idPublicacion);
-        if (publicacionBuscada instanceof PublicacionDonacion) {
-            this.repositorioPublicacionImp.editarDonacion(idPublicacion, nombreMascota, montoACubrir, zona, descripcion, imagenBytes);
-        }else {
-            throw new PublicacionInexistenteExeption();
-        }
-    }
 }

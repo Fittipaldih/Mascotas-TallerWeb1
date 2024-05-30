@@ -12,7 +12,7 @@ import java.util.List;
 @Repository("repositorioVeterinaria")
 public class RepositorioVeterinariaImpl implements RepositorioVeterinaria {
 
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     public RepositorioVeterinariaImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;

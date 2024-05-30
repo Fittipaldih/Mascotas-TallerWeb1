@@ -24,10 +24,8 @@ public class ControladorMapaMascoteroTest {
 
     @InjectMocks
     private ControladorMapaMascotero controladorMapaMascotero;
-
     @Mock
     private ServicioMapaMascoteroImpl mockServicioMapaMascotero;
-
     @BeforeEach
     public void init() {
         MockitoAnnotations.openMocks(this);

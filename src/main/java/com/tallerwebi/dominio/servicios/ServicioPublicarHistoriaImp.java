@@ -2,8 +2,10 @@ package com.tallerwebi.dominio.servicios;
 
 import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.excepcion.HistoriaException;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioPublicarHistoria;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
+import org.hibernate.SessionFactory;
 import org.hibernate.internal.SessionFactoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +17,14 @@ import java.util.List;
 @Service
 public class ServicioPublicarHistoriaImp implements ServicioPublicarHistoria {
 
+    private final RepositorioPublicacion repositorioPublicarHistoria;
+    private final ServicioPublicacionConversion publicacionConversionService;
+
     @Autowired
-    private RepositorioPublicacionImpl repositorioPublicarHistoria;
-    private SessionFactoryImpl sessionFactory;
-    private ServicioPublicacionConversion publicacionConversionService;
+    public ServicioPublicarHistoriaImp(RepositorioPublicacion repositorioPublicarHistoria, ServicioPublicacionConversion publicacionConversionService){
+        this.repositorioPublicarHistoria = repositorioPublicarHistoria;
+        this.publicacionConversionService = publicacionConversionService;
+    }
 
     @Override
     public void publicarHistoria(PublicacionHistoria historia, MultipartFile imagen) throws HistoriaException {

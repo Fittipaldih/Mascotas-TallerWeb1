@@ -14,7 +14,7 @@ INSERT INTO peluqueria (direccion, nombre, telefono, zona) VALUES
 ('Florencio Varela 1234, San Justo', 'Peluqueria Pet', 44541212, 'OESTE'),
 ('Av Rivadavia 231', 'De Perros', 46221231, 'CABA');
 
-INSERT INTO mascotas.publicacion
+INSERT INTO publicacion
 (DTYPE, idPublicacion, descripcion, fechaPublicacion, imagen, mascotaColor, mascotaRaza, nombreMascota, tipoPublicacion, zona, montoACubrir, recaudacion, titular, direccion, nombreContacto, telefonoContacto)
 VALUES('PublicacionPerdido', 1, 'Ayudame por favor!!
 Se perdio cuando fuimos a comprar al chino

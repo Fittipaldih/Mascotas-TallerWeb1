@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 public class ServicioEditarDonacionImpTest {
 
@@ -18,7 +19,7 @@ public class ServicioEditarDonacionImpTest {
     @BeforeEach
     public void init() {
         this.repositorioPublicacionMock = mock(RepositorioPublicacionImpl.class);
-        this.servicioEditarDonacionImp = new ServicioEditarDonacionImp(repositorioPublicacionMock);
+        this.servicioEditarDonacionImp = mock(ServicioEditarDonacionImp.class);
     }
 
     @Test

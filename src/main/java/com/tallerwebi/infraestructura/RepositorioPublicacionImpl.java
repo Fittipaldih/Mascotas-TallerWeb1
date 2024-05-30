@@ -12,8 +12,7 @@ import java.util.List;
 @Repository
 public class RepositorioPublicacionImpl implements RepositorioPublicacion {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     @Autowired
     public RepositorioPublicacionImpl(SessionFactory sessionFactory) {

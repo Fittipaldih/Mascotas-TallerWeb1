@@ -13,7 +13,7 @@ import java.util.List;
 @Repository("repositorioMascota")
 public class RepositorioMascotaImpl implements RepositorioMascota {
 
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     @Autowired
     public RepositorioMascotaImpl(SessionFactory sessionFactory) {

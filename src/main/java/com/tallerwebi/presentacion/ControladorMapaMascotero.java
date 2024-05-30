@@ -4,6 +4,7 @@ import com.tallerwebi.dominio.Mascota;
 import com.tallerwebi.dominio.Peluqueria;
 import com.tallerwebi.dominio.Veterinaria;
 import com.tallerwebi.dominio.servicios.ServicioMapaMascoteroImpl;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioMapaMascotero;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
@@ -17,10 +18,10 @@ import java.util.List;
 @Controller
 public class ControladorMapaMascotero {
 
-    private ServicioMapaMascoteroImpl servicioMapaMascotero;
+    private final ServicioMapaMascotero servicioMapaMascotero;
 
     @Autowired
-    public ControladorMapaMascotero (ServicioMapaMascoteroImpl servicioMapaMascotero) {
+    public ControladorMapaMascotero (ServicioMapaMascotero servicioMapaMascotero) {
         this.servicioMapaMascotero = servicioMapaMascotero;
     }
 

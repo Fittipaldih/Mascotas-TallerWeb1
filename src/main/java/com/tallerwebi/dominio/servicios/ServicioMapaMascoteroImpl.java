@@ -8,17 +8,20 @@ import com.tallerwebi.dominio.repositorioInterfaces.RepositorioMascota;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPeluqueria;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioVeterinaria;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioMapaMascotero;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class ServicioMapaMascoteroImpl implements ServicioMapaMascotero {
 
-    private RepositorioMascota repositorioMascota;
-    private RepositorioVeterinaria repositorioVeterinaria;
-    private RepositorioPeluqueria repositorioPeluqueria;
+    private final RepositorioMascota repositorioMascota;
+    private final RepositorioVeterinaria repositorioVeterinaria;
+    private final RepositorioPeluqueria repositorioPeluqueria;
 
+    @Autowired
     public ServicioMapaMascoteroImpl(RepositorioMascota repositorioMascota, RepositorioVeterinaria repositorioVeterinaria, RepositorioPeluqueria repositorioPeluqueria) {
         this.repositorioMascota = repositorioMascota;
         this.repositorioVeterinaria = repositorioVeterinaria;
@@ -35,7 +38,6 @@ public class ServicioMapaMascoteroImpl implements ServicioMapaMascotero {
     public List<Veterinaria> getVeterinarias() {
         return repositorioVeterinaria.dameTodasLasVeterinarias();
     }
-
 
     @Override
     public List<Peluqueria> getPeluquerias() {

@@ -4,6 +4,7 @@ import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.servicios.ServicioPublicacionConversion;
 import com.tallerwebi.dominio.servicios.ServicioRedSocialImpl;
 import com.tallerwebi.dominio.servicios.ServicioEditarPerdidoImp;
+import com.tallerwebi.dominio.servicios.interfaces.ServicioRedSocial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,18 +21,17 @@ import java.util.List;
 @Controller
 @Transactional
 public class ControladorEditarPerdido {
-    @Autowired
+
     private ServicioEditarPerdidoImp servicioEditarPerdidoImp;
+    private final ServicioRedSocial servicioRedSocial;
+    private final ServicioPublicacionConversion publicacionConversionService;
 
     @Autowired
-    public ControladorEditarPerdido(ServicioEditarPerdidoImp servicioEditarPerdidoImp) {
+    public ControladorEditarPerdido(ServicioEditarPerdidoImp servicioEditarPerdidoImp, ServicioRedSocial servicioRedSocial, ServicioPublicacionConversion publicacionConversionService) {
         this.servicioEditarPerdidoImp = servicioEditarPerdidoImp;
+        this.servicioRedSocial = servicioRedSocial;
+        this.publicacionConversionService = publicacionConversionService;
     }
-
-    @Autowired
-    ServicioRedSocialImpl servicioRedSocial;
-    @Autowired
-    ServicioPublicacionConversion publicacionConversionService;
 
     @RequestMapping(value = "/editar-perdido", method = RequestMethod.POST)
     public ModelAndView editarPerdido(   @RequestParam(value = "nombre") String nombreMascota,

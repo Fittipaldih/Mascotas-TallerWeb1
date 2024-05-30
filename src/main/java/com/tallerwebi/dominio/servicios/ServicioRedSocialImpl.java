@@ -14,9 +14,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class ServicioRedSocialImpl implements ServicioRedSocial {
-    @Autowired
-    private RepositorioPublicacion repositorioPublicacion;
 
+    private final RepositorioPublicacion repositorioPublicacion;
+
+    @Autowired
     public ServicioRedSocialImpl(RepositorioPublicacion repositorioPublicacion) {
         this.repositorioPublicacion = repositorioPublicacion;
     }

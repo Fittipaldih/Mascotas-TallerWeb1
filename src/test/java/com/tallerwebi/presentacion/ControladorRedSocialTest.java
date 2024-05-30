@@ -23,13 +23,10 @@ public class ControladorRedSocialTest {
 
     @InjectMocks
     private ControladorRedSocial controladorRedSocial;
-
     @Mock
     private ServicioRedSocial servicioRedSocial;
-
     @Mock
     private ServicioPublicacionConversion publicacionConversionService;
-
     @BeforeEach
     public void init() {
         MockitoAnnotations.openMocks(this);
@@ -39,10 +36,8 @@ public class ControladorRedSocialTest {
     public void queAlPresionarPublicarDevuelvaLaPublicar() {
         // Mockear la dependencia
         when(servicioRedSocial.obtenerUltimasPublicaciones(3)).thenReturn(Collections.emptyList());
-
         // Ejecución
         ModelAndView vista = controladorRedSocial.publicar();
-
         // Verificación
         assertThat(vista.getViewName(), equalToIgnoringCase("publicar"));
     }
@@ -52,10 +47,8 @@ public class ControladorRedSocialTest {
         // Mockear las dependencias
         when(servicioRedSocial.getPublicacionesTipoPerdido()).thenReturn(Collections.emptyList());
         when(publicacionConversionService.convertirEntidadesADTOs(Collections.emptyList())).thenReturn(Collections.emptyList());
-
         // Ejecución
         ModelAndView vista = controladorRedSocial.mostrarPublicacionesPerdidos();
-
         // Verificación
         assertThat(vista.getViewName(), equalToIgnoringCase("perdidos"));
     }
@@ -65,10 +58,8 @@ public class ControladorRedSocialTest {
         // Mockear las dependencias
         when(servicioRedSocial.getPublicacionesTipoHistoria()).thenReturn(Collections.emptyList());
         when(publicacionConversionService.convertirEntidadesADTOs(Collections.emptyList())).thenReturn(Collections.emptyList());
-
         // Ejecución
         ModelAndView vista = controladorRedSocial.mostrarPublicacionesHistorias();
-
         // Verificación
         assertThat(vista.getViewName(), equalToIgnoringCase("historias"));
     }
@@ -78,10 +69,8 @@ public class ControladorRedSocialTest {
         // Mockear las dependencias
         when(servicioRedSocial.getPublicacionesTipoDonacion()).thenReturn(Collections.emptyList());
         when(publicacionConversionService.convertirEntidadesADTOs(Collections.emptyList())).thenReturn(Collections.emptyList());
-
         // Ejecución
         ModelAndView vista = controladorRedSocial.mostrarPublicacionesDonaciones();
-
         // Verificación
         assertThat(vista.getViewName(), equalToIgnoringCase("donaciones"));
     }
@@ -91,10 +80,8 @@ public class ControladorRedSocialTest {
         // Mockear las dependencias
         when(servicioRedSocial.getPublicacionesTipoDonacion()).thenReturn(Collections.emptyList());
         when(publicacionConversionService.convertirEntidadesADTOs(Collections.emptyList())).thenReturn(Collections.emptyList());
-
         // Ejecución
         ModelAndView vistaDonacion = controladorRedSocial.mostrarPublicacionesDonaciones();
-
         // Verificación
         assertThat(vistaDonacion.getClass().getSimpleName(), equalToIgnoringCase("ModelAndView"));
     }
