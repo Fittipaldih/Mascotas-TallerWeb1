@@ -16,9 +16,12 @@ body {
 main {
     flex-grow: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 5rem;
+    padding-bottom: 10rem;
 }
+
 .background-container {
     position: fixed;
     top: 0;
@@ -44,9 +47,11 @@ h1 {
 h2 {
     color: mediumblue;
 }
+
 .navbar-brand {
     margin: 0 2rem;
 }
+
 .tipo-publicacion h1 {
     color: white;
     font-size: medium;

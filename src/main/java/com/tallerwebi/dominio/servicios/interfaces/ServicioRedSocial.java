@@ -9,6 +9,9 @@ public interface ServicioRedSocial {
     List<Publicacion> getTodasLasPublicaciones();
     List<Publicacion> getPublicacionesTipoBuscadoPORDuenio();
     List<Publicacion> getPublicacionesTipoBuscandoALDuenio();
+
+    List<Publicacion> getPublicacionesTipoPerdido();
+
     List<Publicacion> getPublicacionesTipoDonacion();
     List<Publicacion> getPublicacionesTipoHistoria();
     String getSeccionEditar(PublicacionTipo publicacionTipo);

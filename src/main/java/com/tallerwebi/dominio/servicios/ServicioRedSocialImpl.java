@@ -34,6 +34,14 @@ public class ServicioRedSocialImpl implements ServicioRedSocial {
     }
 
     @Override
+    public List<Publicacion> getPublicacionesTipoPerdido() {
+        List<Publicacion> publicacionesBuscadoPorDuenio = getPublicacionesTipoBuscadoPORDuenio();
+        List<Publicacion> publicacionesBuscandoAlDuenio = getPublicacionesTipoBuscandoALDuenio();
+        publicacionesBuscadoPorDuenio.addAll(publicacionesBuscandoAlDuenio);
+        return publicacionesBuscadoPorDuenio;
+    }
+
+    @Override
     public List<Publicacion> getPublicacionesTipoDonacion() {
         return this.repositorioPublicacion.getPublicacionesPorTipoPublicacion(PublicacionTipo.DONACION);
     }

@@ -27,9 +27,9 @@
 <h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
 <h2 th:if="${error}" class="alert alert-warning" th:text="${error}"></h2>
 
-<main role="main" class="container flex-grow-1 d-flex align-items-center">
+<main role="main" class="container flex-grow-1 d-flex align-items-start">
+    <!-- Contenedor de las publicaciones -->
     <section class="todas-publicaciones">
-        <!-- Aca van las publicaciones -->
         <div class="card-deck">
             <div class="row">
                 <div class="col-md-4" th:each="publicacion : ${todasLasPublicaciones}">
@@ -55,6 +55,7 @@
         </div>
     </section>
 
+    <!-- Contenedor del cuadro de la derecha -->
     <section class="tipo-publicacion">
         <div class="tipo-publicacion2">
             <h1>¿Qué desea hacer?</h1>
@@ -65,35 +66,15 @@
             <a href="http://localhost:8080/spring/red-social?ordenar=ASC" class="btn btn-outline-light">Recientes primero</a>
             <h1>Ver solo...</h1>
             <a href="http://localhost:8080/spring/perdidos" class="btn btn-outline-light">Mascotas perdidas</a>
-            <a href="http://localhost:8080/spring/historias" class="btn btn-outline-light">Historias de mascotas</a>
-            <a href="http://localhost:8080/spring/donaciones" class="btn btn-outline-light">Solicitan donación</a>
-            <!--<form th:action="@{/historias-f}" method="get">-->
-            <h1>Filtrar por...</h1>
-            <label style="color: white" for="zona">Zona:</label>
-            <select id="zona" name="zona" class="form-control">
-                <option value="">Elija una zona</option>
-                <option value="NORTE">Norte</option>
-                <option value="SUR">Sur</option>
-                <option value="OESTE">Oeste</option>
-                <option value="CABA">Caba</option>
-            </select>
-            <label style="color: white" for="tiempoPublicacion">Fecha publicación</label>
-            <select id="tiempoPublicacion" class="form-control">
-                <option value="">Elija una fecha</option>
-                <option value="DIA">Hace un día</option>
-                <option value="SEMANA">Hace una semana</option>
-                <option value="MES">Hace un mes</option>
-                <option value="ULTIMO_ANIO">Hace mas de un mes</option>
-            </select>
-            <br>
-            <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-light">Volver</a>
-            <button type="submit" class="btn btn-outline-light" th:onclick="mostrarMensaje()">Filtrar</button>
-            <!--</form>-->
         </div>
     </section>
 </main>
+
+<!-- Incluyendo el footer -->
 <div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
-<!-- Bootstrap core js -->
-<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.2.0/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

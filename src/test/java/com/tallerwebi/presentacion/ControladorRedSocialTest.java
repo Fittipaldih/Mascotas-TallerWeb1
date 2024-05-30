@@ -37,7 +37,7 @@ public class ControladorRedSocialTest {
     @Test
     public void queAlPresionarMascotasPerdidasDevuelvaLaVistaPerdidos() {
         //ejecucion
-        ModelAndView vista = this.controladorRedSocial.IrAperdidos();
+        ModelAndView vista = this.controladorRedSocial.mostrarPublicacionesPerdidos();
         //verificacion
         assertThat(vista.getViewName(), equalToIgnoringCase("perdidos"));
     }
@@ -45,7 +45,7 @@ public class ControladorRedSocialTest {
     @Test
     public void queAlPresionarHistoriasDeMascotasDevuelvaLaHistorias() {
         //ejecucion
-        ModelAndView vista = this.controladorRedSocial.irAHistorias();
+        ModelAndView vista = this.controladorRedSocial.mostrarPublicacionesHistorias();
         //verificacion
         assertThat(vista.getViewName(), equalToIgnoringCase("historias"));
     }
@@ -53,7 +53,7 @@ public class ControladorRedSocialTest {
     @Test
     public void queAlPresionarDonacionesAMascotasDevuelvaLaDonaciones() {
         //ejecucion
-        ModelAndView vista = this.controladorRedSocial.irADonaciones();
+        ModelAndView vista = this.controladorRedSocial.mostrarPublicacionesDonaciones();
         //verificacion
         assertThat(vista.getViewName(), equalToIgnoringCase("donaciones"));
     }
@@ -61,7 +61,7 @@ public class ControladorRedSocialTest {
     @Test
     public void queDevuelvaUnModelAndViewComoObjeto() {
         // Ejecucion
-        ModelAndView vistaDonacion = controladorRedSocial.irADonaciones();
+        ModelAndView vistaDonacion = controladorRedSocial.mostrarPublicacionesDonaciones();
         // Verificacion
         assertThat(vistaDonacion.getClass().getSimpleName(), equalToIgnoringCase("ModelAndView"));
     }
