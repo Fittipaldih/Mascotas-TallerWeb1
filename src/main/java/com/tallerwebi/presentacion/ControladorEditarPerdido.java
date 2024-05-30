@@ -54,15 +54,14 @@ public class ControladorEditarPerdido {
             }
             servicioEditarPerdidoImp.editarPerdido(idPublicacion,nombreMascota,telefonoContacto,nombreContacto,mascotaColor,mascotaRaza,tipoPublicacion,zona,descripcion,direccion,imagenBytes);
 
-
             List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
             Collections.reverse(todasLasPublicaciones);
             List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(todasLasPublicaciones);
             modelMap.put("todasLasPublicaciones", todasLasPublicacionesDTO);
-            modelMap.put("mensaje", "¡La historia ha sido editada exitosamente!");
+            modelMap.put("mensaje", "¡La publicación ha sido editada exitosamente!");
             return new ModelAndView("red-social", modelMap);
         } catch (Exception e) {
-            modelMap.put("error", "Error al editar la historia. Intentá nuevamente.");
+            modelMap.put("error", "Error al editar perdido. Intentá nuevamente.");
             return new ModelAndView("red-social", modelMap);
         }
     }

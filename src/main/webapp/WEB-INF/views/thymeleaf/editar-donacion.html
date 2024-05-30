@@ -33,35 +33,43 @@
                     <img class="card-img-top" th:src="${publicacionBuscada.imagen}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Monto a cubrir:</h5>
-                        <p  th:text="${publicacionBuscada.montoACubrir}"></p>
+                        <p th:text="${publicacionBuscada.montoACubrir}"></p>
                         <h5 class="card-title">Descripcion:</h5>
-                        <p  th:text="${publicacionBuscada.descripcion}"></p>
-                        <p class="card-text"><small class="text-muted">Publicado el: <span th:text="${publicacionBuscada.fechaPublicacion}"></span></small></p>
-                        <p class="card-text"><small class="text-muted">Zona: <span th:text="${publicacionBuscada.zona}"></span></small></p>
-                        <p class="card-text"><small class="text-muted">Nombre: <span th:text="${publicacionBuscada.nombreMascota}"></span></small></p>
+                        <p th:text="${publicacionBuscada.descripcion}"></p>
+                        <p class="card-text"><small class="text-muted">Publicado el: <span
+                                th:text="${publicacionBuscada.fechaPublicacion}"></span></small></p>
+                        <p class="card-text"><small class="text-muted">Zona: <span
+                                th:text="${publicacionBuscada.zona}"></span></small></p>
+                        <p class="card-text"><small class="text-muted">Nombre: <span
+                                th:text="${publicacionBuscada.nombreMascota}"></span></small></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <form th:action="@{/editar-donacion}" method="post" class="form-group" ACCEPT-CHARSET="UTF-8" enctype="multipart/form-data">
+    <form th:action="@{/editar-donacion}" method="post" class="form-group" ACCEPT-CHARSET="UTF-8"
+          enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-6 form-group">
                 <input type="hidden" name="idPublicacion" th:value="${publicacionBuscada.idPublicacion}">
                 <label for="nombreMascota">Nombre de la mascota</label>
-                <input type="text" maxlength="100" id="nombreMascota" required name="nombreMascota" class="form-control" placeholder="Peludito" th:value="${publicacionBuscada.nombreMascota}">
+                <input type="text" maxlength="100" id="nombreMascota" required name="nombreMascota" class="form-control"
+                       placeholder="Peludito" th:value="${publicacionBuscada.nombreMascota}">
                 <br>
                 <label for="descripcion">Descripción</label><br>
-                <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" th:text="${publicacionBuscada.descripcion}"></textarea>
+                <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required
+                          class="form-control" th:text="${publicacionBuscada.descripcion}"></textarea>
                 <br>
             </div>
 
             <div class="col-md-6 form-group">
                 <label for="montoACubrir">Monto a cubrir</label>
-                <input onchange="validateMonto(this)" type="number" required maxlength="10" id="montoACubrir" name="montoACubrir" class="form-control" placeholder="Ej: 40000" th:value="${publicacionBuscada.montoACubrir}">
+                <input onchange="validateMonto(this)" type="number" required maxlength="10" id="montoACubrir"
+                       name="montoACubrir" class="form-control" placeholder="Ej: 40000"
+                       th:value="${publicacionBuscada.montoACubrir}">
                 <br>
-                <label for="zona">Zona donde está la mascota:</label>
+                <label for="zona">Zona donde está la mascota</label>
                 <select id="zona" name="zona" th:field="*{publicacionBuscada.zona}" class="form-control" required>
                     <option value="">Seleccione una zona</option>
                     <option value="NORTE">Norte</option>
@@ -77,7 +85,8 @@
 
         <div class="row mt-3">
             <div class="col-md-6">
-                <a th:href="@{'http://localhost:8080/spring/detalle-publicacion/?id=' + ${publicacionBuscada.idPublicacion}}" class="btn btn-secondary">Volver a la Publicación</a>
+                <a th:href="@{'http://localhost:8080/spring/detalle-publicacion/?id=' + ${publicacionBuscada.idPublicacion}}"
+                   class="btn btn-secondary">Volver a la Publicación</a>
             </div>
             <div class="col-md-6 text-right">
                 <button type="submit" class="btn btn-primary" style="display:none">Confirmar cambios</button>
@@ -87,7 +96,8 @@
                 </button>
             </div>
             <!-- Modal Confirmacion-->
-            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -111,14 +121,12 @@
 
 <div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
 
+<!-- Footer -->
+<div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
+<!-- JS -->
+<script type="text/javascript" th:src="@{/js/editar.js}"></script>
+<script type="text/javascript" th:src="@{/js/publicar.js}"></script>
 <!-- Bootstrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
-<!-- JS -->
-<script type="text/javascript" th:src="@{/js/publicar.js}"></script>
-<script>
-    document.getElementById('confirmPublish').addEventListener('click', function() {
-        document.getElementById('publicarForm').submit();
-    });
-</script>
 </body>
 </html>

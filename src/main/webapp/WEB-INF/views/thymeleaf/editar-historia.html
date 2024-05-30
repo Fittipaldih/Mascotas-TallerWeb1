@@ -36,28 +36,34 @@
                         <h5 class="card-title">Titular:</h5>
                         <p th:text="${publicacionBuscada.titular}"></p>
                         <h5 class="card-title">Nombre de la mascota:</h5>
-                        <p  th:text="${publicacionBuscada.nombreMascota}"></p>
+                        <p th:text="${publicacionBuscada.nombreMascota}"></p>
                         <h5 class="card-title">Descripcion:</h5>
                         <p class="card-text" th:text="${publicacionBuscada.descripcion}"></p>
-                        <p class="card-text"><small class="text-muted">Publicado el: <span th:text="${publicacionBuscada.fechaPublicacion}"></span></small></p>
-                        <p class="card-text"><small class="text-muted">Zona: <span th:text="${publicacionBuscada.zona}"></span></small></p>
-                        <p class="card-text"><small class="text-muted">Nombre: <span th:text="${publicacionBuscada.nombreMascota}"></span></small></p>
+                        <p class="card-text"><small class="text-muted">Publicado el: <span
+                                th:text="${publicacionBuscada.fechaPublicacion}"></span></small></p>
+                        <p class="card-text"><small class="text-muted">Zona: <span
+                                th:text="${publicacionBuscada.zona}"></span></small></p>
+                        <p class="card-text"><small class="text-muted">Nombre: <span
+                                th:text="${publicacionBuscada.nombreMascota}"></span></small></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <form th:action="@{/editar-historia}" method="post" enctype="multipart/form-data" class="form-group" accept-charset="UTF-8">
+    <form th:action="@{/editar-historia}" method="post" enctype="multipart/form-data" class="form-group"
+          accept-charset="UTF-8">
         <div class="row">
             <div class="col-md-6 form-group">
                 <input type="hidden" name="idPublicacion" th:value="${publicacionBuscada.idPublicacion}">
 
                 <label for="titular">Titulo de la historia</label>
-                <input type="text" id="titular" name="titular" class="form-control" required placeholder="Escribe un titulo original..." th:value="${publicacionBuscada.titular}"><br>
+                <input type="text" id="titular" name="titular" class="form-control" required
+                       placeholder="Escribe un titulo original..." th:value="${publicacionBuscada.titular}"><br>
 
                 <label for="nombre">Nombre de la mascota</label>
-                <input type="text" maxlength="100" id="nombre" name="nombre" class="form-control" placeholder="Peludito" required th:value="${publicacionBuscada.nombreMascota}"><br>
+                <input type="text" maxlength="100" id="nombre" name="nombre" class="form-control" placeholder="Peludito"
+                       required th:value="${publicacionBuscada.nombreMascota}"><br>
 
                 <label for="zona">Zona donde ocurre/ocurrió</label>
                 <select id="zona" name="zona" th:field="*{publicacionBuscada.zona}" class="form-control" required>
@@ -66,11 +72,12 @@
                     <option value="OESTE">Oeste</option>
                     <option value="CABA">CABA</option>
                 </select>
-<br>
+                <br>
             </div>
             <div class="col-md-6 form-group">
                 <label for="descripcion">Descripción de la historia</label><br>
-                <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" th:text="${publicacionBuscada.descripcion}"></textarea><br>
+                <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required
+                          class="form-control" th:text="${publicacionBuscada.descripcion}"></textarea><br>
                 <label for="imagen">Foto de la Mascota</label>
                 <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
             </div>
@@ -78,7 +85,8 @@
 
         <div class="row mt-3">
             <div class="col-md-6">
-                <a th:href="@{'http://localhost:8080/spring/detalle-publicacion/?id=' + ${publicacionBuscada.idPublicacion}}" class="btn btn-secondary">Volver a la Publicación</a>
+                <a th:href="@{'http://localhost:8080/spring/detalle-publicacion/?id=' + ${publicacionBuscada.idPublicacion}}"
+                   class="btn btn-secondary">Volver a la Publicación</a>
             </div>
             <div class="col-md-6 text-right">
                 <button type="submit" class="btn btn-primary" style="display:none">Confirmar cambios</button>
@@ -88,7 +96,8 @@
                 </button>
             </div>
             <!-- Modal Confirmacion-->
-            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel"
+                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -109,16 +118,12 @@
         </div>
     </form>
 </main>
-
+<!-- Footer -->
 <div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
-
+<!-- JS -->
+<script type="text/javascript" th:src="@{/js/editar.js}"></script>
 <!-- Bootstrap core js -->
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
-<script>
-    document.getElementById('confirmPublish').addEventListener('click', function() {
-        document.getElementById('publicarForm').submit();
-    });
-</script>
 
 </body>
 </html>
