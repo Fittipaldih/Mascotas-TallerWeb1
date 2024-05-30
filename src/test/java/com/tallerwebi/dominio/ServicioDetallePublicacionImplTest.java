@@ -3,28 +3,30 @@ package com.tallerwebi.dominio;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioComentario;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.servicios.ServicioDetallePublicacionImpl;
+import com.tallerwebi.infraestructura.RepositorioComentarioImpl;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.equalToIgnoringCase;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.when;
-import static org.testng.Assert.fail;
+import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.*;
 
 public class ServicioDetallePublicacionImplTest {
 
     @Mock
     private RepositorioPublicacion repositorioPublicacion;
     @Mock
-    private RepositorioComentario repositorioComentario;
+    private RepositorioComentarioImpl repositorioComentario;
     @Mock
     private RepositorioPublicacionImpl repositorioPublicacionImpl;
+
     @InjectMocks
     private ServicioDetallePublicacionImpl servicioDetallePublicacion;
 
@@ -35,43 +37,44 @@ public class ServicioDetallePublicacionImplTest {
 
     @Test
     public void queDevuelvaLaPublicacionCorrectaPorId() throws Exception {
-        // SOLO ANDA OK PERO SI CORRO TODO ANDA MAL?
-        // preparacion
+        // Preparación
         Long id = 10L;
         Publicacion publicacion = new PublicacionPerdido();
         publicacion.setIdPublicacion(id);
-        // Mockear el repo para simular busqueda por ID
-        Mockito.when(this.repositorioPublicacionImpl.getPublicacionPorId(id)).thenReturn(publicacion);
-        // ejecucion
+        when(this.repositorioPublicacionImpl.getPublicacionPorId(id)).thenReturn(publicacion);
+
+        // Ejecución
         Publicacion publicacionObtenida = this.servicioDetallePublicacion.getPublicacion(id);
-        // verificacion
+
+        // Verificación
         assertThat(publicacionObtenida, equalTo(publicacion));
     }
 
     @Test
     public void queDevuelvaLaPublicacionDonacionOkPorSuId() throws Exception {
-        // SOLO ANDA OK PERO SI CORRO TODO ANDA MAL?
-        // prep
+        // Preparación
         Long idDonacion = 6L;
         Publicacion donacion = new PublicacionDonacion();
         donacion.setIdPublicacion(idDonacion);
         when(repositorioPublicacionImpl.getPublicacionPorId(donacion.getIdPublicacion())).thenReturn(donacion);
-        // ejec
+
+        // Ejecución
         Publicacion publicacionDonacionObtenida = repositorioPublicacionImpl.getPublicacionPorId(idDonacion);
-        // verif
+
+        // Verificación
         assertThat(publicacionDonacionObtenida, equalTo(donacion));
     }
 
     @Test
     public void queDevuelvaExcepcionSiLaPublicacionNoExiste() throws Exception {
-        // Preparacion
-        Long idPublicacionNoExistente = 99L; // ID de una publi que no existe
-        // Mockear el repo para simular busqueda por ID
-        Mockito.when(repositorioPublicacionImpl.getPublicacionPorId(idPublicacionNoExistente)).thenReturn(null);
-        // ejecucion
+        // Preparación
+        Long idPublicacionNoExistente = 99L;
+        when(repositorioPublicacionImpl.getPublicacionPorId(idPublicacionNoExistente)).thenReturn(null);
+
+        // Ejecución y verificación
         try {
             servicioDetallePublicacion.getPublicacion(idPublicacionNoExistente);
-            fail("esperaba excepcion");
+            fail("Esperaba excepción");
         } catch (Exception e) {
             assertThat(e.getMessage(), equalToIgnoringCase("No existe publicacion con el id " + idPublicacionNoExistente + " o fue eliminada"));
         }
@@ -84,38 +87,40 @@ public class ServicioDetallePublicacionImplTest {
         Long id = 5L;
         publicacion.setIdPublicacion(id);
         String textoDelComentario = "";
-        // ejecucion
-        servicioDetallePublicacion.hacerComentario(textoDelComentario, id);
-        // verificacion
-        doThrow(Exception.class);
+
+        // ejecucion y verificacion
+        assertThrows(Exception.class, () -> servicioDetallePublicacion.hacerComentario(textoDelComentario, id));
     }
+
+
 
     @Test
     public void queDevuelvaLaPublicacionPerdidoOkPorSuId() throws Exception {
-        // prep
+        // Preparación
         Long idPerdido = 1L;
         Publicacion perdido = new PublicacionPerdido();
         perdido.setIdPublicacion(idPerdido);
         when(repositorioPublicacionImpl.getPublicacionPorId(perdido.getIdPublicacion())).thenReturn(perdido);
-        // ejec
+
+        // Ejecución
         Publicacion publicacionPerdidoObtenida = repositorioPublicacionImpl.getPublicacionPorId(idPerdido);
-        // verif
+
+        // Verificación
         assertThat(publicacionPerdidoObtenida, equalTo(perdido));
     }
 
     @Test
     public void queDevuelvaLaPublicacionHistoriaOkPorSuId() throws Exception {
-        // prep
+        // Preparación
         Long idHistoria = 2L;
         Publicacion historia = new PublicacionHistoria();
         historia.setIdPublicacion(idHistoria);
         when(repositorioPublicacionImpl.getPublicacionPorId(historia.getIdPublicacion())).thenReturn(historia);
-        // ejec
+
+        // Ejecución
         Publicacion publicacionHistoriaObtenida = repositorioPublicacionImpl.getPublicacionPorId(idHistoria);
-        // verif
+
+        // Verificación
         assertThat(publicacionHistoriaObtenida, equalTo(historia));
     }
-
-
-
 }

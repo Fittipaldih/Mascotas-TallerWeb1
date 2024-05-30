@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class RepositorioComentarioImpl implements RepositorioComentario {
-
+    @Autowired
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -20,9 +20,9 @@ public class RepositorioComentarioImpl implements RepositorioComentario {
 
     @Override
     @Transactional
-    public void guardarNuevoComentarioEnPublicacion(String contenido, Long idPublicacion) {
+    public void guardarNuevoComentarioEnPublicacion(String contenido, Long idPublicacion) throws Exception {
         if (contenido == null || contenido.trim().isEmpty()) {
-            return;
+            throw new Exception("El comentario esta vacio");
         }
         Publicacion publicacion = this.sessionFactory.getCurrentSession().get(Publicacion.class, idPublicacion);
 

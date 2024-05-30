@@ -5,6 +5,7 @@ import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioComentario;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioDetallePublicacion;
+import com.tallerwebi.infraestructura.RepositorioComentarioImpl;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,12 @@ public class ServicioDetallePublicacionImpl implements ServicioDetallePublicacio
     @Autowired
     private RepositorioPublicacion repositorioPublicacion;
     @Autowired
-    private RepositorioComentario repositorioComentario;
+    private RepositorioComentarioImpl repositorioComentario;
 
     @Autowired
     private RepositorioPublicacionImpl repositorioPublicacionImpl;
 
-    public ServicioDetallePublicacionImpl(RepositorioPublicacion repositorioPublicacion, RepositorioComentario repositorioComentario) {
+    public ServicioDetallePublicacionImpl(RepositorioPublicacion repositorioPublicacion, RepositorioComentarioImpl repositorioComentario) {
         this.repositorioPublicacion = repositorioPublicacion;
         this.repositorioComentario = repositorioComentario;
     }
