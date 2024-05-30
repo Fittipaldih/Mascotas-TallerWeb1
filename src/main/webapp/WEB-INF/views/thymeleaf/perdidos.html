@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Red social Mascotera</title>
+    <title>Red social Mascotera - Perdidos</title>
     <!-- Bootstrap core css -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
@@ -28,56 +28,19 @@
 <main role="main" class="container flex-grow-1 d-flex align-items-center">
     <section class="todas-publicaciones-perdidos">
         <!-- Aca van las publicaciones -->
-        <div class="card-deck">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top" src="/spring/img/mascota-01.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Perdido</h5>
-                            <p class="card-text">Estamos buscando al dueño, fue encontrado en Martin Fierro al 1452</p>
-                            <p class="card-text"><small class="text-muted">Publicado el: 2024-05-20</small></p>
-                            <p class="card-text"><small class="text-muted">Zona: Norte</small></p>
-                            <p class="card-text"><small class="text-muted">Nombre: Desconocido</small></p>
-                            <div class="container-btn">
-                                <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Contactar</button>
-                                <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Compartir</button>
-                                <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Comentar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top" src="/spring/img/mascota-02.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Perdido</h5>
-                            <p class="card-text">Apareció!! Muchas Gracias por ayudarme a encontrar a Cleo!!</p>
-                            <p class="card-text"><small class="text-muted">Publicado el: 2024-05-18</small></p>
-                            <p class="card-text"><small class="text-muted">Zona: Sur</small></p>
-                            <p class="card-text"><small class="text-muted">Nombre: Cleo</small></p>
-                            <div class="container-btn">
-                                <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Contactar</button>
-                                <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Compartir</button>
-                                <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Comentar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
-                        <img class="card-img-top" src="/spring/img/mascota-03.jpeg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Perdido</h5>
-                            <p class="card-text">Estamos buscando a Raul! Si lo vieron no duden en contactar</p>
-                            <p class="card-text"><small class="text-muted">Publicado el: 2024-05-15</small></p>
-                            <p class="card-text"><small class="text-muted">Zona: Oeste</small></p>
-                            <p class="card-text"><small class="text-muted">Nombre: Raul</small></p>
-                            <div class="container-btn">
-                                <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Contactar</button>
-                                <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Compartir</button>
-                                <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Comentar</button>
-                            </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col" th:each="publicacion : ${todasLasPublicaciones}">
+                <div class="card">
+                    <img class="card-img-top" th:src="'data:image/jpeg;base64,' + ${publicacion.imagen}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${publicacion.tipoPublicacion}">Perdido</h5>
+                        <p class="card-text" th:text="${publicacion.descripcion}">Descripción de la publicación</p>
+                        <p class="card-text"><small class="text-muted" th:text="'Zona: ' + ${publicacion.zona}">Zona: zona</small></p>
+                        <p class="card-text"><small class="text-muted" th:text="'Nombre: ' + ${publicacion.nombreMascota}">Nombre: nombre</small></p>
+                        <div class="container-btn">
+                            <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Contactar</button>
+                            <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Compartir</button>
+                            <button type="button" class="btn btn-outline-dark" onclick="mostrarMensaje()">Comentar</button>
                         </div>
                     </div>
                 </div>
@@ -90,34 +53,36 @@
             <h1>¿Qué desea hacer?</h1>
             <a href="http://localhost:8080/spring/publicar" class="btn btn-outline-light">Publicar</a>
             <h1>Filtrar por...</h1>
-            <label style="color: white" for="nombre">Nombre de Mascota</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control">
-            <label style="color: white" for="colorPelo">Color de pelo</label>
-            <input type="text" id="colorPelo" name="colorPelo" placeholder="Color" class="form-control"/>
-            <label style="color: white" for="zona">Zona:</label>
-            <select id="zona" name="zona" class="form-control">
-                <option value="">Elija una zona</option>
-                <option value="NORTE">Norte</option>
-                <option value="SUR">Sur</option>
-                <option value="OESTE">Oeste</option>
-                <option value="CABA">Caba</option>
-            </select>
-            <label style="color: white" for="tiempoPublicacion">Fecha publicación</label>
-            <select id="tiempoPublicacion" class="form-control">
-                <option value="">Elija un tiempo</option>
-                <option value="DIA">Hace un día</option>
-                <option value="SEMANA">Hace una semana</option>
-                <option value="MES">Hace un mes</option>
-                <option value="ULTIMO_ANIO">Hace más de un mes</option>
-            </select>
-            <br>
-            <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-light">Volver</a>
-            <button type="submit" class="btn btn-outline-light" onclick="mostrarMensaje()">Filtrar</button>
+            <form th:action="@{/perdidos}" method="get">
+                <label style="color: white" for="nombre">Nombre de Mascota</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control">
+                <label style="color: white" for="colorPelo">Color de pelo</label>
+                <input type="text" id="colorPelo" name="colorPelo" placeholder="Color" class="form-control"/>
+                <label style="color: white" for="zona">Zona:</label>
+                <select id="zona" name="zona" class="form-control">
+                    <option value="">Elija una zona</option>
+                    <option value="NORTE">Norte</option>
+                    <option value="SUR">Sur</option>
+                    <option value="OESTE">Oeste</option>
+                    <option value="CABA">Caba</option>
+                </select>
+                <label style="color: white" for="tiempoPublicacion">Fecha publicación</label>
+                <select id="tiempoPublicacion" name="tiempoPublicacion" class="form-control">
+                    <option value="">Elija un tiempo</option>
+                    <option value="DIA">Hace un día</option>
+                    <option value="SEMANA">Hace una semana</option>
+                    <option value="MES">Hace un mes</option>
+                    <option value="ULTIMO_ANIO">Hace mas de un mes</option>
+                </select>
+                <br>
+                <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-light">Volver</a>
+                <button type="submit" class="btn btn-outline-light">Filtrar</button>
+            </form>
         </div>
     </section>
 </main>
 <div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
 <!-- Bootstrap core js -->
-<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

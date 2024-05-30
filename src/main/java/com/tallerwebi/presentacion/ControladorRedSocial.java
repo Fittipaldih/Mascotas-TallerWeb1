@@ -48,18 +48,30 @@ public class ControladorRedSocial {
     }
 
     @RequestMapping(value = "/perdidos", method = RequestMethod.GET)
-    public ModelAndView IrAperdidos() {
-        return new ModelAndView("perdidos");
+    public ModelAndView mostrarPublicacionesPerdidos() {
+        ModelMap model = new ModelMap();
+        List<Publicacion> publicacionesPerdidos = servicioRedSocial.getPublicacionesTipoPerdido();
+        List<PublicacionDTO> publicacionesPerdidosDTO = publicacionConversionService.convertirEntidadesADTOs(publicacionesPerdidos);
+        model.put("todasLasPublicaciones", publicacionesPerdidosDTO);
+        return new ModelAndView("perdidos", model);
     }
 
     @RequestMapping(value = "/historias", method = RequestMethod.GET)
-    public ModelAndView irAHistorias() {
-        return new ModelAndView("historias");
+    public ModelAndView mostrarPublicacionesHistorias() {
+        ModelMap model = new ModelMap();
+        List<Publicacion> publicacionesHistorias = servicioRedSocial.getPublicacionesTipoHistoria();
+        List<PublicacionDTO> publicacionesHistoriasDTO = publicacionConversionService.convertirEntidadesADTOs(publicacionesHistorias);
+        model.put("todasLasPublicaciones", publicacionesHistoriasDTO);
+        return new ModelAndView("historias", model);
     }
 
     @RequestMapping(value = "/donaciones", method = RequestMethod.GET)
-    public ModelAndView irADonaciones() {
-        return new ModelAndView("donaciones");
+    public ModelAndView mostrarPublicacionesDonaciones() {
+        ModelMap model = new ModelMap();
+        List<Publicacion> publicacionesDonaciones = servicioRedSocial.getPublicacionesTipoDonacion();
+        List<PublicacionDTO> publicacionesDonacionesDTO = publicacionConversionService.convertirEntidadesADTOs(publicacionesDonaciones);
+        model.put("todasLasPublicaciones", publicacionesDonacionesDTO);
+        return new ModelAndView("donaciones", model);
     }
 
 }

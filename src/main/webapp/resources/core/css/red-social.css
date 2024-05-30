@@ -24,23 +24,14 @@
     margin-bottom: 3vh;
 }
 
-.tipo-publicacion{
+.tipo-publicacion {
     background-color: #343a40;
-    position: sticky;
     margin-top: 10vh;
 }
 
-.todas-publicaciones{
-    margin-top: -19rem;
-}
-.todas-publicaciones-perdidos{
-    margin-top: 4rem;
-}
-.todas-publicaciones-historias{
-    margin-top: 0;
-}
-.todas-publicaciones-donaciones{
-    margin-top: -10rem;
+.todas-publicaciones {
+    margin-top: 2rem; /* Ajuste positivo para dar espacio suficiente */
+    flex: 3;
 }
 
 .tipo-publicacion2 {
@@ -50,6 +41,8 @@
     position: sticky;
     flex-direction: column;
     gap: 1.5vh;
+    top: 5rem; /* Para que se mantenga visible con el navbar */
+    flex: 1;
 }
 
 .container {

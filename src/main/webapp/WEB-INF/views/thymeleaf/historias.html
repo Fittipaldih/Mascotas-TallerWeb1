@@ -28,40 +28,12 @@
     <section class="todas-publicaciones-historias">
         <!--mostrar todas las publicaciones-->
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
+            <div class="col" th:each="publicacion : ${todasLasPublicaciones}">
                 <div class="card">
-                    <img class="card-img-top" th:src="@{/img/mascota-01.jpg}" alt="Card image cap">
+                    <img class="card-img-top" th:src="'data:image/jpeg;base64,' + ${publicacion.imagen}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Historia</h5>
-                        <p class="card-text">Estamos buscando al dueño, fue encontrado en Martin Fierro al 1452</p>
-                        <div class="container-btn">
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar</button>
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img class="card-img-top" th:src="@{/img/mascota-02.jpg}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Historia</h5>
-                        <p class="card-text">Apareció!! Muchas Gracias por ayudarme a encontrar a Cleo!!</p>
-                        <div class="container-btn">
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar</button>
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
-                            <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Comentar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <img class="card-img-top" th:src="@{/img/mascota-03.jpeg}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Historia</h5>
-                        <p class="card-text">Estamos buscando a Raul! Si lo vieron no duden en contactar</p>
+                        <h5 class="card-title" th:text="${publicacion.tipoPublicacion}"></h5>
+                        <p class="card-text" th:text="${publicacion.descripcion}"></p>
                         <div class="container-btn">
                             <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Contactar</button>
                             <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>

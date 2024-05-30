@@ -7,6 +7,7 @@ import com.tallerwebi.dominio.Zona;
 import java.util.List;
 
 public interface ServicioRedSocial {
+
     Publicacion getPublicacionPorId(Long idPublicacion);
 
     List<Publicacion> getTodasLasPublicaciones();
@@ -18,6 +19,8 @@ public interface ServicioRedSocial {
     List<Publicacion> getPublicacionesTipoDonacion();
 
     List<Publicacion> getPublicacionesTipoHistoria();
+
+    List<Publicacion> getPublicacionesTipoPerdido();
 
     List<Publicacion> getPublicacionesSegunFiltros(Zona zona, String nombre);
 
