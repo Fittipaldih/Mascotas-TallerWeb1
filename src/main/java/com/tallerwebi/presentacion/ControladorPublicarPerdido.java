@@ -27,6 +27,8 @@ public class ControladorPublicarPerdido {
     ServicioRedSocialImpl servicioRedSocial;
     @Autowired
     ServicioPublicacionConversion publicacionConversionService;
+    @Autowired
+    ControladorPublicar controladorPublicar;
 
     @RequestMapping(value = "/nuevo-perdido", method = RequestMethod.POST)
     public ModelAndView publicarPerdido(@RequestParam(value = "direccion") String direccion,
@@ -48,12 +50,7 @@ public class ControladorPublicarPerdido {
             }
             PublicacionPerdido perdido = new PublicacionPerdido(nombreMascota, direccion, nombreContacto, zona, mascotaColor, descripcion, telefonoContacto, tipoPublicacionPerdido, mascotaRaza, imagenBytes);
             servicioPublicarPerdidoImp.publicarPerdido(perdido, imagen);
-            List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
-            Collections.reverse(todasLasPublicaciones);
-            List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(todasLasPublicaciones);
-            modelMap.put("todasLasPublicaciones", todasLasPublicacionesDTO);
-            modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
-            return new ModelAndView("red-social", modelMap);
+            return this.controladorPublicar.getModelAndView(modelMap, servicioRedSocial, publicacionConversionService);
         } catch (Exception e) {
             modelMap.put("error", "Error al publicar la mascota perdida. Intentá nuevamente.");
             return new ModelAndView("publicar", modelMap);

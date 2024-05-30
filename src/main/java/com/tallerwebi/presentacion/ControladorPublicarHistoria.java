@@ -27,6 +27,8 @@ public class ControladorPublicarHistoria {
     ServicioRedSocialImpl servicioRedSocial;
     @Autowired
     ServicioPublicacionConversion publicacionConversionService;
+    @Autowired
+    ControladorPublicar controladorPublicar;
 
     @RequestMapping(value = "/nueva-historia", method = RequestMethod.POST)
     public ModelAndView publicarHistoria(@RequestParam(value = "titular") String titular,
@@ -43,16 +45,12 @@ public class ControladorPublicarHistoria {
             }
             PublicacionHistoria historia = new PublicacionHistoria(titular, nombreMascota, zona, descripcion, PublicacionTipo.HISTORIA, imagenBytes);
             servicioPublicarHistoriaImp.publicarHistoria(historia, imagen);
-            List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
-            Collections.reverse(todasLasPublicaciones);
-            List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(todasLasPublicaciones);
-            modelMap.put("todasLasPublicaciones", todasLasPublicacionesDTO);
-            modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
-            return new ModelAndView("red-social", modelMap);
+            return this.controladorPublicar.getModelAndView(modelMap, servicioRedSocial, publicacionConversionService);
         } catch (Exception e) {
             modelMap.put("error", "Error al publicar la historia. Intentá nuevamente.");
             return new ModelAndView("publicar", modelMap);
         }
     }
+
 
 }

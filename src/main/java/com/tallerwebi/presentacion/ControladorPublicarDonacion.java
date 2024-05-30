@@ -27,6 +27,8 @@ public class ControladorPublicarDonacion {
     ServicioRedSocialImpl servicioRedSocial;
     @Autowired
     ServicioPublicacionConversion publicacionConversionService;
+    @Autowired
+    ControladorPublicar controladorPublicar;
 
     @RequestMapping(value = "/nueva-donacion", method = RequestMethod.POST)
     public ModelAndView publicarDonacion(@RequestParam(value = "nombreMascota") String nombreMascota,
@@ -43,12 +45,7 @@ public class ControladorPublicarDonacion {
             }
             PublicacionDonacion donacion = new PublicacionDonacion(monto, PublicacionTipo.DONACION, nombreMascota, zona, descripcion, imagenBytes);
             servicioPublicarDonacionImp.publicarDonacion(donacion, imagen);
-            List<Publicacion> todasLasPublicaciones = servicioRedSocial.getTodasLasPublicaciones();
-            Collections.reverse(todasLasPublicaciones);
-            List<PublicacionDTO> todasLasPublicacionesDTO = publicacionConversionService.convertirEntidadesADTOs(todasLasPublicaciones);
-            modelMap.put("todasLasPublicaciones", todasLasPublicacionesDTO);
-            modelMap.put("mensaje", "¡La publicación ha sido creada exitosamente!");
-            return new ModelAndView("red-social", modelMap);
+            return this.controladorPublicar.getModelAndView(modelMap, servicioRedSocial, publicacionConversionService);
         } catch (Exception e) {
             modelMap.put("error", "Error al publicar la donación. Intentá nuevamente.");
             return new ModelAndView("publicar", modelMap);
