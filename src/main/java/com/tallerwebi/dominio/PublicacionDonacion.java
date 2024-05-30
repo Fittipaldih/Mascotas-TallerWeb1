@@ -39,4 +39,8 @@ public class PublicacionDonacion extends Publicacion{
     public void setMontoACubrir(Double montoACubrir) {
         this.montoACubrir = montoACubrir;
     }
+
+    public void setmontoACubrir(Double montoACubrir) {
+        this.montoACubrir = montoACubrir;
+    }
 }

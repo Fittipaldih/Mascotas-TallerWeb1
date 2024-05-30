@@ -137,7 +137,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
         query.setParameter("idPublicacion", idPublicacion);
         query.executeUpdate();
     }
-
+/////////////////////////////////
     @Override
     public void editarPerdido(Long idPublicacion, String nombreMascota, Long telefonoContacto,
                               String nombreContacto, MascotaColor mascotaColor, MascotaRaza mascotaRaza,
@@ -176,8 +176,7 @@ public class RepositorioPublicacionImpl implements RepositorioPublicacion {
                 "p.zona = :zona, " +
                 "p.imagen = :imagenBytes, " +
                 "p.nombreMascota = :nombreMascota, " +
-                "p.montoACubrir = :montoACubrir, " +
-                "p.nombreMascota = :nombreMascota " +
+                "p.montoACubrir = :montoACubrir " +
                 "WHERE p.idPublicacion = :idPublicacion";
 
         Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
