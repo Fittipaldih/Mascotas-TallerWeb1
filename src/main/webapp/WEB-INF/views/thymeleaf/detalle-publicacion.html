@@ -37,8 +37,8 @@
     <h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
     <div class="card-deck shadow-sm">
         <div class="card">
-                <img class="card-img-top" th:src="${publicacionData.imagen != null} ? 'data:image/jpeg;base64,' + ${publicacionData.imagen} : '/spring/img/sin-imagen.jpg'" alt="Foto publicacion">
-            <div class="card-body">
+               <!-- <img class="card-img-top" th:src="${publicacionData.imagen != null} ? 'data:image/jpeg;base64,' + ${publicacionData.imagen} : '/spring/img/sin-imagen.jpg'" alt="Foto publicacion">
+            --><div class="card-body">
                 <!-- Verificamos el tipo de publicacion, para ver sus atributos -->
                 <h1 class="card-text font-monospace" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).BUSCADO_POR_DUENIO}">
                     Perdi mi mascota
