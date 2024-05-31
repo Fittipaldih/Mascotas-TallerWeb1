@@ -1,9 +1,16 @@
 package com.tallerwebi.dominio;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.*;
+
+import com.tallerwebi.dominio.*;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.servicios.ServicioDetallePublicacionImpl;
 import com.tallerwebi.infraestructura.RepositorioComentarioImpl;
 import com.tallerwebi.infraestructura.RepositorioPublicacionImpl;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,16 +20,18 @@ import org.mockito.MockitoAnnotations;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.Mockito.*;
 
 public class ServicioDetallePublicacionImplTest {
 
     @Mock
-    private RepositorioPublicacion repositorioPublicacion;
+    private SessionFactory sessionFactory;
+
+    @Mock
+    private Session session;
+
     @Mock
     private RepositorioComentarioImpl repositorioComentario;
+
     @Mock
     private RepositorioPublicacionImpl repositorioPublicacionImpl;
 
@@ -32,6 +41,7 @@ public class ServicioDetallePublicacionImplTest {
     @BeforeEach
     void init() {
         MockitoAnnotations.openMocks(this);
+        when(sessionFactory.getCurrentSession()).thenReturn(session);
     }
 
     @Test
@@ -40,9 +50,9 @@ public class ServicioDetallePublicacionImplTest {
         Long id = 10L;
         Publicacion publicacion = new PublicacionPerdido();
         publicacion.setIdPublicacion(id);
-        when(this.repositorioPublicacionImpl.getPublicacionPorId(id)).thenReturn(publicacion);
+        when(repositorioPublicacionImpl.getPublicacionPorId(id)).thenReturn(publicacion);
         // Ejecución
-        Publicacion publicacionObtenida = this.servicioDetallePublicacion.getPublicacion(id);
+        Publicacion publicacionObtenida = servicioDetallePublicacion.getPublicacion(id);
         // Verificación
         assertThat(publicacionObtenida, equalTo(publicacion));
     }
@@ -53,9 +63,9 @@ public class ServicioDetallePublicacionImplTest {
         Long idDonacion = 6L;
         Publicacion donacion = new PublicacionDonacion();
         donacion.setIdPublicacion(idDonacion);
-        when(repositorioPublicacionImpl.getPublicacionPorId(donacion.getIdPublicacion())).thenReturn(donacion);
+        when(repositorioPublicacionImpl.getPublicacionPorId(idDonacion)).thenReturn(donacion);
         // Ejecución
-        Publicacion publicacionDonacionObtenida = repositorioPublicacionImpl.getPublicacionPorId(idDonacion);
+        Publicacion publicacionDonacionObtenida = servicioDetallePublicacion.getPublicacion(idDonacion);
         // Verificación
         assertThat(publicacionDonacionObtenida, equalTo(donacion));
     }
@@ -75,14 +85,30 @@ public class ServicioDetallePublicacionImplTest {
     }
 
     @Test
+    public void queDevuelvaExcepcionSiQuieroComentarAlgoPeroElTextoEstaVacio() throws Exception {
+        // preparacion
+        Publicacion publicacion = new PublicacionPerdido();
+        Long id = 5L;
+        publicacion.setIdPublicacion(id);
+        String textoDelComentario = "";
+
+        // Simulación
+        when(repositorioPublicacionImpl.getPublicacionPorId(id)).thenReturn(publicacion);
+        doThrow(new Exception("El comentario esta vacio")).when(repositorioComentario).guardarNuevoComentarioEnPublicacion(textoDelComentario, id);
+
+        // ejecucion y verificacion
+        assertThrows(Exception.class, () -> servicioDetallePublicacion.hacerComentario(textoDelComentario, id));
+    }
+
+    @Test
     public void queDevuelvaLaPublicacionPerdidoOkPorSuId() throws Exception {
         // Preparación
         Long idPerdido = 1L;
         Publicacion perdido = new PublicacionPerdido();
         perdido.setIdPublicacion(idPerdido);
-        when(repositorioPublicacionImpl.getPublicacionPorId(perdido.getIdPublicacion())).thenReturn(perdido);
+        when(repositorioPublicacionImpl.getPublicacionPorId(idPerdido)).thenReturn(perdido);
         // Ejecución
-        Publicacion publicacionPerdidoObtenida = repositorioPublicacionImpl.getPublicacionPorId(idPerdido);
+        Publicacion publicacionPerdidoObtenida = servicioDetallePublicacion.getPublicacion(idPerdido);
         // Verificación
         assertThat(publicacionPerdidoObtenida, equalTo(perdido));
     }
@@ -93,9 +119,9 @@ public class ServicioDetallePublicacionImplTest {
         Long idHistoria = 2L;
         Publicacion historia = new PublicacionHistoria();
         historia.setIdPublicacion(idHistoria);
-        when(repositorioPublicacionImpl.getPublicacionPorId(historia.getIdPublicacion())).thenReturn(historia);
+        when(repositorioPublicacionImpl.getPublicacionPorId(idHistoria)).thenReturn(historia);
         // Ejecución
-        Publicacion publicacionHistoriaObtenida = repositorioPublicacionImpl.getPublicacionPorId(idHistoria);
+        Publicacion publicacionHistoriaObtenida = servicioDetallePublicacion.getPublicacion(idHistoria);
         // Verificación
         assertThat(publicacionHistoriaObtenida, equalTo(historia));
     }

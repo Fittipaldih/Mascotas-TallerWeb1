@@ -5,6 +5,7 @@ import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioComentario;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioDetallePublicacion;
+import com.tallerwebi.infraestructura.RepositorioComentarioImpl;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,10 @@ import java.util.List;
 public class ServicioDetallePublicacionImpl implements ServicioDetallePublicacion {
 
     private final RepositorioPublicacion repositorioPublicacion;
-    private final RepositorioComentario repositorioComentario;
+    private final RepositorioComentarioImpl repositorioComentario;
 
     @Autowired
-    public ServicioDetallePublicacionImpl(RepositorioPublicacion repositorioPublicacion, RepositorioComentario repositorioComentario ) {
+    public ServicioDetallePublicacionImpl(RepositorioPublicacion repositorioPublicacion, RepositorioComentarioImpl repositorioComentario ) {
         this.repositorioPublicacion = repositorioPublicacion;
         this.repositorioComentario = repositorioComentario;
     }

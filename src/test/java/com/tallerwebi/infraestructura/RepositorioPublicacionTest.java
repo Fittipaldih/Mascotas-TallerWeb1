@@ -91,6 +91,10 @@ public class RepositorioPublicacionTest {
         assertThat(publicaciones, hasSize(3));
     }
 
+
+    @Test
+    
+
     private void dadoQueExistenPublicaciones() {
         PublicacionPerdido perdido = new PublicacionPerdido();
         perdido.setDescripcion("Gato perdido");
@@ -105,4 +109,6 @@ public class RepositorioPublicacionTest {
         this.sessionFactory.getCurrentSession().save(historia);
         this.sessionFactory.getCurrentSession().save(historia2);
     }
+
+
 }
