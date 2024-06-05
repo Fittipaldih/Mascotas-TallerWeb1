@@ -6,4 +6,5 @@ public interface ServicioDetallePublicacion {
     Publicacion getPublicacion(Long id) throws Exception;
 
     void eliminarPublicacion(Long idPublicacion);
+    void hacerComentario(String textoDelComentario, Long idPublicacion) throws Exception;
 }
