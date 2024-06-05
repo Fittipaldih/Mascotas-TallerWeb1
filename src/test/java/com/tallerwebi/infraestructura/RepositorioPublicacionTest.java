@@ -90,9 +90,6 @@ public class RepositorioPublicacionTest {
         assertThat(publicaciones, notNullValue());
         assertThat(publicaciones, hasSize(3));
     }
-
-
-    @Test
     
 
     private void dadoQueExistenPublicaciones() {
