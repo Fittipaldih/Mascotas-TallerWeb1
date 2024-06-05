@@ -5,22 +5,20 @@ import com.tallerwebi.dominio.Publicacion;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioPublicacion;
 import com.tallerwebi.dominio.repositorioInterfaces.RepositorioComentario;
 import com.tallerwebi.dominio.servicios.interfaces.ServicioDetallePublicacion;
-import com.tallerwebi.infraestructura.RepositorioComentarioImpl;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class ServicioDetallePublicacionImpl implements ServicioDetallePublicacion {
 
     private final RepositorioPublicacion repositorioPublicacion;
-    private final RepositorioComentarioImpl repositorioComentario;
+    private final RepositorioComentario repositorioComentario;
 
     @Autowired
-    public ServicioDetallePublicacionImpl(RepositorioPublicacion repositorioPublicacion, RepositorioComentarioImpl repositorioComentario ) {
+    public ServicioDetallePublicacionImpl(RepositorioPublicacion repositorioPublicacion, RepositorioComentario repositorioComentario) {
         this.repositorioPublicacion = repositorioPublicacion;
         this.repositorioComentario = repositorioComentario;
     }
@@ -39,17 +37,17 @@ public class ServicioDetallePublicacionImpl implements ServicioDetallePublicacio
     public void eliminarPublicacion(Long idPublicacion) {
         eliminarComentariosAsociados(idPublicacion);
         this.repositorioPublicacion.eliminarPublicacionPorId(idPublicacion);
-
     }
 
     private void eliminarComentariosAsociados(Long idPublicacion) {
         Publicacion publicacion = this.repositorioPublicacion.getPublicacionPorId(idPublicacion);
-        List<Comentario> comentarios =  publicacion.getComentarios();
+        List<Comentario> comentarios = publicacion.getComentarios();
         for (Comentario comentario : comentarios) {
             this.repositorioPublicacion.eliminarComentarioPorId(comentario.getId());
         }
     }
 
+    @Override
     public void hacerComentario(String textoDelComentario, Long idPublicacion) throws Exception {
         this.repositorioComentario.guardarNuevoComentarioEnPublicacion(textoDelComentario, idPublicacion);
     }
