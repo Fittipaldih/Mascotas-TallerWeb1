@@ -1,74 +1,74 @@
 <!DOCTYPE HTML>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Solicitar Donación - Red Social Mascotera</title>
-    <!-- Bootstrap core css -->
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <!-- Custom style -->
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <link rel="stylesheet" th:href="@{/css/publicar.css}"/>
-    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
+    <meta charset="utf-8">
+    <title>AppMascotera</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <div th:include="'links-head'"></div>
 </head>
 <body class="d-flex flex-column min-vh-100">
-<div class="background-container"></div>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <!-- Logo  -->
-    <a class="nav-link" href="home">
-        <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
-    </a>
-    <!-- Título -->
-    <span class="navbar-brand ml-3 text-left">Solicitar Donación</span>
-    <!-- Entry points -->
-    <div th:include="'entry-points'"></div>
-</nav>
-<main role="main" class="container flex-grow-1 d-flex align-items-center">
-    <div class="container">
-        <h1 class="title text-left fs-1 fw-bold display-1">Solicitá una donación</h1>
-        <form th:action="@{/nueva-donacion}" method="post" class="form-group" accept-charset="UTF-8" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-md-6 form-group">
-                    <label for="nombreMascota">Nombre de la mascota</label>
-                    <input type="text" maxlength="100" id="nombreMascota" required name="nombreMascota" class="form-control" placeholder="Peludito">
-                    <br>
-                    <label for="descripcion">Descripción</label>
-                    <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="Ej: Necesitamos tu ayuda para una cirugía ..."></textarea>
-                </div>
-                <div class="col-md-6 form-group">
-                    <label for="monto">Monto a cubrir</label>
-                    <input onchange="validateMonto(this)" type="number" required maxlength="10" id="monto" name="monto" class="form-control" placeholder="Ej: 40000">
-                    <br>
-                    <label for="zona">Zona donde está la mascota</label>
-                    <select id="zona" name="zona" class="form-control">
-                        <option value="">Seleccionar</option>
-                        <option value="NORTE">Norte</option>
-                        <option value="SUR">Sur</option>
-                        <option value="OESTE">Oeste</option>
-                        <option value="CABA">CABA</option>
-                    </select>
-                    <br>
-                    <label for="imagen">Foto de la Mascota</label>
-                    <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control">
+
+<div th:include="'toopbar'"></div>
+
+<div th:include="'navbar'"></div>
+
+<main role="main" class="container flex-grow-1 d-flex align-items-start">
+    <div class="container pt-3">
+        <div class="d-flex flex-column text-center mb-2 pt-1">
+            <h1 class="display-4 m-0"><span class="text-primary">Solicitar</span>Donación</h1>
+        </div>
+        <h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
+        <h2 th:if="${error}" class="alert alert-warning" th:text="${error}"></h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 mb-5">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    <form th:action="@{/nueva-donacion}" method="post" enctype="multipart/form-data" class="form-group" accept-charset="UTF-8">
+                        <div class="control-group">
+                            <input type="text" maxlength="100" id="nombreMascota" name="nombreMascota" class="form-control" placeholder="Nombre de la mascota" required>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea id="descripcion" maxlength="250" name="descripcion" rows="5" cols="50" required class="form-control" placeholder="Descripción"></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input onchange="validateMonto(this)" type="number" required maxlength="10" id="monto" name="monto" class="form-control" placeholder="Monto total a cubrir">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <select id="zona" name="zona" required class="form-control" placeholder="Zona donde vive la mascota...">
+                                <option value="">Zona donde vive la mascota...</option>
+                                <option value="NORTE">Norte</option>
+                                <option value="SUR">Sur</option>
+                                <option value="OESTE">Oeste</option>
+                                <option value="CABA">CABA</option>
+                            </select>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="file" id="imagen" name="imagen" accept="image/*" class="form-control" placeholder="Foto de la mascota">                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <div class="d-flex flex-column" style="margin-right: 25%; margin-left: 25%">
+                            <button class="btn btn-primary py-2 px-3 mb-2" type="submit" id="sendMessageButton">Publicar</button>
+                            <a href="http://localhost:8080/spring/publicar" class="btn btn-primary py-2 px-3" type="submit">
+                                Volver
+                            </a>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="row mt-2">
-                <div class="button col-md-6 text-center">
-                    <a href="http://localhost:8080/spring/perdidos" class="btn btn-secondary">Volver</a>
-                </div>
-                <div class="button col-md-6 text-right">
-                    <button type="submit" class="btn btn-primary">Publicar</button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </main>
-<!-- Footer -->
-<div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
+<!-- Incluyendo el footer -->
+<div th:include="'footer'"></div>
 <!-- JS -->
 <script type="text/javascript" th:src="@{/js/publicar.js}"></script>
-<!-- Bootstrap core js -->
-<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<div th:include="'scripts'"></div>
 </body>
 </html>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,6 +40,13 @@ public class ControladorDetallePublicacion {
             Publicacion publicacion = servicioDetallePublicacion.getPublicacion(id);
             Collections.reverse(publicacion.getComentarios());
             model.put("publicacionData", publicacion);
+
+            if(publicacion.getImagen() != null){
+                String base64Image = Base64.getEncoder().encodeToString(publicacion.getImagen());
+                model.put("image", base64Image);
+            } else {
+                model.put("image", null);
+            }
 
             if (publicacion instanceof PublicacionHistoria) {
                 PublicacionHistoria historia = (PublicacionHistoria) publicacion;

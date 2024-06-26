@@ -1,126 +1,51 @@
-<!DOCTYPE HTML>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Red social Mascotera</title>
-    <!-- http://localhost:8080/spring/mapa-mascotero -->
-    <!-- Bootstrap core css -->
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <!-- Custom style -->
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <link rel="stylesheet" th:href="@{/css/mapa-mascotero.css}"/>
-    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
-</head>
+    <title>AppMascotera</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
 
+    <div th:include="'links-head'"></div>
+</head>
 <body>
 
-<div class="background-container"></div>
+<div th:include="'toopbar'"></div>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <!-- Logo -->
-    <a class="nav-link" href="home">
-        <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
-    </a>
-    <!-- Título -->
-    <span class="navbar-brand ml-3 text-left">Mapa Mascotero</span>
+<div th:include="'navbar'"></div>
 
-    <!-- Entry points -->
-    <div th:include="'entry-points'"></div>
-</nav>
-<main role="main" class="container">
-    <section class="todas-publicaciones">
-        <div class="card-deck">
-            <div class="card">
-                <div class="card-body">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7655.769728206894!2d-58.570091273631924!3d-34.66906268820045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc74d2a85f6b7%3A0xf7b42458c4ff6819!2sUNLaM%20-%20Mesa%20de%20Entrada!5e0!3m2!1ses-419!2sar!4v1714858059151!5m2!1ses-419!2sar"
-                        width="700" height="350" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </div>
 
-        <table th:if="${veterinarias}" class="table table-striped">  <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>Dirección</th>
-            <th>Zona</th>
-            <th>Open 24 Horas</th>
-        </tr>
-        </thead>
-            <tbody>
-            <tr th:each="veterinaria : ${veterinarias}">
-                <td th:text="${veterinaria.nombre}"></td>
-                <td th:text="${veterinaria.telefono}"></td>
-                <td th:text="${veterinaria.direccion}"></td>
-                <td th:text="${veterinaria.zona}"></td>
-                <td th:text="${veterinaria.open24 ? 'Sí' : 'No'}">  </td>
-            </tr>
-            </tbody>
-        </table>
+<!-- Contact Start -->
+<div class="container-fluid pt-3 pr-0 pl-0">
+    <div class="d-flex flex-column text-center mb-2 pt-1">
+        <h1 class="display-4 m-0"><span class="text-primary">Mapa</span>Mascotero</h1>
+    </div>
+    <div class="text-center mt-4 mb-3">
+        <a class="btn btn-primary mx-2 m-1" href="/spring/mapa?zona=oeste">Zona Oeste</a>
+        <a class="btn btn-secondary mx-2 m-1" href="/spring/mapa?zona=norte">Zona Norte</a>
+        <a class="btn btn-primary mx-2 m-1" href="/spring/mapa?zona=sur">Zona Sur</a>
+        <a class="btn btn-secondary mx-2 m-1" href="/spring/mapa?zona=caba">CABA</a>
+        <a class="btn btn-primary mx-2 m-1" href="/spring/mapa?zona=original">Vista Original</a>
+    </div>
+    <div class="col-12 mb-n2 p-0">
+        <iframe style="width: 100%; border:0; height: 500px;"
+                th:src="${mapaSrc != null ? mapaSrc : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7655.769728206894!2d-58.570091273631924!3d-34.66906268820045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcc74d2a85f6b7%3A0xf7b42458c4ff6819!2sUNLaM%20-%20Mesa%20de%20Entrada!5e0!3m2!1ses-419!2sar!4v1714858059151!5m2!1ses-419!2sar'}"
+                allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+</div>
+<!-- Contact End -->
 
-        <table th:if="${peluquerias}" class="table table-striped">  <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>Dirección</th>
-            <th>Zona</th>
-        </tr>
-        </thead>
-            <tbody>
-            <tr th:each="peluqueria : ${peluquerias}">
-                <td th:text="${peluqueria.nombre}"></td>
-                <td th:text="${peluqueria.telefono}"></td>
-                <td th:text="${peluqueria.direccion}"></td>
-                <td th:text="${peluqueria.zona}"></td>
-            </tr>
-            </tbody>
-        </table>
 
-        <table th:if="${mascotas}" class="table table-striped">  <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Estado</th>
-            <th>Zona</th>
-            <th>Tipo</th>
-            <th>Raza</th>
-            <th>Color pelo</th>
-        </tr>
-        </thead>
-            <tbody>
-            <tr th:each="mascota : ${mascotas}">
-                <td th:text="${mascota.nombre}"></td>
-                <td th:text="${mascota.estado}"></td>
-                <td th:text="${mascota.zona}"></td>
-                <td th:text="${mascota.tipoMascota}"></td>
-                <td th:text="${mascota.raza}"></td>
-                <td th:text="${mascota.color}"></td>
-            </tr>
-            </tbody>
-        </table>
+<!-- Incluyendo el footer -->
+<div th:include="'footer'"></div>
 
-    </section>
 
-    <section class="tipo-publicacion">
-        <div class="tipo-publicacion2">
-            <form th:action="@{/filtrar}" method="get">
-                <h1>Solo quiero ver...</h1>
-                <label style="color: white" for="tipo_publicacion">Tipo de publicacion:</label>
-                <select id="tipo_publicacion" name="tipo_publicacion" class="form-control">
-                    <option value="">Elija un tipo</option>
-                    <option value="veterinarias">Veterinarias</option>
-                    <option value="peluquerias">Peluquerias</option>
-                    <option value="mascotas">Mascotas Perdidas</option>
-                </select>
-                <button id="filtros" type="submit" class="btn btn-outline-light">Filtrar</button>
-            </form>
-        </div>
-    </section>
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-</main>
-<div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
-<!-- Bootstrap core js -->
-<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<div th:include="'scripts'"></div>
 </body>
+
 </html>

@@ -2,68 +2,78 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Publicar - Red Social Mascotera</title>
-    <!-- Bootstrap core css -->
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <!-- Custom style -->
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <link rel="stylesheet" th:href="@{/css/home.css}"/>
-    <link rel="stylesheet" th:href="@{/css/publicar.css}"/>
+    <title>AppMascotera</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <div th:include="'links-head'"></div>
 </head>
-<body class="d-flex flex-column min-vh-100">
-<div class="background-container"></div>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <!-- Logo  -->
-    <a class="nav-link" href="home">
-        <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
-    </a>
-    <!-- Título -->
-    <span class="navbar-brand ml-3 text-left">Publicar</span>
-    <!-- Entry points -->
-    <div th:include="'entry-points'"></div>
-</nav>
-<main role="main" class="container flex-grow-1 d-flex align-items-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="text-container">
-                    <h2 th:if="${mensaje}" class="card-title alert alert-warning" th:text="${mensaje}"></h2>
-                    <h1 class="text-left fs-1 fw-bold display-1">Quiero publicar acerca de...</h1>
-                    <br>
-                    <div class="button-container d-flex justify-content-around">
-                        <div class="d-flex flex-column align-items-center m-2">
-                            <img src="/spring/img/icono-mascota-perdida.png" alt="Lupita" class="icon-img"> <!-- Placeholder for icon -->
-                            <a href="publicarPerdido" class="btn btn-primary btn-lg m-2">Mascota<br>Perdida</a>
-                        </div>
-                        <div class="d-flex flex-column align-items-center m-2">
-                            <img src="/spring/img/icono-nueva-historia.png" alt="Megáfono" class="icon-img"> <!-- Placeholder for icon -->
-                            <a href="publicarHistoria" class="btn btn-secondary btn-lg m-2">Nueva<br>Historia</a>
-                        </div>
-                        <div class="d-flex flex-column align-items-center m-2">
-                            <img src="/spring/img/icono-solicitar-donacion.png" alt="Caja con Corazón" class="icon-img"> <!-- Placeholder for icon -->
-                            <a href="publicarDonacion" class="btn btn-primary btn-lg m-2">Solicitar<br>Donación</a>
-                        </div>
-                    </div>
+<body>
+
+<div th:include="'toopbar'"></div>
+
+<div th:include="'navbar'"></div>
+
+<main role="main">
+
+<div class="container-fluid bg-light">
+    <div class="container pt-3">
+        <h2 th:if="${mensaje}" class="card-title alert alert-warning" th:text="${mensaje}"></h2>
+        <div class="d-flex flex-column text-center mb-2 pt-1">
+            <h1 class="display-4 m-0"><span class="text-primary">Publicar</span>Sobre...</h1>
+        </div>
+        <div class="row pb-3">
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5 align-items-center">
+                    <img src="/spring/img/icono-mascota-perdida.png" style="width: 6rem;" alt="Lupita" class="icon-img">
+                    <a class="text-uppercase font-weight-bold" href="publicarPerdido">Mascota perdida</a>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="latest-publications-container">
-                    <h4 class="fw-bold">Últimas publicaciones</h4>
-                    <div class="publication" th:each="publicacion : ${ultimasPublicaciones}">
-                        <i class="bi bi-link-45deg"></i>
-                        <a th:href="@{'/detalle-publicacion/?id=' + ${publicacion.idPublicacion}}"
-                           th:text="${publicacion.tipoPublicacion.name()} + ' - ' + ${#strings.abbreviate(publicacion.descripcion, 50)}"></a>
-                    </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5 align-items-center">
+                    <img src="/spring/img/icono-nueva-historia.png" style="width: 6rem;" alt="Megáfono" class="icon-img">
+                    <a class="text-uppercase font-weight-bold" href="publicarHistoria">Nueva historia</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="d-flex flex-column text-center bg-white mb-2 p-3 p-sm-5 align-items-center">
+                    <img src="/spring/img/icono-solicitar-donacion.png" style="width: 6rem;" alt="Caja con Corazón" class="icon-img">
+                    <a class="text-uppercase font-weight-bold" href="publicarDonacion">Solicitar donación</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Ultimas publicaciones-->
+<div class="container-fluid p-0 py-2">
+    <div class="container p-0 pt-2">
+        <div class="d-flex flex-column text-center mb-2">
+            <h3 class="display-4 m-0" style="font-size: 2rem">Últimas<span class="text-primary" style="font-size: 2rem">Publicaciones</span></h3>
+        </div>
+        <div class="owl-carousel testimonial-carousel">
+            <div class="bg-light mx-3 p-4">
+                <div style="text-align-last: center" th:each="publicacion : ${ultimasPublicaciones}">
+<!--                    <img class="img-fluid mb-2" th:src="'data:image/jpeg;base64,' + ${publicacion.imagen}" style="width: 80px; height: 80px;" alt="">-->
+                    <h5 th:text="${publicacion.tipoPublicacion.name()}"></h5>
+                    <p class="m-0 mb-3" th:text="${#strings.abbreviate(publicacion.descripcion, 70)}"></p>
+                    <button class="mb-4">
+                        <a th:href="@{'/detalle-publicacion/?id=' + ${publicacion.idPublicacion}}">
+                            Ver publicación
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Ultimas publicaciones-->
+
 </main>
-<!-- Footer -->
-<div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
-<!-- Bootstrap core js -->
-<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+<!-- Incluyendo el footer -->
+<div th:include="'footer'"></div>
+
+<div th:include="'scripts'"></div>
 </body>
 </html>

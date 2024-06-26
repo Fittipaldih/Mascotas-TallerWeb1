@@ -17,11 +17,6 @@
 <div class="row bg-dark py-4 px-lg-5">
 </div>
 
-<div th:if="${not #lists.isEmpty(error)}">
-    <div class="p-1 alertbg">
-        <h5 class="text-center text-white" th:text="${error}"></h5>
-    </div>
-</div>
 
 <!-- Booking Start -->
 <div class="container-fluid bg-primary">
@@ -30,23 +25,29 @@
             <div class="col-lg-8">
                 <div class="bg-primary py-3 px-4 px-sm-5">
                     <div class="d-flex flex-column text-center mb-2 pt-1">
-                        <h1 class="display-4 m-0"><span class="text-white">Ingresar</span>Datos</h1>
+                        <h1 class="display-4 m-0"><span class="text-white">Registro</span>Usuario</h1>
                     </div>
                     <div th:if="${not #lists.isEmpty(mensaje)}" class="p-3 alertbg">
                         <h5 class="text-center text-white" th:text="${mensaje}"></h5>
                     </div>
-                    <form class="py-3" th:action="@{/validar-login}" method="POST" th:object="${dataUsuario}">
+                    <form class="py-3" th:action="@{/procesarRegistro}" method="POST" th:object="${dataUsuario}">
+                        <div class="form-group">
+                            <input type="text" th:field="*{nombre}" class="form-control border-0 p-4" placeholder="Tu nombre" required="required" />
+                        </div>
                         <div class="form-group">
                             <input type="email" th:field="*{email}" class="form-control border-0 p-4" placeholder="Tu mail" required="required" />
                         </div>
                         <div class="form-group">
                             <input type="password" th:field="*{password}" class="form-control border-0 p-4" placeholder="Tu contraseña" required="required" />
                         </div>
+                        <div class="form-group">
+                            <input type="password" th:field="*{passwordRe}" class="form-control border-0 p-4" placeholder="Repetí tu contraseña" required="required" />
+                        </div>
                         <div>
                             <button class="btn btn-dark btn-block font-weight-bold border-0 py-3" type="submit">Ingresar</button>
                         </div>
                     </form>
-                    <a class="btn btn-secondary btn-block border-0 py-2" th:href="@{/registrarme}">¿No tenés cuenta? Registrate</a>
+                    <a class="btn btn-secondary btn-block border-0 py-2" th:href="@{/login}">¿Ya tenés cuenta? Click acá</a>
                 </div>
             </div>
         </div>

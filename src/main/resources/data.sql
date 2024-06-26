@@ -1,5 +1,5 @@
 
-INSERT INTO Usuario(idUsuario, email, password, rol, activo) VALUES(1, 'test@unlam.edu.ar', 'test', 'ADMIN', true);
+INSERT INTO Usuario(email, nombre, password, rol, activo) VALUES('test@unlam.edu.ar', 'nombreEjemplo', 'test', 'ADMIN', true);
 
 INSERT INTO MASCOTA (COLOR, DESCRIPCION, ESTADO, FOTO, LATITUD, LONGITUD, NOMBRE, RAZA, TIEMPOBUSCADO, TIPOMASCOTA, ZONA, IDUSUARIO) VALUES
     ('DORADO', 'Tiene 3 años, se perdió en el Parque San Martín. Es muy cariñoso. Ayudame a encontrarlo', 'BUSCADO_POR_DUENIO', 'https://img.freepik.com/', '46.833333', '-6.833333', 'Toby', 'LABRADOR', 1, 'PERRO', 1, 1),

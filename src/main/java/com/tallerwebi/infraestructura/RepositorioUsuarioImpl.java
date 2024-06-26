@@ -1,31 +1,35 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.repositorioInterfaces.RepositorioUsuario;
 import com.tallerwebi.dominio.Usuario;
+import com.tallerwebi.dominio.repositorioInterfaces.RepositorioUsuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository("repositorioUsuario")
+@Transactional
 public class RepositorioUsuarioImpl implements RepositorioUsuario {
 
-    private final SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     @Autowired
-    public RepositorioUsuarioImpl(SessionFactory sessionFactory) {
+    public RepositorioUsuarioImpl(SessionFactory sessionFactory){
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public Usuario buscarUsuario(String email, String password) {
+    public Usuario loginUsuario(String email, String password) {
 
         final Session session = sessionFactory.getCurrentSession();
-        return (Usuario) session.createCriteria(Usuario.class)
-                .add(Restrictions.eq("email", email))
-                .add(Restrictions.eq("password", password))
-                .uniqueResult();
+        Criterion rest1 = Restrictions.eq("email", email);
+        Criterion rest2 = Restrictions.eq("password", password);
+
+        return  (Usuario)session.createCriteria(Usuario.class)
+                .add(rest1).add(rest2).uniqueResult();
     }
 
     @Override
@@ -43,6 +47,31 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
     @Override
     public void modificar(Usuario usuario) {
         sessionFactory.getCurrentSession().update(usuario);
+    }
+
+    @Override
+    public Boolean validarEmail(String email) {
+
+        final Session session = sessionFactory.getCurrentSession();
+        Criterion rest1 = Restrictions.eq("email", email);
+
+        Usuario encontrado = (Usuario) session.createCriteria(Usuario.class).add(rest1).uniqueResult();
+
+        if(encontrado == null)
+            return true;
+
+        return false;
+
+    }
+
+    @Override
+    public Usuario getUsuario(Long Id) {
+        final Session session = sessionFactory.getCurrentSession();
+        Criterion rest1 = Restrictions.eq("id", Id);
+
+        Usuario encontrado = (Usuario) session.createCriteria(Usuario.class).add(rest1).uniqueResult();
+
+        return encontrado;
     }
 
 }

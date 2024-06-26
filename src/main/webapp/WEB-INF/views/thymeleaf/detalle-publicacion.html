@@ -1,119 +1,127 @@
-<!DOCTYPE HTML>
-<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AppMascotera</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
 
-    <title>Perfil</title>
-
-    <!-- Bootstrap core css -->
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Custom style -->
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
-    <link rel="stylesheet" th:href="@{/css/detalle-publicacion.css}"/>
-    <link rel="stylesheet" th:href="@{/css/footer.css}"/>
-
+    <div th:include="'links-head'"></div>
 </head>
-
 <body>
 
-<div class="background-container"></div>
+<div th:include="'toopbar'"></div>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <!-- Logo  -->
-    <a class="nav-link" href="http://localhost:8080/spring/">
-        <img src="https://i.postimg.cc/DZxX8qYM/logo-Mascotas.png" width="40px" alt="Logo" class="navbar-brand"/>
-    </a>
+<div th:include="'navbar'"></div>
+<main role="main" class="container flex-grow-1 d-flex align-items-start">
 
-    <!-- Título -->
-    <span class="navbar-brand ml-3 text-left">Perfil</span>
-
-    <!-- Entry points -->
-    <div th:include="'entry-points'"></div>
-</nav>
-
-<main role="main" class="container-detalle-publicacion">
+    <!-- Detail Start -->
     <h2 th:if="${mensaje}" class="alert alert-info" th:text="${mensaje}"></h2>
-    <div class="card-deck shadow-sm">
-        <div class="card">
-            <div class="card-body">
-                <!-- Verificamos el tipo de publicacion, para ver sus atributos -->
-                <h1 class="card-text font-monospace" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).BUSCADO_POR_DUENIO}">
-                    Perdi mi mascota
-                </h1>
-                <h1 class="card-text font-monospace" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).BUSCANDO_AL_DUENIO}">
-                    Busco al dueño
-                </h1>
-                <h1 class="card-text font-monospace" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).DONACION}">
-                    Solicito donación
-                </h1>
-                <h1 class="card-title font-monospace" th:if="${historia} and ${historia.getTitular() != null}"
-                    th:text="${historia.getTitular()}">
-                </h1>
-                <h3 class="card-text fw-normal" th:text="${publicacionData.getDescripcion()}"></h3>
-                <h4 class="card-text fs-5 text-primary fw-normal" th:if="${donacion} and ${donacion.getMontoACubrir() != null}" th:text="'Monto a cubrir: $ ' + ${donacion.getMontoACubrir()}"></h4>
-                <h4 class="card-text fs-5 text-primary fw-normal" th:if="${donacion} and ${donacion.getRecaudacion() != null}" th:text="'Monto recaudado: $ ' + ${donacion.getRecaudacion()}"></h4>
-                <h4 class="card-text fs-5 text-primary fw-normal" th:if="${perdido} and ${perdido.getDireccion() != null}" th:text="'Visto por última vez: ' + ${perdido.getDireccion()}"></h4>
-                <h4 class="card-text fs-5 text-primary fw-normal" th:if="${perdido} and ${perdido.getNombreContacto() != null}" th:text="'Persona de contacto: ' + ${perdido.getNombreContacto()}"></h4>
-                <h4 class="card-text fs-5 text-primary fw-normal" th:if="${perdido} and ${perdido.getTelefonoContacto() != null}" th:text="'Teléfono de contacto: ' + ${perdido.getTelefonoContacto()}"></h4>
-                <h5 class="card-text fs-6 text-secondary fw-normal" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).HISTORIA}">Historia</h5>
-                <br>
-                <!-- En comun para todos los tipos -->
-                <h5 class="card-text fs-6 text-secondary fw-normal">Nombre: <span class="text-primary" th:text="${publicacionData.getNombreMascota() != null ? publicacionData.getNombreMascota() : 'No se especifico'}"></span></h5>
-                <h5 class="card-text fs-6 text-secondary fw-normal">Color: <span class="text-primary" th:text="${publicacionData.getMascotaColor() != null ? publicacionData.getMascotaColor() : 'No se especifico'}"></span></h5>
-                <h5 class="card-text fs-6 text-secondary fw-normal">Raza: <span class="text-primary" th:text="${publicacionData.getMascotaRaza() != null ? publicacionData.getMascotaRaza() : 'No se especifico'}"></span></h5>
-                <h5 class="card-text fs-6 text-secondary fw-normal">Zona: <span class="text-primary" th:text="${publicacionData.getZona()}"></span></h5>
-                <p class="card-text text-end"><small class="text-muted fst-italic">Publicado el <span th:text="${publicacionData.getFechaPublicacion()}"></span></small></p>
-                <div class="container-btn text-center options">
-                    <a href="http://localhost:8080/spring/red-social" class="btn btn-outline-secondary">Volver</a>
-                    <button type="button" class="btn btn-outline-primary" th:onclick="mostrarMensaje()">Compartir</button>
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-lg-8">
+                <div class="d-flex flex-column text-left mb-4">
+                    <h4 class="text-secondary mb-3">Detalle publicación</h4>
+                    <h1 class="mb-3" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).BUSCADO_POR_DUENIO}">
+                        Perdí mi mascota
+                    </h1>
+                    <h1 class="mb-3" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).BUSCANDO_AL_DUENIO}">
+                        Busco al dueño
+                    </h1>
+                    <h1 class="mb-3" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).DONACION}">
+                        Solicito donación
+                    </h1>
+                    <h1 class="mb-3" th:if="${historia} and ${historia.getTitular() != null}"
+                        th:text="${historia.getTitular()}">
+                    </h1>
 
-                    <form th:action="@{/eliminar-publicacion}" method="post">
+                    <div class="d-index-flex mb-2">
+                        <small class="mr-2">
+                            <i class="fa fa-paw text-muted"></i>
+                            <span th:text="${publicacionData.getNombreMascota()}" class="ml-2"></span>
+                        </small>
+                        <small class="mr-2">
+                            <i class="fa fa-map text-muted"></i>
+                            <span th:text="${publicacionData.getZona()}" class="ml-2"></span>
+                        </small>
+                        <small class="mr-2">
+                            <i class="fa fa-calendar text-muted"></i>
+                            <span th:text="${publicacionData.getFechaPublicacion()}" class="ml-2"></span>
+                        </small>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <img class="card-img-top mb-4" th:src="${image != null} ? 'data:image/jpeg;base64,' + ${image} : '/spring/img/sin-imagen.jpg'" style="max-width: 35rem" alt="">
+                    <h4 class="card-text fs-5 text-primary fw-normal" th:if="${donacion} and ${donacion.getMontoACubrir() != null}" th:text="'Monto a cubrir: $ ' + ${donacion.getMontoACubrir()}"></h4>
+                    <h5 class="card-text fs-5 text-primary fw-normal" th:if="${perdido} and ${perdido.getDireccion() != null}" th:text="'Visto por última vez: ' + ${perdido.getDireccion()}"></h5>
+                    <h5 class="card-text fs-5 text-primary fw-normal" th:if="${perdido} and ${perdido.getNombreContacto() != null}" th:text="'Persona de contacto: ' + ${perdido.getNombreContacto()}"></h5>
+                    <h5 class="card-text fs-5 text-primary fw-normal" th:if="${perdido} and ${perdido.getTelefonoContacto() != null}" th:text="'Teléfono de contacto: ' + ${perdido.getTelefonoContacto()}"></h5>
+                    <h5 class="card-text fs-5 text-secondary fw-normal" th:if="${publicacionData.getTipoPublicacion() == T(com.tallerwebi.dominio.PublicacionTipo).HISTORIA}">Historia</h5>
+                    <p class="card-text fs-5" th:text="${publicacionData.getDescripcion()}"></p>
+
+                    <p class="card-text fs-5 mb-1 text-secondary fw-normal">Nombre: <span class="text-primary" th:text="${publicacionData.getNombreMascota() != null ? publicacionData.getNombreMascota() : 'No se especifico'}"></span></p>
+                    <p class="card-text fs-5 mb-1 text-secondary fw-normal">Color: <span class="text-primary" th:text="${publicacionData.getMascotaColor() != null ? publicacionData.getMascotaColor() : 'No se especifico'}"></span></p>
+                    <p class="card-text fs-5 mb-1 text-secondary fw-normal">Raza: <span class="text-primary" th:text="${publicacionData.getMascotaRaza() != null ? publicacionData.getMascotaRaza() : 'No se especifico'}"></span></p>
+                    <p class="card-text fs-5 mb-1 text-secondary fw-normal">Zona: <span class="text-primary" th:text="${publicacionData.getZona()}"></span></p>
+                    <p class="card-text fs-5 mb-4 text-end">Publicado el <span th:text="${publicacionData.getFechaPublicacion()}"></span></p>
+                </div>
+                <div class="p-2" style="max-width: 900px;">
+                    <a href="http://localhost:8080/spring/red-social" class="btn btn-lg m-1 btn-primary px-4">Volver</a>
+                    <a href="" th:onclick="mostrarMensaje()" class="btn btn-lg m-1 btn-secondary px-4">Compartir</a>
+                    <form th:action="@{/eliminar-publicacion}" method="post" style="display: inline;">
                         <input type="hidden" name="idPublicacion" th:value="${publicacionData.getIdPublicacion()}">
-                        <button type="submit" class="btn btn-outline-danger">Eliminar</button>
+                        <button type="submit" class="btn btn-lg m-1 btn-primary px-4">Eliminar</button>
                     </form>
-
-                    <form th:action="@{/editar-publicacion}" method="get">
+                    <form th:action="@{/editar-publicacion}" method="get" style="display: inline;">
                         <input type="hidden" name="idPublicacion" th:value="${publicacionData.getIdPublicacion()}">
                         <input type="hidden" name="tipoPublicacion" th:value="${publicacionData.getTipoPublicacion()}">
-                        <button type="submit" class="btn btn-outline-info">Editar</button>
+                        <button type="submit" class="btn btn-lg m-1 btn-secondary px-4">Editar</button>
                     </form>
-
                 </div>
             </div>
 
-        </div>
-        <br>
-        <div class="card-footer">
-            <form th:action="@{/comentarPublicacion/}" method="POST">
-                <input type="hidden" name="idPublicacion" th:value="${publicacionData.getIdPublicacion()}">
-                <label class="card-text fs-5 text-primary fw-normal" for="textoDelComentario">Realizar comentario</label>
-                <br>
-                <textarea id="textoDelComentario" maxlength="250" name="textoDelComentario" rows="5" cols="50" required class="form-control" placeholder="Escribe tu comentario aquí..."></textarea>
-                <br>
-                <div class="text-end">
-                    <button type="submit" class="btn btn-dark">Comentar</button>
+            <div class="col-lg-4 mt-5 mt-lg-0">
+                <div class="mb-5">
+                    <h3 class="mb-4">Dejá tu comentario</h3>
+                    <form th:action="@{/comentarPublicacion/}" method="POST">
+                        <!-- <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" class="form-control" id="name">
+                        </div> -->
+                        <div class="form-group">
+                            <input type="hidden" name="idPublicacion" th:value="${publicacionData.getIdPublicacion()}">
+                            <label for="message">Mensaje</label>
+                            <textarea id="textoDelComentario" maxlength="250" name="textoDelComentario" rows="5" cols="50" required class="form-control" placeholder="Escribe tu comentario aquí..."></textarea>
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="submit" value="Comentar" class="btn btn-primary px-3">
+                        </div>
+                    </form>
+                    <div class="media bg-light mb-5 p-4 p-md-4">
+                        <div class="media-body">
+                            <h5 class="mb-3">Comentarios:</h5>
+                            <div th:each="comentario : ${publicacionData.comentarios}">
+                                <div class="card-text">
+                                    <p th:text="${comentario.getId() +' '+ comentario.contenido }"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-            </form>
-        </div>
-        <br>
-        <div class="fw-normal text-start">
-            <h4 class="card-text fs-5 text-primary fw-normal">Comentarios:</h4>
-            <div th:each="comentario : ${publicacionData.comentarios}">
-                <div class="card-text">
-                    <p th:text="${comentario.getId() +' '+ comentario.contenido }"></p>
-                </div>
             </div>
         </div>
-        <br>
-        <br>
-
     </div>
+    <!-- Detail End -->
+
 </main>
-<div class="footer mt-auto py-3 bg-dark" th:include="'footer'"></div>
-<!-- Bootstrap core js -->
-<script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+
+<!-- Incluyendo el footer -->
+<div th:include="'footer'"></div>
+
+<div th:include="'scripts'"></div>
 </body>
 </html>
